@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import FallbackImage from './FallbackImage.jsx';
 import { CLIENT_INFO } from '../../config/clientInfo.js';
 
 export default function ProductModal({ product, isOpen, onClose }) {
   const [activeImageIndex, setActiveImageIndex] = useState(0);
+  const fallbackImage = '/assets/decorforall/flexible-stone-desert-gold-accent-wall-10.webp';
 
   useEffect(() => {
     setActiveImageIndex(0);
@@ -70,10 +72,11 @@ export default function ProductModal({ product, isOpen, onClose }) {
 
         {/* Top Architectural Photo Gallery */}
         <div className="relative w-full h-64 sm:h-80 md:h-96 bg-stone-900 select-none shrink-0 group">
-          <img
-            src={currentImage}
+          <FallbackImage
+            src={currentImage || fallbackImage}
             alt={`${product.name} Dubai luxury architecture`}
             className="w-full h-full object-cover transition-opacity duration-300"
+            fallbackSrc={fallbackImage}
           />
 
           {/* Photo Caption & Counter */}
@@ -125,7 +128,7 @@ export default function ProductModal({ product, isOpen, onClose }) {
                     : 'border-stone-200 opacity-60 hover:opacity-100'
                 }`}
               >
-                <img src={img} alt="" className="w-full h-full object-cover" />
+                <FallbackImage src={img || fallbackImage} alt="" className="w-full h-full object-cover" fallbackSrc={fallbackImage} />
               </button>
             ))}
           </div>

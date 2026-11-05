@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 import SEOHead from '../components/public/SEOHead.jsx';
+import FallbackImage from '../components/public/FallbackImage.jsx';
 import { getWhatsAppInquiryLink } from '../utils/whatsappHelper.js';
 import { CLIENT_INFO } from '../config/clientInfo.js';
 
@@ -10,6 +11,7 @@ export default function ProductDetailPage({ onOpenQuote }) {
   const [product, setProduct] = useState(null);
   const [selectedImage, setSelectedImage] = useState(0);
   const [loading, setLoading] = useState(true);
+  const fallbackImage = '/assets/decorforall/flexible-stone-desert-gold-accent-wall-10.webp';
 
   useEffect(() => {
     setLoading(true);
@@ -74,10 +76,11 @@ export default function ProductDetailPage({ onOpenQuote }) {
           {/* Gallery View */}
           <div className="flex flex-col gap-4">
             <div className="relative h-80 sm:h-96 md:h-[420px] rounded-2xl bg-stone-100 overflow-hidden border border-brand-sand/50">
-              <img
-                src={images[selectedImage] || images[0]}
+              <FallbackImage
+                src={images[selectedImage] || images[0] || fallbackImage}
                 alt={product.name}
                 className="w-full h-full object-cover transition duration-300"
+                fallbackSrc={fallbackImage}
               />
               <span className="absolute top-4 left-4 bg-brand-charcoal/90 backdrop-blur text-white font-mono text-[11px] px-3 py-1 rounded-md">
                 SKU: {sku}
@@ -100,7 +103,7 @@ export default function ProductDetailPage({ onOpenQuote }) {
                       selectedImage === idx ? 'border-brand-gold ring-2 ring-brand-gold/30' : 'border-brand-sand/50 opacity-70 hover:opacity-100'
                     }`}
                   >
-                    <img src={img} alt={`View ${idx + 1}`} className="w-full h-full object-cover" />
+                    <FallbackImage src={img || fallbackImage} alt={`View ${idx + 1}`} className="w-full h-full object-cover" fallbackSrc={fallbackImage} />
                   </button>
                 ))}
               </div>

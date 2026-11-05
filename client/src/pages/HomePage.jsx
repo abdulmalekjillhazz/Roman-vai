@@ -35,28 +35,46 @@ export default function HomePage({ onOpenQuote }) {
 
   useEffect(() => {
     const controller = new AbortController();
+    let isCancelled = false;
     setLoading(true);
     setLoadError('');
     const apiBase = import.meta.env.VITE_API_BASE_URL || '/api';
-    axios
-      .get(`${apiBase}/products`, { signal: controller.signal })
-      .then((res) => {
-        if (!Array.isArray(res.data)) {
-          throw new Error('The product catalog response was not a list.');
-        }
-        setProducts(res.data);
-      })
-      .catch((err) => {
-        if (!axios.isCancel(err)) {
-          console.error('Failed to load products:', err);
-          setLoadError('We could not load the product range right now. Please try again or contact our team.');
-        }
-      })
-      .finally(() => {
-        if (!controller.signal.aborted) setLoading(false);
-      });
 
-    return () => controller.abort();
+    async function loadProducts() {
+      try {
+        const res = await axios.get(`${apiBase}/products`, { signal: controller.signal });
+        if (Array.isArray(res.data) && res.data.length > 0) {
+          if (!isCancelled) setProducts(res.data);
+          return;
+        }
+        throw new Error('Empty or invalid response from API');
+      } catch (apiErr) {
+        if (controller.signal.aborted || isCancelled) return;
+        // Resilient fallback to static catalog so site never fails on serverless/static deployments
+        try {
+          const fallbackRes = await fetch('/data/products_data.json', { signal: controller.signal });
+          const fallbackData = await fallbackRes.json();
+          if (Array.isArray(fallbackData) && !isCancelled) {
+            setProducts(fallbackData);
+            return;
+          }
+        } catch (fbErr) {
+          if (!controller.signal.aborted && !isCancelled) {
+            console.error('Failed to load products:', apiErr, fbErr);
+            setLoadError('We could not load the product range right now. Please try again or contact our team.');
+          }
+        }
+      } finally {
+        if (!isCancelled) setLoading(false);
+      }
+    }
+
+    loadProducts();
+
+    return () => {
+      isCancelled = true;
+      controller.abort();
+    };
   }, [reloadKey]);
 
   useEffect(() => {

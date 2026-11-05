@@ -1,0 +1,346 @@
+[
+  {
+    "id": "cat-01",
+    "name": "Flexible Stone",
+    "category": "wall-products",
+    "categoryGroup": "1. Wall Panels, Stone & Marble",
+    "categoryName": "Wall Panels",
+    "description": "Ultra-thin, bendable natural stone veneer sheets for interior & exterior walls, curved columns, and facade features.",
+    "featureTitle": "FLEXIBLE STONE — NATURAL LOOK. LIMITLESS POSSIBILITIES.",
+    "features": [
+      "100% Water Resistant",
+      "Ultra Lightweight & Flexible",
+      "Natural Mineral Stone Texture",
+      "Heat & UV Weatherproof",
+      "Indoor & Outdoor Luxury Use"
+    ],
+    "isNew": false,
+    "images": [
+      "/assets/decorforall/flexible-stone-desert-gold-accent-wall-10.webp",
+      "/assets/decorforall/flexible-stone-warm-sandstone-panel-11.webp",
+      "/assets/decorforall/flexible-stone-travertine-slab-320x120-04.webp",
+      "/assets/decorforall/flexible-stone-luxury-hallway-cladding-09.webp",
+      "/assets/decorforall/flexible-stone-grey-granite-look-sheet-12.webp",
+      "/assets/decorforall/flexible-stone-rustic-limestone-finish-13.webp",
+      "/assets/decorforall/flexible-stone-amber-onyx-translucent-sheet-14.webp",
+      "/assets/decorforall/flexible-stone-contemporary-curved-facade-15.webp"
+    ],
+    "inStock": true,
+    "slug": "flexible-stone"
+  },
+  {
+    "id": "cat-02",
+    "name": "PU Faux Rock & Stone",
+    "category": "wall-products",
+    "categoryGroup": "1. Wall Panels, Stone & Marble",
+    "categoryName": "Wall Panels",
+    "description": "High-relief 3D architectural polyurethane rock veneer panels providing authentic stone aesthetics without wall reinforcement.",
+    "featureTitle": "PU ROCK PANELS — 3D LUXURY ARCHITECTURAL TEXTURE.",
+    "features": [
+      "Ultra Lightweight Polyurethane",
+      "Thermal & Sound Insulation",
+      "Zero Moisture Absorption",
+      "Simple Adhesive / Screw Mount",
+      "Class A Fire Resistant"
+    ],
+    "isNew": false,
+    "images": [
+      "/assets/decorforall/big-pu-stone-mountain-cliff-facade-03.webp",
+      "/assets/decorforall/small-pu-stone-modern-fireplace-accent-04.webp",
+      "/assets/decorforall/small-pu-stone-rustic-grey-chiseled-05.webp",
+      "/assets/decorforall/small-pu-stone-warm-terracotta-ledge-06.webp",
+      "/assets/decorforall/big-pu-stone-dark-basalt-textured-wall-04.webp",
+      "/assets/decorforall/small-pu-stone-limestone-brick-pattern-07.webp",
+      "/assets/decorforall/big-pu-stone-light-granite-architectural-wall-05.webp",
+      "/assets/decorforall/small-pu-stone-natural-beige-ledge-01.webp"
+    ],
+    "inStock": true,
+    "slug": "pu-stone-rock-panels"
+  },
+  {
+    "id": "cat-03",
+    "name": "WPC Fluted Wall Panels",
+    "category": "wall-products",
+    "categoryGroup": "1. Wall Panels, Stone & Marble",
+    "categoryName": "Wall Panels",
+    "description": "5mm & 8mm heavy-duty wood-plastic composite fluted panels with tongue-and-groove interlocking for luxury TV walls and bedrooms.",
+    "featureTitle": "WPC FLUTED CLADDING — SEAMLESS INTERLOCKING LUXURY.",
+    "features": [
+      "100% Waterproof Composite",
+      "Termite & Mold Proof",
+      "Realistic Wood Grain Finishes",
+      "Hidden Fastener System",
+      "Fast UAE Job-Site Delivery"
+    ],
+    "isNew": false,
+    "images": [
+      "/assets/decorforall/wpc-chipboard-5mm-charcoal-fluted-accent-03.webp",
+      "/assets/decorforall/wpc-chipboard-5mm-warm-ash-bedroom-headboard-05.webp",
+      "/assets/decorforall/wpc-chipboard-5mm-vertical-louver-wall-07.webp",
+      "/assets/decorforall/wpc-chipboard-8mm-heavy-duty-grey-cedar-03.webp",
+      "/assets/decorforall/wpc-chipboard-5mm-modern-tv-console-backdrop-08.webp",
+      "/assets/decorforall/wpc-chipboard-8mm-heavy-duty-royal-walnut-04.webp",
+      "/assets/decorforall/wpc-chipboard-5mm-scandinavian-light-pine-09.webp",
+      "/assets/decorforall/wpc-chipboard-5mm-japandi-minimalist-slat-10.webp"
+    ],
+    "inStock": true,
+    "slug": "wpc-fluted-wall-panels"
+  },
+  {
+    "id": "cat-04",
+    "name": "PVC Marble Sheets",
+    "category": "wall-products",
+    "categoryGroup": "1. Wall Panels, Stone & Marble",
+    "categoryName": "Wall Panels",
+    "description": "Large-format UV high-gloss and matte marble sheets for luxury living room feature walls, reception desks, and bathrooms.",
+    "featureTitle": "PVC UV MARBLE — HIGH GLOSS ITALIAN AESTHETICS.",
+    "features": [
+      "Stain & Scratch Resistant UV Coat",
+      "100% Waterproof & Washable",
+      "Realistic Bookmatch Veining",
+      "Lightweight Fast Application",
+      "Commercial Grade Durability"
+    ],
+    "isNew": false,
+    "images": [
+      "/assets/decorforall/pvc-marble-glossy-nero-marquina-black-gold-03.webp",
+      "/assets/decorforall/pvc-marble-glossy-emerald-jade-onyx-04.webp",
+      "/assets/decorforall/pvc-marble-glossy-calacatta-gold-slab-01.webp",
+      "/assets/decorforall/pvc-marble-matte-silk-travertine-finish-01.webp",
+      "/assets/decorforall/pvc-marble-glossy-statuario-white-feature-wall-02.webp",
+      "/assets/decorforall/pvc-marble-matte-grey-pietra-slab-02.webp",
+      "/assets/decorforall/pvc-marble-penthouse-dining-feature-wall-05.webp",
+      "/assets/decorforall/pvc-marble-executive-boardroom-backdrop-06.webp",
+      "/assets/decorforall/pvc-marble-hospitality-suite-accent-wall-07.webp"
+    ],
+    "inStock": true,
+    "slug": "pvc-marble-sheets"
+  },
+  {
+    "id": "cat-05",
+    "name": "Acoustic Slat Wood Panels",
+    "category": "wall-products",
+    "categoryGroup": "1. Wall Panels, Stone & Marble",
+    "categoryName": "Wall Panels",
+    "description": "Luxury natural wood veneer acoustic slat panels mounted on recycled acoustic felt for sound dampening and high-end aesthetics.",
+    "featureTitle": "ACOUSTIC SLAT WOOD — ACOUSTIC EXCELLENCE & WARMTH.",
+    "features": [
+      "NRC Sound Absorption Rating",
+      "Real Oak & Walnut Veneers",
+      "Eco-Friendly Recycled PET Felt",
+      "Reduces Room Reverberation",
+      "Horizontal & Vertical Mounting"
+    ],
+    "isNew": true,
+    "images": [
+      "/assets/decorforall/acoustic-panel-studio-recording-room-wall-03.webp",
+      "/assets/decorforall/acoustic-panel-ps-warm-woodgrain-louver-02.webp",
+      "/assets/decorforall/acoustic-panel-small-home-theatre-baffle-02.webp",
+      "/assets/decorforall/acoustic-panel-office-conference-sound-absorber-04.webp",
+      "/assets/decorforall/acoustic-panel-auditorium-linear-wood-panel-05.webp",
+      "/assets/decorforall/acoustic-panel-slat-wood-natural-teak-01.webp",
+      "/assets/decorforall/acoustic-panel-residential-living-room-accent-06.webp",
+      "/assets/decorforall/acoustic-panel-restaurant-dining-sound-wall-07.webp"
+    ],
+    "inStock": true,
+    "slug": "acoustic-slat-wood-panels"
+  },
+  {
+    "id": "cat-06",
+    "name": "PS Wall Louvers & Partitions",
+    "category": "wall-products",
+    "categoryGroup": "1. Wall Panels, Stone & Marble",
+    "categoryName": "Wall Panels",
+    "description": "Polystyrene architectural fluted slats, vertical space partition columns, and decorative screen room dividers.",
+    "featureTitle": "PS PARTITIONS & LOUVERS — ARCHITECTURAL SPACE DEFINITION.",
+    "features": [
+      "Moisture & Water Resistant PS",
+      "Lightweight Sturdy Partitions",
+      "Modern Fluted Slat Geometry",
+      "Rich Contemporary Wood Colors",
+      "Ideal for Villas & Hotel Suites"
+    ],
+    "isNew": false,
+    "images": [
+      "/assets/decorforall/ps-wall-panel-modern-charcoal-louver-03.webp",
+      "/assets/decorforall/ps-wall-panel-warm-woodgrain-partition-04.webp",
+      "/assets/decorforall/ps-columns-architectural-room-divider-01.webp",
+      "/assets/decorforall/ps-wall-panel-cream-slat-feature-screen-05.webp",
+      "/assets/decorforall/ps-wall-panel-luxury-villa-lounge-partition-06.webp",
+      "/assets/decorforall/ps-wall-panel-commercial-hallway-cladding-07.webp",
+      "/assets/decorforall/project-completed-commercial-office-feature-wall-03.webp",
+      "/assets/decorforall/ps-wall-panel-hotel-reception-accent-wall-08.webp"
+    ],
+    "inStock": true,
+    "slug": "ps-wall-louvers-partitions"
+  },
+  {
+    "id": "cat-07",
+    "name": "PS Moldings & Cornices",
+    "category": "wall-products",
+    "categoryGroup": "1. Wall Panels, Stone & Marble",
+    "categoryName": "Wall Panels",
+    "description": "High-density polystyrene decorative ceiling cornices, wall panel moldings, base trims, and bespoke classical framing.",
+    "featureTitle": "PS DECORATIVE MOLDINGS — CRISP ARCHITECTURAL FRAMING.",
+    "features": [
+      "Pre-Primed Paintable Surface",
+      "Cracks & Shrinkage Free",
+      "100% Waterproof & Washable",
+      "Clean Miter Cut Angles",
+      "Replaces Heavy Fragile Plaster"
+    ],
+    "isNew": false,
+    "images": [
+      "/assets/decorforall/ps-molding-ornate-victorian-ceiling-cornice-01.webp",
+      "/assets/decorforall/ps-molding-neoclassical-wall-panel-frames-02.webp",
+      "/assets/decorforall/ps-molding-grand-villa-foyer-cornice-03.webp",
+      "/assets/decorforall/ps-molding-luxury-bedroom-ceiling-coving-04.webp",
+      "/assets/decorforall/ps-molding-palace-style-door-surround-trim-05.webp",
+      "/assets/decorforall/project-completed-luxury-villa-wall-cladding-01.webp",
+      "/assets/decorforall/ps-molding-hotel-corridor-wainscot-rail-06.webp"
+    ],
+    "inStock": true,
+    "slug": "ps-moldings-cornices"
+  },
+  {
+    "id": "cat-08",
+    "name": "SPC Luxury Rigid Flooring",
+    "category": "flooring-products",
+    "categoryGroup": "2. Flooring Products & Skirting",
+    "categoryName": "Flooring",
+    "description": "Heavy commercial stone-plastic composite rigid core flooring with Uniclic locking in straight plank and French herringbone patterns.",
+    "featureTitle": "SPC FLOORING — 100% WATERPROOF RIGID CORE.",
+    "features": [
+      "100% Waterproof Stone Core",
+      "Straight Plank & French Herringbone",
+      "Integrated Acoustic Underlayment",
+      "Commercial Anti-Scratch Wear Layer",
+      "Zero Formaldehyde Certified"
+    ],
+    "isNew": false,
+    "images": [
+      "/assets/decorforall/spc-straight-flooring-waterproof-rigid-core-plank-10.webp",
+      "/assets/decorforall/spc-straight-flooring-warm-honey-oak-plank-02.webp",
+      "/assets/decorforall/spc-herringbone-flooring-luxury-villa-salon-parquetry-09.webp",
+      "/assets/decorforall/spc-herringbone-flooring-interlocking-left-right-planks-10.webp",
+      "/assets/decorforall/spc-herringbone-flooring-boutique-penthouse-foyer-11.webp",
+      "/assets/decorforall/spc-herringbone-flooring-executive-suite-flooring-12.webp",
+      "/assets/decorforall/spc-herringbone-flooring-contemporary-loft-parquetry-13.webp",
+      "/assets/decorforall/spc-straight-flooring-commercial-showroom-floor-11.webp"
+    ],
+    "inStock": true,
+    "slug": "spc-luxury-flooring"
+  },
+  {
+    "id": "cat-09",
+    "name": "LVT Luxury Vinyl Flooring",
+    "category": "flooring-products",
+    "categoryGroup": "2. Flooring Products & Skirting",
+    "categoryName": "Flooring",
+    "description": "Staro luxury vinyl tiles engineered for silent underfoot cushioning, heavy footfall commercial durability, and refined textures.",
+    "featureTitle": "LVT STARO — CUSHIONED ACOUSTIC LUXURY FLOORING.",
+    "features": [
+      "Glue-Down Dimension Stability",
+      "Silent & Warm Underfoot Touch",
+      "Commercial Wear Layer 0.55mm",
+      "High Slip & Stain Rating",
+      "Perfect for High-Traffic Interiors"
+    ],
+    "isNew": false,
+    "images": [
+      "/assets/decorforall/spc-marble-flooring-4mm-master-bathroom-waterproof-05.webp",
+      "/assets/decorforall/spc-marble-flooring-4mm-modern-kitchen-island-floor-06.webp",
+      "/assets/decorforall/spc-marble-flooring-4mm-luxury-hotel-suite-tile-07.webp",
+      "/assets/decorforall/spc-marble-flooring-4mm-commercial-reception-tile-08.webp",
+      "/assets/decorforall/lvt-flooring-open-concept-villa-flooring-05.webp",
+      "/assets/decorforall/lvt-flooring-contemporary-duplex-living-room-06.webp",
+      "/assets/decorforall/lvt-flooring-commercial-office-interior-floor-07.webp",
+      "/assets/decorforall/project-completed-executive-penthouse-flooring-07.webp"
+    ],
+    "inStock": true,
+    "slug": "lvt-luxury-flooring"
+  },
+  {
+    "id": "cat-10",
+    "name": "PS Waterproof Skirting",
+    "category": "flooring-products",
+    "categoryGroup": "2. Flooring Products & Skirting",
+    "categoryName": "Flooring",
+    "description": "Polystyrene perimeter baseboard skirting profiles available in 80mm to 120mm heights with concealed wiring raceways.",
+    "featureTitle": "PS SKIRTING — PERIMETER PROTECTION & CABLE CONCEALMENT.",
+    "features": [
+      "100% Waterproof & Termite Proof",
+      "Integrated Cable Channel Conduit",
+      "Matches All Wood & Stone Tones",
+      "Never Rots, Warps or Swells",
+      "Impact Resistant Tough Surface"
+    ],
+    "isNew": false,
+    "images": [
+      "/assets/decorforall/ps-skirting-board-curved-baseboard-trim-05.webp",
+      "/assets/decorforall/ps-skirting-board-luxury-hallway-installation-06.webp",
+      "/assets/decorforall/ps-skirting-board-modern-bedroom-baseboard-07.webp",
+      "/assets/decorforall/ps-skirting-board-architectural-wall-joint-08.webp",
+      "/assets/decorforall/ps-skirting-board-flush-mount-shadowline-trim-09.webp",
+      "/assets/decorforall/ps-skirting-board-villa-staircase-edging-10.webp",
+      "/assets/decorforall/ps-skirting-board-penthouse-perimeter-detail-11.webp",
+      "/assets/decorforall/ps-skirting-board-hospitality-suite-baseboard-12.webp"
+    ],
+    "inStock": true,
+    "slug": "ps-waterproof-skirting"
+  },
+  {
+    "id": "cat-11",
+    "name": "Architectural Aluminum Profiles",
+    "category": "fixing-materials",
+    "categoryGroup": "3. Profiles & Fixing Materials",
+    "categoryName": "Profiles & Fixing",
+    "description": "Precision anodized champagne gold, rose gold, and matte black aluminum T-profiles, edge trims, and tile-to-wall transition strips.",
+    "featureTitle": "ARCHITECTURAL PROFILES — PRECISE SEAMLESS TRANSITIONS.",
+    "features": [
+      "Anodized Scratch-Proof Coating",
+      "Champagne, Brushed Gold & Black",
+      "Flawless Tile & Marble Junctions",
+      "Concealed Expansion Gap Covers",
+      "Dubai Five-Star Hotel Standard"
+    ],
+    "isNew": false,
+    "images": [
+      "/assets/decorforall/aluminum-profile-tile-transition-strip-silver-03.webp",
+      "/assets/decorforall/aluminum-profile-round-bullnose-corner-trim-04.webp",
+      "/assets/decorforall/aluminum-profile-stair-nosing-anti-slip-05.webp",
+      "/assets/decorforall/aluminum-profile-u-channel-wall-divider-06.webp",
+      "/assets/decorforall/aluminum-profile-expansion-joint-flooring-strip-07.webp",
+      "/assets/decorforall/aluminum-profile-capping-molding-rose-gold-08.webp",
+      "/assets/decorforall/aluminum-profile-skirting-led-channel-trim-09.webp",
+      "/assets/decorforall/aluminum-profile-heavy-commercial-threshold-10.webp"
+    ],
+    "inStock": true,
+    "slug": "aluminum-architectural-profiles"
+  },
+  {
+    "id": "cat-12",
+    "name": "STARO Hybrid Polymer Adhesive",
+    "category": "fixing-materials",
+    "categoryGroup": "3. Profiles & Fixing Materials",
+    "categoryName": "Profiles & Fixing",
+    "description": "Ultra-high initial grab hybrid silicon polymer adhesives engineered for immediate vertical bonding of stone, WPC, and marble.",
+    "featureTitle": "STARO HYBRID ADHESIVE — EXTREME VERTICAL GRAB.",
+    "features": [
+      "Extreme Instant Initial Grab",
+      "Non-Corrosive to Mirror Backings",
+      "Zero Odor, Solvents & Isocyanates",
+      "Bonds on Damp & Porous Surfaces",
+      "Permanent Structural Elasticity"
+    ],
+    "isNew": false,
+    "images": [
+      "/assets/decorforall/staro-hybrid-polymer-silicon-adhesive-cartridge-01.webp",
+      "/assets/decorforall/ps-molding-palace-style-door-surround-trim-05.webp",
+      "/assets/decorforall/project-completed-luxury-villa-wall-cladding-01.webp",
+      "/assets/decorforall/ps-molding-hotel-corridor-wainscot-rail-06.webp"
+    ],
+    "inStock": true,
+    "slug": "staro-hybrid-adhesive"
+  }
+]

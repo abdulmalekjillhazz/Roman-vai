@@ -1,11 +1,10 @@
 import React from 'react';
+import FallbackImage from './FallbackImage.jsx';
 
 export default function ProductCard({ product, onSelectProduct }) {
   const images = product.images || [];
-  const thumbnail =
-    images.length > 0
-      ? images[0]
-      : '/assets/decorforall/flexible-stone-desert-gold-accent-wall-10.webp';
+  const fallbackImage = '/assets/decorforall/flexible-stone-desert-gold-accent-wall-10.webp';
+  const thumbnail = images.length > 0 ? images[0] : fallbackImage;
 
   const thickness = product.specifications?.thickness || product.thickness || 'Custom';
   const material = product.specifications?.material || product.material || 'Premium finish';
@@ -16,11 +15,12 @@ export default function ProductCard({ product, onSelectProduct }) {
       className="group flex cursor-pointer flex-col rounded-2xl border border-white/80 p-2.5 text-left floating-card sm:p-3 hover:border-amber-300/80"
     >
       <div className="relative aspect-square w-full overflow-hidden rounded-xl bg-stone-100 shadow-inner">
-        <img
+        <FallbackImage
           src={thumbnail}
           alt={`${product.name} architectural surface Dubai`}
           loading="lazy"
           className="h-full w-full object-cover transition duration-500 ease-out group-hover:scale-105"
+          fallbackSrc={fallbackImage}
         />
 
         {images.length > 1 && (
