@@ -1,0 +1,476 @@
+{
+  "categories": [
+    {
+      "id": "flexible-stone",
+      "title": "Flexible Stone",
+      "images": [
+        {
+          "src": "/assets/decorforall/c3f8883d60c57a177649b672.webp",
+          "alt": "Flexible Stone"
+        },
+        {
+          "src": "/assets/decorforall/215a346029f3287e4cf4bd1f.webp",
+          "alt": "Flexible Stone"
+        },
+        {
+          "src": "/assets/decorforall/bfb35966bd33f30a4cb317d3.webp",
+          "alt": "Flexible Stone"
+        },
+        {
+          "src": "/assets/decorforall/ee9a39bced0540b3e8304741.webp",
+          "alt": "Flexible Stone"
+        },
+        {
+          "src": "/assets/decorforall/8619c2641aaf9a35d4185f04.webp",
+          "alt": "Flexible Stone"
+        },
+        {
+          "src": "/assets/decorforall/7b8674dbd6d21d9196fb26ee.webp",
+          "alt": "Flexible Stone"
+        },
+        {
+          "src": "/assets/decorforall/5b8f135cd11c0ee042b78392.webp",
+          "alt": "Flexible Stone"
+        },
+        {
+          "src": "/assets/decorforall/d951d5dff176c53476b06c2a.webp",
+          "alt": "Flexible Stone"
+        },
+        {
+          "src": "/assets/decorforall/6f95a9b4d21be6831caf3316.webp",
+          "alt": "Flexible Stone"
+        }
+      ]
+    },
+    {
+      "id": "pu-stone",
+      "title": "PU Stone",
+      "images": [
+        {
+          "src": "/assets/decorforall/ac27296fe68682547c3b281e.webp",
+          "alt": "PU Stone"
+        },
+        {
+          "src": "/assets/decorforall/1d363850fc8ea1cde37ef253.webp",
+          "alt": "PU Stone"
+        },
+        {
+          "src": "/assets/decorforall/a0deb3a7c8e6a4bfe25657d4.webp",
+          "alt": "PU Stone"
+        },
+        {
+          "src": "/assets/decorforall/bbbfc2c5ca526216d008f23b.webp",
+          "alt": "PU Stone"
+        },
+        {
+          "src": "/assets/decorforall/2a326538c9a73f80787eb4cb.webp",
+          "alt": "PU Stone"
+        },
+        {
+          "src": "/assets/decorforall/f11bbeafa1acbe0b49f518f3.webp",
+          "alt": "PU Stone"
+        },
+        {
+          "src": "/assets/decorforall/63cb834652c6ef1546afd501.webp",
+          "alt": "PU Stone"
+        },
+        {
+          "src": "/assets/decorforall/7112176abe5bc46b1f9e5e86.webp",
+          "alt": "PU Stone"
+        }
+      ]
+    },
+    {
+      "id": "wpc-panels",
+      "title": "WPC Wall Panels",
+      "images": [
+        {
+          "src": "/assets/decorforall/a0a83bf457d7af174c064093.webp",
+          "alt": "WPC Wall Panels"
+        },
+        {
+          "src": "/assets/decorforall/60b3b1ba23a99b9e6d32aac7.webp",
+          "alt": "WPC Wall Panels"
+        },
+        {
+          "src": "/assets/decorforall/369e68191a69ac52a467c6fe.webp",
+          "alt": "WPC Wall Panels"
+        },
+        {
+          "src": "/assets/decorforall/464fde5152988d0b2b58ed1d.webp",
+          "alt": "WPC Wall Panels"
+        },
+        {
+          "src": "/assets/decorforall/9a416bc22c134bee12431900.webp",
+          "alt": "WPC Wall Panels"
+        },
+        {
+          "src": "/assets/decorforall/213f120754b31241b961f33b.webp",
+          "alt": "WPC Wall Panels"
+        },
+        {
+          "src": "/assets/decorforall/17a3d0a4a5b4b886ad65adfd.webp",
+          "alt": "WPC Wall Panels"
+        },
+        {
+          "src": "/assets/decorforall/a0afbf009309158485513d7a.webp",
+          "alt": "WPC Wall Panels"
+        },
+        {
+          "src": "/assets/decorforall/18d344e083bf2a9507e66315.webp",
+          "alt": "WPC Wall Panels"
+        }
+      ]
+    },
+    {
+      "id": "decorative-wall-panels",
+      "title": "Decorative Wall Panels & Mouldings",
+      "images": [
+        {
+          "src": "/assets/decorforall/09dba0cbe2696524170ce3fd.webp",
+          "alt": "Decorative Wall Panels & Mouldings"
+        },
+        {
+          "src": "/assets/decorforall/9c96304133fb4465ef8b178f.webp",
+          "alt": "Decorative Wall Panels & Mouldings"
+        },
+        {
+          "src": "/assets/decorforall/5181d8176f7a38077bbb7699.webp",
+          "alt": "Decorative Wall Panels & Mouldings"
+        },
+        {
+          "src": "/assets/decorforall/28f710ff179a8b2bfc9bb2b0.webp",
+          "alt": "Decorative Wall Panels & Mouldings"
+        },
+        {
+          "src": "/assets/decorforall/08722ab17fe289f1b4ba828f.webp",
+          "alt": "Decorative Wall Panels & Mouldings"
+        },
+        {
+          "src": "/assets/decorforall/e898202230a31ff69f099dc1.webp",
+          "alt": "Decorative Wall Panels & Mouldings"
+        },
+        {
+          "src": "/assets/decorforall/c0ae8ab9dca4bd70ac045894.webp",
+          "alt": "Decorative Wall Panels & Mouldings"
+        },
+        {
+          "src": "/assets/decorforall/60d1d7d030acfcfe0d6c18b4.webp",
+          "alt": "Decorative Wall Panels & Mouldings"
+        }
+      ]
+    },
+    {
+      "id": "pvc-marble",
+      "title": "PVC Marble & Wall Cladding",
+      "images": [
+        {
+          "src": "/assets/decorforall/c85f42da4715b19e7b3b8169.webp",
+          "alt": "PVC Marble & Wall Cladding"
+        },
+        {
+          "src": "/assets/decorforall/eff1223c8855cd7233659b09.webp",
+          "alt": "PVC Marble & Wall Cladding"
+        },
+        {
+          "src": "/assets/decorforall/7e22ce29fabdb9b6161b1715.webp",
+          "alt": "PVC Marble & Wall Cladding"
+        },
+        {
+          "src": "/assets/decorforall/ce39f8ff4a22841fa60e6095.webp",
+          "alt": "PVC Marble & Wall Cladding"
+        },
+        {
+          "src": "/assets/decorforall/2b8b23d638945ee20dc76aac.webp",
+          "alt": "PVC Marble & Wall Cladding"
+        },
+        {
+          "src": "/assets/decorforall/264c73ebb176d9c11236aba8.webp",
+          "alt": "PVC Marble & Wall Cladding"
+        },
+        {
+          "src": "/assets/decorforall/9fc292e68cdde0c5931e8f7a.webp",
+          "alt": "PVC Marble & Wall Cladding"
+        },
+        {
+          "src": "/assets/decorforall/4aaa51fe816062864b66a8af.webp",
+          "alt": "PVC Marble & Wall Cladding"
+        }
+      ]
+    },
+    {
+      "id": "acoustic-panels",
+      "title": "Acoustic & Fabric Panels",
+      "images": [
+        {
+          "src": "/assets/decorforall/4ce357b3346d759eafda1ed6.webp",
+          "alt": "Acoustic & Fabric Panels"
+        },
+        {
+          "src": "/assets/decorforall/43f14263d018c4719635bcff.webp",
+          "alt": "Acoustic & Fabric Panels"
+        },
+        {
+          "src": "/assets/decorforall/5852b5219b0b4d612bcd4981.webp",
+          "alt": "Acoustic & Fabric Panels"
+        },
+        {
+          "src": "/assets/decorforall/be6316be036e829392e21da7.webp",
+          "alt": "Acoustic & Fabric Panels"
+        },
+        {
+          "src": "/assets/decorforall/94c009cfec97d5e622ceb9c4.webp",
+          "alt": "Acoustic & Fabric Panels"
+        },
+        {
+          "src": "/assets/decorforall/7397f6b94f4636a2a5b2452e.webp",
+          "alt": "Acoustic & Fabric Panels"
+        },
+        {
+          "src": "/assets/decorforall/5bd45797c7b2efe402e259e5.webp",
+          "alt": "Acoustic & Fabric Panels"
+        },
+        {
+          "src": "/assets/decorforall/a357e399dedbc5d5d309bb66.webp",
+          "alt": "Acoustic & Fabric Panels"
+        }
+      ]
+    },
+    {
+      "id": "spc-straight",
+      "title": "SPC Straight Flooring",
+      "images": [
+        {
+          "src": "/assets/decorforall/1c8461c15438716b3242eb4e.webp",
+          "alt": "SPC Straight Flooring"
+        },
+        {
+          "src": "/assets/decorforall/9fece100a968874f77f9bfa7.webp",
+          "alt": "SPC Straight Flooring"
+        },
+        {
+          "src": "/assets/decorforall/d0af97354e68f8ea08ef474d.webp",
+          "alt": "SPC Straight Flooring"
+        },
+        {
+          "src": "/assets/decorforall/53d4d3c0f72a62a23232daa9.webp",
+          "alt": "SPC Straight Flooring"
+        },
+        {
+          "src": "/assets/decorforall/e64718dd515f2db2ab2870b9.webp",
+          "alt": "SPC Straight Flooring"
+        },
+        {
+          "src": "/assets/decorforall/a95b4c2f9fd54c436846e6d7.webp",
+          "alt": "SPC Straight Flooring"
+        },
+        {
+          "src": "/assets/decorforall/36352e8d9daccca4f4045484.webp",
+          "alt": "SPC Straight Flooring"
+        },
+        {
+          "src": "/assets/decorforall/18b12d1018b6d058d1195249.webp",
+          "alt": "SPC Straight Flooring"
+        },
+        {
+          "src": "/assets/decorforall/4aadd084922aa2aac6c5b7a7.webp",
+          "alt": "SPC Straight Flooring"
+        }
+      ]
+    },
+    {
+      "id": "spc-herringbone",
+      "title": "SPC Herringbone Flooring",
+      "images": [
+        {
+          "src": "/assets/decorforall/16e08aabd7cbf0ed32994dbf.webp",
+          "alt": "SPC Herringbone Flooring"
+        },
+        {
+          "src": "/assets/decorforall/4eec7f3d46c30eae5c06158b.webp",
+          "alt": "SPC Herringbone Flooring"
+        },
+        {
+          "src": "/assets/decorforall/717a864aece36299731f5799.webp",
+          "alt": "SPC Herringbone Flooring"
+        },
+        {
+          "src": "/assets/decorforall/87e4602d5ca5ec1cc047bf7e.webp",
+          "alt": "SPC Herringbone Flooring"
+        },
+        {
+          "src": "/assets/decorforall/0a819849461be50cbefcc706.webp",
+          "alt": "SPC Herringbone Flooring"
+        },
+        {
+          "src": "/assets/decorforall/c69924a9ca27b07e4aa8060e.webp",
+          "alt": "SPC Herringbone Flooring"
+        },
+        {
+          "src": "/assets/decorforall/47f39a16c5086de9be22e601.webp",
+          "alt": "SPC Herringbone Flooring"
+        },
+        {
+          "src": "/assets/decorforall/2dcdd59b05a8d0b6628078aa.webp",
+          "alt": "SPC Herringbone Flooring"
+        }
+      ]
+    },
+    {
+      "id": "spc-marble-lvt",
+      "title": "SPC Marble & LVT Flooring",
+      "images": [
+        {
+          "src": "/assets/decorforall/a4f3617f9c9c0d20752e433e.webp",
+          "alt": "SPC Marble & LVT Flooring"
+        },
+        {
+          "src": "/assets/decorforall/de83a7fc711282985abd868d.webp",
+          "alt": "SPC Marble & LVT Flooring"
+        },
+        {
+          "src": "/assets/decorforall/49b446951ab492aea7e0893e.webp",
+          "alt": "SPC Marble & LVT Flooring"
+        },
+        {
+          "src": "/assets/decorforall/a44fe02f5dcaf10e71c03e09.webp",
+          "alt": "SPC Marble & LVT Flooring"
+        },
+        {
+          "src": "/assets/decorforall/38a037dd3e6571037368da00.webp",
+          "alt": "SPC Marble & LVT Flooring"
+        },
+        {
+          "src": "/assets/decorforall/2338347dc02ffc9836b5fab1.webp",
+          "alt": "SPC Marble & LVT Flooring"
+        },
+        {
+          "src": "/assets/decorforall/67c324ca3bca3e0135b0c242.webp",
+          "alt": "SPC Marble & LVT Flooring"
+        },
+        {
+          "src": "/assets/decorforall/b129a5749685ab26e4376b7f.webp",
+          "alt": "SPC Marble & LVT Flooring"
+        }
+      ]
+    },
+    {
+      "id": "profiles-skirting",
+      "title": "Profiles & Skirting",
+      "images": [
+        {
+          "src": "/assets/decorforall/de782071cd8471f31c8546cd.webp",
+          "alt": "Profiles & Skirting"
+        },
+        {
+          "src": "/assets/decorforall/cb8bbd31bd8a7067ffa5cc9f.webp",
+          "alt": "Profiles & Skirting"
+        },
+        {
+          "src": "/assets/decorforall/ccdc35037d7887941e15b2e8.webp",
+          "alt": "Profiles & Skirting"
+        },
+        {
+          "src": "/assets/decorforall/7821e26fbbcfaecd6526cb93.webp",
+          "alt": "Profiles & Skirting"
+        },
+        {
+          "src": "/assets/decorforall/1738014228a15235cd63ba71.webp",
+          "alt": "Profiles & Skirting"
+        },
+        {
+          "src": "/assets/decorforall/f6b4358d44b6e5d8e6029931.webp",
+          "alt": "Profiles & Skirting"
+        },
+        {
+          "src": "/assets/decorforall/00bcf144b6e967e2e9ce4d5f.webp",
+          "alt": "Profiles & Skirting"
+        },
+        {
+          "src": "/assets/decorforall/66f154dd0f669d96fe2e2eac.webp",
+          "alt": "Profiles & Skirting"
+        }
+      ]
+    },
+    {
+      "id": "woodworking",
+      "title": "Woodworking & 3D Sheets",
+      "images": [
+        {
+          "src": "/assets/decorforall/7463c8908be142c162d5d900.webp",
+          "alt": "Woodworking & 3D Sheets"
+        },
+        {
+          "src": "/assets/decorforall/84607bf2efe84d4d36c8d990.webp",
+          "alt": "Woodworking & 3D Sheets"
+        },
+        {
+          "src": "/assets/decorforall/2defae02423e7d7450d2f59d.webp",
+          "alt": "Woodworking & 3D Sheets"
+        },
+        {
+          "src": "/assets/decorforall/354eb8d766ecbc7a88b994b8.webp",
+          "alt": "Woodworking & 3D Sheets"
+        },
+        {
+          "src": "/assets/decorforall/512eb76ca7b2abdfcf24e047.webp",
+          "alt": "Woodworking & 3D Sheets"
+        },
+        {
+          "src": "/assets/decorforall/a6f3a5b15d6d9b8c49f1a01d.webp",
+          "alt": "Woodworking & 3D Sheets"
+        },
+        {
+          "src": "/assets/decorforall/0fd50573854acae0880684ad.webp",
+          "alt": "Woodworking & 3D Sheets"
+        },
+        {
+          "src": "/assets/decorforall/9161bd579c39b99daca3c814.webp",
+          "alt": "Woodworking & 3D Sheets"
+        }
+      ]
+    },
+    {
+      "id": "projects",
+      "title": "Completed Projects",
+      "images": [
+        {
+          "src": "/assets/decorforall/9ce7792d245fd6c55a5c05f2.webp",
+          "alt": "Completed Projects"
+        },
+        {
+          "src": "/assets/decorforall/84c273f62882e6bce59f923c.webp",
+          "alt": "Completed Projects"
+        },
+        {
+          "src": "/assets/decorforall/7a4ebc1aca6d2da3da22d38e.webp",
+          "alt": "Completed Projects"
+        },
+        {
+          "src": "/assets/decorforall/c5d79f4b5c504474342ea7dd.webp",
+          "alt": "Completed Projects"
+        },
+        {
+          "src": "/assets/decorforall/d466e1b83dcad889ce8224c3.webp",
+          "alt": "Completed Projects"
+        },
+        {
+          "src": "/assets/decorforall/960b200bd612567a0b611337.webp",
+          "alt": "Completed Projects"
+        },
+        {
+          "src": "/assets/decorforall/9e92de37fbf62f8f3e15602c.webp",
+          "alt": "Completed Projects"
+        },
+        {
+          "src": "/assets/decorforall/e95d8c940ef0f4eab3b71bd7.webp",
+          "alt": "Completed Projects"
+        },
+        {
+          "src": "/assets/decorforall/148d3e8b245b7f3dd80dccfb.webp",
+          "alt": "Completed Projects"
+        }
+      ]
+    }
+  ]
+}

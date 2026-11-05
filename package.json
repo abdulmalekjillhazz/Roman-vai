@@ -1,0 +1,21 @@
+{
+  "name": "classical-decor-id-dst-deco-mern",
+  "version": "2.1.0",
+  "description": "Classical Decor ID (DST Deco) - Production MERN Stack Catalog with Cloudinary, Google Sheets Lead Proxy, and Full Build Pipeline",
+  "type": "module",
+  "scripts": {
+    "install:all": "npm install && npm --prefix server install && npm --prefix client install",
+    "download:images": "node scripts/download_images.js",
+    "sync:cloudinary": "node scripts/sync_to_cloudinary.js",
+    "seed": "node server/src/seed.js",
+    "dev:server": "npm --prefix server run dev",
+    "dev:client": "npm --prefix client run dev",
+    "build": "npm --prefix client run build",
+    "start": "npm --prefix server start"
+  },
+  "dependencies": {
+    "axios": "^1.7.2",
+    "cloudinary": "^2.5.0",
+    "dotenv": "^16.4.5"
+  }
+}
