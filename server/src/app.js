@@ -70,6 +70,10 @@ if (fs.existsSync(clientDistPath)) {
 }
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`🚀 Classical Decor ID (DST Deco) Server running on http://localhost:${PORT}`);
-});
+if (process.env.NODE_ENV !== 'test' && !process.env.VERCEL) {
+  app.listen(PORT, () => {
+    console.log(`🚀 Classical Decor ID (DST Deco) Server running on http://localhost:${PORT}`);
+  });
+}
+
+export default app;
