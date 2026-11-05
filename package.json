@@ -4,7 +4,7 @@
   "description": "Classical Decor ID (DST Deco) - Production MERN Stack Catalog with Cloudinary, Google Sheets Lead Proxy, and Full Build Pipeline",
   "type": "module",
   "scripts": {
-    "postinstall": "npm --prefix client install",
+    "postinstall": "cd client && npm install --include=dev",
     "install:all": "npm install && npm --prefix server install && npm --prefix client install",
     "download:images": "node scripts/download_images.js",
     "sync:cloudinary": "node scripts/sync_to_cloudinary.js",
@@ -12,7 +12,7 @@
     "dev:server": "npm --prefix server run dev",
     "dev:client": "npm --prefix client run dev",
     "dev": "node scripts/dev.js",
-    "build": "npm --prefix client install && npm --prefix client run build",
+    "build": "cd client && npm install --include=dev && npm run build",
     "start": "node server/src/app.js"
   },
   "dependencies": {
