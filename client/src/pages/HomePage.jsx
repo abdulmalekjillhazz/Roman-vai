@@ -135,8 +135,8 @@ export default function HomePage({ onOpenQuote }) {
   return (
     <div className="bg-[#FAF7F0] min-h-screen pb-20">
       <SEOHead
-        title={`${CLIENT_INFO.brandName} | Interior Materials Supplier in Dubai`}
-        description="Explore flooring, wall panels, stone finishes and interior materials from Classical Decor ID, serving residential and commercial projects across the UAE."
+        title={`${CLIENT_INFO.brandName} | Luxury Interior Materials Supplier in Dubai, UAE`}
+        description="Discover premium wall panels, flooring, stone finishes, and architectural materials from Classical Decor ID for residential, hospitality, and commercial projects across Dubai and the UAE."
         canonicalPath="/"
       />
 
@@ -145,10 +145,10 @@ export default function HomePage({ onOpenQuote }) {
         <div className="bg-[#141414] text-white py-5 px-6 sm:px-8 rounded-2xl border border-stone-800/80 floating-banner flex flex-col md:flex-row md:items-center md:justify-between gap-4">
           <div>
             <h1 className="font-sans font-bold text-base sm:text-xl text-white tracking-tight">
-              Interior materials for spaces across the UAE
+              Premium interior materials for Dubai and UAE projects
             </h1>
             <p className="font-sans text-xs sm:text-sm text-stone-400 mt-1">
-              Explore flooring, wall finishes and architectural details for residential and commercial projects.
+              Architectural surfaces, wall finishes, flooring, and finishing materials trusted by designers, contractors, and developers.
             </p>
           </div>
           <div className="flex shrink-0 flex-wrap gap-2.5">
@@ -164,6 +164,34 @@ export default function HomePage({ onOpenQuote }) {
               className="inline-flex min-h-10 items-center rounded-xl border border-white/25 px-4 text-xs font-bold text-white transition hover:bg-white/10 hover:-translate-y-0.5"
             >
               Ask our team
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Trust + Conversion Highlights */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+        <div className="grid gap-4 md:grid-cols-3">
+          <div className="rounded-2xl border border-stone-200 bg-white p-5 shadow-sm">
+            <p className="text-[10px] font-sans uppercase tracking-[0.2em] text-amber-700 font-bold">Trade pricing</p>
+            <h2 className="mt-3 font-display text-2xl text-stone-900">Commercial-grade supply</h2>
+            <p className="mt-2 text-sm text-stone-600">Direct rates for contractors, designers, developers, and fit-out teams across the UAE.</p>
+          </div>
+          <div className="rounded-2xl border border-stone-200 bg-white p-5 shadow-sm">
+            <p className="text-[10px] font-sans uppercase tracking-[0.2em] text-amber-700 font-bold">Fast delivery</p>
+            <h2 className="mt-3 font-display text-2xl text-stone-900">Quick UAE turnaround</h2>
+            <p className="mt-2 text-sm text-stone-600">Flexible stock, project support, and prompt coordination for time-sensitive installations.</p>
+          </div>
+          <div className="rounded-2xl border border-stone-200 bg-[#141414] p-5 shadow-sm text-white">
+            <p className="text-[10px] font-sans uppercase tracking-[0.2em] text-amber-300 font-bold">Need samples?</p>
+            <h2 className="mt-3 font-display text-2xl text-white">Request a quote today</h2>
+            <p className="mt-2 text-sm text-stone-300">Get expert guidance for product selection, finish matching, and specification support.</p>
+            <button
+              type="button"
+              onClick={() => onOpenQuote('Luxury catalog and sample inquiry')}
+              className="mt-4 inline-flex min-h-10 items-center rounded-lg bg-brand-gold px-4 text-xs font-bold text-brand-charcoal transition hover:bg-amber-400"
+            >
+              Request trade pricing
             </button>
           </div>
         </div>
