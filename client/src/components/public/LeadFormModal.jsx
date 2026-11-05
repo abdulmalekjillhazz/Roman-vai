@@ -112,7 +112,7 @@ export default function LeadFormModal({ isOpen, onClose, initialCategory = '' })
                 value={formData.name}
                 onChange={e => setFormData({ ...formData, name: e.target.value })}
                 placeholder="e.g. Tariq Al Mansoori"
-                className="floating-input w-full rounded-xl border border-stone-200/90 bg-white px-3.5 py-2.5 text-xs text-brand-charcoal focus:outline-none"
+                className="floating-input w-full rounded-xl border border-stone-200/90 bg-white px-3.5 py-2.5 text-xs text-brand-charcoal placeholder-gray-200 focus:outline-none"
               />
             </div>
 
@@ -126,7 +126,7 @@ export default function LeadFormModal({ isOpen, onClose, initialCategory = '' })
                 value={formData.phone}
                 onChange={e => setFormData({ ...formData, phone: e.target.value })}
                 placeholder="+971 50 123 4567"
-                className="floating-input w-full rounded-xl border border-stone-200/90 bg-white px-3.5 py-2.5 text-xs text-brand-charcoal focus:outline-none"
+                className="floating-input w-full rounded-xl border border-stone-200/90 bg-white px-3.5 py-2.5 text-xs text-brand-charcoal placeholder-gray-200 focus:outline-none"
               />
             </div>
 
@@ -139,7 +139,7 @@ export default function LeadFormModal({ isOpen, onClose, initialCategory = '' })
                 value={formData.email}
                 onChange={e => setFormData({ ...formData, email: e.target.value })}
                 placeholder="project@company.com"
-                className="floating-input w-full rounded-xl border border-stone-200/90 bg-white px-3.5 py-2.5 text-xs text-brand-charcoal focus:outline-none"
+                className="floating-input w-full rounded-xl border border-stone-200/90 bg-white px-3.5 py-2.5 text-xs text-brand-charcoal placeholder-gray-200 focus:outline-none"
               />
             </div>
 
@@ -169,7 +169,7 @@ export default function LeadFormModal({ isOpen, onClose, initialCategory = '' })
                   value={formData.projectArea}
                   onChange={e => setFormData({ ...formData, projectArea: e.target.value })}
                   placeholder="350 sqm"
-                  className="floating-input w-full rounded-xl border border-stone-200/90 bg-white px-3.5 py-2.5 text-xs text-brand-charcoal focus:outline-none"
+                  className="floating-input w-full rounded-xl border border-stone-200/90 bg-white px-3.5 py-2.5 text-xs text-brand-charcoal placeholder-gray-200 focus:outline-none"
                 />
               </div>
             </div>
@@ -183,7 +183,7 @@ export default function LeadFormModal({ isOpen, onClose, initialCategory = '' })
                 value={formData.message}
                 onChange={e => setFormData({ ...formData, message: e.target.value })}
                 placeholder="Villa interior in Dubai Hills, porcelain look wall panels, approx 350 sqm..."
-                className="floating-input w-full resize-none rounded-xl border border-stone-200/90 bg-white px-3.5 py-2.5 text-xs text-brand-charcoal focus:outline-none"
+                className="floating-input w-full resize-none rounded-xl border border-stone-200/90 bg-white px-3.5 py-2.5 text-xs text-brand-charcoal placeholder-gray-200 focus:outline-none"
               />
             </div>
 

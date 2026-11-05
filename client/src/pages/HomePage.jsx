@@ -266,7 +266,7 @@ export default function HomePage({ onOpenQuote }) {
               onChange={(e) => setSearch(e.target.value)}
               aria-label="Search products"
               placeholder="Search surfaces (e.g. Stone, WPC, Marble...)"
-              className="w-full bg-white border border-stone-200/90 rounded-2xl pl-10 pr-9 py-2.5 text-xs font-sans text-stone-900 placeholder-stone-400 focus:outline-none floating-input"
+              className="w-full bg-white border border-stone-200/90 rounded-2xl pl-10 pr-9 py-2.5 text-xs font-sans text-stone-900 placeholder-gray-200 focus:outline-none floating-input"
             />
             {search && (
               <button
