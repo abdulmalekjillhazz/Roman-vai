@@ -33,6 +33,12 @@ export default function App() {
             </Routes>
           </main>
 
+          <LeadFormModal
+            isOpen={quoteModal.open}
+            onClose={() => setQuoteModal({ open: false, item: '' })}
+            initialCategory={quoteModal.item}
+          />
+
           {/* Official Contact & Corporate Showroom Section */}
           <section id="contact" className="bg-brand-charcoal text-white py-16 px-4 sm:px-6 lg:px-8 border-t border-stone-800">
             <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 items-start">
@@ -113,7 +119,7 @@ export default function App() {
             href={`https://wa.me/${CLIENT_INFO.whatsappNumber}?text=${encodeURIComponent("Hello Classical Decor ID, I'd like to inquire about your architectural catalog and wholesale pricing.")}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="fixed bottom-6 right-6 z-40 group flex items-center gap-3 bg-gradient-to-r from-[#25D366] to-[#128C7E] hover:from-[#20ba59] hover:to-[#0e7467] text-white pl-4 pr-5 py-3 rounded-full shadow-[0_8px_30px_rgb(37,211,102,0.35)] hover:shadow-[0_12px_35px_rgb(37,211,102,0.5)] transition-all duration-300 hover:-translate-y-1 active:translate-y-0 border border-white/25 backdrop-blur-sm"
+            className="fixed bottom-4 right-4 z-40 group flex items-center gap-3 bg-gradient-to-r from-[#25D366] to-[#128C7E] hover:from-[#20ba59] hover:to-[#0e7467] text-white pl-3.5 pr-4 py-2.5 rounded-full shadow-[0_8px_30px_rgb(37,211,102,0.35)] hover:shadow-[0_12px_35px_rgb(37,211,102,0.5)] transition-all duration-300 hover:-translate-y-1 active:translate-y-0 border border-white/25 backdrop-blur-sm sm:bottom-6 sm:right-6 sm:pl-4 sm:pr-5 sm:py-3"
           >
             <div className="relative">
               <svg

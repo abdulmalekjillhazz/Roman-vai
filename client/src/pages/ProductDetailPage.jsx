@@ -51,8 +51,8 @@ export default function ProductDetailPage({ onOpenQuote }) {
   return (
     <div className="bg-brand-cream min-h-screen py-10 sm:py-14 px-4 sm:px-6 lg:px-8">
       <SEOHead
-        title={`${product.name} Supplier in Dubai | CLASSICAL DECOR I D`}
-        description={product.seoDescription || product.description}
+        title={`${product.name} | Premium Interior Material Supplier in Dubai, UAE`}
+        description={product.seoDescription || `Discover ${product.name} by Classical Decor ID, a premium architectural material for Dubai and UAE residential, commercial, and hospitality projects.`}
         canonicalPath={`/product/${product.slug}`}
         product={product}
       />
@@ -122,67 +122,66 @@ export default function ProductDetailPage({ onOpenQuote }) {
               </p>
 
               {/* Technical Spec Sheet Table */}
-              <div className="mt-8 bg-brand-cream/60 rounded-2xl border border-brand-sand p-5 sm:p-6">
-                <h3 className="font-display text-xs font-bold tracking-wider uppercase text-brand-charcoal pb-3 border-b border-brand-sand/80">
-                  Architectural Specifications
-                </h3>
-                
-                <dl className="mt-3.5 space-y-2.5 font-sans text-xs">
-                  <div className="flex justify-between py-1 border-b border-brand-sand/40">
-                    <dt className="text-brand-muted">Thickness Readout</dt>
-                    <dd className="font-mono text-brand-charcoal font-semibold">{product.specifications?.thickness || 'N/A'}</dd>
-                  </div>
-                  <div className="flex justify-between py-1 border-b border-brand-sand/40">
-                    <dt className="text-brand-muted">Standard Dimensions</dt>
-                    <dd className="font-mono text-brand-charcoal font-semibold">{product.specifications?.dimensions || 'N/A'}</dd>
-                  </div>
-                  <div className="flex justify-between py-1 border-b border-brand-sand/40">
-                    <dt className="text-brand-muted">Material Composition</dt>
-                    <dd className="font-sans text-brand-charcoal font-medium text-right max-w-[60%]">{product.specifications?.material || 'N/A'}</dd>
-                  </div>
-                  <div className="flex justify-between py-1">
-                    <dt className="text-brand-muted">Logistics / Dispatch</dt>
-                    <dd className="font-sans text-emerald-700 font-semibold">Immediate Dubai & UAE Dispatch</dd>
-                  </div>
-                </dl>
+              <div className="mt-8 rounded-2xl border border-brand-sand bg-brand-cream/60 p-5 sm:p-6">
+              <h3 className="border-b border-brand-sand/80 pb-3 font-display text-xs font-bold uppercase tracking-wider text-brand-charcoal">
+                Product Specifications
+              </h3>
 
-                {product.specifications?.features && product.specifications.features.length > 0 && (
-                  <div className="mt-4 pt-4 border-t border-brand-sand/80">
-                    <h4 className="text-[11px] font-bold uppercase tracking-wider text-brand-muted mb-2 font-sans">
-                      Performance Features
-                    </h4>
-                    <div className="flex flex-wrap gap-1.5">
-                      {product.specifications.features.map((feat, i) => (
-                        <span key={i} className="bg-white border border-brand-sand text-brand-charcoal text-[11px] font-sans px-2.5 py-1 rounded-md">
-                          ✓ {feat}
-                        </span>
-                      ))}
-                    </div>
+              <dl className="mt-3.5 space-y-2.5 font-sans text-xs">
+                <div className="flex justify-between border-b border-brand-sand/40 py-1">
+                  <dt className="text-brand-muted">Thickness</dt>
+                  <dd className="font-mono font-semibold text-brand-charcoal">{product.specifications?.thickness || 'N/A'}</dd>
+                </div>
+                <div className="flex justify-between border-b border-brand-sand/40 py-1">
+                  <dt className="text-brand-muted">Dimensions</dt>
+                  <dd className="font-mono font-semibold text-brand-charcoal">{product.specifications?.dimensions || 'N/A'}</dd>
+                </div>
+                <div className="flex justify-between border-b border-brand-sand/40 py-1">
+                  <dt className="text-brand-muted">Material</dt>
+                  <dd className="max-w-[60%] text-right font-sans font-medium text-brand-charcoal">{product.specifications?.material || 'N/A'}</dd>
+                </div>
+                <div className="flex justify-between py-1">
+                  <dt className="text-brand-muted">Delivery</dt>
+                  <dd className="font-sans font-semibold text-emerald-700">Dubai & UAE delivery support</dd>
+                </div>
+              </dl>
+
+              {product.specifications?.features && product.specifications.features.length > 0 && (
+                <div className="mt-4 border-t border-brand-sand/80 pt-4">
+                  <h4 className="mb-2 font-sans text-[11px] font-bold uppercase tracking-wider text-brand-muted">
+                    Key Features
+                  </h4>
+                  <div className="flex flex-wrap gap-1.5">
+                    {product.specifications.features.map((feat, i) => (
+                      <span key={i} className="rounded-md border border-brand-sand bg-white px-2.5 py-1 font-sans text-[11px] text-brand-charcoal">
+                        ✓ {feat}
+                      </span>
+                    ))}
                   </div>
-                )}
-              </div>
+                </div>
+              )}
             </div>
 
-            {/* Direct Trade CTA Buttons */}
-            <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-4">
+            <div className="mt-8 grid grid-cols-1 gap-3.5 pt-4 sm:grid-cols-2">
               <button
                 onClick={() => onOpenQuote(`${product.name} (SKU: ${sku})`)}
-                className="w-full py-3.5 px-4 rounded-xl border border-brand-charcoal bg-white hover:bg-brand-cream text-brand-charcoal text-xs font-sans font-bold tracking-wide transition shadow-sm"
+                className="w-full rounded-xl border border-brand-charcoal bg-white px-4 py-3.5 text-xs font-sans font-bold tracking-wide text-brand-charcoal shadow-sm transition hover:bg-brand-cream"
               >
-                Request Official Catalog & Quote
+                Request official catalog & quote
               </button>
               <a
                 href={waLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full py-3.5 px-4 rounded-xl bg-brand-whatsapp hover:bg-emerald-600 text-white text-xs font-sans font-bold tracking-wide text-center transition flex items-center justify-center gap-2 shadow-sm"
+                className="flex w-full items-center justify-center gap-2 rounded-xl bg-brand-whatsapp px-4 py-3.5 text-center text-xs font-sans font-bold tracking-wide text-white shadow-sm transition hover:bg-emerald-600"
               >
-                <span>💬</span> 1-Click WhatsApp Quote
+                <span>💬</span> 1-click WhatsApp quote
               </a>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
   );
 }

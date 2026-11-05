@@ -2,54 +2,65 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { CLIENT_INFO } from '../../config/clientInfo.js';
 
-export default function Navbar() {
+export default function Navbar({ onOpenQuote }) {
   return (
-    <header className="sticky top-0 z-40 bg-[#FAF7F0] border-b border-stone-200/80 shadow-xs">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-2 sm:gap-4">
-        {/* Brand Left */}
-        <Link to="/" className="flex items-center gap-3 transition hover:opacity-95 shrink-0">
-          <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-stone-900 text-amber-400 font-serif font-bold text-sm sm:text-base flex items-center justify-center border border-amber-500/30 shadow-xs">
+    <header className="sticky top-0 z-40 border-b border-stone-200/80 bg-[#FAF7F0] shadow-xs">
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-2 px-4 sm:h-20 sm:gap-4 sm:px-6 lg:px-8">
+        <Link to="/" className="flex shrink-0 items-center gap-2.5 transition hover:opacity-95 sm:gap-3">
+          <div className="flex h-9 w-9 items-center justify-center rounded-lg border border-amber-500/30 bg-stone-900 font-serif text-sm font-bold text-amber-400 shadow-xs sm:h-10 sm:w-10 sm:text-base">
             CD
           </div>
-          <div className="flex flex-col">
-            <span className="font-sans font-extrabold text-[11px] sm:text-base text-stone-950 tracking-wide sm:tracking-wider uppercase">
+          <div className="min-w-0">
+            <span className="block truncate font-sans text-[10px] font-extrabold uppercase tracking-[0.12em] text-stone-950 sm:text-base">
               CLASSICAL DECOR ID
             </span>
-            <span className="hidden font-sans text-[10px] sm:inline sm:text-[11px] text-stone-500">
+            <span className="hidden font-sans text-[10px] text-stone-500 sm:inline sm:text-[11px]">
               classicaldecorid • Architectural Surfaces
             </span>
           </div>
         </Link>
 
-        {/* Action Controls Right - Clean English Actions */}
-        <div className="flex items-center gap-2 sm:gap-3">
-          {/* Customer-facing product catalog */}
+        <div className="flex items-center gap-1.5 sm:gap-3">
           <Link
             to="/gallery"
-            className="inline-flex items-center gap-1.5 text-xs font-sans font-bold text-stone-800 bg-white border border-stone-300 hover:border-amber-500 hover:bg-stone-50 px-2.5 sm:px-3 py-2 rounded-lg transition shadow-xs"
+            className="inline-flex items-center justify-center rounded-lg border border-stone-300 bg-white px-2.5 py-2 text-[10px] font-sans font-bold text-stone-800 shadow-xs transition hover:border-amber-500 hover:bg-stone-50 sm:px-3"
           >
-            <span>Products</span>
+            Products
           </Link>
 
-          {/* Phone Contact */}
+          <button
+            type="button"
+            onClick={() => onOpenQuote?.('General product inquiry')}
+            className="inline-flex items-center justify-center rounded-lg border border-stone-200 bg-stone-100 px-2.5 py-2 text-[10px] font-sans font-bold text-stone-800 shadow-xs transition hover:border-amber-500 hover:bg-stone-50 sm:px-3"
+          >
+            Quote
+          </button>
+
+          <button
+            type="button"
+            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+            className="hidden sm:inline-flex items-center gap-1.5 rounded-lg border border-stone-200 bg-stone-100 px-2.5 py-2 text-[10px] font-sans font-bold text-stone-800 transition hover:border-amber-500 hover:bg-stone-50 sm:text-xs"
+          >
+            Contact
+          </button>
+
           <a
             href={`tel:+${CLIENT_INFO.whatsappNumber.replace(/\D/g, '')}`}
-            className="hidden sm:inline-flex items-center gap-1.5 text-xs font-mono font-medium text-stone-800 hover:text-amber-700 px-2.5 py-1.5 rounded-lg transition"
+            className="hidden sm:inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs font-mono font-medium text-stone-800 transition hover:text-amber-700"
           >
             <span className="text-stone-500">📞</span>
             <span className="font-semibold">{CLIENT_INFO.phoneDisplay}</span>
           </a>
 
-          {/* WhatsApp Button */}
           <a
             href={`https://wa.me/${CLIENT_INFO.whatsappNumber}?text=${encodeURIComponent("Hello Classical Decor ID, I'd like to inquire about your architectural catalog.")}`}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="WhatsApp"
-            className="inline-flex items-center gap-1.5 bg-[#25D366] hover:bg-[#20ba59] active:bg-[#1da850] text-white text-xs font-sans font-bold px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-lg shadow-sm hover:shadow transition"
+            className="inline-flex items-center justify-center rounded-lg bg-[#25D366] px-2.5 py-2 text-white shadow-sm transition hover:bg-[#20ba59] active:bg-[#1da850] sm:px-3.5 sm:py-2"
           >
             <svg
-              className="w-4 h-4 fill-current"
+              className="h-4 w-4 fill-current"
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
             >

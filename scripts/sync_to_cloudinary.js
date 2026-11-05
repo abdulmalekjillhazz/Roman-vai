@@ -13,7 +13,7 @@ const { CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET } = pro
 
 if (!CLOUDINARY_CLOUD_NAME || !CLOUDINARY_API_KEY || !CLOUDINARY_API_SECRET) {
   console.error('\n❌ ERROR: Cloudinary credentials missing in .env!');
-  console.log('👉 Create a free account at https://cloudinary.com and set:');
+  console.log('👉 Provide credentials in .env:');
   console.log('   CLOUDINARY_CLOUD_NAME=...');
   console.log('   CLOUDINARY_API_KEY=...');
   console.log('   CLOUDINARY_API_SECRET=...\n');
@@ -29,7 +29,7 @@ cloudinary.config({
 
 const productsDataPath = path.join(__dirname, '../data/products_data.json');
 const cloudinaryCachePath = path.join(__dirname, '../data/products_cloudinary.json');
-const downloadedImagesDir = path.join(__dirname, '../downloaded_images');
+const publicAssetsDir = path.join(__dirname, '../client/public');
 
 const products = JSON.parse(fs.readFileSync(productsDataPath, 'utf8'));
 
@@ -49,16 +49,14 @@ if (fs.existsSync(cloudinaryCachePath)) {
 }
 
 /**
- * Checks if a local downloaded file exists so we don't rely on Google Sites hotlinks
+ * Resolves local file on disk from image path
  */
-function findLocalFile(category, baseName) {
-  const folder = path.join(downloadedImagesDir, category);
-  if (!fs.existsSync(folder)) return null;
-  for (const ext of ['.jpg', '.png', '.webp', '.gif']) {
-    const candidate = path.join(folder, `${baseName}${ext}`);
-    if (fs.existsSync(candidate) && fs.statSync(candidate).size > 0) {
-      return candidate;
-    }
+function resolveLocalPath(imagePath) {
+  if (!imagePath) return null;
+  const cleaned = imagePath.replace(/^\//, '');
+  const candidate = path.join(publicAssetsDir, cleaned);
+  if (fs.existsSync(candidate) && fs.statSync(candidate).size > 0) {
+    return candidate;
   }
   return null;
 }
@@ -87,7 +85,7 @@ async function checkRemoteExists(fullPublicId) {
 
 async function syncToCloudinary() {
   console.log('==========================================================');
-  console.log('⚡ IDEMPOTENT CLOUDINARY SYNC (QUOTA-SAFE & LOCAL-FIRST) ⚡');
+  console.log('⚡ SEMANTIC CLOUDINARY SYNC (DESCRIPTIVE & ULTRA-FAST) ⚡');
   console.log('==========================================================\n');
 
   const updatedProducts = [];
@@ -95,7 +93,7 @@ async function syncToCloudinary() {
   for (const product of products) {
     console.log(`\n📦 Processing [${product.category}] -> ${product.name}`);
 
-    // 1. Check local cache first
+    // Check local cache first
     const cachedImgs = existingCache[product.id];
     if (cachedImgs && cachedImgs.length === product.images.length && cachedImgs.every(img => img.public_id !== 'original')) {
       console.log(`  ⏭️  Skipped (Already synced in products_cloudinary.json)`);
@@ -111,12 +109,13 @@ async function syncToCloudinary() {
     const cloudinaryImages = [];
 
     for (let i = 0; i < product.images.length; i++) {
-      const imgUrl = product.images[i];
-      const baseName = `${product.id}_${product.slug}_${i + 1}`;
+      const imgPath = product.images[i];
+      const localFilePath = resolveLocalPath(imgPath);
+      const baseName = path.parse(imgPath).name;
       const folderPath = `dst_deco/${product.category}`;
       const fullPublicId = `${folderPath}/${baseName}`;
 
-      // 2. Check if already on Cloudinary server
+      // Check if already on Cloudinary server
       const remoteExisting = await checkRemoteExists(fullPublicId);
       if (remoteExisting) {
         console.log(`  ⏭️  Found existing on Cloudinary: ${remoteExisting.secure_url}`);
@@ -124,12 +123,10 @@ async function syncToCloudinary() {
         continue;
       }
 
-      // 3. Prefer local downloaded file over Google Sites hotlink
-      const localFilePath = findLocalFile(product.category, baseName);
-      const uploadSource = localFilePath || imgUrl;
+      const uploadSource = localFilePath || imgPath;
 
       try {
-        console.log(`  ⏳ Uploading (${localFilePath ? 'Local File' : 'Remote URL'}) -> ${fullPublicId}...`);
+        console.log(`  ⏳ Uploading [${baseName}] -> ${fullPublicId}...`);
         const uploadRes = await cloudinary.uploader.upload(uploadSource, {
           folder: folderPath,
           public_id: baseName,
@@ -152,7 +149,7 @@ async function syncToCloudinary() {
         console.error(`  ❌ Upload Error for ${baseName}: ${err.message}`);
         cloudinaryImages.push({
           public_id: 'original',
-          secure_url: imgUrl
+          secure_url: imgPath
         });
       }
     }

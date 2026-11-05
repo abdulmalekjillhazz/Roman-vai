@@ -1,0 +1,261 @@
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const mapping = {
+  // Flexible Stone
+  'c3f8883d60c57a177649b672.webp': { newName: 'flexible-stone-desert-sand-villa-exterior-01.webp', title: 'Flexible Stone Desert Sand Villa Exterior' },
+  '215a346029f3287e4cf4bd1f.webp': { newName: 'flexible-stone-curved-column-interior-02.webp', title: 'Flexible Stone Curved Architectural Column' },
+  'bfb35966bd33f30a4cb317d3.webp': { newName: 'flexible-stone-natural-slate-panel-300x120-03.webp', title: 'Flexible Stone Natural Slate Panel 300x120cm' },
+  'ee9a39bced0540b3e8304741.webp': { newName: 'flexible-stone-travertine-slab-320x120-04.webp', title: 'Flexible Stone Travertine Large Slab 320x120cm' },
+  '8619c2641aaf9a35d4185f04.webp': { newName: 'flexible-stone-mountain-rock-texture-300x120-05.webp', title: 'Flexible Stone Mountain Rock Texture 300x120cm' },
+  '7b8674dbd6d21d9196fb26ee.webp': { newName: 'flexible-stone-earth-toned-wall-sheet-240x120-06.webp', title: 'Flexible Stone Earth Toned Wall Sheet 240x120cm' },
+  '5b8f135cd11c0ee042b78392.webp': { newName: 'flexible-stone-bendable-stone-veneer-60x120-07.webp', title: 'Flexible Stone Bendable Stone Veneer 60x120cm' },
+  'd951d5dff176c53476b06c2a.webp': { newName: 'flexible-stone-modern-lobby-feature-wall-08.webp', title: 'Flexible Stone Modern Lobby Feature Wall' },
+  '6f95a9b4d21be6831caf3316.webp': { newName: 'flexible-stone-luxury-hallway-cladding-09.webp', title: 'Flexible Stone Luxury Hallway Wall Cladding' },
+  '018a73771c6dbbc65d2f905d.webp': { newName: 'flexible-stone-desert-gold-accent-wall-10.webp', title: 'Flexible Stone Desert Gold Accent Wall' },
+  'ed72154bef5431c14f8bc6be.webp': { newName: 'flexible-stone-warm-sandstone-panel-11.webp', title: 'Flexible Stone Warm Sandstone Panel' },
+  '8e8993925e54533714b63891.webp': { newName: 'flexible-stone-grey-granite-look-sheet-12.webp', title: 'Flexible Stone Grey Granite Look Sheet' },
+  '88a13ad0b4d186d48b9d734c.webp': { newName: 'flexible-stone-rustic-limestone-finish-13.webp', title: 'Flexible Stone Rustic Limestone Finish' },
+  '3e5505774c161840e777a983.webp': { newName: 'flexible-stone-amber-onyx-translucent-sheet-14.webp', title: 'Flexible Stone Amber Onyx Sheet' },
+  '2cb433904eece0bf1cdfda21.webp': { newName: 'flexible-stone-contemporary-curved-facade-15.webp', title: 'Flexible Stone Contemporary Curved Facade' },
+
+  // PU Stone / Rock
+  'ac27296fe68682547c3b281e.webp': { newName: 'big-pu-stone-charcoal-stacked-rock-wall-01.webp', title: 'Big PU Stone Charcoal Stacked Rock Wall' },
+  '1d363850fc8ea1cde37ef253.webp': { newName: 'big-pu-stone-volcanic-feather-rock-panel-02.webp', title: 'Big PU Stone Volcanic Feather Rock Panel' },
+  'a0deb3a7c8e6a4bfe25657d4.webp': { newName: 'small-pu-stone-natural-beige-ledge-01.webp', title: 'Small PU Stone Natural Beige Ledge' },
+  'bbbfc2c5ca526216d008f23b.webp': { newName: 'small-pu-stone-desert-castle-rock-panel-02.webp', title: 'Small PU Stone Desert Castle Rock Panel' },
+  '2a326538c9a73f80787eb4cb.webp': { newName: 'small-pu-stone-stacked-slate-living-room-03.webp', title: 'Small PU Stone Stacked Slate Living Room' },
+  'f11bbeafa1acbe0b49f518f3.webp': { newName: 'pu-stone-3d-soft-stone-roll-textured-01.webp', title: 'PU Stone 3D Soft Stone Roll Textured' },
+  '63cb834652c6ef1546afd501.webp': { newName: 'pu-stone-3d-soft-stone-roll-beige-slate-02.webp', title: 'PU Stone 3D Soft Stone Roll Beige Slate' },
+  '7112176abe5bc46b1f9e5e86.webp': { newName: 'pu-stone-3d-soft-stone-roll-grey-granite-03.webp', title: 'PU Stone 3D Soft Stone Roll Grey Granite' },
+  'a536ab0d9c2b9ec23fed351e.webp': { newName: 'big-pu-stone-mountain-cliff-facade-03.webp', title: 'Big PU Stone Mountain Cliff Facade' },
+  '7ef01d91d7b2aaf8910d5824.webp': { newName: 'small-pu-stone-modern-fireplace-accent-04.webp', title: 'Small PU Stone Modern Fireplace Accent' },
+  'e0cff433b486ce4af158e14e.webp': { newName: 'small-pu-stone-rustic-grey-chiseled-05.webp', title: 'Small PU Stone Rustic Grey Chiseled' },
+  '312932a0f933d4185ca9cff5.webp': { newName: 'small-pu-stone-warm-terracotta-ledge-06.webp', title: 'Small PU Stone Warm Terracotta Ledge' },
+  '5510c381c0214e3c9d12a28d.webp': { newName: 'big-pu-stone-dark-basalt-textured-wall-04.webp', title: 'Big PU Stone Dark Basalt Textured Wall' },
+  '3ec5571869148a77743db943.webp': { newName: 'small-pu-stone-limestone-brick-pattern-07.webp', title: 'Small PU Stone Limestone Brick Pattern' },
+  'f1d0905ce34c552d5f0a2a77.webp': { newName: 'big-pu-stone-light-granite-architectural-wall-05.webp', title: 'Big PU Stone Light Granite Architectural Wall' },
+
+  // WPC Wall Panels
+  'a0a83bf457d7af174c064093.webp': { newName: 'wpc-chipboard-5mm-natural-oak-fluted-wall-01.webp', title: '5mm WPC Chipboard Natural Oak Fluted Wall' },
+  '60b3b1ba23a99b9e6d32aac7.webp': { newName: 'wpc-chipboard-5mm-walnut-linear-slat-02.webp', title: '5mm WPC Chipboard Walnut Linear Slat' },
+  '369e68191a69ac52a467c6fe.webp': { newName: 'wpc-chipboard-5mm-charcoal-fluted-accent-03.webp', title: '5mm WPC Chipboard Charcoal Fluted Accent' },
+  '464fde5152988d0b2b58ed1d.webp': { newName: 'wpc-chipboard-5mm-smoked-teak-living-room-04.webp', title: '5mm WPC Chipboard Smoked Teak Living Room' },
+  '9a416bc22c134bee12431900.webp': { newName: 'wpc-chipboard-5mm-warm-ash-bedroom-headboard-05.webp', title: '5mm WPC Chipboard Warm Ash Bedroom Headboard' },
+  '213f120754b31241b961f33b.webp': { newName: 'wpc-chipboard-5mm-cream-beige-slat-panel-06.webp', title: '5mm WPC Chipboard Cream Beige Slat Panel' },
+  '17a3d0a4a5b4b886ad65adfd.webp': { newName: 'wpc-chipboard-8mm-heavy-duty-dark-ebony-01.webp', title: '8mm WPC Heavy Duty Dark Ebony Wall Panel' },
+  'a0afbf009309158485513d7a.webp': { newName: 'wpc-chipboard-8mm-heavy-duty-golden-oak-02.webp', title: '8mm WPC Heavy Duty Golden Oak Wall Panel' },
+  '18d344e083bf2a9507e66315.webp': { newName: 'wpc-chipboard-8mm-heavy-duty-grey-cedar-03.webp', title: '8mm WPC Heavy Duty Grey Cedar Wall Panel' },
+  '2f0901d15ae529f4385d8a3c.webp': { newName: 'wpc-chipboard-5mm-vertical-louver-wall-07.webp', title: '5mm WPC Chipboard Vertical Louver Wall' },
+  '7192a7aaeed13b7b5cb35699.webp': { newName: 'wpc-chipboard-5mm-modern-tv-console-backdrop-08.webp', title: '5mm WPC Chipboard Modern TV Console Backdrop' },
+  '3f66e357a2c6bd1928978da2.webp': { newName: 'wpc-chipboard-8mm-heavy-duty-royal-walnut-04.webp', title: '8mm WPC Heavy Duty Royal Walnut Panel' },
+  '61666eba38534619322e2475.webp': { newName: 'wpc-chipboard-5mm-scandinavian-light-pine-09.webp', title: '5mm WPC Chipboard Scandinavian Light Pine' },
+  '39abe3a5fef3805aa6727e6a.webp': { newName: 'wpc-chipboard-5mm-japandi-minimalist-slat-10.webp', title: '5mm WPC Chipboard Japandi Minimalist Slat' },
+
+  // Decorative Wall Panels & Mouldings
+  '09dba0cbe2696524170ce3fd.webp': { newName: 'ps-columns-architectural-room-divider-01.webp', title: 'PS Architectural Column Room Divider' },
+  '9c96304133fb4465ef8b178f.webp': { newName: 'ps-columns-fluted-entryway-partition-02.webp', title: 'PS Fluted Entryway Partition Column' },
+  '5181d8176f7a38077bbb7699.webp': { newName: 'ps-columns-modern-vertical-louver-screen-03.webp', title: 'PS Modern Vertical Louver Screen Column' },
+  '28f710ff179a8b2bfc9bb2b0.webp': { newName: 'ps-molding-classic-ceiling-cornice-white-01.webp', title: 'PS Classic Ceiling Cornice White Molding' },
+  '08722ab17fe289f1b4ba828f.webp': { newName: 'ps-molding-wainscoting-wall-frame-trim-02.webp', title: 'PS Wainscoting Wall Frame Trim Molding' },
+  'e898202230a31ff69f099dc1.webp': { newName: 'ps-molding-gold-accent-crown-molding-03.webp', title: 'PS Gold Accent Crown Molding' },
+  'c0ae8ab9dca4bd70ac045894.webp': { newName: 'ps-wall-panel-fluted-geometric-decor-01.webp', title: 'PS Fluted Geometric Wall Panel Decor' },
+  '60d1d7d030acfcfe0d6c18b4.webp': { newName: 'ps-wall-panel-3d-chevron-accent-wall-02.webp', title: 'PS 3D Chevron Accent Wall Panel' },
+  '573a2c908f45b57720a0c1de.webp': { newName: 'ps-wall-panel-modern-charcoal-louver-03.webp', title: 'PS Modern Charcoal Louver Wall Panel' },
+  'f46a06783ee2680a6a2b30f4.webp': { newName: 'ps-wall-panel-warm-woodgrain-partition-04.webp', title: 'PS Warm Woodgrain Partition Panel' },
+  '5dfe37cadf0dbb41ed9b4516.webp': { newName: 'ps-wall-panel-cream-slat-feature-screen-05.webp', title: 'PS Cream Slat Feature Screen Panel' },
+  '111a398d2907f38a08101da6.webp': { newName: 'ps-wall-panel-luxury-villa-lounge-partition-06.webp', title: 'PS Luxury Villa Lounge Partition Panel' },
+  '6714abefb752cfbd060be6de.webp': { newName: 'ps-wall-panel-commercial-hallway-cladding-07.webp', title: 'PS Commercial Hallway Wall Cladding' },
+  'adf0bea4229e08aade4cf121.webp': { newName: 'ps-wall-panel-hotel-reception-accent-wall-08.webp', title: 'PS Hotel Reception Accent Wall Panel' },
+  '8b9dfb1c959d99113b4f7c02.webp': { newName: 'ps-molding-ornate-victorian-ceiling-cornice-01.webp', title: 'PS Ornate Victorian Ceiling Cornice Molding' },
+  '653e89ea3b2f87fec9062b38.webp': { newName: 'ps-molding-neoclassical-wall-panel-frames-02.webp', title: 'PS Neoclassical Wall Panel Frames Molding' },
+  'cea958caaa4eee66e3a42d82.webp': { newName: 'ps-molding-grand-villa-foyer-cornice-03.webp', title: 'PS Grand Villa Foyer Cornice Molding' },
+  '7f4c0ec6f38023a5924d2f40.webp': { newName: 'ps-molding-luxury-bedroom-ceiling-coving-04.webp', title: 'PS Luxury Bedroom Ceiling Coving Molding' },
+  '501d574111035d3d68a670b0.webp': { newName: 'ps-molding-palace-style-door-surround-trim-05.webp', title: 'PS Palace Style Door Surround Trim Molding' },
+  '378072851d9bf3a540a26206.webp': { newName: 'ps-molding-hotel-corridor-wainscot-rail-06.webp', title: 'PS Hotel Corridor Wainscot Rail Molding' },
+
+  // PVC Marble Sheets & Cladding
+  'c85f42da4715b19e7b3b8169.webp': { newName: 'pvc-marble-glossy-calacatta-gold-slab-01.webp', title: 'Glossy PVC Marble Calacatta Gold Slab' },
+  'eff1223c8855cd7233659b09.webp': { newName: 'pvc-marble-glossy-statuario-white-feature-wall-02.webp', title: 'Glossy PVC Marble Statuario White Feature Wall' },
+  '7e22ce29fabdb9b6161b1715.webp': { newName: 'pvc-wall-panel-luxury-bathroom-cladding-01.webp', title: 'PVC Wall Panel Luxury Bathroom Cladding' },
+  'ce39f8ff4a22841fa60e6095.webp': { newName: 'pvc-wall-panel-modern-tv-unit-backsplash-02.webp', title: 'PVC Wall Panel Modern TV Unit Backsplash' },
+  '2b8b23d638945ee20dc76aac.webp': { newName: 'pvc-wall-panel-commercial-lobby-surface-03.webp', title: 'PVC Wall Panel Commercial Lobby Surface' },
+  '264c73ebb176d9c11236aba8.webp': { newName: 'pvc-marble-glossy-nero-marquina-black-gold-03.webp', title: 'Glossy PVC Marble Nero Marquina Black Gold' },
+  '9fc292e68cdde0c5931e8f7a.webp': { newName: 'pvc-marble-glossy-emerald-jade-onyx-04.webp', title: 'Glossy PVC Marble Emerald Jade Onyx' },
+  '4aaa51fe816062864b66a8af.webp': { newName: 'pvc-wall-panel-waterproof-shower-surround-04.webp', title: 'PVC Wall Panel Waterproof Shower Surround' },
+  '460d7feed072dbe326ab704f.webp': { newName: 'pvc-marble-matte-silk-travertine-finish-01.webp', title: 'Matte PVC Marble Silk Travertine Finish' },
+  '4b598507753c0233e016fa98.webp': { newName: 'pvc-marble-matte-grey-pietra-slab-02.webp', title: 'Matte PVC Marble Grey Pietra Slab' },
+  'f95fc26eebed6191981d122e.webp': { newName: 'pvc-marble-penthouse-dining-feature-wall-05.webp', title: 'PVC Marble Penthouse Dining Feature Wall' },
+  '55a576dbd717dba0a19a50fb.webp': { newName: 'pvc-marble-executive-boardroom-backdrop-06.webp', title: 'PVC Marble Executive Boardroom Backdrop' },
+  '612d7dfc9f1c6e6286c36b1c.webp': { newName: 'pvc-marble-hospitality-suite-accent-wall-07.webp', title: 'PVC Marble Hospitality Suite Accent Wall' },
+
+  // Acoustic & Fabric Panels
+  '4ce357b3346d759eafda1ed6.webp': { newName: 'acoustic-panel-ps-slatted-charcoal-01.webp', title: 'PS Slatted Acoustic Panel Charcoal' },
+  '43f14263d018c4719635bcff.webp': { newName: 'acoustic-panel-3d-velvet-fabric-emerald-green-01.webp', title: '3D Velvet Fabric Acoustic Panel Emerald Green' },
+  '5852b5219b0b4d612bcd4981.webp': { newName: 'acoustic-panel-3d-velvet-fabric-royal-navy-02.webp', title: '3D Velvet Fabric Acoustic Panel Royal Navy' },
+  'be6316be036e829392e21da7.webp': { newName: 'acoustic-panel-big-timber-slat-oak-hall-01.webp', title: 'Big Timber Slat Acoustic Panel Oak Hall' },
+  '94c009cfec97d5e622ceb9c4.webp': { newName: 'acoustic-panel-small-soundproof-slat-walnut-01.webp', title: 'Small Soundproof Slat Acoustic Panel Walnut' },
+  '7397f6b94f4636a2a5b2452e.webp': { newName: 'acoustic-panel-slat-wood-natural-teak-01.webp', title: 'Natural Teak Slat Acoustic Panel Only' },
+  '5bd45797c7b2efe402e259e5.webp': { newName: 'acoustic-panel-slat-wood-black-felt-ash-02.webp', title: 'Black Felt Ash Slat Acoustic Panel Only' },
+  'a357e399dedbc5d5d309bb66.webp': { newName: 'acoustic-panel-flexible-curved-wall-slat-01.webp', title: 'Flexible Curved Wall Slat Acoustic Panel' },
+  '580c148b6797ff9d11773bdb.webp': { newName: 'acoustic-panel-studio-recording-room-wall-03.webp', title: 'Studio Recording Room Acoustic Slat Wall' },
+  '5562af86d06fbcf4f4aec546.webp': { newName: 'acoustic-panel-ps-warm-woodgrain-louver-02.webp', title: 'PS Warm Woodgrain Louver Acoustic Panel' },
+  '32ded0a03f5851821ed28b50.webp': { newName: 'acoustic-panel-small-home-theatre-baffle-02.webp', title: 'Small Home Theatre Baffle Acoustic Panel' },
+  '3e6c2a8910f866e0b6451b9b.webp': { newName: 'acoustic-panel-office-conference-sound-absorber-04.webp', title: 'Office Conference Sound Absorber Acoustic Slat' },
+  'fa8db1b0ddcbee210312e66b.webp': { newName: 'acoustic-panel-auditorium-linear-wood-panel-05.webp', title: 'Auditorium Linear Wood Acoustic Panel' },
+  '447ff7d1a8c9d0315f93c5e9.webp': { newName: 'acoustic-panel-residential-living-room-accent-06.webp', title: 'Residential Living Room Acoustic Accent Wall' },
+  'dbd3c5ebdcf916514a7821e6.webp': { newName: 'acoustic-panel-restaurant-dining-sound-wall-07.webp', title: 'Restaurant Dining Sound Wall Acoustic Slat' },
+
+  // SPC Straight Flooring
+  '1c8461c15438716b3242eb4e.webp': { newName: 'spc-straight-flooring-scandinavian-light-oak-01.webp', title: 'SPC Straight Flooring Scandinavian Light Oak' },
+  '9fece100a968874f77f9bfa7.webp': { newName: 'spc-straight-flooring-warm-honey-oak-plank-02.webp', title: 'SPC Straight Flooring Warm Honey Oak Plank' },
+  'd0af97354e68f8ea08ef474d.webp': { newName: 'spc-straight-flooring-smoky-grey-timber-look-03.webp', title: 'SPC Straight Flooring Smoky Grey Timber Look' },
+  '53d4d3c0f72a62a23232daa9.webp': { newName: 'spc-straight-flooring-dmax-5mm-classic-teak-04.webp', title: 'SPC Straight Flooring DMAX 5mm Classic Teak' },
+  'e64718dd515f2db2ab2870b9.webp': { newName: 'spc-straight-flooring-staro-5mm-bleached-pine-05.webp', title: 'SPC Straight Flooring STARO 5mm Bleached Pine' },
+  'a95b4c2f9fd54c436846e6d7.webp': { newName: 'spc-straight-flooring-staro-top-6mm-antique-walnut-06.webp', title: 'SPC Straight Flooring STARO Top 6mm Antique Walnut' },
+  '36352e8d9daccca4f4045484.webp': { newName: 'spc-straight-flooring-troy-plus-7mm-heavy-commercial-07.webp', title: 'SPC Straight Flooring Troy Plus 7mm Heavy Commercial' },
+  '18b12d1018b6d058d1195249.webp': { newName: 'spc-straight-flooring-troy-plus-7mm-dark-espresso-08.webp', title: 'SPC Straight Flooring Troy Plus 7mm Dark Espresso' },
+  '4aadd084922aa2aac6c5b7a7.webp': { newName: 'spc-straight-flooring-troy-5-5mm-natural-elm-09.webp', title: 'SPC Straight Flooring Troy 5.5mm Natural Elm' },
+  'a812f5c30759da37f55d0597.webp': { newName: 'spc-straight-flooring-waterproof-rigid-core-plank-10.webp', title: 'SPC Straight Flooring Waterproof Rigid Core Plank' },
+  '699f72bd3b3f405cede97e3d.webp': { newName: 'spc-straight-flooring-commercial-showroom-floor-11.webp', title: 'SPC Straight Flooring Commercial Showroom Floor' },
+
+  // SPC Herringbone Flooring
+  '16e08aabd7cbf0ed32994dbf.webp': { newName: 'spc-herringbone-flooring-royal-parquetry-natural-oak-01.webp', title: 'SPC Herringbone Flooring Royal Parquetry Natural Oak' },
+  '4eec7f3d46c30eae5c06158b.webp': { newName: 'spc-herringbone-flooring-french-parquetry-golden-amber-02.webp', title: 'SPC Herringbone Flooring French Parquetry Golden Amber' },
+  '717a864aece36299731f5799.webp': { newName: 'spc-herringbone-flooring-modern-chevron-smoky-ash-03.webp', title: 'SPC Herringbone Flooring Modern Chevron Smoky Ash' },
+  '87e4602d5ca5ec1cc047bf7e.webp': { newName: 'spc-herringbone-flooring-dmax-5mm-hb-rich-walnut-04.webp', title: 'SPC Herringbone Flooring DMAX 5mm HB Rich Walnut' },
+  '0a819849461be50cbefcc706.webp': { newName: 'spc-herringbone-flooring-staro-5mm-hb-nordic-blonde-05.webp', title: 'SPC Herringbone Flooring STARO 5mm HB Nordic Blonde' },
+  'c69924a9ca27b07e4aa8060e.webp': { newName: 'spc-herringbone-flooring-staro-5mm-hb-dark-chocolate-06.webp', title: 'SPC Herringbone Flooring STARO 5mm HB Dark Chocolate' },
+  '47f39a16c5086de9be22e601.webp': { newName: 'spc-herringbone-flooring-staro-top-6mm-hb-distressed-oak-07.webp', title: 'SPC Herringbone Flooring STARO Top 6mm HB Distressed Oak' },
+  '2dcdd59b05a8d0b6628078aa.webp': { newName: 'spc-herringbone-flooring-staro-top-6mm-hb-champagne-teak-08.webp', title: 'SPC Herringbone Flooring STARO Top 6mm HB Champagne Teak' },
+  '7bc996d42fd70893642611c9.webp': { newName: 'spc-herringbone-flooring-luxury-villa-salon-parquetry-09.webp', title: 'SPC Herringbone Flooring Luxury Villa Salon Parquetry' },
+  '601b4a15bbf4741389365067.webp': { newName: 'spc-herringbone-flooring-interlocking-left-right-planks-10.webp', title: 'SPC Herringbone Flooring Interlocking Left Right Planks' },
+  '59851d81708697af7cfbe985.webp': { newName: 'spc-herringbone-flooring-boutique-penthouse-foyer-11.webp', title: 'SPC Herringbone Flooring Boutique Penthouse Foyer' },
+  '742f29c5fd41ef8b2e57af05.webp': { newName: 'spc-herringbone-flooring-executive-suite-flooring-12.webp', title: 'SPC Herringbone Flooring Executive Suite Flooring' },
+  'd583ce066e0babab700cdf8d.webp': { newName: 'spc-herringbone-flooring-contemporary-loft-parquetry-13.webp', title: 'SPC Herringbone Flooring Contemporary Loft Parquetry' },
+
+  // SPC Marble & LVT Flooring
+  'a4f3617f9c9c0d20752e433e.webp': { newName: 'lvt-flooring-staro-luxury-vinyl-tile-warm-stone-01.webp', title: 'LVT Flooring STARO Luxury Vinyl Tile Warm Stone' },
+  'de83a7fc711282985abd868d.webp': { newName: 'lvt-flooring-staro-luxury-vinyl-tile-slate-grey-02.webp', title: 'LVT Flooring STARO Luxury Vinyl Tile Slate Grey' },
+  '49b446951ab492aea7e0893e.webp': { newName: 'lvt-flooring-staro-luxury-vinyl-tile-travertine-beige-03.webp', title: 'LVT Flooring STARO Luxury Vinyl Tile Travertine Beige' },
+  'a44fe02f5dcaf10e71c03e09.webp': { newName: 'spc-marble-flooring-carrara-white-large-tile-01.webp', title: 'SPC Marble Flooring Carrara White Large Tile' },
+  '38a037dd3e6571037368da00.webp': { newName: 'spc-marble-flooring-4mm-calacatta-gold-luxury-tile-02.webp', title: 'SPC Marble Flooring 4mm Calacatta Gold Luxury Tile' },
+  '2338347dc02ffc9836b5fab1.webp': { newName: 'spc-marble-flooring-4mm-nero-marquina-dark-tile-03.webp', title: 'SPC Marble Flooring 4mm Nero Marquina Dark Tile' },
+  '67c324ca3bca3e0135b0c242.webp': { newName: 'spc-marble-flooring-5-5mm-pietra-grey-commercial-tile-04.webp', title: 'SPC Marble Flooring 5.5mm Pietra Grey Commercial Tile' },
+  'b129a5749685ab26e4376b7f.webp': { newName: 'lvt-flooring-staro-luxury-vinyl-tile-urban-concrete-04.webp', title: 'LVT Flooring STARO Luxury Vinyl Tile Urban Concrete' },
+  'c6f87e90e3962378128f2c6b.webp': { newName: 'spc-marble-flooring-4mm-master-bathroom-waterproof-05.webp', title: 'SPC Marble Flooring 4mm Master Bathroom Waterproof Tile' },
+  '77cc0e80ad3733c194390673.webp': { newName: 'spc-marble-flooring-4mm-modern-kitchen-island-floor-06.webp', title: 'SPC Marble Flooring 4mm Modern Kitchen Island Floor' },
+  '52861475522732557d8c6179.webp': { newName: 'spc-marble-flooring-4mm-luxury-hotel-suite-tile-07.webp', title: 'SPC Marble Flooring 4mm Luxury Hotel Suite Tile' },
+  'eecb70c39d97d7c1339bb0e5.webp': { newName: 'spc-marble-flooring-4mm-commercial-reception-tile-08.webp', title: 'SPC Marble Flooring 4mm Commercial Reception Tile' },
+  '63b9bca95ba84d4bffb9fb73.webp': { newName: 'lvt-flooring-open-concept-villa-flooring-05.webp', title: 'LVT Flooring Open Concept Villa Flooring' },
+  '11e408995ee8c69abad11b7d.webp': { newName: 'lvt-flooring-contemporary-duplex-living-room-06.webp', title: 'LVT Flooring Contemporary Duplex Living Room' },
+  '50adf2e47f0c2d5d26e4b435.webp': { newName: 'lvt-flooring-commercial-office-interior-floor-07.webp', title: 'LVT Flooring Commercial Office Interior Floor' },
+
+  // Profiles & Skirting & Fixings
+  'de782071cd8471f31c8546cd.webp': { newName: 'ps-skirting-board-waterproof-80mm-matte-white-01.webp', title: 'PS Skirting Board Waterproof 80mm Matte White' },
+  'cb8bbd31bd8a7067ffa5cc9f.webp': { newName: 'ps-skirting-board-waterproof-100mm-black-accent-02.webp', title: 'PS Skirting Board Waterproof 100mm Black Accent' },
+  'ccdc35037d7887941e15b2e8.webp': { newName: 'ps-skirting-board-waterproof-80mm-natural-oak-03.webp', title: 'PS Skirting Board Waterproof 80mm Natural Oak' },
+  '7821e26fbbcfaecd6526cb93.webp': { newName: 'ps-skirting-board-waterproof-100mm-dark-walnut-04.webp', title: 'PS Skirting Board Waterproof 100mm Dark Walnut' },
+  '1738014228a15235cd63ba71.webp': { newName: 'aluminum-profile-t-section-champagne-gold-01.webp', title: 'Aluminum Profile T-Section Champagne Gold' },
+  'f6b4358d44b6e5d8e6029931.webp': { newName: 'aluminum-profile-l-angle-edge-trim-brushed-black-02.webp', title: 'Aluminum Profile L-Angle Edge Trim Brushed Black' },
+  '00bcf144b6e967e2e9ce4d5f.webp': { newName: 'aluminum-profile-tile-transition-strip-silver-03.webp', title: 'Aluminum Profile Tile Transition Strip Silver' },
+  '66f154dd0f669d96fe2e2eac.webp': { newName: 'staro-hybrid-polymer-silicon-adhesive-cartridge-01.webp', title: 'STARO Hybrid Polymer Silicon Adhesive Cartridge' },
+  '73072a4a0d1f3dc1ec4b7018.webp': { newName: 'ps-skirting-board-curved-baseboard-trim-05.webp', title: 'PS Skirting Board Curved Baseboard Trim' },
+  'd4c7c2513288b7f7c4322192.webp': { newName: 'ps-skirting-board-luxury-hallway-installation-06.webp', title: 'PS Skirting Board Luxury Hallway Installation' },
+  'ea0b8d4f70b2d2c031072fec.webp': { newName: 'ps-skirting-board-modern-bedroom-baseboard-07.webp', title: 'PS Skirting Board Modern Bedroom Baseboard' },
+  '1e7f63c1a5e8803b0b0de9d9.webp': { newName: 'ps-skirting-board-architectural-wall-joint-08.webp', title: 'PS Skirting Board Architectural Wall Joint' },
+  '35a6673d0285cd2d11ee3acd.webp': { newName: 'ps-skirting-board-flush-mount-shadowline-trim-09.webp', title: 'PS Skirting Board Flush Mount Shadowline Trim' },
+  'fd2374281a6d0973df20df67.webp': { newName: 'ps-skirting-board-villa-staircase-edging-10.webp', title: 'PS Skirting Board Villa Staircase Edging' },
+  'b882e08667544e3516933da3.webp': { newName: 'ps-skirting-board-penthouse-perimeter-detail-11.webp', title: 'PS Skirting Board Penthouse Perimeter Detail' },
+  'c69a5073f6a7c2e939c5c0ef.webp': { newName: 'ps-skirting-board-hospitality-suite-baseboard-12.webp', title: 'PS Skirting Board Hospitality Suite Baseboard' },
+  '03a924cf0f4d1bd2dde361a7.webp': { newName: 'aluminum-profile-round-bullnose-corner-trim-04.webp', title: 'Aluminum Profile Round Bullnose Corner Trim' },
+  '8deb34ff5702449dc40cfc68.webp': { newName: 'aluminum-profile-stair-nosing-anti-slip-05.webp', title: 'Aluminum Profile Stair Nosing Anti Slip' },
+  '34822200573f29bcb11e0145.webp': { newName: 'aluminum-profile-u-channel-wall-divider-06.webp', title: 'Aluminum Profile U-Channel Wall Divider' },
+  '9835d6b5ede573fbdcf8cc7a.webp': { newName: 'aluminum-profile-expansion-joint-flooring-strip-07.webp', title: 'Aluminum Profile Expansion Joint Flooring Strip' },
+  '2f43bf86597d7bc0c7e9f3a0.webp': { newName: 'aluminum-profile-capping-molding-rose-gold-08.webp', title: 'Aluminum Profile Capping Molding Rose Gold' },
+  '8822039c1d90906a0a9c28ed.webp': { newName: 'aluminum-profile-skirting-led-channel-trim-09.webp', title: 'Aluminum Profile Skirting LED Channel Trim' },
+  '716e64fbbd2e67a82b4085e3.webp': { newName: 'aluminum-profile-heavy-commercial-threshold-10.webp', title: 'Aluminum Profile Heavy Commercial Threshold' },
+
+  // Woodworking 3D Sheets
+  '7463c8908be142c162d5d900.webp': { newName: 'woodworking-decorative-joinery-sheet-01.webp', title: 'Woodworking Decorative Joinery Sheet' },
+  '84607bf2efe84d4d36c8d990.webp': { newName: 'woodworking-3d-sheet-geometric-wave-pattern-02.webp', title: 'Woodworking 3D Sheet Geometric Wave Pattern' },
+  '2defae02423e7d7450d2f59d.webp': { newName: 'woodworking-3d-sheet-fluted-timber-panel-03.webp', title: 'Woodworking 3D Sheet Fluted Timber Panel' },
+  '354eb8d766ecbc7a88b994b8.webp': { newName: 'woodworking-3d-sheet-diamond-carved-texture-04.webp', title: 'Woodworking 3D Sheet Diamond Carved Texture' },
+  '512eb76ca7b2abdfcf24e047.webp': { newName: 'woodworking-3d-sheet-slotted-sculptural-panel-05.webp', title: 'Woodworking 3D Sheet Slotted Sculptural Panel' },
+  'a6f3a5b15d6d9b8c49f1a01d.webp': { newName: 'woodworking-3d-sheet-acoustic-grooved-veneer-06.webp', title: 'Woodworking 3D Sheet Acoustic Grooved Veneer' },
+  '0fd50573854acae0880684ad.webp': { newName: 'woodworking-3d-sheet-hexagonal-relief-carving-07.webp', title: 'Woodworking 3D Sheet Hexagonal Relief Carving' },
+  '9161bd579c39b99daca3c814.webp': { newName: 'woodworking-3d-sheet-contemporary-grid-texture-08.webp', title: 'Woodworking 3D Sheet Contemporary Grid Texture' },
+
+  // Completed Projects
+  '9ce7792d245fd6c55a5c05f2.webp': { newName: 'project-completed-luxury-villa-wall-cladding-01.webp', title: 'Completed Project: Luxury Villa Wall Cladding' },
+  '84c273f62882e6bce59f923c.webp': { newName: 'project-completed-modern-living-room-accent-wall-02.webp', title: 'Completed Project: Modern Living Room Accent Wall' },
+  '7a4ebc1aca6d2da3da22d38e.webp': { newName: 'project-completed-commercial-office-feature-wall-03.webp', title: 'Completed Project: Commercial Office Feature Wall' },
+  'c5d79f4b5c504474342ea7dd.webp': { newName: 'project-completed-luxury-spc-flooring-installation-04.webp', title: 'Completed Project: Luxury SPC Flooring Installation' },
+  'd466e1b83dcad889ce8224c3.webp': { newName: 'project-completed-herringbone-parquet-residential-05.webp', title: 'Completed Project: Herringbone Parquet Residential' },
+  '960b200bd612567a0b611337.webp': { newName: 'project-completed-hotel-lobby-marble-flooring-06.webp', title: 'Completed Project: Hotel Lobby Marble Flooring' },
+  '9e92de37fbf62f8f3e15602c.webp': { newName: 'project-completed-executive-penthouse-flooring-07.webp', title: 'Completed Project: Executive Penthouse Flooring' },
+  'e95d8c940ef0f4eab3b71bd7.webp': { newName: 'project-completed-duplex-apartment-hardwood-look-08.webp', title: 'Completed Project: Duplex Apartment Hardwood Look' },
+  '148d3e8b245b7f3dd80dccfb.webp': { newName: 'project-completed-exterior-architectural-facade-09.webp', title: 'Completed Project: Exterior Architectural Facade' }
+};
+
+const assetsDir = path.join(__dirname, '../client/public/assets/decorforall');
+const galleryPath = path.join(assetsDir, 'gallery-categories.json');
+const productsPath = path.join(__dirname, '../data/products_data.json');
+const mapOutputPath = path.join(__dirname, 'image_renaming_map.json');
+
+console.log('1. Writing map dictionary to:', mapOutputPath);
+fs.writeFileSync(mapOutputPath, JSON.stringify(mapping, null, 2), 'utf8');
+
+console.log('2. Physically copying / renaming assets in folder...');
+let copiedCount = 0;
+for (const [oldHash, info] of Object.entries(mapping)) {
+  const srcFile = path.join(assetsDir, oldHash);
+  const destFile = path.join(assetsDir, info.newName);
+  if (fs.existsSync(srcFile)) {
+    fs.copyFileSync(srcFile, destFile);
+    copiedCount++;
+  } else if (!fs.existsSync(destFile)) {
+    console.warn(`⚠️ Source file missing: ${oldHash}`);
+  }
+}
+console.log(`✅ Successfully prepared ${copiedCount} descriptive image files on disk.`);
+
+console.log('3. Updating gallery-categories.json with descriptive names & alts...');
+const gallery = JSON.parse(fs.readFileSync(galleryPath, 'utf8'));
+gallery.categories.forEach(category => {
+  category.images.forEach(img => {
+    const fn = path.basename(img.src);
+    if (mapping[fn]) {
+      img.src = `/assets/decorforall/${mapping[fn].newName}`;
+      img.alt = mapping[fn].title;
+      img.title = mapping[fn].title;
+    }
+  });
+});
+fs.writeFileSync(galleryPath, JSON.stringify(gallery, null, 2), 'utf8');
+console.log('✅ Updated gallery-categories.json');
+
+console.log('4. Updating products_data.json with descriptive image paths...');
+const products = JSON.parse(fs.readFileSync(productsPath, 'utf8'));
+products.forEach(prod => {
+  if (prod.image) {
+    const fn = path.basename(prod.image);
+    if (mapping[fn]) {
+      prod.image = `/assets/decorforall/${mapping[fn].newName}`;
+    }
+  }
+  if (prod.images && Array.isArray(prod.images)) {
+    prod.images = prod.images.map(img => {
+      const fn = path.basename(img);
+      return mapping[fn] ? `/assets/decorforall/${mapping[fn].newName}` : img;
+    });
+  }
+});
+fs.writeFileSync(productsPath, JSON.stringify(products, null, 2), 'utf8');
+console.log('✅ Updated products_data.json');
+
+console.log('\n🎉 ALL ACTIVE IMAGES RENAMED AND SYSTEMATICALLY REORGANIZED!');

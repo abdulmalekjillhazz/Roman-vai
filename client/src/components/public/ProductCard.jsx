@@ -5,49 +5,67 @@ export default function ProductCard({ product, onSelectProduct }) {
   const thumbnail =
     images.length > 0
       ? images[0]
-      : '/assets/decorforall/018a73771c6dbbc65d2f905d.webp';
+      : '/assets/decorforall/flexible-stone-desert-gold-accent-wall-10.webp';
+
+  const thickness = product.specifications?.thickness || product.thickness || 'Custom';
+  const material = product.specifications?.material || product.material || 'Premium finish';
 
   return (
     <div
       onClick={() => onSelectProduct(product)}
-      className="bg-white/95 backdrop-blur-xs rounded-2xl border border-white/90 ring-1 ring-black/5 p-2.5 sm:p-3 floating-card cursor-pointer flex flex-col group text-left"
+      className="group flex cursor-pointer flex-col rounded-2xl border border-stone-200 bg-white/95 p-2.5 text-left shadow-sm transition duration-200 hover:-translate-y-1 hover:border-amber-300 hover:shadow-lg sm:p-3"
     >
-      {/* Square Architectural Photo Container */}
-      <div className="relative aspect-square w-full rounded-xl overflow-hidden bg-stone-100 shadow-inner">
+      <div className="relative aspect-square w-full overflow-hidden rounded-xl bg-stone-100 shadow-inner">
         <img
           src={thumbnail}
           alt={`${product.name} architectural surface Dubai`}
           loading="lazy"
-          className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-500 ease-out"
+          className="h-full w-full object-cover transition duration-500 ease-out group-hover:scale-105"
         />
 
-        {/* Gallery Image Counter Badge */}
         {images.length > 1 && (
-          <span className="absolute bottom-2 right-2 bg-black/70 backdrop-blur-xs text-white text-[10px] font-sans font-medium px-2 py-0.5 rounded-full flex items-center gap-1 shadow-sm">
+          <span className="absolute bottom-2 right-2 flex items-center gap-1 rounded-full bg-black/70 px-2 py-0.5 text-[10px] font-sans font-medium text-white shadow-sm backdrop-blur-xs">
             <span>📷</span>
             <span>{images.length} Photos</span>
           </span>
         )}
 
-        {/* Optional Red 'NEW' Badge */}
         {product.isNew && (
-          <span className="absolute top-2 right-2 bg-[#e02424] text-white text-[10px] font-bold px-2 py-0.5 rounded-full shadow-md tracking-wider">
+          <span className="absolute right-2 top-2 rounded-full bg-[#e02424] px-2 py-0.5 text-[10px] font-bold tracking-wider text-white shadow-md">
             NEW
           </span>
         )}
       </div>
 
-      {/* Card Info - Clean Luxury Floating Styling */}
-      <div className="pt-2.5 pb-1 px-1 flex flex-col items-center text-center">
+      <div className="flex flex-1 flex-col px-1 pt-2.5">
+        <span className="text-[10px] font-sans font-bold uppercase tracking-[0.18em] text-amber-700">
+          {product.categoryName || 'Architectural Surface'}
+        </span>
+
         <h3
-          className="font-sans font-bold text-xs sm:text-[13px] text-stone-900 truncate w-full group-hover:text-amber-800 transition"
+          className="mt-1 truncate text-xs font-sans font-bold text-stone-900 transition group-hover:text-amber-800 sm:text-[13px]"
           title={product.name}
         >
           {product.name}
         </h3>
-        <span className="text-[11px] text-stone-500 font-sans mt-0.5 truncate max-w-full">
-          {product.categoryName || 'Architectural Surface'}
-        </span>
+
+        <div className="mt-2 flex flex-wrap gap-1.5">
+          <span className="rounded-full border border-stone-200 bg-stone-50 px-2 py-1 text-[10px] font-medium text-stone-700">
+            {thickness}
+          </span>
+          <span className="rounded-full border border-stone-200 bg-stone-50 px-2 py-1 text-[10px] font-medium text-stone-700">
+            {material}
+          </span>
+        </div>
+
+        <div className="mt-3 flex items-center justify-between gap-2 border-t border-stone-100 pt-3">
+          <span className="text-[10px] font-sans font-semibold uppercase tracking-[0.12em] text-stone-500">
+            Trade ready
+          </span>
+          <span className="text-[10px] font-sans font-bold text-emerald-600">
+            {product.inStock === false ? 'Backorder' : 'In stock'}
+          </span>
+        </div>
       </div>
     </div>
   );

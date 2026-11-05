@@ -475,7 +475,12 @@ export default function SiteImageGalleryPage() {
               className="max-h-[75vh] w-full object-contain bg-stone-950"
             />
             <div className="flex items-center justify-between p-4 bg-white">
-              <span className="font-bold text-sm text-stone-900">{activeImage.categoryTitle}</span>
+              <div>
+                <p className="font-bold text-sm text-stone-900">{activeImage.alt || activeImage.title || activeImage.categoryTitle}</p>
+                {activeImage.categoryTitle && activeImage.alt && activeImage.alt !== activeImage.categoryTitle && (
+                  <p className="text-xs text-amber-700 font-semibold">{activeImage.categoryTitle}</p>
+                )}
+              </div>
               <a
                 href={quoteUrl(activeImage.categoryTitle)}
                 target="_blank"

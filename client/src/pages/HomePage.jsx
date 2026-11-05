@@ -197,6 +197,41 @@ export default function HomePage({ onOpenQuote }) {
         </div>
       </section>
 
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+        <div className="rounded-[28px] border border-stone-200 bg-white p-5 shadow-sm sm:p-7">
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p className="text-[10px] font-sans uppercase tracking-[0.22em] text-amber-700 font-bold">Why project teams choose us</p>
+              <h2 className="mt-2 font-display text-2xl text-stone-900 sm:text-3xl">A practical, premium supply partner for modern builds</h2>
+            </div>
+            <button
+              type="button"
+              onClick={() => onOpenQuote('Project consultation')}
+              className="inline-flex min-h-10 items-center rounded-xl border border-stone-300 px-4 text-xs font-bold text-stone-800 transition hover:border-amber-500 hover:bg-stone-50"
+            >
+              Book a consultation
+            </button>
+          </div>
+
+          <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+            {[
+              { title: 'Product matching', text: 'Help narrowing the right finish, texture, and thickness for each room and budget.', badge: 'Spec support' },
+              { title: 'Fast response', text: 'Clear communication for RFQs, sample requests, and urgent project updates.', badge: 'UAE support' },
+              { title: 'Trade-friendly flow', text: 'Built for contractors, developers, and fit-out teams who need reliable supply coordination.', badge: 'B2B ready' },
+              { title: 'Install-ready guidance', text: 'Practical advice on finishing, fixing methods, and material selection for long-term performance.', badge: 'Expert help' }
+            ].map((item) => (
+              <div key={item.title} className="rounded-2xl border border-stone-200 bg-stone-50 p-4">
+                <span className="inline-flex rounded-full border border-amber-200 bg-amber-50 px-2 py-1 text-[10px] font-sans font-bold uppercase tracking-[0.18em] text-amber-700">
+                  {item.badge}
+                </span>
+                <h3 className="mt-3 font-sans text-base font-bold text-stone-900">{item.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-stone-600">{item.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Filter Tabs and Floating Search Bar */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-2">
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-4">

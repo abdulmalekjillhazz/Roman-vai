@@ -1,15 +1,25 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { submitLeadToGoogleSheets } from '../../services/leadService.js';
 
+const getEmptyFormState = (category = '') => ({
+  name: '',
+  phone: '',
+  email: '',
+  category: category || 'General Inquiry',
+  projectType: 'Residential',
+  projectArea: '',
+  message: ''
+});
+
 export default function LeadFormModal({ isOpen, onClose, initialCategory = '' }) {
-  const [formData, setFormData] = useState({
-    name: '',
-    phone: '',
-    email: '',
-    category: initialCategory || 'General Inquiry',
-    message: ''
-  });
+  const [formData, setFormData] = useState(getEmptyFormState(initialCategory));
   const [status, setStatus] = useState({ loading: false, error: null, success: null });
+
+  useEffect(() => {
+    if (!isOpen) return;
+    setFormData(getEmptyFormState(initialCategory));
+    setStatus({ loading: false, error: null, success: null });
+  }, [isOpen, initialCategory]);
 
   if (!isOpen) return null;
 
@@ -18,45 +28,68 @@ export default function LeadFormModal({ isOpen, onClose, initialCategory = '' })
     setStatus({ loading: true, error: null, success: null });
 
     try {
+      const summaryMessage = [
+        formData.projectType ? `Project Type: ${formData.projectType}` : '',
+        formData.projectArea ? `Project Size: ${formData.projectArea}` : '',
+        formData.message ? formData.message.trim() : ''
+      ].filter(Boolean).join(' | ');
+
       const res = await submitLeadToGoogleSheets({
         ...formData,
-        category: initialCategory || formData.category
+        category: initialCategory || formData.category,
+        message: summaryMessage
       });
+
       setStatus({ loading: false, error: null, success: res.message });
-      setFormData({ name: '', phone: '', email: '', category: '', message: '' });
+      setFormData(getEmptyFormState(initialCategory));
     } catch (err) {
       setStatus({ loading: false, error: err.message, success: null });
     }
   }
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
-      <div className="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl relative border border-brand-sand">
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4 backdrop-blur-sm"
+      onClick={onClose}
+      aria-modal="true"
+      role="dialog"
+    >
+      <div
+        className="relative w-full max-w-md rounded-3xl border border-brand-sand bg-white p-6 shadow-2xl sm:p-8"
+        onClick={(e) => e.stopPropagation()}
+      >
         <button
           onClick={onClose}
-          className="absolute top-5 right-5 text-stone-400 hover:text-brand-charcoal text-lg font-bold w-8 h-8 rounded-full flex items-center justify-center bg-stone-100 hover:bg-stone-200 transition"
+          className="absolute right-5 top-5 flex h-8 w-8 items-center justify-center rounded-full bg-stone-100 text-lg font-bold text-stone-400 transition hover:bg-stone-200 hover:text-brand-charcoal"
+          aria-label="Close quote form"
         >
           ✕
         </button>
 
-        <span className="font-sans text-[10px] uppercase tracking-[0.2em] text-brand-gold font-bold">
+        <span className="font-sans text-[10px] font-bold uppercase tracking-[0.2em] text-brand-gold">
           Dubai Trade Supply Portal
         </span>
-        <h3 className="font-display text-xl sm:text-2xl font-bold text-brand-charcoal mt-1">
-          Request Free Samples & Trade Pricing
+        <h3 className="mt-1 font-display text-xl font-bold text-brand-charcoal sm:text-2xl">
+          Request free samples & trade pricing
         </h3>
-        <p className="font-sans text-xs text-brand-muted mt-1.5">
+        <p className="mt-1.5 text-xs text-brand-muted font-sans">
           Selected Material: <span className="font-mono font-semibold text-brand-charcoal">{initialCategory || 'Catalog Inquiry'}</span>
         </p>
 
+        <div className="mt-3 flex flex-wrap gap-2 text-[10px] font-sans text-stone-600">
+          <span className="rounded-full border border-emerald-200 bg-emerald-50 px-2 py-1 text-emerald-700">Fast UAE response</span>
+          <span className="rounded-full border border-amber-200 bg-amber-50 px-2 py-1 text-amber-700">Trade pricing</span>
+          <span className="rounded-full border border-stone-200 bg-stone-50 px-2 py-1">Free samples</span>
+        </div>
+
         {status.success ? (
-          <div className="mt-6 p-5 bg-emerald-50 border border-emerald-200 rounded-2xl text-emerald-900 text-xs font-sans">
-            <p className="font-bold text-sm">✅ Inquiry Sent Successfully!</p>
-            <p className="mt-1 text-emerald-800 leading-relaxed">{status.success}</p>
-            <p className="mt-2 text-[11px] text-emerald-700">Our Dubai sales team will dispatch your sample swatches shortly.</p>
+          <div className="mt-6 rounded-2xl border border-emerald-200 bg-emerald-50 p-5 text-xs font-sans text-emerald-900">
+            <p className="text-sm font-bold">✅ Inquiry sent successfully!</p>
+            <p className="mt-1 leading-relaxed text-emerald-800">{status.success}</p>
+            <p className="mt-2 text-[11px] text-emerald-700">Our Dubai sales team will contact you shortly with samples, pricing, and product recommendations.</p>
             <button
               onClick={onClose}
-              className="mt-4 w-full py-2.5 bg-brand-charcoal text-white rounded-xl font-bold text-xs font-sans tracking-wide transition hover:bg-stone-800"
+              className="mt-4 w-full rounded-xl bg-brand-charcoal py-2.5 text-xs font-bold tracking-wide text-white transition hover:bg-stone-800"
             >
               Done
             </button>
@@ -64,13 +97,13 @@ export default function LeadFormModal({ isOpen, onClose, initialCategory = '' })
         ) : (
           <form onSubmit={handleSubmit} className="mt-5 space-y-3.5 font-sans">
             {status.error && (
-              <div className="p-3 bg-red-50 border border-red-200 rounded-xl text-red-700 text-xs">
+              <div className="rounded-xl border border-red-200 bg-red-50 p-3 text-xs text-red-700">
                 {status.error}
               </div>
             )}
 
             <div>
-              <label className="block text-[11px] font-bold uppercase tracking-wider text-brand-charcoal mb-1">
+              <label className="mb-1 block text-[11px] font-bold uppercase tracking-wider text-brand-charcoal">
                 Full Name *
               </label>
               <input
@@ -79,12 +112,12 @@ export default function LeadFormModal({ isOpen, onClose, initialCategory = '' })
                 value={formData.name}
                 onChange={e => setFormData({ ...formData, name: e.target.value })}
                 placeholder="e.g. Tariq Al Mansoori"
-                className="w-full bg-white border border-stone-200/90 rounded-xl px-3.5 py-2.5 text-xs text-brand-charcoal focus:outline-none floating-input"
+                className="floating-input w-full rounded-xl border border-stone-200/90 bg-white px-3.5 py-2.5 text-xs text-brand-charcoal focus:outline-none"
               />
             </div>
 
             <div>
-              <label className="block text-[11px] font-bold uppercase tracking-wider text-brand-charcoal mb-1">
+              <label className="mb-1 block text-[11px] font-bold uppercase tracking-wider text-brand-charcoal">
                 Phone / WhatsApp *
               </label>
               <input
@@ -93,12 +126,12 @@ export default function LeadFormModal({ isOpen, onClose, initialCategory = '' })
                 value={formData.phone}
                 onChange={e => setFormData({ ...formData, phone: e.target.value })}
                 placeholder="+971 50 123 4567"
-                className="w-full bg-white border border-stone-200/90 rounded-xl px-3.5 py-2.5 text-xs text-brand-charcoal focus:outline-none floating-input"
+                className="floating-input w-full rounded-xl border border-stone-200/90 bg-white px-3.5 py-2.5 text-xs text-brand-charcoal focus:outline-none"
               />
             </div>
 
             <div>
-              <label className="block text-[11px] font-bold uppercase tracking-wider text-brand-charcoal mb-1">
+              <label className="mb-1 block text-[11px] font-bold uppercase tracking-wider text-brand-charcoal">
                 Email Address
               </label>
               <input
@@ -106,29 +139,60 @@ export default function LeadFormModal({ isOpen, onClose, initialCategory = '' })
                 value={formData.email}
                 onChange={e => setFormData({ ...formData, email: e.target.value })}
                 placeholder="project@company.com"
-                className="w-full bg-white border border-stone-200/90 rounded-xl px-3.5 py-2.5 text-xs text-brand-charcoal focus:outline-none floating-input"
+                className="floating-input w-full rounded-xl border border-stone-200/90 bg-white px-3.5 py-2.5 text-xs text-brand-charcoal focus:outline-none"
               />
             </div>
 
+            <div className="grid gap-3.5 sm:grid-cols-2">
+              <div>
+                <label className="mb-1 block text-[11px] font-bold uppercase tracking-wider text-brand-charcoal">
+                  Project Type
+                </label>
+                <select
+                  value={formData.projectType}
+                  onChange={e => setFormData({ ...formData, projectType: e.target.value })}
+                  className="floating-input w-full rounded-xl border border-stone-200/90 bg-white px-3.5 py-2.5 text-xs text-brand-charcoal focus:outline-none"
+                >
+                  <option>Residential</option>
+                  <option>Commercial</option>
+                  <option>Hospitality</option>
+                  <option>Developer / Contractor</option>
+                </select>
+              </div>
+
+              <div>
+                <label className="mb-1 block text-[11px] font-bold uppercase tracking-wider text-brand-charcoal">
+                  Approx. Area
+                </label>
+                <input
+                  type="text"
+                  value={formData.projectArea}
+                  onChange={e => setFormData({ ...formData, projectArea: e.target.value })}
+                  placeholder="350 sqm"
+                  className="floating-input w-full rounded-xl border border-stone-200/90 bg-white px-3.5 py-2.5 text-xs text-brand-charcoal focus:outline-none"
+                />
+              </div>
+            </div>
+
             <div>
-              <label className="block text-[11px] font-bold uppercase tracking-wider text-brand-charcoal mb-1">
-                Project Notes / Approximate Sqm
+              <label className="mb-1 block text-[11px] font-bold uppercase tracking-wider text-brand-charcoal">
+                Project Requirements / Notes
               </label>
               <textarea
-                rows="2"
+                rows="3"
                 value={formData.message}
                 onChange={e => setFormData({ ...formData, message: e.target.value })}
-                placeholder="Villa interior in Dubai Hills, approx 350 sqm..."
-                className="w-full bg-white border border-stone-200/90 rounded-xl px-3.5 py-2.5 text-xs text-brand-charcoal focus:outline-none floating-input resize-none"
+                placeholder="Villa interior in Dubai Hills, porcelain look wall panels, approx 350 sqm..."
+                className="floating-input w-full resize-none rounded-xl border border-stone-200/90 bg-white px-3.5 py-2.5 text-xs text-brand-charcoal focus:outline-none"
               />
             </div>
 
             <button
               type="submit"
               disabled={status.loading}
-              className="mt-2 w-full py-3 bg-brand-gold hover:bg-brand-goldHover text-brand-charcoal rounded-xl font-bold text-xs tracking-wide transition shadow-sm disabled:opacity-50"
+              className="mt-2 w-full rounded-xl bg-brand-gold px-4 py-3 text-xs font-bold tracking-wide text-brand-charcoal shadow-sm transition hover:bg-brand-goldHover disabled:opacity-50"
             >
-              {status.loading ? 'Submitting to Sales Team...' : 'Submit Sample Request'}
+              {status.loading ? 'Submitting to sales team...' : 'Submit sample request'}
             </button>
           </form>
         )}
