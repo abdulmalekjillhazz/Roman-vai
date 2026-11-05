@@ -59,10 +59,11 @@ export default function AdminDashboard() {
   function authHeaders() {
     if (!token) return {};
     return {
-      Authorization: `Bearer ${token}`
+                  Authorization: 'Bearer ' + token
     };
   }
 
+  
   async function fetchProducts() {
     setLoading(true);
     try {

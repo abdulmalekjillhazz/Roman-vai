@@ -17,6 +17,14 @@ const __dirname = path.dirname(__filename);
 
 dotenv.config({ path: path.join(__dirname, '../../.env') });
 
+// Process-level safety guards to ensure server never terminates on external network timeouts
+process.on('unhandledRejection', (reason) => {
+  console.warn('⚠️ Process unhandled rejection:', reason?.message || reason);
+});
+process.on('uncaughtException', (err) => {
+  console.warn('⚠️ Process uncaught exception:', err?.message || err);
+});
+
 const app = express();
 app.use(
   helmet({
