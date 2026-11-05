@@ -56,7 +56,7 @@ export default function ProductModal({ product, isOpen, onClose }) {
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-2xl bg-white rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden border border-stone-100 max-h-[92vh] flex flex-col animate-scaleUp"
+        className="relative w-full max-w-2xl bg-white rounded-2xl sm:rounded-3xl floating-modal overflow-hidden border border-white/60 max-h-[92vh] flex flex-col animate-scaleUp"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Round Black Close Button */}

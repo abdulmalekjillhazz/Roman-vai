@@ -55,7 +55,7 @@ export default function LeadFormModal({ isOpen, onClose, initialCategory = '' })
       role="dialog"
     >
       <div
-        className="relative w-full max-w-md rounded-3xl border border-brand-sand bg-white p-6 shadow-2xl sm:p-8"
+        className="relative w-full max-w-md rounded-3xl border border-white/80 bg-white p-6 floating-modal sm:p-8"
         onClick={(e) => e.stopPropagation()}
       >
         <button

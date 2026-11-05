@@ -172,24 +172,24 @@ export default function HomePage({ onOpenQuote }) {
       {/* Trust + Conversion Highlights */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
         <div className="grid gap-4 md:grid-cols-3">
-          <div className="rounded-2xl border border-stone-200 bg-white p-5 shadow-sm">
+          <div className="rounded-2xl border border-white/80 p-5 floating-card">
             <p className="text-[10px] font-sans uppercase tracking-[0.2em] text-amber-700 font-bold">Trade pricing</p>
             <h2 className="mt-3 font-display text-2xl text-stone-900">Commercial-grade supply</h2>
             <p className="mt-2 text-sm text-stone-600">Direct rates for contractors, designers, developers, and fit-out teams across the UAE.</p>
           </div>
-          <div className="rounded-2xl border border-stone-200 bg-white p-5 shadow-sm">
+          <div className="rounded-2xl border border-white/80 p-5 floating-card">
             <p className="text-[10px] font-sans uppercase tracking-[0.2em] text-amber-700 font-bold">Fast delivery</p>
             <h2 className="mt-3 font-display text-2xl text-stone-900">Quick UAE turnaround</h2>
             <p className="mt-2 text-sm text-stone-600">Flexible stock, project support, and prompt coordination for time-sensitive installations.</p>
           </div>
-          <div className="rounded-2xl border border-stone-200 bg-[#141414] p-5 shadow-sm text-white">
+          <div className="rounded-2xl border border-stone-800 bg-[#141414] p-5 floating-banner text-white">
             <p className="text-[10px] font-sans uppercase tracking-[0.2em] text-amber-300 font-bold">Need samples?</p>
             <h2 className="mt-3 font-display text-2xl text-white">Request a quote today</h2>
             <p className="mt-2 text-sm text-stone-300">Get expert guidance for product selection, finish matching, and specification support.</p>
             <button
               type="button"
               onClick={() => onOpenQuote('Luxury catalog and sample inquiry')}
-              className="mt-4 inline-flex min-h-10 items-center rounded-lg bg-brand-gold px-4 text-xs font-bold text-brand-charcoal transition hover:bg-amber-400"
+              className="mt-4 inline-flex min-h-10 items-center rounded-lg bg-brand-gold px-4 text-xs font-bold text-brand-charcoal transition hover:bg-amber-400 shadow-md hover:-translate-y-0.5"
             >
               Request trade pricing
             </button>
@@ -198,7 +198,7 @@ export default function HomePage({ onOpenQuote }) {
       </section>
 
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
-        <div className="rounded-[28px] border border-stone-200 bg-white p-5 shadow-sm sm:p-7">
+        <div className="rounded-[28px] border border-white/90 p-5 floating-card sm:p-7">
           <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <p className="text-[10px] font-sans uppercase tracking-[0.22em] text-amber-700 font-bold">Why project teams choose us</p>
@@ -207,7 +207,7 @@ export default function HomePage({ onOpenQuote }) {
             <button
               type="button"
               onClick={() => onOpenQuote('Project consultation')}
-              className="inline-flex min-h-10 items-center rounded-xl border border-stone-300 px-4 text-xs font-bold text-stone-800 transition hover:border-amber-500 hover:bg-stone-50"
+              className="inline-flex min-h-10 items-center rounded-xl border border-stone-300 px-4 text-xs font-bold text-stone-800 transition hover:border-amber-500 hover:bg-stone-50 shadow-xs"
             >
               Book a consultation
             </button>
@@ -220,7 +220,7 @@ export default function HomePage({ onOpenQuote }) {
               { title: 'Trade-friendly flow', text: 'Built for contractors, developers, and fit-out teams who need reliable supply coordination.', badge: 'B2B ready' },
               { title: 'Install-ready guidance', text: 'Practical advice on finishing, fixing methods, and material selection for long-term performance.', badge: 'Expert help' }
             ].map((item) => (
-              <div key={item.title} className="rounded-2xl border border-stone-200 bg-stone-50 p-4">
+              <div key={item.title} className="rounded-2xl border border-stone-200/80 bg-[#FAF7F0]/60 p-4 floating-pill hover:-translate-y-1">
                 <span className="inline-flex rounded-full border border-amber-200 bg-amber-50 px-2 py-1 text-[10px] font-sans font-bold uppercase tracking-[0.18em] text-amber-700">
                   {item.badge}
                 </span>

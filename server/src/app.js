@@ -7,6 +7,7 @@ import fs from 'fs';
 import { fileURLToPath } from 'url';
 import { connectDB } from './config/db.js';
 import productRoutes from './routes/productRoutes.js';
+import categoryRoutes from './routes/categoryRoutes.js';
 import leadRoutes from './routes/leadRoutes.js';
 import authRoutes from './routes/authRoutes.js';
 import sitemapRoutes from './routes/sitemapRoutes.js';
@@ -30,6 +31,7 @@ app.use(express.json({ limit: '2mb' }));
 connectDB();
 
 // API & SEO Routes
+app.use('/api/categories', categoryRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/leads', leadRoutes);
 app.use('/api/auth', authRoutes);

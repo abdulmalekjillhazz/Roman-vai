@@ -458,7 +458,7 @@ export default function SiteImageGalleryPage() {
           onClick={() => setActiveImage(null)}
         >
           <div
-            className="relative max-h-[90vh] max-w-4xl overflow-hidden rounded-2xl bg-white shadow-2xl animate-scaleUp"
+            className="relative max-h-[90vh] max-w-4xl overflow-hidden rounded-2xl bg-white floating-modal animate-scaleUp border border-white/60"
             onClick={e => e.stopPropagation()}
           >
             <button

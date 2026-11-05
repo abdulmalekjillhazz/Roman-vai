@@ -14,7 +14,7 @@ const router = express.Router();
 router.get('/', getProducts);
 router.get('/:slug', getProductBySlug);
 router.post('/', protectAdmin, uploadMiddleware.array('images', 5), createProduct);
-router.put('/:id', protectAdmin, updateProduct);
+router.put('/:id', protectAdmin, uploadMiddleware.array('images', 5), updateProduct);
 router.delete('/:id', protectAdmin, deleteProduct);
 
 export default router;

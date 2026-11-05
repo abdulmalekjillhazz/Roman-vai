@@ -13,7 +13,7 @@ export default function ProductCard({ product, onSelectProduct }) {
   return (
     <div
       onClick={() => onSelectProduct(product)}
-      className="group flex cursor-pointer flex-col rounded-2xl border border-stone-200 bg-white/95 p-2.5 text-left shadow-sm transition duration-200 hover:-translate-y-1 hover:border-amber-300 hover:shadow-lg sm:p-3"
+      className="group flex cursor-pointer flex-col rounded-2xl border border-white/80 p-2.5 text-left floating-card sm:p-3 hover:border-amber-300/80"
     >
       <div className="relative aspect-square w-full overflow-hidden rounded-xl bg-stone-100 shadow-inner">
         <img

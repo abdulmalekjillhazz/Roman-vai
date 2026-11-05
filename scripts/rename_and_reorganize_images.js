@@ -259,3 +259,4 @@ fs.writeFileSync(productsPath, JSON.stringify(products, null, 2), 'utf8');
 console.log('✅ Updated products_data.json');
 
 console.log('\n🎉 ALL ACTIVE IMAGES RENAMED AND SYSTEMATICALLY REORGANIZED!');
+
