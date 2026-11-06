@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { getWhatsAppInquiryLink } from '../../utils/whatsappHelper.js';
 import { CLIENT_INFO } from '../../config/clientInfo.js';
 
@@ -159,7 +159,7 @@ export default function CategoryShowcaseSlider({ products = [], activeCategory =
                 {/* Specs Readout */}
                 <div className="p-5 flex-1 flex flex-col justify-between">
                   <div>
-                    <Link to={`/product/${item.slug}`}>
+                    <Link href={`/product/${item.slug}`}>
                       <h3 className="font-display font-bold text-base text-brand-charcoal hover:text-brand-bronze transition leading-snug">
                         {item.name}
                       </h3>
@@ -231,4 +231,3 @@ export default function CategoryShowcaseSlider({ products = [], activeCategory =
     </div>
   );
 }
-

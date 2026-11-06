@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import Link from 'next/link';
 import axios from 'axios';
 import SEOHead from '../components/public/SEOHead.jsx';
 import FallbackImage from '../components/public/FallbackImage.jsx';
 import { getWhatsAppInquiryLink } from '../utils/whatsappHelper.js';
 import { CLIENT_INFO } from '../config/clientInfo.js';
 
-export default function ProductDetailPage({ onOpenQuote }) {
-  const { slug } = useParams();
+export default function ProductDetailPage({ onOpenQuote, slug }) {
   const [product, setProduct] = useState(null);
   const [selectedImage, setSelectedImage] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -15,7 +14,7 @@ export default function ProductDetailPage({ onOpenQuote }) {
 
   useEffect(() => {
     setLoading(true);
-    const apiBase = import.meta.env.VITE_API_BASE_URL || '/api';
+    const apiBase = process.env.NEXT_PUBLIC_API_BASE_URL || '/api';
     axios
       .get(`${apiBase}/products/${slug}`)
       .then(res => {
@@ -39,7 +38,7 @@ export default function ProductDetailPage({ onOpenQuote }) {
       <div className="min-h-[60vh] flex flex-col items-center justify-center p-6 text-center">
         <h2 className="font-display text-2xl font-bold text-brand-charcoal">Material Not Found</h2>
         <p className="font-sans text-sm text-brand-muted mt-2">The requested specification sheet could not be located.</p>
-        <Link to="/" className="mt-5 px-5 py-2.5 bg-brand-charcoal text-white rounded-xl text-xs font-bold font-sans">
+        <Link href="/" className="mt-5 px-5 py-2.5 bg-brand-charcoal text-white rounded-xl text-xs font-bold font-sans">
           Return to Trade Catalog
         </Link>
       </div>
@@ -62,9 +61,9 @@ export default function ProductDetailPage({ onOpenQuote }) {
       <div className="max-w-6xl mx-auto">
         {/* Breadcrumb Navigation */}
         <nav className="flex items-center gap-2 text-xs font-sans text-brand-muted mb-6">
-          <Link to="/" className="hover:text-brand-charcoal transition">Catalog</Link>
+          <Link href="/" className="hover:text-brand-charcoal transition">Catalog</Link>
           <span>/</span>
-          <Link to={`/category/${product.category}`} className="hover:text-brand-charcoal transition capitalize">
+          <Link href={`/category/${product.category}`} className="hover:text-brand-charcoal transition capitalize">
             {product.categoryName}
           </Link>
           <span>/</span>

@@ -1,16 +1,13 @@
+'use client';
+
 import React, { useState } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import Navbar from './components/public/Navbar.jsx';
 import BrandLogo from './components/public/BrandLogo.jsx';
-import HomePage from './pages/HomePage.jsx';
-import ProductDetailPage from './pages/ProductDetailPage.jsx';
-import SiteImageGalleryPage from './pages/SiteImageGalleryPage.jsx';
-import AdminDashboard from './pages/admin/AdminDashboard.jsx';
 import LeadFormModal from './components/public/LeadFormModal.jsx';
 import { CLIENT_INFO } from './config/clientInfo.js';
 
-export default function App() {
+export default function App({ children }) {
   const [quoteModal, setQuoteModal] = useState({ open: false, item: '' });
 
   function handleOpenQuote(itemName) {
@@ -19,25 +16,18 @@ export default function App() {
 
   return (
     <HelmetProvider>
-      <BrowserRouter>
-        <div className="min-h-screen flex flex-col bg-brand-cream text-brand-charcoal font-sans">
-          <Navbar onOpenQuote={handleOpenQuote} />
-          
-          <main className="flex-1">
-            <Routes>
-              <Route path="/" element={<HomePage onOpenQuote={handleOpenQuote} />} />
-              <Route path="/category/:categorySlug" element={<HomePage onOpenQuote={handleOpenQuote} />} />
-              <Route path="/product/:slug" element={<ProductDetailPage onOpenQuote={handleOpenQuote} />} />
-              <Route path="/gallery" element={<SiteImageGalleryPage />} />
-              <Route path="/admin" element={<AdminDashboard />} />
-            </Routes>
-          </main>
+      <div className="min-h-screen flex flex-col bg-brand-cream text-brand-charcoal font-sans">
+        <Navbar onOpenQuote={handleOpenQuote} />
 
-          <LeadFormModal
-            isOpen={quoteModal.open}
-            onClose={() => setQuoteModal({ open: false, item: '' })}
-            initialCategory={quoteModal.item}
-          />
+        <main className="flex-1">
+          {typeof children === 'function' ? children(handleOpenQuote) : children}
+        </main>
+
+        <LeadFormModal
+          isOpen={quoteModal.open}
+          onClose={() => setQuoteModal({ open: false, item: '' })}
+          initialCategory={quoteModal.item}
+        />
 
           {/* Official Contact & Corporate Showroom Section */}
           <section id="contact" className="bg-brand-charcoal text-white py-16 px-4 sm:px-6 lg:px-8 border-t border-stone-800">
@@ -142,13 +132,7 @@ export default function App() {
             </div>
           </a>
 
-          <LeadFormModal
-            isOpen={quoteModal.open}
-            initialCategory={quoteModal.item}
-            onClose={() => setQuoteModal({ open: false, item: '' })}
-          />
-        </div>
-      </BrowserRouter>
+      </div>
     </HelmetProvider>
   );
 }

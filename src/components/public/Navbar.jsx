@@ -1,12 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { CLIENT_INFO } from '../../config/clientInfo.js';
 
 export default function Navbar({ onOpenQuote }) {
   return (
     <header className="sticky top-0 z-40 border-b border-stone-200/70 bg-[#FAF7F0]/95 backdrop-blur-md shadow-[0_6px_22px_-3px_rgba(15,23,42,0.09)]">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-2 px-4 sm:h-20 sm:gap-4 sm:px-6 lg:px-8">
-        <Link to="/" className="flex shrink-0 items-center gap-2.5 transition hover:opacity-95 sm:gap-3">
+        <Link href="/" className="flex shrink-0 items-center gap-2.5 transition hover:opacity-95 sm:gap-3">
           <div className="flex h-9 w-9 items-center justify-center rounded-lg border border-amber-500/30 bg-stone-900 font-serif text-sm font-bold text-amber-400 shadow-xs sm:h-10 sm:w-10 sm:text-base">
             CD
           </div>
@@ -22,7 +22,7 @@ export default function Navbar({ onOpenQuote }) {
 
         <div className="flex items-center gap-1.5 sm:gap-3">
           <Link
-            to="/gallery"
+            href="/gallery"
             className="inline-flex items-center justify-center rounded-lg border border-stone-300 bg-white px-2.5 py-2 text-[10px] font-sans font-bold text-stone-800 shadow-xs transition hover:border-amber-500 hover:bg-stone-50 sm:px-3"
           >
             Products

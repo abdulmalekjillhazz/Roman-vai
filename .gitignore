@@ -12,8 +12,12 @@ client/.env
 
 # Build outputs
 client/dist/
+.next/
 dist/
 build/
+out/
+/public/assets/
+/public/data/
 
 # Logs & OS files
 npm-debug.log*

@@ -2,7 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 
 export default function SEOHead({ title, description, canonicalPath = '/', product = null }) {
-  const siteUrl = import.meta.env.VITE_SITE_URL || 'https://dstdeco.com';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://dstdeco.com';
   const fullUrl = `${siteUrl}${canonicalPath}`;
   const pageTitle = title || 'DST Deco | Luxury Interior Decor Materials Supplier in Dubai, UAE';
   const pageDesc =

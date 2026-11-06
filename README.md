@@ -1,4 +1,24 @@
-# DST Deco — Production MERN Stack Catalog (Security & Audit Fixed v2.0)
+# DST Deco — Next.js Commerce Catalog
+
+## Run the application
+
+The website now runs as a single Next.js app from the repository root. The existing Express API starts with it locally and is deployed in the same Vercel project as a serverless function.
+The `public/` assets are copied from `client/public/` automatically before development and production builds.
+
+```bash
+npm install
+npm run dev
+```
+
+Open `http://localhost:3000`. The local Next.js app proxies `/api/*` and `/sitemap.xml` to the Express API, which automatically selects an available port between 5000 and 5099. Configure private database, JWT, Cloudinary, and Google Sheets values in the root `.env`; only `NEXT_PUBLIC_*` values are exposed to the browser.
+
+For Vercel, keep the project root at the repository root. The `vercel.json` config selects Next.js and routes API requests to the existing Express function. Set the required production secrets in Vercel Project Settings → Environment Variables, then deploy the latest commit.
+
+The application source lives in the root `src/` directory; `client/public/` is only the source location for existing catalog images.
+
+---
+
+The repository retains the security-hardened product, admin, Cloudinary, and Google Sheets functionality:
 
 This repository contains the complete, security-hardened MERN Stack codebase for **DST Deco (Dubai, UAE)** with all audit issues resolved:
 
@@ -8,7 +28,7 @@ This repository contains the complete, security-hardened MERN Stack codebase for
    - Every user input field (`name`, `phone`, `email`, `category`, `message`) is sanitized using OWASP rules (`sanitizeCell`): strings starting with `=`, `+`, `-`, `@`, `	`, or `` are prefixed with an apostrophe (`'`) so Google Sheets never executes malicious formulas like `=IMPORTXML(...)`.
 2. **Webhook Shared Secret Authentication (`Code.gs` & `.env.example`)**:
    - Added `SECRET_TOKEN` verification in `Code.gs` (`PropertiesService.getScriptProperties().getProperty("SECRET_TOKEN")`) and `GOOGLE_SHEETS_SECRET_TOKEN` in the backend proxy (`server/src/controllers/leadController.js`), plus IP rate-limiting (`express-rate-limit`) to prevent webhook spam.
-3. **Eliminated `mode: 'no-cors'` Silent Failures (`client/src/services/leadService.js`)**:
+3. **Eliminated `mode: 'no-cors'` Silent Failures (`src/services/leadService.js`)**:
    - Frontend now submits leads to `/api/leads` on the Express server, which makes a server-to-server POST request to Google Apps Script, follows 302 redirects, parses the real JSON status (`status: "success" | "error"`), and returns accurate HTTP status codes to the user.
 4. **Hardened `.env.example`**:
    - Removed predictable default `JWT_SECRET` and included instructions to generate a 64-byte cryptographic random secret.
@@ -21,7 +41,7 @@ This repository contains the complete, security-hardened MERN Stack codebase for
    - Prefers local files from `downloaded_images/` over Google Sites hotlinks (`sitesv-images-rt`).
 7. **Complete MERN Codebase (`server/` & `client/`) + Technical SEO**:
    - Replaced `"Classical Decor I D"` title mismatch with `"DST Deco | Luxury Interior Decor Materials Supplier in Dubai, UAE"`.
-   - Dedicated category routes (`/category/:categorySlug`) and product routes (`/product/:slug`) with unique SEO titles, meta descriptions, `LocalBusiness` & `Product` JSON-LD schemas (`client/src/components/public/SEOHead.jsx`), and dynamic `/sitemap.xml` (`server/src/routes/sitemapRoutes.js`).
+   - Dedicated category routes (`/category/:categorySlug`) and product routes (`/product/:slug`) with unique SEO titles, meta descriptions, `LocalBusiness` & `Product` JSON-LD schemas (`src/components/public/SEOHead.jsx`), and dynamic `/sitemap.xml` (`server/src/routes/sitemapRoutes.js`).
 
 ## Local image gallery
 

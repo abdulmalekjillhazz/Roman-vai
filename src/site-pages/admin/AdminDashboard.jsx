@@ -47,7 +47,7 @@ export default function AdminDashboard() {
   const [categoryError, setCategoryError] = useState('');
   const [uploadFiles, setUploadFiles] = useState([]);
 
-  const apiBase = import.meta.env.VITE_API_BASE_URL || '/api';
+  const apiBase = process.env.NEXT_PUBLIC_API_BASE_URL || '/api';
 
   useEffect(() => {
     if (token) {

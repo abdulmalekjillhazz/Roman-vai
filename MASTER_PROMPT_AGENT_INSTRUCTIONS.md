@@ -2,6 +2,8 @@
 
 > **Role & Identity**: You are an elite Senior Full-Stack MERN & Next.js Architect. You are tasked with constructing, optimizing, and deploying a high-speed, high-converting B2B luxury interior decor catalog website and admin dashboard for **DST Deco** (Dubai, UAE).
 
+> **Current runtime**: The app uses the root Next.js App Router (`app/`) and root source tree (`src/`). Start it with `npm run dev`; do not recreate the retired Vite client. The Express API under `server/` is part of the same Vercel deployment.
+
 ---
 
 ## 1. PROJECT OBJECTIVES & CORE BUSINESS LOGIC
@@ -36,7 +38,7 @@
      * In the Admin Dashboard, implement drag-and-drop Cloudinary uploading using `multer` + Cloudinary SDK.
 
 5. **Google Sheets Real-Time Lead Collection (Via Google Apps Script Webhook)**:
-   - Every client inquiry or sample request submitted via the website's modal form must be sent directly to the client's Google Sheet using a Google Apps Script Web App URL (`VITE_GOOGLE_SHEETS_WEBHOOK_URL`).
+   - Every client inquiry or sample request submitted via the website's modal form must be sent through the backend proxy to the client's Google Sheet using `GOOGLE_SHEETS_WEBHOOK_URL`.
    - No heavy lead database required — client's sales team manages leads directly in Google Sheets!
    - Script file provided in `google-sheets-script/Code.gs`.
 
@@ -108,12 +110,12 @@ dst-deco-mern/
 1. **Category Filtering**: Implement a tabbed category bar (`All`, `Wall Products`, `Flooring`, `Woodworking`, `Fixing Materials`, `Aluminum Profiles`). Use client-side or React state for instantaneous filtering without page reload.
 2. **Product Cards**: Display clean cards with optimized image, category badge, key spec badge (e.g. "Thickness: 5mm"), "View Specs" button, and "WhatsApp Inquire" button.
 3. **Product Modal**: When clicking a card, open a modal with multi-image gallery, full specification breakdown table, stock badge, and sample request CTA.
-4. **Lead Modal Form**: Capture Name, Phone/WhatsApp, Email, Project Details, and submit via `client/src/services/leadService.js` to Google Sheets.
+4. **Lead Modal Form**: Capture Name, Phone/WhatsApp, Email, Project Details, and submit via `src/services/leadService.js` to the backend Google Sheets proxy.
 
 ### Step 3: Implement Cloudinary One-Click Workflow
 1. Read `.env`. If Cloudinary credentials are empty, log a clear notice and fallback to serving images from `product.images[0]`.
 2. When credentials are supplied, `scripts/sync_to_cloudinary.js` must upload every product image to `dst_deco/<category>/...` with transformation `{ quality: 'auto', fetch_format: 'auto' }`.
-3. In the Admin Dashboard (`client/src/components/admin/ImageUploader.jsx`), allow uploading new files directly using Multer + Cloudinary storage.
+3. In the Admin Dashboard (`src/site-pages/admin/AdminDashboard.jsx`), allow uploading new files directly using Multer + Cloudinary storage.
 
 ### Step 4: Google Sheets Integration Verification
 1. Ensure the form in `LeadFormModal.jsx` handles submission with `mode: 'no-cors'` so that CORS redirects from Google Apps Script do not trigger false frontend errors.

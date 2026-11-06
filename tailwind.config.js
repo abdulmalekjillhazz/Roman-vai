@@ -1,9 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ['./app/**/*.{js,jsx,ts,tsx}', './src/**/*.{js,jsx,ts,tsx}'],
   theme: {
     extend: {
       colors: {
@@ -15,17 +12,16 @@ export default {
           gold: '#E5A924',
           goldHover: '#C48B12',
           bronze: '#B38E46',
-          whatsapp: '#25D366',
+          whatsapp: '#25D366'
         }
       },
       fontFamily: {
         sans: ['"Plus Jakarta Sans"', 'sans-serif'],
         display: ['Outfit', 'sans-serif'],
         serif: ['"Cormorant Garamond"', 'serif'],
-        mono: ['"JetBrains Mono"', 'monospace'],
+        mono: ['"JetBrains Mono"', 'monospace']
       }
     }
   },
-  plugins: [],
-}
-
+  plugins: []
+};

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE = import.meta.env.VITE_API_BASE_URL || '/api';
+const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL || '/api';
 
 /**
  * Submits lead inquiry via Backend Proxy (/api/leads) which securely attaches

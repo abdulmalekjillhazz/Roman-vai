@@ -1,19 +1,19 @@
 {
-  "name": "classical-decor-id-dst-deco-mern",
+  "name": "dst-deco-nextjs",
   "version": "2.1.0",
   "description": "Classical Decor ID (DST Deco) - Production MERN Stack Catalog with Cloudinary, Google Sheets Lead Proxy, and Full Build Pipeline",
   "type": "module",
   "scripts": {
-    "postinstall": "cd client && npm install --include=dev",
-    "install:all": "npm install && npm --prefix server install && npm --prefix client install",
+    "predev": "node scripts/prepare-next-public.js",
+    "dev": "node scripts/dev.js",
+    "dev:web": "node node_modules/next/dist/bin/next dev",
+    "dev:server": "npm --prefix server run dev",
+    "prebuild": "node scripts/prepare-next-public.js",
+    "build": "node node_modules/next/dist/bin/next build",
+    "start": "node node_modules/next/dist/bin/next start",
     "download:images": "node scripts/download_images.js",
     "sync:cloudinary": "node scripts/sync_to_cloudinary.js",
-    "seed": "node server/src/seed.js",
-    "dev:server": "npm --prefix server run dev",
-    "dev:client": "npm --prefix client run dev",
-    "dev": "node scripts/dev.js",
-    "build": "cd client && npm install --include=dev && npm run build",
-    "start": "node server/src/app.js"
+    "seed": "node server/src/seed.js"
   },
   "dependencies": {
     "axios": "^1.7.2",
@@ -25,7 +25,15 @@
     "express-rate-limit": "^7.3.1",
     "helmet": "^7.1.0",
     "jsonwebtoken": "^9.0.2",
+    "lucide-react": "^0.395.0",
     "mongoose": "^8.4.1",
-    "multer": "^1.4.5-lts.1"
+    "multer": "^1.4.5-lts.1",
+    "next": "^15.2.4",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-helmet-async": "^2.0.5",
+    "tailwindcss": "^3.4.4",
+    "autoprefixer": "^10.4.19",
+    "postcss": "^8.4.38"
   }
 }

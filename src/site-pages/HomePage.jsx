@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import axios from 'axios';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import SEOHead from '../components/public/SEOHead.jsx';
 import ProductCard from '../components/public/ProductCard.jsx';
 import ProductModal from '../components/public/ProductModal.jsx';
@@ -22,9 +23,8 @@ const CATEGORY_TAB = {
   woodworking: 'profiles'
 };
 
-export default function HomePage({ onOpenQuote }) {
-  const { categorySlug } = useParams();
-  const navigate = useNavigate();
+export default function HomePage({ onOpenQuote, categorySlug }) {
+  const router = useRouter();
   const [products, setProducts] = useState([]);
   const [activeTab, setActiveTab] = useState('all');
   const [search, setSearch] = useState('');
@@ -38,7 +38,7 @@ export default function HomePage({ onOpenQuote }) {
     let isCancelled = false;
     setLoading(true);
     setLoadError('');
-    const apiBase = import.meta.env.VITE_API_BASE_URL || '/api';
+    const apiBase = process.env.NEXT_PUBLIC_API_BASE_URL || '/api';
 
     async function loadProducts() {
       try {
@@ -84,9 +84,9 @@ export default function HomePage({ onOpenQuote }) {
   function handleTabChange(tab) {
     setActiveTab(tab.id);
     if (tab.categorySlug) {
-      navigate(`/category/${tab.categorySlug}`);
+      router.push(`/category/${tab.categorySlug}`);
     } else if (tab.id === 'all') {
-      navigate('/');
+      router.push('/');
     }
   }
 
@@ -171,7 +171,7 @@ export default function HomePage({ onOpenQuote }) {
           </div>
           <div className="flex shrink-0 flex-wrap gap-2.5">
             <Link
-              to="/gallery"
+              href="/gallery"
               className="inline-flex min-h-10 items-center rounded-xl bg-brand-gold px-4 text-xs font-bold text-brand-charcoal transition hover:bg-amber-400 shadow-md hover:-translate-y-0.5"
             >
               Explore materials
