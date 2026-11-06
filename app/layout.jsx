@@ -24,6 +24,16 @@ export const metadata = {
   title: 'DST Deco | Luxury Interior Materials Supplier in Dubai, UAE',
   description:
     'Premium B2B supply of SPC flooring, WPC wall panels, flexible stone, PU stone, and architectural finishes across Dubai and the UAE.',
+  icons: {
+    icon: [
+      { url: '/icon.svg', type: 'image/svg+xml' },
+      { url: '/favicon.ico', sizes: 'any' }
+    ],
+    shortcut: '/favicon.ico',
+    apple: [
+      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' }
+    ]
+  },
   openGraph: {
     title: 'Classical Decor ID (DST Deco) | Luxury Architectural Materials Dubai',
     description:
@@ -38,6 +48,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
+        <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+        <link rel="alternate icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link

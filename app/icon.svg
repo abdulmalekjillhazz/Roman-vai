@@ -1,0 +1,49 @@
+<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="dstGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FDE8A5"/>
+      <stop offset="25%" stop-color="#E5A924"/>
+      <stop offset="70%" stop-color="#C58D17"/>
+      <stop offset="100%" stop-color="#F2BE42"/>
+    </linearGradient>
+    <filter id="subtleGlow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="1.5" stdDeviation="1" flood-color="#000000" flood-opacity="0.5"/>
+    </filter>
+  </defs>
+
+  <!-- Luxury Charcoal Tile Background -->
+  <rect width="100" height="100" rx="22" fill="#141414"/>
+
+  <!-- Subtle Gold Border -->
+  <rect x="2" y="2" width="96" height="96" rx="20" fill="none" stroke="url(#dstGold)" stroke-width="1.8" stroke-opacity="0.45"/>
+
+  <!-- Brand House Monogram with Precision Symmetry -->
+  <g filter="url(#subtleGlow)">
+    <!-- Outer Architectural Gabled Roof & Walls -->
+    <path
+      d="M50 12L90 44V88H10V44L50 12Z"
+      stroke="url(#dstGold)"
+      stroke-width="7"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    <!-- Inner Structural Core -->
+    <path
+      d="M50 27L76 48V79H24V48L50 27Z"
+      stroke="url(#dstGold)"
+      stroke-width="4.8"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    <!-- Central Pillar -->
+    <line
+      x1="50"
+      y1="36"
+      x2="50"
+      y2="79"
+      stroke="url(#dstGold)"
+      stroke-width="5"
+      stroke-linecap="round"
+    />
+  </g>
+</svg>
