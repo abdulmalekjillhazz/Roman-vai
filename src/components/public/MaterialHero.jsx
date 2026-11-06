@@ -152,10 +152,10 @@ export default function MaterialHero({ onOpenQuote }) {
           </div>
         </div>
 
-        {/* Dedicated Sheer Architectural Showcase Panel (Zero Blur - Background Image Shines Through 100% Crisp) */}
+        {/* Dedicated Sheer Architectural Showcase Panel - Frosted Glass Blur Under Text for Maximum Contrast */}
         <div className="my-auto max-w-2xl pt-4 pb-4">
           <div
-            className="rounded-3xl border border-white/10 bg-black/10 sm:bg-black/15 p-6 sm:p-9 shadow-lg transition-all"
+            className="rounded-3xl border border-white/15 bg-black/25 sm:bg-black/30 p-6 sm:p-9 shadow-[0_20px_50px_rgba(0,0,0,0.45),inset_0_1px_0_0_rgba(255,255,255,0.15)] backdrop-blur-md transition-all"
           >
             {/* Dynamic Text Group (Smoke Mist Condensation on Every Auto/Manual Slide Change) */}
             <div key={active} className="space-y-3.5">
@@ -194,7 +194,7 @@ export default function MaterialHero({ onOpenQuote }) {
                 <ArrowUpRight aria-hidden="true" className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </a>
 
-              {/* Direct WhatsApp Concierge CTA Button */}
+              {/* Direct WhatsApp Easy CTA Button */}
               <a
                 href={`https://wa.me/${CLIENT_INFO.whatsappNumber}?text=${encodeURIComponent(
                   `Hello Classical Decor ID, I am interested in ${currentSlide.eyebrow} (${currentSlide.actionTopic}). Please share specifications and wholesale trade pricing.`
@@ -210,7 +210,7 @@ export default function MaterialHero({ onOpenQuote }) {
                 >
                   <path d="M12.031 0C5.396 0 .029 5.367.029 12.002c0 2.118.553 4.187 1.603 6.007L0 24l6.167-1.618a11.97 11.97 0 005.864 1.518h.005c6.634 0 12.001-5.367 12.001-12.002C24.037 5.368 18.67 0 12.031 0zm0 21.897c-1.8 0-3.565-.484-5.105-1.4l-.366-.217-3.793.995 1.013-3.697-.238-.379a9.92 9.92 0 01-1.521-5.197c0-5.498 4.474-9.972 9.975-9.972 2.664 0 5.168 1.038 7.051 2.922a9.92 9.92 0 012.921 7.052c0 5.499-4.474 9.973-9.975 9.973zm5.467-7.464c-.299-.15-1.771-.874-2.046-.974-.275-.1-.475-.15-.675.15s-.774.974-.95 1.173c-.174.2-.349.225-.648.075-.3-.15-1.267-.467-2.413-1.488-.892-.796-1.494-1.78-1.669-2.079-.175-.3-.019-.462.131-.611.135-.134.299-.349.449-.524.15-.175.2-.3.3-.5.1-.2.05-.374-.025-.524-.075-.15-.675-1.623-.925-2.222-.243-.583-.49-.504-.674-.513-.174-.009-.374-.01-.574-.01s-.524.075-.798.374c-.275.3-1.049 1.024-1.049 2.5 0 1.474 1.074 2.898 1.224 3.098.15.2 2.113 3.227 5.119 4.526.715.309 1.273.494 1.708.632.718.228 1.371.196 1.888.118.577-.087 1.771-.724 2.021-1.423.25-.699.25-1.298.175-1.423-.075-.125-.275-.2-.575-.35z" />
                 </svg>
-                <span>WhatsApp Concierge</span>
+                <span>Chat on WhatsApp</span>
               </a>
             </div>
           </div>
