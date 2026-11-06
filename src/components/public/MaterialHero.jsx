@@ -128,14 +128,14 @@ export default function MaterialHero({ onOpenQuote }) {
       })}
 
       {/* =========================================================================
-          2. MULTI-LAYERED ARCHITECTURAL LUXURY LIGHTING VIGNETTES
+          2. MULTI-LAYERED ARCHITECTURAL LUXURY LIGHTING VIGNETTES (SOFTENED FOR MAXIMUM CLARITY)
           ========================================================================= */}
       {/* Top subtle vignette for transparent floating navbar readability */}
-      <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-44 bg-gradient-to-b from-black/85 via-black/35 to-transparent" />
-      {/* Left directional vignette for text contrast while keeping right textures vibrant */}
-      <div className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-r from-black/80 via-black/35 to-transparent sm:from-black/85 sm:via-black/45 sm:to-transparent" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-32 bg-gradient-to-b from-black/55 to-transparent" />
+      {/* Left directional vignette - ultra sheer so the background image remains crisp & bright */}
+      <div className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-r from-black/50 via-black/10 to-transparent" />
       {/* Bottom vignette for sleek timeline & indicator contrast */}
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-48 bg-gradient-to-t from-black/95 via-black/45 to-transparent" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-32 bg-gradient-to-t from-black/65 to-transparent" />
 
       {/* =========================================================================
           3. MAIN CONTENT CONTAINER (FLOATING OVER HERO)
@@ -152,10 +152,10 @@ export default function MaterialHero({ onOpenQuote }) {
           </div>
         </div>
 
-        {/* Dedicated Sheer Architectural Showcase Panel (Ultra-Subtle Glass - Image Shines Through Crystal Clear) */}
+        {/* Dedicated Sheer Architectural Showcase Panel (Zero Blur - Background Image Shines Through 100% Crisp) */}
         <div className="my-auto max-w-2xl pt-4 pb-4">
           <div
-            className="rounded-3xl border border-white/15 bg-black/20 sm:bg-black/25 p-6 sm:p-9 shadow-[0_20px_50px_rgba(0,0,0,0.45),inset_0_1px_0_0_rgba(255,255,255,0.15)] backdrop-blur-sm transition-all"
+            className="rounded-3xl border border-white/10 bg-black/10 sm:bg-black/15 p-6 sm:p-9 shadow-lg transition-all"
           >
             {/* Dynamic Text Group (Smoke Mist Condensation on Every Auto/Manual Slide Change) */}
             <div key={active} className="space-y-3.5">
