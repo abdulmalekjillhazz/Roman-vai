@@ -7,6 +7,7 @@ import {
 } from 'lucide-react';
 import SEOHead from '../components/public/SEOHead.jsx';
 import FallbackImage from '../components/public/FallbackImage.jsx';
+import OfficialArchiveVaultCard from '../components/public/OfficialArchiveVaultCard.jsx';
 import useModalDialog from '../hooks/useModalDialog.js';
 import { CLIENT_INFO } from '../config/clientInfo.js';
 
@@ -438,6 +439,13 @@ export default function SiteImageGalleryPage({ onOpenQuote }) {
                     </div>
                   </button>
                 ))}
+
+                {/* Heavy Vault Card arriving with dramatic friction at the end of finishes */}
+                <OfficialArchiveVaultCard
+                  categorySlug={selectedCategory.id}
+                  categoryTitle={selectedCategory.title}
+                  layout="grid"
+                />
               </div>
 
               {visibleLimit < filteredImages.length && (
@@ -510,6 +518,13 @@ export default function SiteImageGalleryPage({ onOpenQuote }) {
                   </article>
                 );
               })}
+
+              {/* Heavy Vault Card for All Collections */}
+              <OfficialArchiveVaultCard
+                categorySlug="all"
+                categoryTitle="1,500+ Official Master Collection"
+                layout="grid"
+              />
             </section>
           )}
 

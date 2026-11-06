@@ -165,3 +165,71 @@
   color: #ffffff;
   transform: scale(1.08);
 }
+
+/* 8. Heavy Friction Architectural Unearthing Animation (খুব কষ্ট করে ভারী বস্তুর মতো দৃশ্যমান হওয়া) */
+@keyframes heavyUnearth {
+  0% {
+    opacity: 0;
+    transform: translateY(64px) scale(0.90);
+    filter: blur(12px) brightness(0.5);
+  }
+  30% {
+    opacity: 0.35;
+    transform: translateY(42px) scale(0.93);
+    filter: blur(8px) brightness(0.7);
+  }
+  65% {
+    opacity: 0.80;
+    transform: translateY(18px) scale(0.975);
+    filter: blur(3px) brightness(0.92);
+  }
+  86% {
+    opacity: 0.96;
+    transform: translateY(-4px) scale(1.012);
+    filter: blur(0.5px) brightness(1.08);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0) brightness(1);
+  }
+}
+
+@keyframes goldVaultPulse {
+  0%, 100% {
+    box-shadow: 0 20px 45px -15px rgba(0, 0, 0, 0.85), 0 0 0 1px rgba(212, 183, 122, 0.35);
+  }
+  50% {
+    box-shadow: 0 25px 55px -12px rgba(0, 0, 0, 0.95), 0 0 30px rgba(229, 169, 36, 0.35), 0 0 0 1.5px rgba(229, 169, 36, 0.65);
+  }
+}
+
+.heavy-vault-card {
+  position: relative;
+  background: radial-gradient(circle at 50% 0%, #24201b 0%, #13110f 55%, #080807 100%);
+  border: 1.5px solid rgba(212, 183, 122, 0.45);
+  box-shadow: 0 20px 45px -15px rgba(0, 0, 0, 0.85), 0 0 20px rgba(212, 183, 122, 0.15);
+  animation: heavyUnearth 1.5s cubic-bezier(0.19, 1, 0.22, 1) forwards, goldVaultPulse 4.5s ease-in-out infinite 1.5s;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease;
+  will-change: transform, opacity, filter;
+}
+
+.heavy-vault-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  border-color: rgba(229, 169, 36, 0.9);
+  box-shadow: 0 30px 65px -10px rgba(0, 0, 0, 0.95), 0 0 35px rgba(229, 169, 36, 0.45);
+}
+
+@keyframes slowGearRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-gear-slow {
+  animation: slowGearRotate 28s linear infinite;
+}
+

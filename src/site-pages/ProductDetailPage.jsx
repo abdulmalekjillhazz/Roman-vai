@@ -3,6 +3,7 @@ import Link from 'next/link';
 import axios from 'axios';
 import SEOHead from '../components/public/SEOHead.jsx';
 import FallbackImage from '../components/public/FallbackImage.jsx';
+import OfficialArchiveVaultCard from '../components/public/OfficialArchiveVaultCard.jsx';
 import { getWhatsAppInquiryLink } from '../utils/whatsappHelper.js';
 import { CLIENT_INFO } from '../config/clientInfo.js';
 
@@ -182,6 +183,13 @@ export default function ProductDetailPage({ onOpenQuote, slug }) {
             </div>
           </div>
         </div>
+
+        {/* Heavy Vault Banner arriving with physical gravitas */}
+        <OfficialArchiveVaultCard
+          categorySlug={product.slug}
+          categoryTitle={product.name}
+          layout="banner"
+        />
       </div>
     </div>
   </div>
