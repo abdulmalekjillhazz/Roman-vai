@@ -13,6 +13,7 @@ const emptyProductForm = {
   material: 'Composite',
   features: '',
   imageUrls: '',
+  thumbnail: '',
   inStock: true,
   isFeatured: false
 };
@@ -135,7 +136,13 @@ export default function AdminDashboard() {
         setLoginError('Authentication failed. Please verify .env credentials.');
       }
     } catch (err) {
-      setLoginError(err.response?.data?.message || 'Invalid email or password. Access denied.');
+      if (err.response?.status === 401) {
+        setLoginError('Email or password is incorrect. Please try again.');
+      } else if (err.response?.data?.message) {
+        setLoginError(err.response.data.message);
+      } else {
+        setLoginError('Sign-in is temporarily unavailable. Please try again in a moment.');
+      }
     } finally {
       setLoginLoading(false);
     }
@@ -176,12 +183,24 @@ export default function AdminDashboard() {
 
   const existingImageUrls = (productForm.imageUrls || '').split(/\r?\n/).map(url => url.trim()).filter(Boolean);
 
+  function setAsThumbnail(url) {
+    if (!url) return;
+    const remaining = existingImageUrls.filter(u => u !== url);
+    const reordered = [url, ...remaining];
+    handleProductFieldChange('imageUrls', reordered.join('\n'));
+    handleProductFieldChange('thumbnail', url);
+    setProductMsg('Selected image is now set as the #1 Primary Thumbnail! Click "Update Product" to save.');
+  }
+
   function removeExistingImage(urlToRemove) {
     const remainingUrls = (productForm.imageUrls || '')
       .split(/\r?\n/)
       .map(url => url.trim())
       .filter(url => url && url !== urlToRemove);
     handleProductFieldChange('imageUrls', remainingUrls.join('\n'));
+    if (productForm.thumbnail === urlToRemove) {
+      handleProductFieldChange('thumbnail', remainingUrls[0] || '');
+    }
   }
 
   function removeUploadFile(fileToRemove) {
@@ -192,8 +211,11 @@ export default function AdminDashboard() {
     const urls = [...existingImageUrls];
     const target = index + direction;
     if (target < 0 || target >= urls.length) return;
-    [urls[index], urls[target]] = [urls[target], urls[index]];
+    const temp = urls[index];
+    urls[index] = urls[target];
+    urls[target] = temp;
     handleProductFieldChange('imageUrls', urls.join('\n'));
+    handleProductFieldChange('thumbnail', urls[0]);
   }
 
   function moveUpload(index, direction) {
@@ -257,7 +279,12 @@ export default function AdminDashboard() {
     formData.append('inStock', String(productForm.inStock));
     formData.append('isFeatured', String(productForm.isFeatured));
 
-    formData.append('imageUrls', JSON.stringify(existingImageUrls));
+    let orderedUrls = [...existingImageUrls];
+    if (productForm.thumbnail && orderedUrls.includes(productForm.thumbnail)) {
+      orderedUrls = [productForm.thumbnail, ...orderedUrls.filter(u => u !== productForm.thumbnail)];
+    }
+    formData.append('imageUrls', JSON.stringify(orderedUrls));
+    formData.append('thumbnail', orderedUrls[0] || '');
 
     if (uploadFiles.length > 12) {
       setProductError('Upload a maximum of 12 images at a time.');
@@ -357,6 +384,8 @@ export default function AdminDashboard() {
     setProductError('');
     setProductMsg('');
     setSelectedProductId(product.id || product._id);
+    const existingImgs = product.images || [];
+    const mainThumb = product.thumbnail || existingImgs[0] || '';
     setProductForm({
       name: product.name || '',
       category: product.category || 'wall-products',
@@ -366,7 +395,8 @@ export default function AdminDashboard() {
       dimensions: product.specifications?.dimensions || 'Custom',
       material: product.specifications?.material || 'Composite',
       features: (product.specifications?.features || []).join(', '),
-      imageUrls: (product.images || []).join('\n'),
+      imageUrls: existingImgs.join('\n'),
+      thumbnail: mainThumb,
       inStock: Boolean(product.inStock),
       isFeatured: Boolean(product.isFeatured)
     });
@@ -393,7 +423,7 @@ export default function AdminDashboard() {
             </div>
             <h1 className="mt-5 font-display text-[28px] font-bold leading-tight text-stone-950">DST Deco Admin Portal</h1>
             <p className="mt-2 text-sm leading-6 text-slate-600">
-              Protected Area. Please enter the master admin credentials configured in your <code className="font-mono text-brand-charcoal bg-stone-100 px-1 py-0.5 rounded">.env</code> file.
+              Sign in to manage your product catalog.
             </p>
           </div>
 
@@ -453,8 +483,8 @@ export default function AdminDashboard() {
             </button>
           </form>
 
-          <div className="mt-7 border-t border-slate-200 pt-5 text-center font-mono text-[10px] text-stone-400">
-            CLASSICAL DECOR I D • SECURE ACCESS GATE
+          <div className="mt-7 border-t border-slate-200 pt-5 text-center text-xs text-stone-400">
+            Authorized administrators only
           </div>
         </div>
       </div>
@@ -522,6 +552,7 @@ export default function AdminDashboard() {
                   <thead className="bg-brand-cream/60 text-brand-charcoal font-bold uppercase tracking-wider text-[11px] border-b border-brand-sand">
                     <tr>
                       <th className="p-4">SKU / ID</th>
+                      <th className="p-4">Thumbnail</th>
                       <th className="p-4">Material</th>
                       <th className="p-4">Category</th>
                       <th className="p-4">Thickness & Size</th>
@@ -534,6 +565,16 @@ export default function AdminDashboard() {
                     {products.map(p => (
                       <tr key={p.id} className="hover:bg-brand-cream/20 transition">
                         <td className="p-4 font-mono font-bold text-brand-charcoal">{p.sku || p.id}</td>
+                        <td className="p-4">
+                          <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-xl border border-stone-200 bg-stone-100 shadow-xs">
+                            <img
+                              src={p.thumbnail || p.images?.[0]}
+                              alt={p.name}
+                              className="h-full w-full object-cover"
+                            />
+                            <span className="absolute bottom-0 right-0 rounded-tl bg-amber-500 px-1 py-0.5 text-[8px] font-black text-stone-950" title="Primary Thumbnail">★</span>
+                          </div>
+                        </td>
                         <td className="p-4">
                           <div className="font-bold text-brand-charcoal">{p.name}</div>
                           <div className="text-[11px] text-brand-muted line-clamp-1">{p.description}</div>
@@ -663,23 +704,144 @@ export default function AdminDashboard() {
 
               {(existingImageUrls.length > 0 || uploadFiles.length > 0) && (
                 <div className="md:col-span-2">
-                  <div className="mb-2 text-[11px] font-bold uppercase tracking-wider text-brand-charcoal">Photos</div>
-                  <div className="grid grid-cols-4 gap-3">
-                    {existingImageUrls.map((src, index) => (
-                      <div key={src} className="relative overflow-hidden rounded-xl border border-brand-sand bg-brand-cream/30">
-                        <img src={src} alt={`Preview ${index + 1}`} className="h-24 w-full object-cover" />
-                        <button type="button" onClick={() => removeExistingImage(src)} className="absolute right-1.5 top-1.5 rounded-full bg-black/75 px-2 py-1 text-[10px] font-bold text-white hover:bg-red-700">Remove</button>
+                  <div className="mb-3 flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-stone-200/80 pb-2">
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <span className="text-[11px] font-bold uppercase tracking-wider text-brand-charcoal">
+                          Photos & Finishes Manager ({existingImageUrls.length} Active)
+                        </span>
+                        <span className="rounded bg-amber-100 px-2 py-0.5 text-[10px] font-bold text-amber-900 border border-amber-300">
+                          ★ #1 is Final Thumbnail
+                        </span>
                       </div>
-                    ))}
+                      <p className="text-[10px] text-stone-500 mt-0.5">
+                        The 1st photo is the official catalog thumbnail. Click &quot;⭐ Set as Final Thumbnail&quot; on any photo to make it the primary cover, or use ◀ / ▶ to arrange the sequence (1st, 2nd, 3rd...).
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-3.5 sm:grid-cols-3 md:grid-cols-4">
+                    {existingImageUrls.map((src, index) => {
+                      const isMainThumb = index === 0;
+                      return (
+                        <div
+                          key={src}
+                          className={`relative overflow-hidden rounded-2xl border-2 transition-all p-2.5 bg-white flex flex-col justify-between shadow-xs ${
+                            isMainThumb
+                              ? 'border-amber-500 ring-2 ring-amber-400/40 shadow-md bg-amber-50/25'
+                              : 'border-stone-200 hover:border-stone-300'
+                          }`}
+                        >
+                          <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl bg-stone-100">
+                            <img src={src} alt={`Finish ${index + 1}`} className="h-full w-full object-cover" />
+                            {/* Position Badge */}
+                            <span
+                              className={`absolute left-1.5 top-1.5 rounded-md px-2 py-0.5 text-[9px] font-mono font-bold shadow-sm ${
+                                isMainThumb
+                                  ? 'bg-amber-500 text-stone-950 font-black ring-1 ring-white/50'
+                                  : 'bg-black/75 text-white'
+                              }`}
+                            >
+                              {isMainThumb ? '★ #1 Final Thumbnail' : `#${index + 1} Finish Option`}
+                            </span>
+                          </div>
+
+                          <div className="mt-2.5 space-y-1.5">
+                            {!isMainThumb ? (
+                              <button
+                                type="button"
+                                onClick={() => setAsThumbnail(src)}
+                                className="flex w-full items-center justify-center gap-1 rounded-lg border border-amber-300 bg-amber-50 px-2 py-1.5 text-[10px] font-bold text-amber-900 transition hover:bg-amber-100 active:scale-95"
+                              >
+                                <span>⭐ Set as Final Thumbnail</span>
+                              </button>
+                            ) : (
+                              <div className="flex w-full items-center justify-center gap-1 rounded-lg border border-amber-500/40 bg-amber-100/70 py-1.5 text-[10px] font-black text-amber-950">
+                                <span>✓ Active Catalog Cover</span>
+                              </div>
+                            )}
+
+                            <div className="flex items-center justify-between gap-1 pt-1 border-t border-stone-100">
+                              <div className="flex gap-1">
+                                <button
+                                  type="button"
+                                  disabled={index === 0}
+                                  onClick={() => moveExistingImage(index, -1)}
+                                  title="Move earlier in sequence"
+                                  className="rounded border border-stone-200 bg-stone-50 px-2 py-1 text-[10px] font-bold text-stone-700 hover:bg-stone-200 disabled:opacity-30 disabled:hover:bg-stone-50"
+                                >
+                                  ◀
+                                </button>
+                                <button
+                                  type="button"
+                                  disabled={index === existingImageUrls.length - 1}
+                                  onClick={() => moveExistingImage(index, 1)}
+                                  title="Move later in sequence"
+                                  className="rounded border border-stone-200 bg-stone-50 px-2 py-1 text-[10px] font-bold text-stone-700 hover:bg-stone-200 disabled:opacity-30 disabled:hover:bg-stone-50"
+                                >
+                                  ▶
+                                </button>
+                              </div>
+                              <button
+                                type="button"
+                                onClick={() => removeExistingImage(src)}
+                                className="rounded px-2 py-1 text-[10px] font-bold text-red-600 hover:bg-red-50 hover:underline"
+                              >
+                                Remove
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })}
+
                     {uploadFiles.map((file, index) => (
-                      <div key={`${file.name}-${file.lastModified}-${index}`} className="relative overflow-hidden rounded-xl border border-brand-sand bg-brand-cream/30 p-2">
-                        <img src={URL.createObjectURL(file)} alt={file.name} className="h-20 w-full object-cover" />
-                        <p className="mt-1 truncate text-[9px] text-brand-muted">New: {file.name}</p>
-                        <button type="button" onClick={() => removeUploadFile(file)} className="absolute right-1.5 top-1.5 rounded-full bg-black/75 px-2 py-1 text-[10px] font-bold text-white hover:bg-red-700">Remove</button>
+                      <div
+                        key={`${file.name}-${file.lastModified}-${index}`}
+                        className="relative overflow-hidden rounded-2xl border border-dashed border-emerald-500 bg-emerald-50/30 p-2.5 flex flex-col justify-between"
+                      >
+                        <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl bg-stone-100">
+                          <img src={URL.createObjectURL(file)} alt={file.name} className="h-full w-full object-cover" />
+                          <span className="absolute left-1.5 top-1.5 rounded-md bg-emerald-700 px-2 py-0.5 text-[9px] font-bold text-white shadow-sm">
+                            New Upload #{index + 1}
+                          </span>
+                        </div>
+                        <p className="mt-1 truncate text-[9px] font-medium text-stone-600">{file.name}</p>
+                        <div className="mt-2 flex items-center justify-between gap-1 border-t border-emerald-200 pt-1">
+                          <div className="flex gap-1">
+                            <button
+                              type="button"
+                              disabled={index === 0}
+                              onClick={() => moveUpload(index, -1)}
+                              className="rounded border border-stone-200 bg-white px-2 py-0.5 text-[9px] font-bold text-stone-700 disabled:opacity-30"
+                            >
+                              ◀
+                            </button>
+                            <button
+                              type="button"
+                              disabled={index === uploadFiles.length - 1}
+                              onClick={() => moveUpload(index, 1)}
+                              className="rounded border border-stone-200 bg-white px-2 py-0.5 text-[9px] font-bold text-stone-700 disabled:opacity-30"
+                            >
+                              ▶
+                            </button>
+                          </div>
+                          <button
+                            type="button"
+                            onClick={() => removeUploadFile(file)}
+                            className="text-[10px] font-bold text-red-600 hover:underline"
+                          >
+                            Cancel
+                          </button>
+                        </div>
                       </div>
                     ))}
                   </div>
-                  {selectedProductId && <p className="mt-2 text-[10px] text-brand-muted">Removing an existing Cloudinary photo here and saving will permanently delete that photo from Cloudinary.</p>}
+                  {selectedProductId && (
+                    <p className="mt-2.5 text-[10px] text-brand-muted">
+                      ℹ️ Remember to click &quot;Update Product&quot; below to permanently save your final thumbnail and sequence order.
+                    </p>
+                  )}
                 </div>
               )}
 

@@ -11,10 +11,12 @@ export default function FallbackImage({
   className = '',
   fallbackSrc = '/assets/decorforall/flexible-stone-desert-gold-accent-wall-10.webp',
   cloudinaryWidth,
+  decoding = 'async',
   ...props
 }) {
   const optimizedSrc = optimizedCloudinaryUrl(src, cloudinaryWidth);
   const [currentSrc, setCurrentSrc] = React.useState(optimizedSrc || fallbackSrc);
+  const [isLoaded, setIsLoaded] = React.useState(false);
 
   React.useEffect(() => {
     setCurrentSrc(optimizedSrc || fallbackSrc);
@@ -23,9 +25,14 @@ export default function FallbackImage({
   return (
     <img
       {...props}
+      decoding={decoding}
       src={currentSrc}
       alt={alt}
-      className={className}
+      onLoad={(event) => {
+        setIsLoaded(true);
+        props.onLoad?.(event);
+      }}
+      className={`${className} transition-opacity duration-300 ${isLoaded ? 'opacity-100' : 'opacity-90'}`}
       onError={(event) => {
         if (event.currentTarget.dataset.fallbackApplied === 'true') return;
         event.currentTarget.dataset.fallbackApplied = 'true';

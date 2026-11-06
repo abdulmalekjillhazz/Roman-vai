@@ -26,7 +26,8 @@
       "/assets/decorforall/flexible-stone-contemporary-curved-facade-15.webp"
     ],
     "inStock": true,
-    "slug": "flexible-stone"
+    "slug": "flexible-stone",
+    "thumbnail": "/assets/decorforall/flexible-stone-desert-gold-accent-wall-10.webp"
   },
   {
     "id": "cat-02",
@@ -55,7 +56,8 @@
       "/assets/decorforall/small-pu-stone-natural-beige-ledge-01.webp"
     ],
     "inStock": true,
-    "slug": "pu-stone-rock-panels"
+    "slug": "pu-stone-rock-panels",
+    "thumbnail": "/assets/decorforall/big-pu-stone-mountain-cliff-facade-03.webp"
   },
   {
     "id": "cat-03",
@@ -84,7 +86,8 @@
       "/assets/decorforall/wpc-chipboard-5mm-japandi-minimalist-slat-10.webp"
     ],
     "inStock": true,
-    "slug": "wpc-fluted-wall-panels"
+    "slug": "wpc-fluted-wall-panels",
+    "thumbnail": "/assets/decorforall/wpc-chipboard-5mm-charcoal-fluted-accent-03.webp"
   },
   {
     "id": "cat-04",
@@ -114,7 +117,8 @@
       "/assets/decorforall/pvc-marble-hospitality-suite-accent-wall-07.webp"
     ],
     "inStock": true,
-    "slug": "pvc-marble-sheets"
+    "slug": "pvc-marble-sheets",
+    "thumbnail": "/assets/decorforall/pvc-marble-glossy-nero-marquina-black-gold-03.webp"
   },
   {
     "id": "cat-05",
@@ -143,7 +147,8 @@
       "/assets/decorforall/acoustic-panel-restaurant-dining-sound-wall-07.webp"
     ],
     "inStock": true,
-    "slug": "acoustic-slat-wood-panels"
+    "slug": "acoustic-slat-wood-panels",
+    "thumbnail": "/assets/decorforall/acoustic-panel-studio-recording-room-wall-03.webp"
   },
   {
     "id": "cat-06",
@@ -172,7 +177,8 @@
       "/assets/decorforall/ps-wall-panel-hotel-reception-accent-wall-08.webp"
     ],
     "inStock": true,
-    "slug": "ps-wall-louvers-partitions"
+    "slug": "ps-wall-louvers-partitions",
+    "thumbnail": "/assets/decorforall/ps-wall-panel-modern-charcoal-louver-03.webp"
   },
   {
     "id": "cat-07",
@@ -200,7 +206,8 @@
       "/assets/decorforall/ps-molding-hotel-corridor-wainscot-rail-06.webp"
     ],
     "inStock": true,
-    "slug": "ps-moldings-cornices"
+    "slug": "ps-moldings-cornices",
+    "thumbnail": "/assets/decorforall/ps-molding-ornate-victorian-ceiling-cornice-01.webp"
   },
   {
     "id": "cat-08",
@@ -229,7 +236,8 @@
       "/assets/decorforall/spc-straight-flooring-commercial-showroom-floor-11.webp"
     ],
     "inStock": true,
-    "slug": "spc-luxury-flooring"
+    "slug": "spc-luxury-flooring",
+    "thumbnail": "/assets/decorforall/spc-straight-flooring-waterproof-rigid-core-plank-10.webp"
   },
   {
     "id": "cat-09",
@@ -248,16 +256,17 @@
     ],
     "isNew": false,
     "images": [
-        "/assets/decorforall/lvt-flooring-staro-luxury-vinyl-tile-warm-stone-01.webp",
-        "/assets/decorforall/lvt-flooring-staro-luxury-vinyl-tile-slate-grey-02.webp",
-        "/assets/decorforall/lvt-flooring-staro-luxury-vinyl-tile-travertine-beige-03.webp",
-        "/assets/decorforall/lvt-flooring-staro-luxury-vinyl-tile-urban-concrete-04.webp",
+      "/assets/decorforall/lvt-flooring-staro-luxury-vinyl-tile-warm-stone-01.webp",
+      "/assets/decorforall/lvt-flooring-staro-luxury-vinyl-tile-slate-grey-02.webp",
+      "/assets/decorforall/lvt-flooring-staro-luxury-vinyl-tile-travertine-beige-03.webp",
+      "/assets/decorforall/lvt-flooring-staro-luxury-vinyl-tile-urban-concrete-04.webp",
       "/assets/decorforall/lvt-flooring-open-concept-villa-flooring-05.webp",
       "/assets/decorforall/lvt-flooring-contemporary-duplex-living-room-06.webp",
-        "/assets/decorforall/lvt-flooring-commercial-office-interior-floor-07.webp"
+      "/assets/decorforall/lvt-flooring-commercial-office-interior-floor-07.webp"
     ],
     "inStock": true,
-    "slug": "lvt-luxury-flooring"
+    "slug": "lvt-luxury-flooring",
+    "thumbnail": "/assets/decorforall/lvt-flooring-staro-luxury-vinyl-tile-warm-stone-01.webp"
   },
   {
     "id": "cat-10",
@@ -286,7 +295,8 @@
       "/assets/decorforall/ps-skirting-board-hospitality-suite-baseboard-12.webp"
     ],
     "inStock": true,
-    "slug": "ps-waterproof-skirting"
+    "slug": "ps-waterproof-skirting",
+    "thumbnail": "/assets/decorforall/ps-skirting-board-curved-baseboard-trim-05.webp"
   },
   {
     "id": "cat-11",
@@ -315,7 +325,8 @@
       "/assets/decorforall/aluminum-profile-heavy-commercial-threshold-10.webp"
     ],
     "inStock": true,
-    "slug": "aluminum-architectural-profiles"
+    "slug": "aluminum-architectural-profiles",
+    "thumbnail": "/assets/decorforall/aluminum-profile-tile-transition-strip-silver-03.webp"
   },
   {
     "id": "cat-12",
@@ -334,9 +345,10 @@
     ],
     "isNew": false,
     "images": [
-        "/assets/decorforall/staro-hybrid-polymer-silicon-adhesive-cartridge-01.webp"
+      "/assets/decorforall/staro-hybrid-polymer-silicon-adhesive-cartridge-01.webp"
     ],
     "inStock": true,
-    "slug": "staro-hybrid-adhesive"
+    "slug": "staro-hybrid-adhesive",
+    "thumbnail": "/assets/decorforall/staro-hybrid-polymer-silicon-adhesive-cartridge-01.webp"
   }
 ]

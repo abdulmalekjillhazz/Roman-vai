@@ -1,39 +1,42 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { ArrowUpRight, Sparkles } from 'lucide-react';
 import FallbackImage from './FallbackImage.jsx';
+import { preloadProductFinishes } from '../../utils/imageCacheWarmup.js';
 
 export default function ProductCard({ product, onSelectProduct, priority = false }) {
   const images = product?.images?.length ? product.images : [];
+  // The primary thumbnail is fixed by admin (thumbnail property or 1st image)
   const [activeImgIndex, setActiveImgIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
 
-  // 1. Dynamic / randomized initial thumbnail on each page load/visit
-  useEffect(() => {
+  function handleMouseEnter() {
+    setIsHovered(true);
+    // Instant background preload of all finish variations for this product
+    preloadProductFinishes(product);
+    // Preview second finish on hover if available
     if (images.length > 1) {
-      const randomIndex = Math.floor(Math.random() * images.length);
-      setActiveImgIndex(randomIndex);
+      setActiveImgIndex(1);
     }
-  }, [images.length]);
+  }
 
-  // 2. Interactive Finish Swatch Preview on Hover (smoothly cycles every 1.8s)
-  useEffect(() => {
-    if (!isHovered || images.length <= 1) return;
-    const interval = setInterval(() => {
-      setActiveImgIndex(prev => (prev + 1) % images.length);
-    }, 1800);
-    return () => clearInterval(interval);
-  }, [isHovered, images.length]);
+  function handleMouseLeave() {
+    setIsHovered(false);
+    // Always revert to the designated admin primary thumbnail
+    setActiveImgIndex(0);
+  }
 
   const specification = product.specifications?.thickness || product.thickness
     || product.specifications?.dimensions || product.dimensions;
 
-  const currentImage = images[activeImgIndex] || images[0];
+  // Designated cover thumbnail is always index 0 / product.thumbnail
+  const currentImage = images[activeImgIndex] || product.thumbnail || images[0];
 
   return (
     <article
       className="group min-w-0 overflow-hidden rounded-2xl border border-stone-200/80 bg-white transition-all duration-300 hover:shadow-lg hover:border-amber-500/50"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      onTouchStart={() => preloadProductFinishes(product)}
     >
       <button
         type="button"
@@ -59,7 +62,9 @@ export default function ProductCard({ product, onSelectProduct, priority = false
           {/* Dynamic Finish Counter Pill */}
           {images.length > 1 && (
             <div className="absolute top-2.5 right-2.5 flex items-center gap-1 rounded-full border border-white/25 bg-black/60 px-2 py-0.5 text-[10px] font-mono text-white/95 backdrop-blur-md shadow-xs">
-              <span className="text-[#E5A924] font-bold">{activeImgIndex + 1}</span>
+              <span className="text-[#E5A924] font-bold">
+                {activeImgIndex === 0 ? '★ Cover' : `#${activeImgIndex + 1}`}
+              </span>
               <span className="text-white/40">/</span>
               <span>{images.length}</span>
               <span className="hidden sm:inline text-[9px] text-stone-300 ml-0.5">Finishes</span>
@@ -70,7 +75,7 @@ export default function ProductCard({ product, onSelectProduct, priority = false
           <div className="absolute bottom-2.5 left-2.5 flex items-center gap-1.5 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
             <span className="rounded-lg bg-black/75 px-2.5 py-1 text-[10px] font-semibold text-[#f5ebd7] backdrop-blur-md flex items-center gap-1">
               <Sparkles size={11} className="text-[#E5A924]" />
-              <span>Inspect 3D Finish</span>
+              <span>Inspect All Finishes</span>
             </span>
           </div>
         </div>

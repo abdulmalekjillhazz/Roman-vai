@@ -15,6 +15,7 @@ const productSchema = new mongoose.Schema(
       features: [{ type: String }]
     },
     images: [{ type: String, required: true }],
+    thumbnail: { type: String },
     cloudinaryImages: [
       {
         public_id: String,

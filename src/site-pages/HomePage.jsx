@@ -9,6 +9,7 @@ import ProductCard from '../components/public/ProductCard.jsx';
 import ProductModal from '../components/public/ProductModal.jsx';
 import MaterialHero from '../components/public/MaterialHero.jsx';
 import FallbackImage from '../components/public/FallbackImage.jsx';
+import { warmupCatalogImages } from '../utils/imageCacheWarmup.js';
 import cloudCatalog from '../../data/products_cloudinary.json';
 import localCatalog from '../../data/products_data.json';
 import { CLIENT_INFO } from '../config/clientInfo.js';
@@ -50,6 +51,13 @@ export default function HomePage({ onOpenQuote, categorySlug }) {
       .finally(() => window.clearTimeout(timeout));
     return () => { window.clearTimeout(timeout); controller.abort(); };
   }, []);
+
+  // Progressive background image cache warmup
+  useEffect(() => {
+    if (products.length > 0) {
+      warmupCatalogImages(products);
+    }
+  }, [products]);
 
   // Instant sub-millisecond filtering with zero freezing
   const filteredProducts = useMemo(() => {

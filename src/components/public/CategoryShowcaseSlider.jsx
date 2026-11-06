@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import Link from 'next/link';
+import FallbackImage from './FallbackImage.jsx';
 import { getWhatsAppInquiryLink } from '../../utils/whatsappHelper.js';
 import { CLIENT_INFO } from '../../config/clientInfo.js';
 
@@ -127,15 +128,18 @@ export default function CategoryShowcaseSlider({ products = [], activeCategory =
               >
                 {/* Image Canvas with Click-to-Zoom */}
                 <div className="relative h-56 sm:h-64 bg-stone-100 overflow-hidden">
-                  <img
-                    src={item.images?.[0]}
+                  <FallbackImage
+                    src={item.thumbnail || item.images?.[0]}
                     alt={item.name}
                     draggable="false"
+                    cloudinaryWidth={600}
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
                     <button
-                      onClick={() => setLightboxImg(item.images?.[0])}
+                      onClick={() => setLightboxImg(item.thumbnail || item.images?.[0])}
                       className="px-3 py-1.5 bg-white/90 backdrop-blur rounded-lg text-[11px] font-sans font-bold text-brand-charcoal hover:bg-brand-gold hover:text-white transition shadow"
                     >
                       🔍 Fullscreen Texture View

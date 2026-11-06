@@ -81,6 +81,9 @@ export default function ProductDetailPage({ onOpenQuote, slug }) {
                 alt={`${product.name} finish ${selectedImage + 1}`}
                 className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
                 fallbackSrc={fallbackImage}
+                cloudinaryWidth={1200}
+                loading="eager"
+                decoding="async"
               />
               <span className="absolute top-4 left-4 bg-brand-charcoal/90 backdrop-blur-md text-white font-mono text-[11px] px-3 py-1 rounded-md shadow-sm">
                 SKU: {sku}
@@ -117,7 +120,7 @@ export default function ProductDetailPage({ onOpenQuote, slug }) {
                           : 'border-brand-sand/70 opacity-70 hover:opacity-100 hover:border-stone-400'
                       }`}
                     >
-                      <FallbackImage src={img || fallbackImage} alt={`Finish ${idx + 1}`} className="h-full w-full object-cover" fallbackSrc={fallbackImage} />
+                      <FallbackImage src={img || fallbackImage} alt={`Finish ${idx + 1}`} className="h-full w-full object-cover" fallbackSrc={fallbackImage} cloudinaryWidth={160} loading="lazy" decoding="async" />
                       <span className="absolute bottom-1 right-1 rounded bg-black/75 px-1 font-mono text-[9px] text-white">
                         #{idx + 1}
                       </span>

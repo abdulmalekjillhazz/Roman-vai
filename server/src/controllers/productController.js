@@ -1,4 +1,4 @@
-﻿import fs from 'fs';
+import fs from 'fs';
 import path from 'path';
 import mongoose from 'mongoose';
 import { randomUUID } from 'crypto';
@@ -34,7 +34,7 @@ function productPayload(body, existing) {
     try { specs = JSON.parse(specs); } catch { throw new Error('Product specifications must be valid JSON.'); }
   }
   const payload = {};
-  for (const key of ['name', 'category', 'categoryName', 'description', 'seoTitle', 'seoDescription']) {
+  for (const key of ['name', 'category', 'categoryName', 'description', 'seoTitle', 'seoDescription', 'thumbnail']) {
     if (body[key] !== undefined) payload[key] = String(body[key]).trim();
   }
   for (const key of ['name', 'category', 'description']) {
@@ -135,6 +135,11 @@ export async function createProduct(req, res) {
     const urls = parseImageUrls(body.imageUrls ?? body.images);
     await uploadImages(req.files || [], uploaded);
     payload.images = [...urls, ...uploaded.map(asset => asset.secure_url)];
+    if (payload.thumbnail && payload.images.includes(payload.thumbnail)) {
+      payload.images = [payload.thumbnail, ...payload.images.filter(img => img !== payload.thumbnail)];
+    } else {
+      payload.thumbnail = payload.images[0] || '';
+    }
     payload.cloudinaryImages = productAssets({ images: payload.images, cloudinaryImages: uploaded });
     const product = await Product.create({ ...payload, id: `prd-${randomUUID()}` });
     saved = true;
@@ -156,6 +161,15 @@ export async function updateProduct(req, res) {
     const urls = hasImages ? parseImageUrls(body.imageUrls ?? body.images) : [...existing.images];
     await uploadImages(req.files || [], uploaded);
     payload.images = [...urls, ...uploaded.map(asset => asset.secure_url)];
+    const chosenThumbnail = body.thumbnail !== undefined && String(body.thumbnail).trim()
+      ? String(body.thumbnail).trim()
+      : (existing.thumbnail || payload.images[0] || '');
+    if (chosenThumbnail && payload.images.includes(chosenThumbnail)) {
+      payload.images = [chosenThumbnail, ...payload.images.filter(img => img !== chosenThumbnail)];
+      payload.thumbnail = chosenThumbnail;
+    } else {
+      payload.thumbnail = payload.images[0] || '';
+    }
     payload.cloudinaryImages = productAssets({ images: payload.images, cloudinaryImages: [...(existing.cloudinaryImages || []), ...uploaded] });
     const updated = await Product.findOneAndUpdate({ _id: existing._id }, { $set: payload }, { new: true, runValidators: true });
     if (!updated) throw new Error('This product was removed while you were editing. Refresh the catalog.');

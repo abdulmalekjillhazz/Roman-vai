@@ -54,7 +54,8 @@
       "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955795/dst_deco/gallery/spc-straight/spc-straight-flooring-troy-plus-7mm-heavy-commercial-07.webp",
       "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947956/dst_deco/flooring-products/spc-straight-flooring-warm-honey-oak-plank-02.jpg",
       "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947955/dst_deco/flooring-products/spc-straight-flooring-waterproof-rigid-core-plank-10.jpg"
-    ]
+    ],
+    "thumbnail": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947960/dst_deco/flooring-products/spc-herringbone-flooring-boutique-penthouse-foyer-11.jpg"
   },
   {
     "id": "cat-lvt-flooring",
@@ -102,7 +103,8 @@
       "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955811/dst_deco/gallery/spc-marble-lvt/spc-marble-flooring-4mm-nero-marquina-dark-tile-03.webp",
       "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955812/dst_deco/gallery/spc-marble-lvt/spc-marble-flooring-5-5mm-pietra-grey-commercial-tile-04.webp",
       "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955809/dst_deco/gallery/spc-marble-lvt/spc-marble-flooring-carrara-white-large-tile-01.webp"
-    ]
+    ],
+    "thumbnail": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947975/dst_deco/flooring-products/lvt-flooring-commercial-office-interior-floor-07.jpg"
   },
   {
     "id": "cat-flexible-stone",
@@ -150,7 +152,8 @@
       "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947887/dst_deco/wall-products/flexible-stone-rustic-limestone-finish-13.jpg",
       "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947883/dst_deco/wall-products/flexible-stone-travertine-slab-320x120-04.jpg",
       "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947881/dst_deco/wall-products/flexible-stone-warm-sandstone-panel-11.jpg"
-    ]
+    ],
+    "thumbnail": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947888/dst_deco/wall-products/flexible-stone-amber-onyx-translucent-sheet-14.jpg"
   },
   {
     "id": "cat-wpc-chipboard-panel-sheet",
@@ -197,7 +200,8 @@
       "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955772/dst_deco/gallery/wpc-panels/wpc-chipboard-8mm-heavy-duty-golden-oak-02.webp",
       "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947905/dst_deco/wall-products/wpc-chipboard-8mm-heavy-duty-grey-cedar-03.png",
       "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947908/dst_deco/wall-products/wpc-chipboard-8mm-heavy-duty-royal-walnut-04.png"
-    ]
+    ],
+    "thumbnail": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947901/dst_deco/wall-products/wpc-chipboard-5mm-charcoal-fluted-accent-03.jpg"
   },
   {
     "id": "cat-wall-panel",
@@ -242,7 +246,8 @@
       "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955779/dst_deco/gallery/pvc-marble/pvc-wall-panel-luxury-bathroom-cladding-01.webp",
       "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955780/dst_deco/gallery/pvc-marble/pvc-wall-panel-modern-tv-unit-backsplash-02.webp",
       "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955782/dst_deco/gallery/pvc-marble/pvc-wall-panel-waterproof-shower-surround-04.webp"
-    ]
+    ],
+    "thumbnail": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955778/dst_deco/gallery/decorative-wall-panels/ps-wall-panel-3d-chevron-accent-wall-02.webp"
   },
   {
     "id": "cat-pu-stone",
@@ -287,7 +292,8 @@
       "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947894/dst_deco/wall-products/small-pu-stone-rustic-grey-chiseled-05.jpg",
       "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955761/dst_deco/gallery/pu-stone/small-pu-stone-stacked-slate-living-room-03.webp",
       "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947895/dst_deco/wall-products/small-pu-stone-warm-terracotta-ledge-06.jpg"
-    ]
+    ],
+    "thumbnail": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955759/dst_deco/gallery/pu-stone/big-pu-stone-charcoal-stacked-rock-wall-01.webp"
   },
   {
     "id": "cat-molding",
@@ -329,7 +335,8 @@
       "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947946/dst_deco/wall-products/ps-molding-ornate-victorian-ceiling-cornice-01.jpg",
       "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947951/dst_deco/wall-products/ps-molding-palace-style-door-surround-trim-05.jpg",
       "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955776/dst_deco/gallery/decorative-wall-panels/ps-molding-wainscoting-wall-frame-trim-02.webp"
-    ]
+    ],
+    "thumbnail": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955775/dst_deco/gallery/decorative-wall-panels/ps-molding-classic-ceiling-cornice-white-01.webp"
   },
   {
     "id": "cat-columns-partition",
@@ -365,7 +372,8 @@
       "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947938/dst_deco/wall-products/ps-columns-architectural-room-divider-01.jpg",
       "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955773/dst_deco/gallery/decorative-wall-panels/ps-columns-fluted-entryway-partition-02.webp",
       "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955774/dst_deco/gallery/decorative-wall-panels/ps-columns-modern-vertical-louver-screen-03.webp"
-    ]
+    ],
+    "thumbnail": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947938/dst_deco/wall-products/ps-columns-architectural-room-divider-01.jpg"
   },
   {
     "id": "cat-acoustic-panel",
@@ -411,7 +419,8 @@
       "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947927/dst_deco/wall-products/acoustic-panel-small-home-theatre-baffle-02.jpg",
       "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955788/dst_deco/gallery/acoustic-panels/acoustic-panel-small-soundproof-slat-walnut-01.webp",
       "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947924/dst_deco/wall-products/acoustic-panel-studio-recording-room-wall-03.jpg"
-    ]
+    ],
+    "thumbnail": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947930/dst_deco/wall-products/acoustic-panel-auditorium-linear-wood-panel-05.jpg"
   },
   {
     "id": "cat-pvc-marble-sheet",
@@ -453,7 +462,8 @@
       "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947919/dst_deco/wall-products/pvc-marble-matte-grey-pietra-slab-02.png",
       "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947917/dst_deco/wall-products/pvc-marble-matte-silk-travertine-finish-01.jpg",
       "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947920/dst_deco/wall-products/pvc-marble-penthouse-dining-feature-wall-05.jpg"
-    ]
+    ],
+    "thumbnail": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947922/dst_deco/wall-products/pvc-marble-executive-boardroom-backdrop-06.jpg"
   },
   {
     "id": "cat-3d-velvet-fabric-roll",
@@ -488,7 +498,8 @@
     "images": [
       "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955785/dst_deco/gallery/acoustic-panels/acoustic-panel-3d-velvet-fabric-emerald-green-01.webp",
       "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955786/dst_deco/gallery/acoustic-panels/acoustic-panel-3d-velvet-fabric-royal-navy-02.webp"
-    ]
+    ],
+    "thumbnail": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955785/dst_deco/gallery/acoustic-panels/acoustic-panel-3d-velvet-fabric-emerald-green-01.webp"
   },
   {
     "id": "cat-3d-soft-stone-roll",
@@ -524,7 +535,8 @@
       "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955764/dst_deco/gallery/pu-stone/pu-stone-3d-soft-stone-roll-beige-slate-02.webp",
       "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955764/dst_deco/gallery/pu-stone/pu-stone-3d-soft-stone-roll-grey-granite-03.webp",
       "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955763/dst_deco/gallery/pu-stone/pu-stone-3d-soft-stone-roll-textured-01.webp"
-    ]
+    ],
+    "thumbnail": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955764/dst_deco/gallery/pu-stone/pu-stone-3d-soft-stone-roll-beige-slate-02.webp"
   },
   {
     "id": "cat-flexible-3d-sheet",
@@ -565,7 +577,8 @@
       "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955827/dst_deco/gallery/woodworking/woodworking-3d-sheet-hexagonal-relief-carving-07.webp",
       "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955824/dst_deco/gallery/woodworking/woodworking-3d-sheet-slotted-sculptural-panel-05.webp",
       "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955819/dst_deco/gallery/woodworking/woodworking-decorative-joinery-sheet-01.webp"
-    ]
+    ],
+    "thumbnail": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955825/dst_deco/gallery/woodworking/woodworking-3d-sheet-acoustic-grooved-veneer-06.webp"
   },
   {
     "id": "cat-aluminium-profiles",
@@ -608,7 +621,8 @@
       "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955817/dst_deco/gallery/profiles-skirting/aluminum-profile-t-section-champagne-gold-01.webp",
       "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947987/dst_deco/fixing-materials/aluminum-profile-tile-transition-strip-silver-03.jpg",
       "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947990/dst_deco/fixing-materials/aluminum-profile-u-channel-wall-divider-06.jpg"
-    ]
+    ],
+    "thumbnail": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947992/dst_deco/fixing-materials/aluminum-profile-capping-molding-rose-gold-08.jpg"
   },
   {
     "id": "cat-silicon",
@@ -642,6 +656,7 @@
     },
     "images": [
       "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947995/dst_deco/fixing-materials/staro-hybrid-polymer-silicon-adhesive-cartridge-01.jpg"
-    ]
+    ],
+    "thumbnail": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947995/dst_deco/fixing-materials/staro-hybrid-polymer-silicon-adhesive-cartridge-01.jpg"
   }
 ]

@@ -54,7 +54,8 @@
       "/assets/decorforall/spc-straight-flooring-troy-plus-7mm-heavy-commercial-07.webp",
       "/assets/decorforall/spc-straight-flooring-warm-honey-oak-plank-02.webp",
       "/assets/decorforall/spc-straight-flooring-waterproof-rigid-core-plank-10.webp"
-    ]
+    ],
+    "thumbnail": "/assets/decorforall/spc-herringbone-flooring-boutique-penthouse-foyer-11.webp"
   },
   {
     "id": "cat-lvt-flooring",
@@ -102,7 +103,8 @@
       "/assets/decorforall/spc-marble-flooring-4mm-nero-marquina-dark-tile-03.webp",
       "/assets/decorforall/spc-marble-flooring-5-5mm-pietra-grey-commercial-tile-04.webp",
       "/assets/decorforall/spc-marble-flooring-carrara-white-large-tile-01.webp"
-    ]
+    ],
+    "thumbnail": "/assets/decorforall/lvt-flooring-commercial-office-interior-floor-07.webp"
   },
   {
     "id": "cat-flexible-stone",
@@ -150,7 +152,8 @@
       "/assets/decorforall/flexible-stone-rustic-limestone-finish-13.webp",
       "/assets/decorforall/flexible-stone-travertine-slab-320x120-04.webp",
       "/assets/decorforall/flexible-stone-warm-sandstone-panel-11.webp"
-    ]
+    ],
+    "thumbnail": "/assets/decorforall/flexible-stone-amber-onyx-translucent-sheet-14.webp"
   },
   {
     "id": "cat-wpc-chipboard-panel-sheet",
@@ -197,7 +200,8 @@
       "/assets/decorforall/wpc-chipboard-8mm-heavy-duty-golden-oak-02.webp",
       "/assets/decorforall/wpc-chipboard-8mm-heavy-duty-grey-cedar-03.webp",
       "/assets/decorforall/wpc-chipboard-8mm-heavy-duty-royal-walnut-04.webp"
-    ]
+    ],
+    "thumbnail": "/assets/decorforall/wpc-chipboard-5mm-charcoal-fluted-accent-03.webp"
   },
   {
     "id": "cat-wall-panel",
@@ -242,7 +246,8 @@
       "/assets/decorforall/pvc-wall-panel-luxury-bathroom-cladding-01.webp",
       "/assets/decorforall/pvc-wall-panel-modern-tv-unit-backsplash-02.webp",
       "/assets/decorforall/pvc-wall-panel-waterproof-shower-surround-04.webp"
-    ]
+    ],
+    "thumbnail": "/assets/decorforall/ps-wall-panel-3d-chevron-accent-wall-02.webp"
   },
   {
     "id": "cat-pu-stone",
@@ -287,7 +292,8 @@
       "/assets/decorforall/small-pu-stone-rustic-grey-chiseled-05.webp",
       "/assets/decorforall/small-pu-stone-stacked-slate-living-room-03.webp",
       "/assets/decorforall/small-pu-stone-warm-terracotta-ledge-06.webp"
-    ]
+    ],
+    "thumbnail": "/assets/decorforall/big-pu-stone-charcoal-stacked-rock-wall-01.webp"
   },
   {
     "id": "cat-molding",
@@ -329,7 +335,8 @@
       "/assets/decorforall/ps-molding-ornate-victorian-ceiling-cornice-01.webp",
       "/assets/decorforall/ps-molding-palace-style-door-surround-trim-05.webp",
       "/assets/decorforall/ps-molding-wainscoting-wall-frame-trim-02.webp"
-    ]
+    ],
+    "thumbnail": "/assets/decorforall/ps-molding-classic-ceiling-cornice-white-01.webp"
   },
   {
     "id": "cat-columns-partition",
@@ -365,7 +372,8 @@
       "/assets/decorforall/ps-columns-architectural-room-divider-01.webp",
       "/assets/decorforall/ps-columns-fluted-entryway-partition-02.webp",
       "/assets/decorforall/ps-columns-modern-vertical-louver-screen-03.webp"
-    ]
+    ],
+    "thumbnail": "/assets/decorforall/ps-columns-architectural-room-divider-01.webp"
   },
   {
     "id": "cat-acoustic-panel",
@@ -411,7 +419,8 @@
       "/assets/decorforall/acoustic-panel-small-home-theatre-baffle-02.webp",
       "/assets/decorforall/acoustic-panel-small-soundproof-slat-walnut-01.webp",
       "/assets/decorforall/acoustic-panel-studio-recording-room-wall-03.webp"
-    ]
+    ],
+    "thumbnail": "/assets/decorforall/acoustic-panel-auditorium-linear-wood-panel-05.webp"
   },
   {
     "id": "cat-pvc-marble-sheet",
@@ -453,7 +462,8 @@
       "/assets/decorforall/pvc-marble-matte-grey-pietra-slab-02.webp",
       "/assets/decorforall/pvc-marble-matte-silk-travertine-finish-01.webp",
       "/assets/decorforall/pvc-marble-penthouse-dining-feature-wall-05.webp"
-    ]
+    ],
+    "thumbnail": "/assets/decorforall/pvc-marble-executive-boardroom-backdrop-06.webp"
   },
   {
     "id": "cat-3d-velvet-fabric-roll",
@@ -488,7 +498,8 @@
     "images": [
       "/assets/decorforall/acoustic-panel-3d-velvet-fabric-emerald-green-01.webp",
       "/assets/decorforall/acoustic-panel-3d-velvet-fabric-royal-navy-02.webp"
-    ]
+    ],
+    "thumbnail": "/assets/decorforall/acoustic-panel-3d-velvet-fabric-emerald-green-01.webp"
   },
   {
     "id": "cat-3d-soft-stone-roll",
@@ -524,7 +535,8 @@
       "/assets/decorforall/pu-stone-3d-soft-stone-roll-beige-slate-02.webp",
       "/assets/decorforall/pu-stone-3d-soft-stone-roll-grey-granite-03.webp",
       "/assets/decorforall/pu-stone-3d-soft-stone-roll-textured-01.webp"
-    ]
+    ],
+    "thumbnail": "/assets/decorforall/pu-stone-3d-soft-stone-roll-beige-slate-02.webp"
   },
   {
     "id": "cat-flexible-3d-sheet",
@@ -565,7 +577,8 @@
       "/assets/decorforall/woodworking-3d-sheet-hexagonal-relief-carving-07.webp",
       "/assets/decorforall/woodworking-3d-sheet-slotted-sculptural-panel-05.webp",
       "/assets/decorforall/woodworking-decorative-joinery-sheet-01.webp"
-    ]
+    ],
+    "thumbnail": "/assets/decorforall/woodworking-3d-sheet-acoustic-grooved-veneer-06.webp"
   },
   {
     "id": "cat-aluminium-profiles",
@@ -608,7 +621,8 @@
       "/assets/decorforall/aluminum-profile-t-section-champagne-gold-01.webp",
       "/assets/decorforall/aluminum-profile-tile-transition-strip-silver-03.webp",
       "/assets/decorforall/aluminum-profile-u-channel-wall-divider-06.webp"
-    ]
+    ],
+    "thumbnail": "/assets/decorforall/aluminum-profile-capping-molding-rose-gold-08.webp"
   },
   {
     "id": "cat-silicon",
@@ -642,6 +656,7 @@
     },
     "images": [
       "/assets/decorforall/staro-hybrid-polymer-silicon-adhesive-cartridge-01.webp"
-    ]
+    ],
+    "thumbnail": "/assets/decorforall/staro-hybrid-polymer-silicon-adhesive-cartridge-01.webp"
   }
 ]

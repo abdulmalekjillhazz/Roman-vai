@@ -32,7 +32,7 @@ export default function ProductModal({ product, isOpen, onClose, onOpenQuote }) 
     const sources = [...new Set(
       (product.images || [])
         .filter(Boolean)
-        .map(src => optimizedCloudinaryUrl(src, 1400))
+        .map(src => optimizedCloudinaryUrl(src, 1200))
     )];
     const pending = new Set();
     let nextSourceIndex = 0;
@@ -138,7 +138,7 @@ export default function ProductModal({ product, isOpen, onClose, onOpenQuote }) 
                 key={images[activeImageIndex] || images[0]}
                 src={images[activeImageIndex] || images[0]}
                 alt={`${product.name} finish`}
-                cloudinaryWidth={1400}
+                cloudinaryWidth={1200}
                 loading="eager"
                 fetchPriority="high"
                 decoding="async"
@@ -147,12 +147,21 @@ export default function ProductModal({ product, isOpen, onClose, onOpenQuote }) 
                 style={{ transform: `translateX(${dragOffset}px)` }}
               />
 
-              {/* Image Counter Badge on Top Left */}
-              {images.length > 1 && (
-                <div className="absolute left-3 top-3 z-20 rounded-full border border-white/20 bg-black/60 px-2.5 py-1 font-mono text-[11px] font-medium text-white backdrop-blur-md shadow-sm">
-                  {activeImageIndex + 1} / {images.length}
-                </div>
-              )}
+              {/* Image Counter & Type Badge on Top Left */}
+              <div className="absolute left-3 top-3 z-20 flex items-center gap-1.5 rounded-full border border-white/25 bg-black/70 px-3 py-1 font-mono text-[11px] font-medium text-white backdrop-blur-md shadow-md">
+                {activeImageIndex === 0 ? (
+                  <>
+                    <span className="text-[#E5A924] font-bold">★ Cover Thumbnail</span>
+                    {images.length > 1 && <span className="text-white/40">· 1/{images.length}</span>}
+                  </>
+                ) : (
+                  <>
+                    <span className="text-stone-300 font-bold">Finish #{activeImageIndex + 1}</span>
+                    <span className="text-white/40">·</span>
+                    <span className="text-[#E5A924]">{activeImageIndex + 1}/{images.length}</span>
+                  </>
+                )}
+              </div>
 
               {/* Mobile View: Small Button on Top of Image to View Details */}
               <button
@@ -170,19 +179,30 @@ export default function ProductModal({ product, isOpen, onClose, onOpenQuote }) 
               </>}
             </div>
 
-            {/* Thumbnail Previews Strip */}
+            {/* Thumbnail Previews Strip with Numbered Selection */}
             {images.length > 1 && (
-              <div ref={thumbnailStrip} aria-label="Product image previews" className="relative flex gap-2 overflow-x-auto border-t border-stone-200 p-3 bg-white sm:bg-stone-100">
+              <div ref={thumbnailStrip} aria-label="Product image previews" className="relative flex gap-2.5 overflow-x-auto border-t border-stone-200 p-3 bg-white sm:bg-stone-100">
                 {images.map((src, index) => (
                   <button
                     key={`${src}-${index}`}
                     type="button"
                     onClick={() => setActiveImageIndex(index)}
-                    aria-label={`Show ${product.name} image ${index + 1}`}
+                    aria-label={`Show ${product.name} finish ${index + 1}`}
                     aria-pressed={activeImageIndex === index}
-                    className={`h-14 w-14 shrink-0 overflow-hidden rounded-lg border-2 transition ${activeImageIndex === index ? 'border-amber-800 scale-105 shadow-md' : 'border-transparent opacity-65 hover:opacity-100'}`}
+                    className={`relative h-14 w-14 shrink-0 overflow-hidden rounded-xl border-2 transition-all ${
+                      activeImageIndex === index
+                        ? 'border-[#E5A924] ring-2 ring-[#E5A924]/40 scale-105 shadow-md'
+                        : 'border-transparent opacity-65 hover:opacity-100 hover:scale-102'
+                    }`}
                   >
                     <FallbackImage src={src} alt="" loading="eager" fetchPriority="low" decoding="async" cloudinaryWidth={160} className="h-full w-full object-cover" />
+                    <span className={`absolute bottom-0 inset-x-0 text-center text-[9px] font-mono font-bold py-0.5 leading-none backdrop-blur-xs ${
+                      index === 0
+                        ? 'bg-[#E5A924] text-stone-950'
+                        : 'bg-black/60 text-white'
+                    }`}>
+                      {index === 0 ? '★ 1st' : `#${index + 1}`}
+                    </span>
                   </button>
                 ))}
               </div>
