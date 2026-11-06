@@ -1,5 +1,6 @@
-﻿import React, { useState, useEffect, useRef } from 'react';
-import { ChevronLeft, ChevronRight, MessageCircle, X } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import Link from 'next/link';
+import { ChevronLeft, ChevronRight, MessageCircle, X, ArrowUpRight } from 'lucide-react';
 import FallbackImage from './FallbackImage.jsx';
 import useModalDialog from '../../hooks/useModalDialog.js';
 import { CLIENT_INFO } from '../../config/clientInfo.js';
@@ -124,6 +125,17 @@ export default function ProductModal({ product, isOpen, onClose, onOpenQuote }) 
               </div>)}
             </dl>
             {features.length > 0 && <ul className="mt-5 list-disc space-y-2 pl-4 text-sm leading-relaxed text-stone-600">{features.map((feature, index) => <li key={index}>{feature}</li>)}</ul>}
+            
+            <div className="mt-6 border-t border-stone-200 pt-4">
+              <Link
+                href={`/product/${product.slug}`}
+                onClick={onClose}
+                className="inline-flex items-center gap-2 text-xs font-bold text-amber-800 hover:text-amber-950 transition group"
+              >
+                <span>View Full Architectural Page & All Finishes</span>
+                <ArrowUpRight size={14} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </Link>
+            </div>
           </div>
         </div>
         <div className="shrink-0 border-t border-stone-200 bg-white p-3 sm:p-5">

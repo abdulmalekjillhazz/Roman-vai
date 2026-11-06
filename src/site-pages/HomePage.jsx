@@ -13,9 +13,9 @@ import { CLIENT_INFO } from '../config/clientInfo.js';
 const GROUPS = [{ id: 'all', label: 'All materials' }, { id: 'wall-products', label: 'Walls & surfaces' }, { id: 'flooring-products', label: 'Flooring' }, { id: 'details', label: 'Profiles & fixing' }];
 const INITIAL_CATALOG = cloudCatalog.length ? cloudCatalog : localCatalog;
 const MATERIAL_STUDIES = [
-  { file: 'project-completed-luxury-villa-wall-cladding-01', title: 'Texture in context', detail: 'Illuminated feature walls' },
-  { file: 'project-completed-herringbone-parquet-residential-05', title: 'Pattern underfoot', detail: 'Herringbone flooring' },
-  { file: 'project-completed-commercial-office-feature-wall-03', title: 'A considered detail', detail: 'Layered wall finishes' }
+  { file: 'project-completed-luxury-villa-wall-cladding-01', title: 'Flexible Stone & Facades', detail: 'Curved Surfaces', slug: 'flexible-stone' },
+  { file: 'project-completed-herringbone-parquet-residential-05', title: 'SPC Rigid Parquetry', detail: 'Waterproof Flooring', slug: 'spc-flooring' },
+  { file: 'project-completed-commercial-office-feature-wall-03', title: 'Acoustic Slat Louvers', detail: 'Acoustic Millwork', slug: 'acoustic-panel' }
 ];
 
 export default function HomePage({ onOpenQuote, categorySlug }) {
@@ -45,9 +45,9 @@ export default function HomePage({ onOpenQuote, categorySlug }) {
       {!categorySlug && <>
         <MaterialHero onOpenQuote={onOpenQuote} />
         <section aria-label="Material applications" className="mx-auto grid max-w-7xl gap-4 px-4 pb-10 pt-5 sm:grid-cols-3 sm:px-6 lg:px-8">
-          {MATERIAL_STUDIES.map(study => <Link href="/gallery" key={study.title} className="group flex min-w-0 items-center gap-4 rounded-xl border border-stone-200/80 bg-white/50 p-2.5 transition hover:border-stone-400">
+          {MATERIAL_STUDIES.map(study => <Link href={`/product/${study.slug}`} key={study.title} className="group flex min-w-0 items-center gap-4 rounded-xl border border-stone-200/80 bg-white/70 p-2.5 transition hover:border-[#E5A924] hover:bg-white shadow-xs">
             <FallbackImage src={`/assets/decorforall/${study.file}.webp`} alt={study.detail} loading="lazy" width={96} height={80} className="h-20 w-24 flex-none rounded-lg object-cover" />
-            <div className="min-w-0"><p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-stone-500">{study.detail}</p><h2 className="mt-1 text-sm font-medium text-stone-900">{study.title}</h2></div><ArrowUpRight aria-hidden="true" className="ml-auto mr-2 h-4 w-4 flex-none text-stone-500" />
+            <div className="min-w-0"><p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-stone-500">{study.detail}</p><h2 className="mt-1 text-sm font-semibold text-stone-900 group-hover:text-amber-900">{study.title}</h2></div><ArrowUpRight aria-hidden="true" className="ml-auto mr-2 h-4 w-4 flex-none text-stone-500 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-amber-700" />
           </Link>)}
         </section>
       </>}
@@ -58,7 +58,35 @@ export default function HomePage({ onOpenQuote, categorySlug }) {
           <div className="relative lg:w-64"><Search aria-hidden="true" className="pointer-events-none absolute left-3 top-3.5 h-4 w-4 text-stone-500" /><input type="search" aria-label="Search materials" placeholder="Search materials…" value={search} onChange={event => setSearch(event.target.value)} className="h-11 w-full rounded-lg border border-stone-300 bg-transparent pl-10 pr-3 text-sm placeholder:text-stone-500" /></div>
         </div>
         {filteredProducts.length ? <div className="grid grid-cols-2 gap-x-4 gap-y-8 md:grid-cols-3 lg:grid-cols-4 sm:gap-x-6">{filteredProducts.map((product, index) => <ProductCard key={product._id || product.id || product.slug} product={product} priority={index < 2} onSelectProduct={setSelectedProduct} />)}</div> : <div role="status" className="rounded-xl border border-stone-200 py-16 text-center"><h3 className="text-lg font-medium">No matching materials</h3><p className="mt-2 text-sm text-stone-600">Try another name or browse the full collection.</p><button onClick={() => { setSearch(''); setActiveGroup('all'); }} className="mt-4 min-h-11 px-5 text-sm font-semibold underline underline-offset-4">Show all materials</button></div>}
-        <div className="mt-10 text-center"><Link href="/gallery" className="inline-flex min-h-12 items-center gap-3 border-b border-stone-700 px-1 text-sm font-semibold">Explore the material gallery <ArrowUpRight className="h-4 w-4" aria-hidden="true" /></Link></div>
+        <div className="mt-14 rounded-2xl border border-stone-200/90 bg-gradient-to-r from-stone-900 to-stone-800 p-6 sm:p-8 text-white flex flex-col sm:flex-row items-center justify-between gap-6 shadow-md">
+          <div className="max-w-xl text-center sm:text-left">
+            <span className="text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-[#d4b77a]">
+              Architectural Sample Dispatch · Dubai & UAE
+            </span>
+            <h3 className="mt-1.5 font-serif text-xl sm:text-2xl font-semibold text-white">
+              Need physical material samples on-site?
+            </h3>
+            <p className="mt-1 text-xs sm:text-sm text-stone-300">
+              Request a tailored sample box with custom finishes, thicknesses, and specification sheets delivered directly to your office or villa project.
+            </p>
+          </div>
+          <div className="flex shrink-0 items-center gap-3">
+            <button
+              onClick={() => onOpenQuote?.('VIP Material Sample Box')}
+              className="inline-flex min-h-11 items-center justify-center rounded-xl bg-[#E5A924] px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-stone-950 transition hover:bg-[#d89b1b] shadow-sm"
+            >
+              Request Sample Box
+            </button>
+            <a
+              href={`https://wa.me/${CLIENT_INFO.whatsappNumber}?text=${encodeURIComponent("Hello Classical Decor ID, I would like to request material samples and architectural specifications.")}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex min-h-11 items-center justify-center rounded-xl border border-white/20 bg-white/10 px-4 py-2.5 text-xs font-bold text-white transition hover:bg-white/20"
+            >
+              WhatsApp Support
+            </a>
+          </div>
+        </div>
       </section>
       <section aria-labelledby="service-title" className="border-t border-stone-200 bg-[#eee9df]"><div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 lg:grid-cols-[1.1fr_2fr] lg:px-8 lg:py-16">
         <div><p className="eyebrow">For the way you work</p><h2 id="service-title" className="mt-3 max-w-xs font-serif text-3xl font-semibold sm:text-4xl">From material choice<br />to your next project.</h2></div>

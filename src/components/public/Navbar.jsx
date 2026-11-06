@@ -23,16 +23,20 @@ export default function Navbar({ onOpenQuote }) {
 
         <div className="flex items-center gap-1.5 sm:gap-3">
           <Link
-            href="/gallery"
-            className="inline-flex items-center justify-center rounded-lg border border-stone-300 bg-white px-2.5 py-2 text-[10px] font-sans font-bold text-stone-800 shadow-xs transition hover:border-amber-500 hover:bg-stone-50 sm:px-3 sm:text-xs"
+            href="/#product-catalog"
+            className="inline-flex items-center justify-center rounded-lg border border-stone-200/80 bg-white/80 px-2.5 py-2 text-[11px] font-sans font-semibold text-stone-800 shadow-xs transition hover:border-[#E5A924] hover:bg-stone-50 sm:px-3.5 sm:text-xs"
           >
-            Gallery
+            Materials
           </Link>
 
           <button
             type="button"
-            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-            className="inline-flex items-center justify-center rounded-lg border border-stone-200 bg-stone-100 px-2.5 py-2 text-[10px] font-sans font-bold text-stone-800 shadow-xs transition hover:border-amber-500 hover:bg-stone-50 sm:px-3 sm:text-xs"
+            onClick={() => {
+              const el = document.getElementById('contact');
+              if (el) el.scrollIntoView({ behavior: 'smooth' });
+              else window.location.href = '/#contact';
+            }}
+            className="inline-flex items-center justify-center rounded-lg border border-stone-200/80 bg-stone-100/80 px-2.5 py-2 text-[11px] font-sans font-semibold text-stone-800 shadow-xs transition hover:border-[#E5A924] hover:bg-stone-50 sm:px-3.5 sm:text-xs"
           >
             Contact
           </button>

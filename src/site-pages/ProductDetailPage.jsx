@@ -75,37 +75,55 @@ export default function ProductDetailPage({ onOpenQuote, slug }) {
         <div className="bg-white rounded-3xl border border-brand-sand overflow-hidden shadow-sm grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 p-6 sm:p-10">
           {/* Gallery View */}
           <div className="flex flex-col gap-4">
-            <div className="relative h-80 sm:h-96 md:h-[420px] rounded-2xl bg-stone-100 overflow-hidden border border-brand-sand/50">
+            <div className="relative h-80 sm:h-96 md:h-[420px] rounded-2xl bg-stone-100 overflow-hidden border border-brand-sand/50 shadow-inner">
               <FallbackImage
                 src={images[selectedImage] || images[0] || fallbackImage}
-                alt={product.name}
-                className="w-full h-full object-cover transition duration-300"
+                alt={`${product.name} finish ${selectedImage + 1}`}
+                className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
                 fallbackSrc={fallbackImage}
               />
-              <span className="absolute top-4 left-4 bg-brand-charcoal/90 backdrop-blur text-white font-mono text-[11px] px-3 py-1 rounded-md">
+              <span className="absolute top-4 left-4 bg-brand-charcoal/90 backdrop-blur-md text-white font-mono text-[11px] px-3 py-1 rounded-md shadow-sm">
                 SKU: {sku}
               </span>
-              <span className={`absolute top-4 right-4 text-xs font-bold px-3 py-1 rounded-full ${
-                product.inStock ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : 'bg-stone-100 text-stone-600'
-              }`}>
-                {product.inStock ? '● UAE Warehouse Stock' : 'Pre-Order / Indent'}
-              </span>
+              <div className="absolute top-4 right-4 flex items-center gap-2">
+                <span className="bg-black/60 backdrop-blur-md text-[#d4b77a] font-mono text-[11px] px-2.5 py-1 rounded-full border border-[#d4b77a]/30">
+                  Finish {selectedImage + 1} of {images.length}
+                </span>
+                <span className={`text-xs font-bold px-3 py-1 rounded-full backdrop-blur-md ${
+                  product.inStock ? 'bg-emerald-600/90 text-white' : 'bg-stone-800 text-stone-200'
+                }`}>
+                  {product.inStock ? '● UAE Warehouse Stock' : 'Pre-Order / Indent'}
+                </span>
+              </div>
             </div>
 
             {/* Thumbnail selector */}
             {images.length > 1 && (
-              <div className="flex gap-3 overflow-x-auto pb-2">
-                {images.map((img, idx) => (
-                  <button
-                    key={idx}
-                    onClick={() => setSelectedImage(idx)}
-                    className={`relative w-20 h-20 rounded-xl overflow-hidden border-2 transition shrink-0 ${
-                      selectedImage === idx ? 'border-brand-gold ring-2 ring-brand-gold/30' : 'border-brand-sand/50 opacity-70 hover:opacity-100'
-                    }`}
-                  >
-                    <FallbackImage src={img || fallbackImage} alt={`View ${idx + 1}`} className="w-full h-full object-cover" fallbackSrc={fallbackImage} />
-                  </button>
-                ))}
+              <div className="flex flex-col gap-2">
+                <div className="flex items-center justify-between text-xs text-brand-muted">
+                  <span className="font-semibold uppercase tracking-wider text-[10px]">Select Finish Texture ({images.length} Available)</span>
+                  <span className="font-mono text-[11px] text-brand-charcoal font-medium">Click to inspect</span>
+                </div>
+                <div className="flex gap-2.5 overflow-x-auto pb-2 [scrollbar-width:thin]">
+                  {images.map((img, idx) => (
+                    <button
+                      key={idx}
+                      type="button"
+                      onClick={() => setSelectedImage(idx)}
+                      aria-label={`Select finish ${idx + 1}`}
+                      className={`group relative h-20 w-20 shrink-0 overflow-hidden rounded-xl border-2 transition-all ${
+                        selectedImage === idx
+                          ? 'border-[#E5A924] ring-2 ring-[#E5A924]/40 scale-105 shadow-md'
+                          : 'border-brand-sand/70 opacity-70 hover:opacity-100 hover:border-stone-400'
+                      }`}
+                    >
+                      <FallbackImage src={img || fallbackImage} alt={`Finish ${idx + 1}`} className="h-full w-full object-cover" fallbackSrc={fallbackImage} />
+                      <span className="absolute bottom-1 right-1 rounded bg-black/75 px-1 font-mono text-[9px] text-white">
+                        #{idx + 1}
+                      </span>
+                    </button>
+                  ))}
+                </div>
               </div>
             )}
           </div>
@@ -190,6 +208,55 @@ export default function ProductDetailPage({ onOpenQuote, slug }) {
           categoryTitle={product.name}
           layout="banner"
         />
+
+        {/* Quick Navigation to Other Materials */}
+        <div className="mt-12 rounded-3xl border border-brand-sand bg-white/80 p-6 sm:p-8 backdrop-blur-sm shadow-xs">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-brand-sand/60 pb-4">
+            <div>
+              <span className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-brand-bronze">
+                Architectural Portfolio · Dubai & UAE
+              </span>
+              <h3 className="font-serif text-lg sm:text-xl font-bold text-brand-charcoal mt-1">
+                Explore More Material Collections
+              </h3>
+            </div>
+            <Link
+              href="/#product-catalog"
+              className="inline-flex items-center gap-2 rounded-xl bg-stone-900 px-4 py-2 text-xs font-semibold text-white transition hover:bg-stone-800"
+            >
+              Back to Catalog
+            </Link>
+          </div>
+          
+          <div className="mt-5 flex flex-wrap gap-2">
+            {[
+              { name: 'SPC Flooring', slug: 'spc-flooring' },
+              { name: 'LVT Flooring', slug: 'lvt-flooring' },
+              { name: 'Flexible stone', slug: 'flexible-stone' },
+              { name: 'WPC Chipboard Panel & Sheet', slug: 'wpc-chipboard-panel-sheet' },
+              { name: 'Wall Panel', slug: 'wall-panel' },
+              { name: 'PU Stone', slug: 'pu-stone' },
+              { name: 'Molding', slug: 'molding' },
+              { name: 'Columns & Partition', slug: 'columns-partition' },
+              { name: 'Acoustic Panel', slug: 'acoustic-panel' },
+              { name: 'PVC Marble Sheet', slug: 'pvc-marble-sheet' },
+              { name: '3D VELVET FABRIC Roll', slug: '3d-velvet-fabric-roll' },
+              { name: '3D SOFT STONE ROLL', slug: '3d-soft-stone-roll' },
+              { name: 'Flexible 3D SHEET', slug: 'flexible-3d-sheet' },
+              { name: 'Aluminium profiles', slug: 'aluminium-profiles' },
+              { name: 'Silicon', slug: 'silicon' }
+            ].filter(p => p.slug !== product.slug).map(cat => (
+              <Link
+                key={cat.slug}
+                href={`/product/${cat.slug}`}
+                className="inline-flex items-center gap-1.5 rounded-lg border border-brand-sand bg-white px-3 py-1.5 font-sans text-xs font-medium text-stone-700 transition hover:border-[#E5A924] hover:bg-stone-50 hover:text-stone-950 shadow-2xs"
+              >
+                <span>{cat.name}</span>
+                <span className="text-stone-400">→</span>
+              </Link>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   </div>
