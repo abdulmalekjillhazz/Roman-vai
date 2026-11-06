@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 import { randomUUID } from 'crypto';
 import { fileURLToPath } from 'url';
 import { Product } from '../models/Product.js';
+import { ensureDBConnected } from '../config/db.js';
 import { cloudinary, configureCloudinary, isCloudinaryConfigured, uploadBufferToCloudinary } from '../config/cloudinary.js';
 import { requireCatalogDatabase } from '../middlewares/requireCatalogDatabase.js';
 import { cleanUnusedAssets, productAssets, parseBoolean, parseImageUrls } from '../utils/catalogAssets.js';
@@ -85,11 +86,12 @@ function sendWriteError(res, error, cloudinaryFailures = []) {
   const message = error.code === 11000 ? 'A product with this name or page address already exists. Choose a different name.' : error.message;
   return res.status(error.code === 11000 ? 409 : 400).json({ message, cloudinaryFailures });
 }
-export function getCatalogStatus(req, res) {
+export async function getCatalogStatus(req, res) {
+  const persistenceAvailable = await ensureDBConnected();
   return res.json({
-    persistenceAvailable: mongoose.connection.readyState === 1,
+    persistenceAvailable,
     uploadsAvailable: isCloudinaryConfigured(),
-    message: mongoose.connection.readyState === 1 ? 'Changes are saved to MongoDB.' : 'Catalog is read-only. Connect MongoDB to save or delete products and categories.'
+    message: persistenceAvailable ? 'Changes are saved to MongoDB.' : 'Catalog is read-only. Connect MongoDB to save or delete products and categories.'
   });
 }
 export async function getProducts(req, res) {
@@ -126,7 +128,7 @@ export async function getProductBySlug(req, res) {
   } catch (error) { return res.status(500).json({ message: error.message }); }
 }
 export async function createProduct(req, res) {
-  if (!requireCatalogDatabase(req, res)) return;
+  if (!(await requireCatalogDatabase(req, res))) return;
   const uploaded = [];
   let saved = false;
   try {
@@ -149,7 +151,7 @@ export async function createProduct(req, res) {
   }
 }
 export async function updateProduct(req, res) {
-  if (!requireCatalogDatabase(req, res)) return;
+  if (!(await requireCatalogDatabase(req, res))) return;
   const uploaded = [];
   let saved = false;
   try {
@@ -183,7 +185,7 @@ export async function updateProduct(req, res) {
   }
 }
 export async function deleteProduct(req, res) {
-  if (!requireCatalogDatabase(req, res)) return;
+  if (!(await requireCatalogDatabase(req, res))) return;
   try {
     const product = await Product.findOne(productQuery(req.params.id));
     if (!product) return res.status(404).json({ message: 'Product not found' });

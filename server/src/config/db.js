@@ -7,8 +7,10 @@ mongoose.connection.on('error', (err) => {
 
 export async function connectDB() {
   const uri = process.env.MONGO_URI;
-  if (!uri || uri.includes('cluster0.mongodb.net')) {
-    console.warn('ℹ️ Running in JSON fallback mode (MONGO_URI is unconfigured or a placeholder).');
+  const hasTemplateValues = /<db_username>|<db_password>|REPLACE_WITH|YOUR_[A-Z0-9_]+/i.test(uri || '');
+  const hasExampleAtlasHost = /@cluster0\.mongodb\.net(?:[/:?]|$)/i.test(uri || '');
+  if (!uri || hasTemplateValues || hasExampleAtlasHost) {
+    console.warn('MongoDB is unavailable: set MONGO_URI to the connection string copied from your Atlas cluster, not the sample cluster0.mongodb.net host.');
     return false;
   }
 
@@ -22,4 +24,17 @@ export async function connectDB() {
     console.warn(`⚠️ MongoDB Connection could not be established: ${error.message}. Operating in JSON fallback mode.`);
     return false;
   }
+}
+
+export async function ensureDBConnected() {
+  if (mongoose.connection.readyState === 1) return true;
+  if (mongoose.connection.readyState === 2) {
+    try {
+      await mongoose.connection.asPromise();
+      return mongoose.connection.readyState === 1;
+    } catch {
+      return false;
+    }
+  }
+  return connectDB();
 }

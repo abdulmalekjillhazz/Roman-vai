@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { connectDB } from '../config/db.js';
+import { ensureDBConnected } from '../config/db.js';
 import { MATERIAL_HERO_SLIDES } from '../../../src/config/materialHeroSlides.js';
 import { cloudinary, isCloudinaryConfigured, uploadBufferToCloudinary } from '../config/cloudinary.js';
 import { HeroSlide } from '../models/HeroSlide.js';
@@ -10,13 +10,10 @@ export async function getHeroSlides(req, res) {
   res.set('Cache-Control', 'no-store');
 
   try {
-    if (mongoose.connection.readyState !== 1) {
-      const connected = mongoose.connection.readyState === 2
-        ? await mongoose.connection.asPromise().then(() => true).catch(() => false)
-        : await connectDB();
-      if (!connected) {
-        return res.status(503).json({ message: 'Saved hero images are temporarily unavailable.' });
-      }
+    if (!(await ensureDBConnected())) {
+      return res.status(503).json({
+        message: 'MongoDB is not connected. Hero image replacements cannot be loaded; the homepage will use its original images.'
+      });
     }
 
     const savedSlides = await HeroSlide.find({}, { key: 1, imageUrl: 1 }).lean();
@@ -24,7 +21,9 @@ export async function getHeroSlides(req, res) {
     return res.json({ slides });
   } catch (error) {
     console.error('Could not load hero slide images:', error.message);
-    return res.status(500).json({ message: 'Hero images are temporarily unavailable.' });
+    return res.status(500).json({
+      message: 'Saved hero images could not be loaded. The homepage will use its original images.'
+    });
   }
 }
 
