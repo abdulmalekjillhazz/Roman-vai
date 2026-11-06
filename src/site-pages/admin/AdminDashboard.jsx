@@ -682,7 +682,7 @@ export default function AdminDashboard() {
             <div className="grid gap-5 sm:grid-cols-2">
               {MATERIAL_HERO_SLIDES.map((slide, index) => {
                 const isSaving = heroSavingKey === slide.file;
-                const imageSrc = heroImages[slide.file] || `/assets/decorforall/${slide.file}.webp`;
+                const imageSrc = heroImages[slide.file] || (slide.file.includes('.') ? `/assets/decorforall/${slide.file}` : `/assets/decorforall/${slide.file}.webp`);
 
                 return (
                   <article key={slide.file} className="overflow-hidden rounded-xl border border-stone-200 bg-white">

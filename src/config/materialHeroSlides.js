@@ -1,12 +1,12 @@
 export const MATERIAL_HERO_SLIDES = [
   {
-    file: 'project-completed-luxury-villa-wall-cladding-01',
-    eyebrow: 'Flexible Stone Cladding · Dubai Hills Villa',
-    title: 'Surfaces that make an entrance.',
-    description: 'Natural bendable stone veneers and curved architectural columns engineered for luxury villas across Dubai and the UAE.',
-    specs: 'Natural Travertine Texture • Ultra-Thin 3mm • Fire-Rated A1',
+    file: 'flexible-stone-natural-look-hero-01',
+    eyebrow: 'Flexible Stone Veneer · Architectural Travertine',
+    title: 'Natural look. Limitless possibilities.',
+    description: 'The perfect blend of nature and innovation. Ultra-thin, lightweight, and bendable stone veneers engineered for curved walls, luxury columns, and modern indoor-outdoor facades.',
+    specs: 'Bendable Travertine Texture • Waterproof & UV-Resistant • Lightweight 3mm',
     actionText: 'Explore Flexible Stone',
-    actionTopic: 'Flexible Stone Samples'
+    actionTopic: 'Flexible Stone Specifications & Samples'
   },
   {
     file: 'project-completed-modern-living-room-accent-wall-02',
@@ -81,12 +81,12 @@ export const MATERIAL_HERO_SLIDES = [
     actionTopic: 'Exterior Stone Samples'
   },
   {
-    file: 'spc-herringbone-flooring-luxury-villa-salon-parquetry-09',
-    eyebrow: 'Commercial Grade Parquetry · Meydan Luxury Residence',
-    title: 'Built for a five-star first impression.',
-    description: 'High-traffic commercial AC5 parquetry engineered for grand residential salons, luxury hotels, and prestigious retail destinations.',
-    specs: 'Commercial Grade AC5 • High-Traffic Scratch Guard • Silent Step',
-    actionText: 'Explore Parquetry',
-    actionTopic: 'Parquetry Flooring Samples'
+    file: 'pu-stone-premium-polyurethane-hero-10',
+    eyebrow: 'PU Stone Panels · Statement Accent Walls',
+    title: 'Elevate interiors with style & texture.',
+    description: 'High-density polyurethane 3D stone panels delivering authentic rock face relief textures with featherweight form, moisture resistance, and rapid seamless installation.',
+    specs: '3D Authentic Relief • Lightweight & Heat Resistant • Direct Wall Mount',
+    actionText: 'Explore PU Stone',
+    actionTopic: 'PU Stone Panels & Samples'
   }
 ];

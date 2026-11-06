@@ -111,7 +111,7 @@ export default function MaterialHero({ onOpenQuote }) {
           >
             {shouldRenderImage && (
               <FallbackImage
-                src={imageOverrides[slide.file] || `/assets/decorforall/${slide.file}.webp`}
+                src={imageOverrides[slide.file] || (slide.file.includes('.') ? `/assets/decorforall/${slide.file}` : `/assets/decorforall/${slide.file}.webp`)}
                 alt={`${slide.title} - ${slide.eyebrow}`}
                 fetchPriority={isCurrent && index === 0 ? 'high' : 'auto'}
                 loading="eager"
