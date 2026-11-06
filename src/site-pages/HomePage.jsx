@@ -9,7 +9,6 @@ import ProductCard from '../components/public/ProductCard.jsx';
 import ProductModal from '../components/public/ProductModal.jsx';
 import MaterialHero from '../components/public/MaterialHero.jsx';
 import FallbackImage from '../components/public/FallbackImage.jsx';
-import { warmupCatalogImages } from '../utils/imageCacheWarmup.js';
 import cloudCatalog from '../../data/products_cloudinary.json';
 import localCatalog from '../../data/products_data.json';
 import { CLIENT_INFO } from '../config/clientInfo.js';
@@ -51,13 +50,6 @@ export default function HomePage({ onOpenQuote, categorySlug }) {
       .finally(() => window.clearTimeout(timeout));
     return () => { window.clearTimeout(timeout); controller.abort(); };
   }, []);
-
-  // Progressive background image cache warmup
-  useEffect(() => {
-    if (products.length > 0) {
-      warmupCatalogImages(products);
-    }
-  }, [products]);
 
   // Instant sub-millisecond filtering with zero freezing
   const filteredProducts = useMemo(() => {
@@ -220,7 +212,7 @@ export default function HomePage({ onOpenQuote, categorySlug }) {
               <ProductCard
                 key={product._id || product.id || product.slug}
                 product={product}
-                priority={index < 4}
+                priority={Boolean(categorySlug) && index < 2}
                 onSelectProduct={setSelectedProduct}
               />
             ))}
@@ -240,32 +232,32 @@ export default function HomePage({ onOpenQuote, categorySlug }) {
         )}
 
         {/* Physical Sample Dispatch Box Banner */}
-        <div className="mt-12 rounded-3xl border border-stone-200/90 bg-gradient-to-r from-stone-900 to-stone-800 p-6 sm:p-8 text-white flex flex-col sm:flex-row items-center justify-between gap-6 shadow-md">
+        <div className="mt-12 rounded-3xl border border-stone-200/90 bg-gradient-to-r from-stone-900 via-stone-850 to-stone-900 p-6 sm:p-9 text-white flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xl">
           <div className="max-w-xl text-center sm:text-left">
-            <span className="text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-[#d4b77a]">
-              Architectural Sample Dispatch · Dubai & UAE
+            <span className="text-[10px] font-mono font-bold uppercase tracking-[0.22em] text-[#d4b77a]">
+              COMPLIMENTARY TRADE SAMPLE DISPATCH · DUBAI & UAE
             </span>
-            <h3 className="mt-1.5 font-serif text-xl sm:text-2xl font-semibold text-white">
-              Need physical material samples on-site?
+            <h3 className="mt-2 font-serif text-2xl sm:text-3xl font-semibold text-white">
+              Experience the tactile texture on-site.
             </h3>
-            <p className="mt-1 text-xs sm:text-sm text-stone-300">
-              Request a tailored sample box with custom finishes, thicknesses, and specification sheets delivered directly to your office or villa project.
+            <p className="mt-2 text-xs sm:text-sm leading-relaxed text-stone-300">
+              Feel the weight, authentic stone relief, and luxury matte finishes before specifying your project. We deliver tailored architectural sample boxes with specification sheets directly to your design studio, contractor site, or private villa within 24–48 hours across the UAE.
             </p>
           </div>
-          <div className="flex shrink-0 items-center gap-3">
+          <div className="flex shrink-0 flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
             <button
               onClick={() => onOpenQuote?.('VIP Material Sample Box')}
-              className="btn-luxury-gold inline-flex min-h-11 items-center justify-center rounded-xl px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-stone-950 transition active:scale-95 shadow-md"
+              className="btn-luxury-gold inline-flex min-h-12 w-full sm:w-auto items-center justify-center rounded-xl px-6 py-3 text-xs font-bold uppercase tracking-wider text-stone-950 transition active:scale-95 shadow-lg"
             >
-              Request Sample Box
+              Request Free Sample Box
             </button>
             <a
-              href={`https://wa.me/${CLIENT_INFO.whatsappNumber}?text=${encodeURIComponent("Hello Classical Decor ID, I would like to request material samples and architectural specifications.")}`}
+              href={`https://wa.me/${CLIENT_INFO.whatsappNumber}?text=${encodeURIComponent("Hello Classical Decor ID, I would like to request a tailored architectural material sample box for our UAE project.")}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex min-h-11 items-center justify-center rounded-xl border border-white/20 bg-white/10 px-4 py-2.5 text-xs font-bold text-white transition hover:bg-white/20 active:scale-95"
+              className="inline-flex min-h-12 w-full sm:w-auto items-center justify-center rounded-xl border border-white/20 bg-white/10 px-5 py-3 text-xs font-bold text-white transition hover:bg-white/20 active:scale-95"
             >
-              WhatsApp Support
+              Direct WhatsApp Desk
             </a>
           </div>
         </div>

@@ -100,10 +100,21 @@ const SLIDES = [
 
 export default function MaterialHero({ onOpenQuote }) {
   const [active, setActive] = useState(0);
+  const [previous, setPrevious] = useState(null);
   const [isPaused, setIsPaused] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(false);
   const [visible, setVisible] = useState(true);
   const pointerStart = useRef(null);
+  const previousTimer = useRef(null);
+
+  const handleNavigate = useCallback((index) => {
+    const target = (index + SLIDES.length) % SLIDES.length;
+    if (target === active) return;
+    setPrevious(active);
+    setActive(target);
+    window.clearTimeout(previousTimer.current);
+    previousTimer.current = window.setTimeout(() => setPrevious(null), 1000);
+  }, [active]);
 
   // Detect user motion preferences & tab visibility
   useEffect(() => {
@@ -125,19 +136,12 @@ export default function MaterialHero({ onOpenQuote }) {
   useEffect(() => {
     if (isPaused || reducedMotion || !visible) return;
 
-    const timer = window.setInterval(() => {
-      setActive(curr => (curr + 1) % SLIDES.length);
-    }, AUTOPLAY_MS);
+    const timer = window.setInterval(() => handleNavigate(active + 1), AUTOPLAY_MS);
 
     return () => window.clearInterval(timer);
-  }, [isPaused, reducedMotion, visible]);
+  }, [active, handleNavigate, isPaused, reducedMotion, visible]);
 
-  // Safe manual navigation
-  const handleNavigate = useCallback((index) => {
-    const target = (index + SLIDES.length) % SLIDES.length;
-    if (target === active) return;
-    setActive(target);
-  }, [active]);
+  useEffect(() => () => window.clearTimeout(previousTimer.current), []);
 
   const currentSlide = SLIDES[active];
 
@@ -168,6 +172,7 @@ export default function MaterialHero({ onOpenQuote }) {
           ========================================================================= */}
       {SLIDES.map((slide, index) => {
         const isCurrent = index === active;
+        const shouldRenderImage = isCurrent || index === previous;
 
         return (
           <div
@@ -177,18 +182,20 @@ export default function MaterialHero({ onOpenQuote }) {
               isCurrent ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
             }`}
           >
-            <FallbackImage
-              src={`/assets/decorforall/${slide.file}.webp`}
-              alt={`${slide.title} - ${slide.eyebrow}`}
-              fetchPriority={index === 0 ? 'high' : 'auto'}
-              loading={index === 0 ? 'eager' : 'lazy'}
-              draggable={false}
-              width={1920}
-              height={1080}
-              className={`h-full w-full object-cover transition-transform ${
-                isCurrent && !reducedMotion ? 'animate-ken-burns' : 'scale-100'
-              }`}
-            />
+            {shouldRenderImage && (
+              <FallbackImage
+                src={`/assets/decorforall/${slide.file}.webp`}
+                alt={`${slide.title} - ${slide.eyebrow}`}
+                fetchPriority={isCurrent && index === 0 ? 'high' : 'auto'}
+                loading="eager"
+                draggable={false}
+                width={1920}
+                height={1080}
+                className={`h-full w-full object-cover transition-transform ${
+                  isCurrent && !reducedMotion ? 'animate-ken-burns' : 'scale-100'
+                }`}
+              />
+            )}
           </div>
         );
       })}

@@ -49,7 +49,8 @@ export default function Navbar({ onOpenQuote }) {
                 isTransparent ? 'text-white drop-shadow-sm' : 'text-stone-950'
               }`}
             >
-              CLASSICAL DECOR ID
+              <span className="max-[359px]:hidden sm:hidden">DST DECO</span>
+              <span className="hidden sm:inline">CLASSICAL DECOR ID</span>
             </span>
             <span
               className={`hidden font-sans text-[10px] tracking-wide transition-colors sm:inline sm:text-[11px] ${
@@ -67,7 +68,7 @@ export default function Navbar({ onOpenQuote }) {
           {/* Materials Catalog Shortcut */}
           <Link
             href="/#product-catalog"
-            className={`inline-flex items-center justify-center rounded-xl px-3 py-2 text-xs font-semibold backdrop-blur-md transition-all active:scale-95 sm:px-4 ${
+            className={`inline-flex items-center justify-center rounded-xl px-2 py-2 text-[11px] font-semibold backdrop-blur-md transition-all active:scale-95 sm:px-4 sm:text-xs ${
               isTransparent
                 ? 'border border-white/25 bg-white/10 text-white shadow-sm hover:border-[#E5A924] hover:bg-white/20'
                 : 'border border-stone-200/90 bg-white/90 text-stone-800 shadow-xs hover:border-[#E5A924] hover:bg-stone-50'
@@ -84,7 +85,7 @@ export default function Navbar({ onOpenQuote }) {
               if (el) el.scrollIntoView({ behavior: 'smooth' });
               else window.location.href = '/#contact';
             }}
-            className={`inline-flex items-center justify-center rounded-xl px-3 py-2 text-xs font-semibold backdrop-blur-md transition-all active:scale-95 sm:px-4 ${
+            className={`inline-flex items-center justify-center rounded-xl px-2 py-2 text-[11px] font-semibold backdrop-blur-md transition-all active:scale-95 sm:px-4 sm:text-xs ${
               isTransparent
                 ? 'border border-white/25 bg-white/10 text-white shadow-sm hover:border-[#E5A924] hover:bg-white/20'
                 : 'border border-stone-200/90 bg-stone-100/90 text-stone-800 shadow-xs hover:border-[#E5A924] hover:bg-stone-50'
@@ -110,7 +111,7 @@ export default function Navbar({ onOpenQuote }) {
           {/* Direct Phone Dial */}
           <a
             href={`tel:+${CLIENT_INFO.whatsappNumber.replace(/\D/g, '')}`}
-            className={`inline-flex items-center gap-1.5 rounded-xl px-3 py-2 text-xs font-mono font-medium transition active:scale-95 ${
+            className={`inline-flex items-center gap-1 rounded-xl px-2 py-2 text-[11px] font-mono font-medium transition active:scale-95 sm:gap-1.5 sm:px-3 sm:text-xs ${
               isTransparent
                 ? 'border border-white/20 bg-white/10 text-stone-200 hover:text-[#E5A924] hover:bg-white/20'
                 : 'border border-stone-200/90 bg-stone-100/90 text-stone-800 hover:text-amber-700 hover:bg-stone-50'

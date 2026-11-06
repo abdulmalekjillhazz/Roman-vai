@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ArrowUpRight, Sparkles } from 'lucide-react';
 import FallbackImage from './FallbackImage.jsx';
-import { preloadProductFinishes } from '../../utils/imageCacheWarmup.js';
+import { preloadProductCover } from '../../utils/imageCacheWarmup.js';
 
 export default function ProductCard({ product, onSelectProduct, priority = false }) {
   const images = product?.images?.length ? product.images : [];
@@ -11,8 +11,6 @@ export default function ProductCard({ product, onSelectProduct, priority = false
 
   function handleMouseEnter() {
     setIsHovered(true);
-    // Instant background preload of all finish variations for this product
-    preloadProductFinishes(product);
     // Preview second finish on hover if available
     if (images.length > 1) {
       setActiveImgIndex(1);
@@ -36,7 +34,7 @@ export default function ProductCard({ product, onSelectProduct, priority = false
       className="group min-w-0 overflow-hidden rounded-2xl border border-stone-200/80 bg-white transition-all duration-300 hover:shadow-lg hover:border-amber-500/50"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      onTouchStart={() => preloadProductFinishes(product)}
+      onTouchStart={() => preloadProductCover(product)}
     >
       <button
         type="button"

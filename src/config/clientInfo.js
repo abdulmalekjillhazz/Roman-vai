@@ -17,7 +17,9 @@ export const CLIENT_INFO = {
     instagramHandle: '@classicaldecorid',
     instagramUrl: process.env.NEXT_PUBLIC_INSTAGRAM_URL || 'https://www.instagram.com/classicaldecorid',
     facebookHandle: 'classicaldecorid',
-    facebookUrl: process.env.NEXT_PUBLIC_FACEBOOK_URL || 'https://www.facebook.com/classicaldecorid'
+    facebookUrl: process.env.NEXT_PUBLIC_FACEBOOK_URL || 'https://www.facebook.com/classicaldecorid',
+    linkedinHandle: 'classicaldecorid',
+    linkedinUrl: process.env.NEXT_PUBLIC_LINKEDIN_URL || 'https://www.linkedin.com/company/classicaldecorid'
   },
   colors: {
     cream: '#FAF6EE',

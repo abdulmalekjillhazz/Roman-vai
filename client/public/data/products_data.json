@@ -1,7 +1,7 @@
 [
   {
     "id": "cat-01",
-    "name": "Flexible Stone",
+    "name": "Flexible Stone Veneer",
     "category": "wall-products",
     "categoryGroup": "1. Wall Panels, Stone & Marble",
     "categoryName": "Wall Panels",
@@ -27,7 +27,8 @@
     ],
     "inStock": true,
     "slug": "flexible-stone",
-    "thumbnail": "/assets/decorforall/flexible-stone-desert-gold-accent-wall-10.webp"
+    "thumbnail": "/assets/decorforall/flexible-stone-desert-gold-accent-wall-10.webp",
+    "title": "Flexible Stone Veneer"
   },
   {
     "id": "cat-02",

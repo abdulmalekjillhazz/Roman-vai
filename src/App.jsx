@@ -97,6 +97,12 @@ export default function App({ children }) {
                     Facebook: /{CLIENT_INFO.socials.facebookHandle}
                   </a>
                 </p>
+                <p className="flex items-center gap-3">
+                  <span className="w-7 h-7 rounded-full bg-brand-gold text-brand-charcoal flex items-center justify-center font-bold text-xs shrink-0">in</span>
+                  <a href={CLIENT_INFO.socials.linkedinUrl} target="_blank" rel="noopener noreferrer" className="hover:text-brand-gold transition font-medium">
+                    LinkedIn: /{CLIENT_INFO.socials.linkedinHandle}
+                  </a>
+                </p>
               </div>
 
               <div className="bg-stone-900/90 p-6 sm:p-7 rounded-3xl border border-brand-sand/20">

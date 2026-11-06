@@ -27,46 +27,20 @@ export default function ProductModal({ product, isOpen, onClose, onOpenQuote }) 
   }, [product, isOpen]);
 
   useEffect(() => {
-    if (!isOpen || !product) return undefined;
+    if (!isOpen || images.length < 2) return undefined;
 
-    const sources = [...new Set(
-      (product.images || [])
-        .filter(Boolean)
-        .map(src => optimizedCloudinaryUrl(src, 1200))
-    )];
-    const pending = new Set();
-    let nextSourceIndex = 0;
-    let cancelled = false;
-
-    function preloadNext() {
-      if (cancelled || nextSourceIndex >= sources.length) return;
+    const timer = window.setTimeout(() => {
+      const nextSource = images[(activeImageIndex + 1) % images.length];
+      if (!nextSource) return;
 
       const image = new window.Image();
       image.decoding = 'async';
       image.fetchPriority = 'low';
-      image.onload = image.onerror = () => {
-        image.onload = null;
-        image.onerror = null;
-        pending.delete(image);
-        preloadNext();
-      };
-      pending.add(image);
-      image.src = sources[nextSourceIndex];
-      nextSourceIndex += 1;
-    }
+      image.src = optimizedCloudinaryUrl(nextSource, 1200);
+    }, 200);
 
-    for (let index = 0; index < Math.min(3, sources.length); index += 1) {
-      preloadNext();
-    }
-
-    return () => {
-      cancelled = true;
-      pending.forEach(image => {
-        image.onload = null;
-        image.onerror = null;
-      });
-    };
-  }, [isOpen, product]);
+    return () => window.clearTimeout(timer);
+  }, [activeImageIndex, images, isOpen]);
 
   useEffect(() => {
     const strip = thumbnailStrip.current;
@@ -195,7 +169,7 @@ export default function ProductModal({ product, isOpen, onClose, onOpenQuote }) 
                         : 'border-transparent opacity-65 hover:opacity-100 hover:scale-102'
                     }`}
                   >
-                    <FallbackImage src={src} alt="" loading="eager" fetchPriority="low" decoding="async" cloudinaryWidth={160} className="h-full w-full object-cover" />
+                    <FallbackImage src={src} alt="" loading={Math.abs(index - activeImageIndex) <= 1 ? 'eager' : 'lazy'} fetchPriority="low" decoding="async" cloudinaryWidth={160} className="h-full w-full object-cover" />
                     <span className={`absolute bottom-0 inset-x-0 text-center text-[9px] font-mono font-bold py-0.5 leading-none backdrop-blur-xs ${
                       index === 0
                         ? 'bg-[#E5A924] text-stone-950'
@@ -242,6 +216,22 @@ export default function ProductModal({ product, isOpen, onClose, onOpenQuote }) 
             </dl>
             {features.length > 0 && <ul className="mt-5 list-disc space-y-2 pl-4 text-sm leading-relaxed text-stone-600">{features.map((feature, index) => <li key={index}>{feature}</li>)}</ul>}
             
+            {/* UAE B2B Quality & Compliance Badges */}
+            <div className="mt-5 grid grid-cols-1 gap-2 rounded-2xl border border-amber-200/60 bg-amber-50/40 p-3.5 text-[11px] text-stone-800">
+              <div className="flex items-center gap-2">
+                <span className="text-[#8a6b36] font-bold">🛡️ Fire Rating:</span>
+                <span className="font-medium text-stone-700">Class A / B1 Flame Retardant Options</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-[#8a6b36] font-bold">💧 Endurance:</span>
+                <span className="font-medium text-stone-700">100% Moisture Proof & Termite Resistant</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-[#8a6b36] font-bold">⚡ Supply:</span>
+                <span className="font-medium text-stone-700">Immediate UAE Warehouse Stock · Fast Dispatch</span>
+              </div>
+            </div>
+
             <div className="mt-6 border-t border-stone-200 pt-4">
               <Link
                 href={`/product/${product.slug}`}
@@ -322,6 +312,22 @@ export default function ProductModal({ product, isOpen, onClose, onOpenQuote }) 
                 </ul>
               </div>
             )}
+
+            {/* UAE B2B Quality & Compliance Badges */}
+            <div className="rounded-2xl border border-amber-200/60 bg-amber-50/40 p-4 space-y-2 text-xs text-stone-800">
+              <div className="flex items-center gap-2">
+                <span className="text-[#8a6b36] font-bold">🛡️ Fire Rating:</span>
+                <span className="font-medium text-stone-700">Class A / B1 Flame Retardant Options</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-[#8a6b36] font-bold">💧 Endurance:</span>
+                <span className="font-medium text-stone-700">100% Moisture Proof & Termite Resistant</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-[#8a6b36] font-bold">⚡ Supply:</span>
+                <span className="font-medium text-stone-700">Immediate UAE Warehouse Stock · Fast Dispatch</span>
+              </div>
+            </div>
 
             <div className="pt-2">
               <Link

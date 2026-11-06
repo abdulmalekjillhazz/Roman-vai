@@ -1,7 +1,7 @@
 [
   {
     "id": "cat-01",
-    "name": "Flexible Stone",
+    "name": "Flexible Stone Veneer",
     "category": "wall-products",
     "categoryGroup": "1. Wall Panels, Stone & Marble",
     "categoryName": "Wall Panels",
@@ -85,7 +85,8 @@
         "height": 1703
       }
     ],
-    "thumbnail": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947879/dst_deco/wall-products/flexible-stone-desert-gold-accent-wall-10.jpg"
+    "thumbnail": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947879/dst_deco/wall-products/flexible-stone-desert-gold-accent-wall-10.jpg",
+    "title": "Flexible Stone Veneer"
   },
   {
     "id": "cat-02",
