@@ -27,7 +27,53 @@ function normalizeSlug(value = '') {
   return String(value).toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
 }
 function productQuery(id) {
-  return { $or: [{ id }, { slug: id }, ...(mongoose.isValidObjectId(id) ? [{ _id: id }] : [])] };
+  const cleanId = String(id || '').trim();
+  const withoutCat = cleanId.replace(/^cat-/, '');
+  const withCat = cleanId.startsWith('cat-') ? cleanId : `cat-${cleanId}`;
+
+  const conditions = [
+    { id: cleanId },
+    { slug: cleanId },
+    { id: withCat },
+    { slug: withoutCat }
+  ];
+
+  if (mongoose.isValidObjectId(cleanId)) {
+    conditions.push({ _id: cleanId });
+  }
+
+  return { $or: conditions };
+}
+function syncProductToJsonBackups(updatedProduct) {
+  for (const filename of ['products_cloudinary.json', 'products_data.json']) {
+    const filePath = path.join(dataDirectory, filename);
+    if (!fs.existsSync(filePath)) continue;
+    try {
+      const list = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+      if (!Array.isArray(list)) continue;
+      const idx = list.findIndex(p =>
+        p.id === updatedProduct.id ||
+        p.slug === updatedProduct.slug ||
+        p.id === `cat-${updatedProduct.slug}` ||
+        (p._id && updatedProduct._id && String(p._id) === String(updatedProduct._id))
+      );
+      if (idx >= 0) {
+        list[idx] = {
+          ...list[idx],
+          thumbnail: updatedProduct.thumbnail,
+          images: updatedProduct.images,
+          name: updatedProduct.name,
+          description: updatedProduct.description,
+          inStock: updatedProduct.inStock,
+          isFeatured: updatedProduct.isFeatured,
+          specifications: updatedProduct.specifications
+        };
+        fs.writeFileSync(filePath, JSON.stringify(list, null, 2), 'utf8');
+      }
+    } catch (err) {
+      console.warn(`Failed writing to ${filename}:`, err.message);
+    }
+  }
 }
 function productPayload(body, existing) {
   let specs = body.specifications || {};
@@ -155,7 +201,36 @@ export async function updateProduct(req, res) {
   const uploaded = [];
   let saved = false;
   try {
-    const existing = await Product.findOne(productQuery(req.params.id));
+    const rawId = decodeURIComponent(String(req.params.id || '')).trim();
+    let existing = await Product.findOne(productQuery(rawId));
+
+    if (!existing) {
+      // Self-healing fallback: Check if product exists in local JSON backups
+      try {
+        const fallbackList = loadFallbackJson();
+        const withoutCat = rawId.replace(/^cat-/, '');
+        const withCat = rawId.startsWith('cat-') ? rawId : `cat-${rawId}`;
+        const fallbackItem = fallbackList.find(p =>
+          p.id === rawId ||
+          p.slug === rawId ||
+          p.id === withCat ||
+          p.slug === withoutCat ||
+          (p._id && String(p._id) === rawId)
+        );
+
+        if (fallbackItem) {
+          console.log(`[Auto-Seed] Product "${fallbackItem.name}" was missing from MongoDB. Auto-inserting now...`);
+          existing = await Product.create({
+            ...fallbackItem,
+            id: fallbackItem.id || `prd-${randomUUID()}`,
+            slug: fallbackItem.slug || normalizeSlug(fallbackItem.name)
+          });
+        }
+      } catch (fallbackErr) {
+        console.warn('Fallback auto-seed failed:', fallbackErr.message);
+      }
+    }
+
     if (!existing) return res.status(404).json({ message: 'Product not found' });
     const body = req.body || {};
     const payload = productPayload(body, existing);
@@ -163,19 +238,38 @@ export async function updateProduct(req, res) {
     const urls = hasImages ? parseImageUrls(body.imageUrls ?? body.images) : [...existing.images];
     await uploadImages(req.files || [], uploaded);
     payload.images = [...urls, ...uploaded.map(asset => asset.secure_url)];
+
     const chosenThumbnail = body.thumbnail !== undefined && String(body.thumbnail).trim()
       ? String(body.thumbnail).trim()
       : (existing.thumbnail || payload.images[0] || '');
-    if (chosenThumbnail && payload.images.includes(chosenThumbnail)) {
-      payload.images = [chosenThumbnail, ...payload.images.filter(img => img !== chosenThumbnail)];
-      payload.thumbnail = chosenThumbnail;
+
+    if (chosenThumbnail) {
+      const normalizedChosen = chosenThumbnail.trim();
+      const foundIndex = payload.images.findIndex(img => img.trim() === normalizedChosen);
+      if (foundIndex >= 0) {
+        const matched = payload.images[foundIndex];
+        payload.images = [matched, ...payload.images.filter((_, idx) => idx !== foundIndex)];
+        payload.thumbnail = matched;
+      } else {
+        payload.images = [normalizedChosen, ...payload.images];
+        payload.thumbnail = normalizedChosen;
+      }
     } else {
       payload.thumbnail = payload.images[0] || '';
     }
+
     payload.cloudinaryImages = productAssets({ images: payload.images, cloudinaryImages: [...(existing.cloudinaryImages || []), ...uploaded] });
     const updated = await Product.findOneAndUpdate({ _id: existing._id }, { $set: payload }, { new: true, runValidators: true });
     if (!updated) throw new Error('This product was removed while you were editing. Refresh the catalog.');
     saved = true;
+
+    // Sync to disk static JSON backups so static catalog and fallback are always up-to-date
+    try {
+      syncProductToJsonBackups(updated.toObject ? updated.toObject() : updated);
+    } catch (syncErr) {
+      console.warn('Could not sync updated product to local JSON files:', syncErr.message);
+    }
+
     const retainedIds = new Set(payload.cloudinaryImages.map(asset => asset.public_id));
     const removed = productAssets(existing).filter(asset => !retainedIds.has(asset.public_id));
     const cloudinaryFailures = await removeCloudinaryImages(removed);
@@ -187,7 +281,8 @@ export async function updateProduct(req, res) {
 export async function deleteProduct(req, res) {
   if (!(await requireCatalogDatabase(req, res))) return;
   try {
-    const product = await Product.findOne(productQuery(req.params.id));
+    const rawId = decodeURIComponent(String(req.params.id || '')).trim();
+    const product = await Product.findOne(productQuery(rawId));
     if (!product) return res.status(404).json({ message: 'Product not found' });
     await Product.deleteOne({ _id: product._id });
     const cloudinaryFailures = await removeCloudinaryImages(productAssets(product));
