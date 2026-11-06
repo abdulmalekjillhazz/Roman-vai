@@ -5,14 +5,10 @@
   "type": "module",
   "scripts": {
     "predev": "node scripts/prepare-next-public.js",
-    "dev": "node scripts/dev.js",
-    "dev:web": "node node_modules/next/dist/bin/next dev",
-    "dev:server": "npm --prefix server run dev",
+    "dev": "node node_modules/next/dist/bin/next dev",
     "prebuild": "node scripts/prepare-next-public.js",
     "build": "node node_modules/next/dist/bin/next build",
     "start": "node node_modules/next/dist/bin/next start",
-    "download:images": "node scripts/download_images.js",
-    "sync:cloudinary": "node scripts/sync_to_cloudinary.js",
     "seed": "node server/src/seed.js"
   },
   "dependencies": {
