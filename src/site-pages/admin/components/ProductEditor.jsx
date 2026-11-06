@@ -13,14 +13,14 @@ export default function ProductEditor({ productManager, categories }) {
   } = productManager;
 
   return (
-    <div className="bg-white rounded-2xl border border-brand-sand p-6 shadow-sm">
-      <div className="flex items-center justify-between gap-4 mb-5">
+    <div className="bg-white rounded-2xl border border-brand-sand p-4 sm:p-6 shadow-sm">
+      <div className="flex items-center justify-between gap-3 mb-5">
         <div>
-          <h2 className="font-display text-xl font-bold text-brand-charcoal">{selectedProductId ? 'Edit Product' : 'Add New Product'}</h2>
+          <h2 className="font-display text-lg sm:text-xl font-bold text-brand-charcoal">{selectedProductId ? 'Edit Product' : 'Add New Product'}</h2>
           <p className="text-xs text-brand-muted">Create or update product entries, stock status, and product images.</p>
         </div>
         {selectedProductId && (
-          <button type="button" onClick={resetProductForm} className="text-xs font-bold text-brand-charcoal hover:underline">Cancel edit</button>
+          <button type="button" onClick={resetProductForm} className="text-xs font-bold text-brand-charcoal hover:underline shrink-0">Cancel edit</button>
         )}
       </div>
 
@@ -95,9 +95,9 @@ export default function ProductEditor({ productManager, categories }) {
           </label>
         </div>
 
-        <div className="md:col-span-2 flex justify-end gap-3">
-          <button type="button" onClick={resetProductForm} className="rounded-xl border border-brand-sand bg-white px-4 py-2.5 text-xs font-bold text-brand-charcoal">Clear</button>
-          <button type="submit" className="rounded-xl bg-brand-charcoal px-5 py-2.5 text-xs font-bold text-white">{selectedProductId ? 'Update Product' : 'Save Product'}</button>
+        <div className="md:col-span-2 flex flex-col-reverse sm:flex-row justify-end gap-2.5 sm:gap-3 pt-2">
+          <button type="button" onClick={resetProductForm} className="w-full sm:w-auto rounded-xl border border-brand-sand bg-white px-4 py-2.5 text-xs font-bold text-brand-charcoal hover:bg-stone-50 transition active:scale-98">Clear</button>
+          <button type="submit" className="w-full sm:w-auto rounded-xl bg-brand-charcoal px-5 py-2.5 text-xs font-bold text-white hover:bg-black transition active:scale-98">{selectedProductId ? 'Update Product' : 'Save Product'}</button>
         </div>
       </form>
     </div>

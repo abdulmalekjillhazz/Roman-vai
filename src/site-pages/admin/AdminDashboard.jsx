@@ -44,7 +44,7 @@ export default function AdminDashboard() {
   if (!auth.token) return <AdminLogin auth={auth} />;
 
   return (
-    <div className="min-h-screen bg-brand-cream py-10 px-4 sm:px-6 lg:px-8 font-sans">
+    <div className="min-h-screen bg-brand-cream py-6 sm:py-10 px-3 sm:px-6 lg:px-8 font-sans">
       <div className="max-w-7xl mx-auto">
         <AdminHeader auth={auth} productCount={productManager.products.length} onLogout={handleLogout} />
         <AdminTabs activeTab={activeTab} setActiveTab={setActiveTab} />

@@ -53,7 +53,7 @@ export default function ProductImageManager({ productManager }) {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-3.5 sm:grid-cols-3 md:grid-cols-4">
+          <div className="grid grid-cols-2 gap-2.5 sm:gap-3.5 sm:grid-cols-3 md:grid-cols-4">
             {existingImageUrls.map((src, index) => {
               const isMainThumb = index === 0;
               return (
