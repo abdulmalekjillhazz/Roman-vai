@@ -60,14 +60,20 @@ if (fs.existsSync(publicAssetsPath)) {
   app.use('/assets', express.static(publicAssetsPath));
 }
 
-// Serve frontend production build (client/dist) if built
-const clientDistPath = path.join(__dirname, '../../client/dist');
-if (fs.existsSync(clientDistPath)) {
-  app.use(express.static(clientDistPath));
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(clientDistPath, 'index.html'));
+// Root API status endpoint
+app.get('/', (req, res) => {
+  res.json({
+    status: 'ok',
+    message: 'Classical Decor ID (DST Deco) API Backend',
+    frontend: process.env.CLIENT_URL || 'http://localhost:3000',
+    endpoints: {
+      products: '/api/products',
+      categories: '/api/categories',
+      leads: '/api/leads',
+      health: '/api/health'
+    }
   });
-}
+});
 
 const PORT = process.env.PORT || 5000;
 if (process.env.NODE_ENV !== 'test' && !process.env.VERCEL) {
