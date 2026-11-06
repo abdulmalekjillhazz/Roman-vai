@@ -72,12 +72,8 @@ export default function CategoryShowcaseSlider({ products = [], activeCategory =
             </p>
           </div>
 
-          {/* Navigation Controls & Index Counter */}
+          {/* Navigation Controls */}
           <div className="flex items-center gap-3">
-            <span className="font-mono text-xs text-brand-muted bg-brand-cream px-3 py-1.5 rounded-full border border-brand-sand/70">
-              <strong className="text-brand-charcoal">{String(currentIndex + 1).padStart(2, '0')}</strong> / {String(displayItems.length).padStart(2, '0')}
-            </span>
-
             <div className="flex gap-1.5">
               <button
                 type="button"

@@ -122,7 +122,7 @@ export default function HomePage({ onOpenQuote, categorySlug }) {
           <div>
             <div className="inline-flex items-center gap-2 rounded-full border border-amber-800/20 bg-amber-800/5 px-3 py-1 text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-amber-900">
               <Sparkles className="h-3 w-3 text-[#E5A924]" />
-              15 Official Material Specifications · Dubai & UAE
+              Official Architectural Specifications · Dubai & UAE
             </div>
             <h2 id="catalog-title" className="mt-2.5 font-serif text-3xl font-semibold tracking-tight text-stone-900 sm:text-5xl">
               Find your finish.
@@ -153,11 +153,6 @@ export default function HomePage({ onOpenQuote, categorySlug }) {
                   }`}
                 >
                   <span>{group.label}</span>
-                  {group.id === 'all' && (
-                    <span className={`text-[10px] rounded-full px-1.5 py-0.5 font-mono ${isSelected ? 'bg-white/20 text-white' : 'bg-stone-100 text-stone-500'}`}>
-                      {products.length}
-                    </span>
-                  )}
                 </button>
               );
             })}
@@ -186,13 +181,11 @@ export default function HomePage({ onOpenQuote, categorySlug }) {
           </div>
         </div>
 
-        {/* Counter and Reset */}
+        {/* Clean Header Bar - Zero Numbers */}
         <div className="mb-6 flex items-center justify-between text-xs font-medium text-stone-500">
           <div className="flex items-center gap-1.5">
             <SlidersHorizontal size={14} className="text-[#8a6b36]" />
-            <span>
-              Showing <strong className="text-stone-900">{filteredProducts.length}</strong> of {products.length} Materials
-            </span>
+            <span className="font-semibold text-stone-700">Official Material Collections</span>
           </div>
           {activeGroup !== 'all' && (
             <button
@@ -200,29 +193,22 @@ export default function HomePage({ onOpenQuote, categorySlug }) {
               onClick={() => setActiveGroup('all')}
               className="text-xs font-bold text-[#8a6b36] hover:underline"
             >
-              Reset Filter
+              Show All Materials
             </button>
           )}
         </div>
 
-        {/* Full-Width Products Grid - Asymmetric Pair Rhythm (One Bigger & Highlighted per 2-Up Row) */}
+        {/* Full-Width Products Grid - 1 Full-Width Video Feed Style Card per Row on Phone */}
         {filteredProducts.length ? (
-          <div className="grid grid-cols-2 gap-3 sm:gap-6 lg:grid-cols-3 xl:grid-cols-4 items-start">
-            {filteredProducts.map((product, index) => {
-              // Pair-based alternating rhythm on mobile 2-up layout:
-              // Row 0: index 0 (Left is Hero), index 1 (Right is Companion)
-              // Row 1: index 2 (Left is Companion), index 3 (Right is Hero)
-              const isHighlighted = (index % 4 === 0 || index % 4 === 3);
-              return (
-                <ProductCard
-                  key={product._id || product.id || product.slug}
-                  product={product}
-                  priority={Boolean(categorySlug) && index < 2}
-                  isHighlighted={isHighlighted}
-                  onSelectProduct={setSelectedProduct}
-                />
-              );
-            })}
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {filteredProducts.map((product, index) => (
+              <ProductCard
+                key={product._id || product.id || product.slug}
+                product={product}
+                priority={Boolean(categorySlug) && index < 2}
+                onSelectProduct={setSelectedProduct}
+              />
+            ))}
           </div>
         ) : (
           <div role="status" className="rounded-2xl border border-stone-200 bg-white/80 py-16 text-center">
@@ -233,7 +219,7 @@ export default function HomePage({ onOpenQuote, categorySlug }) {
               onClick={() => { setSearch(''); setActiveGroup('all'); }}
               className="mt-4 rounded-xl bg-stone-900 px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-white hover:bg-stone-800"
             >
-              Show All 15 Materials
+              Show All Materials
             </button>
           </div>
         )}

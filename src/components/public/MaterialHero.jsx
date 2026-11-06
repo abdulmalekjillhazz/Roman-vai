@@ -150,13 +150,6 @@ export default function MaterialHero({ onOpenQuote }) {
               Architectural Materials · Dubai & UAE Projects
             </span>
           </div>
-
-          {/* Minimalist Glass Slide Counter */}
-          <div className="flex items-center gap-1.5 rounded-full border border-white/20 bg-black/45 px-4 py-1.5 font-mono text-xs text-white backdrop-blur-xl shadow-lg">
-            <span className="font-bold text-[#E5A924]">{String(active + 1).padStart(2, '0')}</span>
-            <span className="text-white/40">/</span>
-            <span className="text-white/60">{String(MATERIAL_HERO_SLIDES.length).padStart(2, '0')}</span>
-          </div>
         </div>
 
         {/* Dedicated Sheer Architectural Showcase Panel (Ultra-Subtle Glass - Image Shines Through Crystal Clear) */}

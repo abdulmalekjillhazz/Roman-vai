@@ -121,15 +121,6 @@ export default function ProductModal({ product, isOpen, onClose, onOpenQuote }) 
                 style={{ transform: `translateX(${dragOffset}px)` }}
               />
 
-              {/* Image Counter on Top Left */}
-              {images.length > 1 && (
-                <div className="absolute left-3 top-3 z-20 flex items-center gap-1 rounded-full border border-white/25 bg-black/65 px-3 py-1 font-mono text-[11px] font-medium text-white/95 backdrop-blur-md shadow-md">
-                  <span className="text-[#E5A924] font-bold">{activeImageIndex + 1}</span>
-                  <span className="text-white/40">/</span>
-                  <span>{images.length}</span>
-                </div>
-              )}
-
               {/* Mobile View: Small Button on Top of Image to View Details */}
               <button
                 type="button"
@@ -154,7 +145,7 @@ export default function ProductModal({ product, isOpen, onClose, onOpenQuote }) 
                     key={`${src}-${index}`}
                     type="button"
                     onClick={() => setActiveImageIndex(index)}
-                    aria-label={`Show ${product.name} finish ${index + 1}`}
+                    aria-label={`Show ${product.name} finish option`}
                     aria-pressed={activeImageIndex === index}
                     className={`relative h-14 w-14 shrink-0 overflow-hidden rounded-xl border-2 transition-all ${
                       activeImageIndex === index
@@ -163,13 +154,6 @@ export default function ProductModal({ product, isOpen, onClose, onOpenQuote }) 
                     }`}
                   >
                     <FallbackImage src={src} alt="" loading={Math.abs(index - activeImageIndex) <= 1 ? 'eager' : 'lazy'} fetchPriority="low" decoding="async" cloudinaryWidth={160} className="h-full w-full object-cover" />
-                    <span className={`absolute bottom-0 inset-x-0 text-center text-[9px] font-mono font-bold py-0.5 leading-none backdrop-blur-xs ${
-                      index === 0
-                        ? 'bg-[#E5A924] text-stone-950'
-                        : 'bg-black/60 text-white'
-                    }`}>
-                      {index === 0 ? '★ 1st' : `#${index + 1}`}
-                    </span>
                   </button>
                 ))}
               </div>

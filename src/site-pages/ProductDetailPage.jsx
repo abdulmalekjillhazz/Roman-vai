@@ -97,39 +97,39 @@ export default function ProductDetailPage({ onOpenQuote, slug }) {
 
         {/* Product Specification Box */}
         <div className="bg-white rounded-3xl border border-brand-sand overflow-hidden shadow-sm grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 p-6 sm:p-10">
-          {/* Gallery View */}
+          {/* Gallery View - 100% Clean Image, Zero Overlays Disrupting the Photo */}
           <div className="flex flex-col gap-4">
             <div className="relative h-80 sm:h-96 md:h-[420px] rounded-2xl bg-stone-100 overflow-hidden border border-brand-sand/50 shadow-inner">
               <FallbackImage
                 src={images[selectedImage] || images[0] || fallbackImage}
-                alt={`${product.name} finish ${selectedImage + 1}`}
+                alt={product.name}
                 className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
                 fallbackSrc={fallbackImage}
                 cloudinaryWidth={1200}
                 loading="eager"
                 decoding="async"
               />
-              <span className="absolute top-4 left-4 bg-brand-charcoal/90 backdrop-blur-md text-white font-mono text-[11px] px-3 py-1 rounded-md shadow-sm">
-                SKU: {sku}
-              </span>
-              <div className="absolute top-4 right-4 flex items-center gap-2">
-                <span className="bg-black/60 backdrop-blur-md text-[#d4b77a] font-mono text-[11px] px-2.5 py-1 rounded-full border border-[#d4b77a]/30">
-                  Finish {selectedImage + 1} of {images.length}
-                </span>
-                <span className={`text-xs font-bold px-3 py-1 rounded-full backdrop-blur-md ${
-                  product.inStock ? 'bg-emerald-600/90 text-white' : 'bg-stone-800 text-stone-200'
-                }`}>
-                  {product.inStock ? '● UAE Warehouse Stock' : 'Pre-Order / Indent'}
-                </span>
-              </div>
             </div>
 
-            {/* Thumbnail selector */}
+            {/* Clean Status & SKU Bar Placed Safely Below Image (Never Obstructing the Photo) */}
+            <div className="flex items-center justify-between gap-2 px-1">
+              <span className={`inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1 rounded-full ${
+                product.inStock ? 'bg-emerald-50 text-emerald-800 border border-emerald-200' : 'bg-stone-100 text-stone-700'
+              }`}>
+                <span className={`h-1.5 w-1.5 rounded-full ${product.inStock ? 'bg-emerald-600' : 'bg-stone-400'}`} />
+                {product.inStock ? 'UAE Warehouse Stock' : 'Pre-Order / Indent'}
+              </span>
+              <span className="text-[11px] font-mono text-stone-500">
+                SKU: {sku}
+              </span>
+            </div>
+
+            {/* Thumbnail selector - Clean without Number Clutter */}
             {images.length > 1 && (
               <div className="flex flex-col gap-2">
                 <div className="flex items-center justify-between text-xs text-brand-muted">
-                  <span className="font-semibold uppercase tracking-wider text-[10px]">Select Finish Texture ({images.length} Available)</span>
-                  <span className="font-mono text-[11px] text-brand-charcoal font-medium">Click to inspect</span>
+                  <span className="font-semibold uppercase tracking-wider text-[10px]">Select Finish Texture</span>
+                  <span className="font-mono text-[11px] text-brand-charcoal font-medium">Tap to switch finish</span>
                 </div>
                 <div className="flex gap-2.5 overflow-x-auto pb-2 [scrollbar-width:thin]">
                   {images.map((img, idx) => (
@@ -137,17 +137,14 @@ export default function ProductDetailPage({ onOpenQuote, slug }) {
                       key={idx}
                       type="button"
                       onClick={() => setSelectedImage(idx)}
-                      aria-label={`Select finish ${idx + 1}`}
+                      aria-label={`Select finish option`}
                       className={`group relative h-20 w-20 shrink-0 overflow-hidden rounded-xl border-2 transition-all ${
                         selectedImage === idx
                           ? 'border-[#E5A924] ring-2 ring-[#E5A924]/40 scale-105 shadow-md'
                           : 'border-brand-sand/70 opacity-70 hover:opacity-100 hover:border-stone-400'
                       }`}
                     >
-                      <FallbackImage src={img || fallbackImage} alt={`Finish ${idx + 1}`} className="h-full w-full object-cover" fallbackSrc={fallbackImage} cloudinaryWidth={160} loading="lazy" decoding="async" />
-                      <span className="absolute bottom-1 right-1 rounded bg-black/75 px-1 font-mono text-[9px] text-white">
-                        #{idx + 1}
-                      </span>
+                      <FallbackImage src={img || fallbackImage} alt="" className="h-full w-full object-cover" fallbackSrc={fallbackImage} cloudinaryWidth={160} loading="lazy" decoding="async" />
                     </button>
                   ))}
                 </div>

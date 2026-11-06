@@ -242,7 +242,7 @@ export default function SiteImageGalleryPage({ onOpenQuote }) {
             <div className="flex items-center gap-2 text-xs font-semibold text-stone-500">
               <SlidersHorizontal size={14} className="text-[#8a6b36]" />
               <span>
-                {filteredImages.length} {filteredImages.length === 1 ? 'Finish Available' : 'Finishes Available in UAE'}
+                Curated Finishes Available in UAE
               </span>
             </div>
           </div>
@@ -455,7 +455,7 @@ export default function SiteImageGalleryPage({ onOpenQuote }) {
                     onClick={() => setVisibleLimit(limit => limit + 24)}
                     className="min-h-12 rounded-xl border border-stone-300 bg-white px-8 text-xs font-bold uppercase tracking-wider text-stone-800 shadow-sm transition hover:border-stone-400 hover:bg-stone-50"
                   >
-                    Load More Finishes ({filteredImages.length - visibleLimit} Remaining)
+                    Load More Finishes
                   </button>
                 </div>
               )}
@@ -487,11 +487,6 @@ export default function SiteImageGalleryPage({ onOpenQuote }) {
                           className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-108 motion-reduce:transform-none"
                         />
                         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
-                        
-                        {/* Gold Finish Count Pill */}
-                        <div className="absolute top-3 right-3 rounded-full border border-white/20 bg-black/50 px-2.5 py-1 text-[10px] font-semibold text-[#e7d5b2] backdrop-blur-md">
-                          {category.images.length} Finishes
-                        </div>
 
                         <div className="absolute bottom-3 left-3 right-3 text-white">
                           <div className="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-[#e7d5b2]">
