@@ -121,21 +121,14 @@ export default function ProductModal({ product, isOpen, onClose, onOpenQuote }) 
                 style={{ transform: `translateX(${dragOffset}px)` }}
               />
 
-              {/* Image Counter & Type Badge on Top Left */}
-              <div className="absolute left-3 top-3 z-20 flex items-center gap-1.5 rounded-full border border-white/25 bg-black/70 px-3 py-1 font-mono text-[11px] font-medium text-white backdrop-blur-md shadow-md">
-                {activeImageIndex === 0 ? (
-                  <>
-                    <span className="text-[#E5A924] font-bold">★ Cover Thumbnail</span>
-                    {images.length > 1 && <span className="text-white/40">· 1/{images.length}</span>}
-                  </>
-                ) : (
-                  <>
-                    <span className="text-stone-300 font-bold">Finish #{activeImageIndex + 1}</span>
-                    <span className="text-white/40">·</span>
-                    <span className="text-[#E5A924]">{activeImageIndex + 1}/{images.length}</span>
-                  </>
-                )}
-              </div>
+              {/* Image Counter on Top Left */}
+              {images.length > 1 && (
+                <div className="absolute left-3 top-3 z-20 flex items-center gap-1 rounded-full border border-white/25 bg-black/65 px-3 py-1 font-mono text-[11px] font-medium text-white/95 backdrop-blur-md shadow-md">
+                  <span className="text-[#E5A924] font-bold">{activeImageIndex + 1}</span>
+                  <span className="text-white/40">/</span>
+                  <span>{images.length}</span>
+                </div>
+              )}
 
               {/* Mobile View: Small Button on Top of Image to View Details */}
               <button

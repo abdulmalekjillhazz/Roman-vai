@@ -10,6 +10,7 @@ import productRoutes from './routes/productRoutes.js';
 import categoryRoutes from './routes/categoryRoutes.js';
 import leadRoutes from './routes/leadRoutes.js';
 import authRoutes from './routes/authRoutes.js';
+import heroSlideRoutes from './routes/heroSlideRoutes.js';
 import sitemapRoutes from './routes/sitemapRoutes.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -43,6 +44,7 @@ app.use('/api/categories', categoryRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/leads', leadRoutes);
 app.use('/api/auth', authRoutes);
+app.use('/api/hero-slides', heroSlideRoutes);
 app.use('/', sitemapRoutes);
 
 app.get('/api/health', (req, res) => {
