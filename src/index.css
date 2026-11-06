@@ -144,7 +144,7 @@
   animation: scaleUp 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-/* 7. Luxury Hero Slideshow Controls & Dynamic Progress Bar */
+/* 7. Luxury Hero Slideshow Controls */
 .hero-control {
   display: inline-flex;
   align-items: center;
@@ -153,24 +153,15 @@
   height: 2.75rem;
   border-radius: 9999px;
   background-color: rgba(15, 23, 42, 0.45);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.25);
   color: #ffffff;
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(12px);
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .hero-control:hover {
-  background-color: rgba(229, 169, 36, 0.28);
+  background-color: rgba(229, 169, 36, 0.35);
   border-color: #E5A924;
   color: #ffffff;
-  transform: scale(1.06);
-}
-
-@keyframes heroProgress {
-  from { width: 0%; }
-  to { width: 100%; }
-}
-
-.animate-hero-progress {
-  animation: heroProgress 5.5s linear forwards;
+  transform: scale(1.08);
 }

@@ -5,63 +5,93 @@ import FallbackImage from './FallbackImage.jsx';
 const SLIDES = [
   {
     file: 'project-completed-luxury-villa-wall-cladding-01',
-    label: 'Illuminated feature walls',
-    project: 'Dubai Hills Villa Cladding',
-    specs: 'Flexible Stone • Warm Travertine Texture • Fire-Rated'
+    eyebrow: 'Flexible Stone Cladding · Dubai Hills Villa',
+    title: 'Surfaces that make an entrance.',
+    description: 'Natural bendable stone veneers and curved architectural columns engineered for luxury villas across Dubai and the UAE.',
+    specs: 'Natural Travertine Texture • Ultra-Thin 3mm • Fire-Rated',
+    actionText: 'Explore Flexible Stone',
+    actionTopic: 'Flexible Stone Samples'
   },
   {
     file: 'project-completed-modern-living-room-accent-wall-02',
-    label: 'Timber-look TV wall',
-    project: 'Emirates Hills Residence',
-    specs: 'WPC Fluted Louvers • Matte Walnut Finish'
+    eyebrow: 'WPC Fluted Panels · Emirates Hills Residence',
+    title: 'Linear warmth. Architectural depth.',
+    description: 'Precision-extruded wood-plastic composite fluted panels and TV feature walls with rich acoustic dampening.',
+    specs: 'Matte Walnut Finish • 100% Moisture Proof • Termite Resistant',
+    actionText: 'Explore Wall Panels',
+    actionTopic: 'WPC Wall Panel Samples'
   },
   {
     file: 'project-completed-commercial-office-feature-wall-03',
-    label: 'Layered wall finishes',
-    project: 'DIFC Executive Office',
-    specs: 'Acoustic Wood Slats • Charcoal Sound Dampening'
+    eyebrow: 'Acoustic Wood Slats · DIFC Executive Headquarters',
+    title: 'Acoustic elegance for executive spaces.',
+    description: 'Natural wood veneer slats backed by recycled PET sound-absorbing felt, built for corporate boardrooms and luxury offices.',
+    specs: 'High Sound Absorption NRC 0.85 • Class A Flame Retardant',
+    actionText: 'Explore Acoustic Slats',
+    actionTopic: 'Acoustic Slat Samples'
   },
   {
     file: 'project-completed-luxury-spc-flooring-installation-04',
-    label: 'Illuminated wall details',
-    project: 'Palm Jumeirah Penthouse',
-    specs: 'PU Faux Rock • Deep Relief Architectural Stone'
+    eyebrow: 'PU Faux Rock · Palm Jumeirah Beachfront Villa',
+    title: 'Geological drama. Featherweight form.',
+    description: 'Ultra-lightweight high-density polyurethane faux rock with deep 3D volcanic stone relief textures for statement walls.',
+    specs: '3D Deep Relief • Lightweight 3.5kg/panel • Seamless Jointing',
+    actionText: 'Explore PU Stone',
+    actionTopic: 'PU Rock Samples'
   },
   {
     file: 'project-completed-herringbone-parquet-residential-05',
-    label: 'Herringbone hallway',
-    project: 'Jumeirah Golf Estates Villa',
-    specs: 'SPC Herringbone • Ultra-Matte Nordic Oak'
+    eyebrow: 'SPC Herringbone · Jumeirah Golf Estates',
+    title: 'Timeless European parquetry underfoot.',
+    description: 'Classic herringbone SPC rigid core flooring combining old-world craftsmanship with modern waterproof endurance.',
+    specs: 'Ultra-Matte Nordic Oak • Heavy Commercial AC5 • Silent IXPE Underlay',
+    actionText: 'Explore Herringbone',
+    actionTopic: 'Herringbone Flooring Samples'
   },
   {
     file: 'project-completed-hotel-lobby-marble-flooring-06',
-    label: 'Illuminated staircase',
-    project: 'Downtown Dubai Boutique Hotel',
-    specs: 'PVC Marble Continuous Bookmatched Slab'
+    eyebrow: 'PVC Monolithic Marble · Downtown Boutique Hotel',
+    title: 'Continuous marble grandeur.',
+    description: 'High-gloss UV-coated monolithic PVC marble slabs for bookmatched feature walls, staircases, and lobby cladding.',
+    specs: 'Continuous Bookmatched Grain • Scratch-Resistant UV Shield',
+    actionText: 'Explore PVC Marble',
+    actionTopic: 'PVC Marble Samples'
   },
   {
     file: 'project-completed-executive-penthouse-flooring-07',
-    label: 'Interior flooring detail',
-    project: 'Bluewaters Penthouse',
-    specs: 'Wide Plank SPC 6.5mm • Waterproof IXPE Core'
+    eyebrow: 'Wide Plank SPC · Bluewaters Luxury Penthouse',
+    title: 'Quiet luxury in wide format planks.',
+    description: 'Extra-wide waterproof SPC rigid core planks with synchronized deep wood grain embossing and integrated acoustic backing.',
+    specs: '6.5mm Rigid Core • 100% Waterproof • Zero Formaldehyde',
+    actionText: 'Explore SPC Flooring',
+    actionTopic: 'SPC Flooring Samples'
   },
   {
     file: 'project-completed-duplex-apartment-hardwood-look-08',
-    label: 'Timber-look stair finish',
-    project: 'Dubai Marina Duplex',
-    specs: 'Seamless Stair Bullnose Profiles • Flush Transition'
+    eyebrow: 'Architectural Profiles · Dubai Marina Duplex',
+    title: 'The art of the seamless transition.',
+    description: 'Integrated aluminum LED profiles, stair bullnose transitions, and waterproof polymer skirtings for flawless architectural detailing.',
+    specs: 'Anodized Architectural Aluminum • Flush LED Channels',
+    actionText: 'Explore Profiles',
+    actionTopic: 'Architectural Profile Samples'
   },
   {
     file: 'project-completed-exterior-architectural-facade-09',
-    label: 'Exterior wall cladding',
-    project: 'Al Barari Private Villa',
-    specs: 'UV-Stabilized Exterior Flexible Rock Cladding'
+    eyebrow: 'Exterior Flexible Veneer · Al Barari Private Villa',
+    title: 'Engineered for the Arabian climate.',
+    description: 'Weather-tested flexible stone veneers and exterior rock cladding built to endure intense UV exposure, desert heat, and humidity.',
+    specs: 'UV-Stabilized • Thermal Expansion Resistant • Non-Combustible',
+    actionText: 'Explore Exterior Stone',
+    actionTopic: 'Exterior Stone Samples'
   },
   {
     file: 'spc-herringbone-flooring-luxury-villa-salon-parquetry-09',
-    label: 'Herringbone living-room floor',
-    project: 'Meydan Luxury Residence',
-    specs: 'Heavy Commercial AC5 Wear Layer • Silent Step'
+    eyebrow: 'Commercial Grade Parquetry · Meydan Luxury Residence',
+    title: 'Built for a five-star first impression.',
+    description: 'High-traffic commercial AC5 parquetry engineered for grand residential salons, luxury hotels, and prestigious retail destinations.',
+    specs: 'Commercial Grade AC5 • High-Traffic Scratch Guard • Silent Step',
+    actionText: 'Explore Parquetry',
+    actionTopic: 'Parquetry Flooring Samples'
   }
 ];
 
@@ -94,7 +124,7 @@ export default function MaterialHero({ onOpenQuote }) {
       if (Date.now() >= pauseUntil.current) {
         navigate((active + 1) % SLIDES.length);
       }
-    }, 5500);
+    }, 6000);
     return () => window.clearInterval(timer);
   }, [active, paused, reducedMotion, interacting, visible]);
 
@@ -112,205 +142,187 @@ export default function MaterialHero({ onOpenQuote }) {
     <section
       aria-label="Material inspiration"
       aria-roledescription="carousel"
-      className="mx-auto max-w-[1440px] px-3 pt-4 sm:px-6 lg:px-8"
+      className="relative w-full h-[88vh] min-h-[640px] max-h-[960px] overflow-hidden bg-stone-950 select-none"
       onFocusCapture={() => setInteracting(true)}
       onBlurCapture={event => {
         if (!event.currentTarget.contains(event.relatedTarget)) setInteracting(false);
       }}
+      onPointerDown={event => {
+        if (event.target.closest('a,button')) return;
+        pointerStart.current = { x: event.clientX, y: event.clientY };
+      }}
+      onPointerUp={event => {
+        const start = pointerStart.current;
+        pointerStart.current = null;
+        if (!start) return;
+        const dx = event.clientX - start.x;
+        if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(event.clientY - start.y)) {
+          navigate(active + (dx < 0 ? 1 : -1));
+        }
+      }}
+      onPointerCancel={() => {
+        pointerStart.current = null;
+      }}
     >
-      <div
-        className="material-hero relative isolate min-h-[560px] sm:min-h-[620px] lg:min-h-[680px] overflow-hidden rounded-2xl bg-stone-950 sm:rounded-3xl shadow-2xl"
-        style={{ touchAction: 'pan-y' }}
-        onPointerDown={event => {
-          if (event.target.closest('a,button')) return;
-          pointerStart.current = { x: event.clientX, y: event.clientY };
-        }}
-        onPointerUp={event => {
-          const start = pointerStart.current;
-          pointerStart.current = null;
-          if (!start) return;
-          const dx = event.clientX - start.x;
-          if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(event.clientY - start.y)) {
-            navigate(active + (dx < 0 ? 1 : -1));
-          }
-        }}
-        onPointerCancel={() => {
-          pointerStart.current = null;
-        }}
-      >
-        {/* Cinematic Multi-Layer Slides with Smooth Crossfade & Ken Burns Micro-Zoom */}
-        {SLIDES.map((slide, index) => {
-          const isCurrent = index === active;
-          const isPrev = index === prevActive;
-          // Keep active, previous active, and slide 0 (for LCP) in DOM to ensure zero-delay crossfade
-          if (!isCurrent && !isPrev && index !== 0) return null;
+      {/* Full-Screen High-Resolution Crystal Clear Slides */}
+      {SLIDES.map((slide, index) => {
+        const isCurrent = index === active;
+        const isPrev = index === prevActive;
+        if (!isCurrent && !isPrev && index !== 0) return null;
 
-          return (
-            <div
-              key={slide.file}
-              aria-hidden={!isCurrent}
-              className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-                isCurrent ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
+        return (
+          <div
+            key={slide.file}
+            aria-hidden={!isCurrent}
+            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+              isCurrent ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
+            }`}
+          >
+            <FallbackImage
+              src={`/assets/decorforall/${slide.file}.webp`}
+              alt={`${slide.title} - ${slide.eyebrow}`}
+              fetchPriority={index === 0 ? 'high' : 'auto'}
+              loading={index === 0 ? 'eager' : 'lazy'}
+              draggable={false}
+              width={1920}
+              height={1080}
+              className={`h-full w-full object-cover transition-transform duration-[7000ms] ease-out motion-reduce:transform-none ${
+                isCurrent && !reducedMotion ? 'scale-105' : 'scale-100'
               }`}
-            >
-              <FallbackImage
-                src={`/assets/decorforall/${slide.file}.webp`}
-                alt={`${slide.label} - ${slide.project}`}
-                fetchPriority={index === 0 ? 'high' : 'auto'}
-                loading={index === 0 ? 'eager' : 'lazy'}
-                draggable={false}
-                width={1440}
-                height={900}
-                className={`h-full w-full select-none object-cover transition-transform duration-[6000ms] ease-out motion-reduce:transform-none ${
-                  isCurrent && !reducedMotion ? 'scale-105' : 'scale-100'
-                }`}
-              />
-            </div>
-          );
-        })}
+            />
+          </div>
+        );
+      })}
 
-        {/* Multi-layered architectural shadow gradient overlays for pristine readability */}
-        <div className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-r from-black/85 via-black/45 to-transparent" />
-        <div className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-t from-black/80 via-black/25 to-black/30" />
-        <div className="pointer-events-none absolute inset-0 z-10 bg-radial-gradient from-transparent via-transparent to-black/40" />
+      {/* Subtle localized gradient on the left side only - leaves the rest of the image vibrant and clear */}
+      <div className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-r from-black/60 via-black/25 to-transparent sm:from-black/70 sm:via-black/35 sm:to-transparent" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-32 bg-gradient-to-t from-black/60 to-transparent" />
 
-        {/* Content Container */}
-        <div className="relative z-20 flex h-full min-h-[560px] sm:min-h-[620px] lg:min-h-[680px] flex-col justify-between p-6 sm:p-10 lg:p-14">
-          
-          {/* Top Bar: Dubai B2B Eyebrow & Numbered Counter */}
-          <div className="flex items-center justify-between gap-4 border-b border-white/15 pb-4 text-white">
-            <div className="flex items-center gap-2">
-              <span className="flex h-2 w-2 rounded-full bg-[#E5A924] animate-pulse" />
-              <span className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#e6d5b2] sm:text-xs">
-                Architectural Materials · Dubai & UAE
-              </span>
-            </div>
-
-            <div className="flex items-center gap-3">
-              <span className="hidden text-[11px] uppercase tracking-[0.18em] text-white/70 sm:inline-block">
-                {currentSlide.project}
-              </span>
-              <div className="flex items-center gap-1.5 rounded-full border border-white/20 bg-black/30 px-3 py-1 font-mono text-xs backdrop-blur-md">
-                <span className="font-bold text-[#E5A924]">{String(active + 1).padStart(2, '0')}</span>
-                <span className="text-white/40">/</span>
-                <span className="text-white/60">{String(SLIDES.length).padStart(2, '0')}</span>
-              </div>
-            </div>
+      {/* Main Full-Screen Overlay Container */}
+      <div className="relative z-20 mx-auto flex h-full w-full max-w-7xl flex-col justify-between px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+        
+        {/* Top Eyebrow & Status Bar */}
+        <div className="flex items-center justify-between gap-4">
+          <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/40 px-3.5 py-1.5 backdrop-blur-md">
+            <span className="flex h-2 w-2 rounded-full bg-[#E5A924] animate-pulse" />
+            <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#f5ebd7] sm:text-xs">
+              Architectural Materials · Dubai & UAE
+            </span>
           </div>
 
-          {/* Central Hero Headline & Specifications */}
-          <div className="max-w-2xl py-8 text-white">
-            {/* Animated Project & Material Pill */}
-            <div className="mb-4 inline-flex items-center gap-2.5 rounded-full border border-[#d4b77a]/40 bg-[#d4b77a]/15 px-3.5 py-1.5 backdrop-blur-md">
-              <Sparkles className="h-3.5 w-3.5 text-[#E5A924]" />
-              <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#f5ebd7] sm:text-xs">
-                {currentSlide.label}
-              </span>
-              <span className="hidden text-white/40 sm:inline">•</span>
-              <span className="hidden text-[10px] text-white/80 sm:inline">{currentSlide.specs}</span>
+          {/* Minimalist Slide Counter */}
+          <div className="flex items-center gap-1.5 rounded-full border border-white/20 bg-black/40 px-3.5 py-1 font-mono text-xs text-white backdrop-blur-md">
+            <span className="font-bold text-[#E5A924]">{String(active + 1).padStart(2, '0')}</span>
+            <span className="text-white/40">/</span>
+            <span className="text-white/60">{String(SLIDES.length).padStart(2, '0')}</span>
+          </div>
+        </div>
+
+        {/* Dedicated Frosted Glass Architectural Text Environment */}
+        <div className="my-auto max-w-2xl pt-4 pb-6">
+          <div
+            key={currentSlide.file}
+            className="animate-fadeIn rounded-3xl border border-white/20 bg-black/45 p-6 sm:p-10 shadow-2xl backdrop-blur-xl transition-all"
+          >
+            {/* Slide Project Tag */}
+            <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-[#d4b77a]/40 bg-[#d4b77a]/20 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-[#f5ebd7] sm:text-xs">
+              <Sparkles className="h-3 w-3 text-[#E5A924]" />
+              <span>{currentSlide.eyebrow}</span>
             </div>
 
-            <h1 className="font-serif text-[clamp(2.7rem,5.8vw,5.2rem)] font-semibold leading-[1.02] tracking-[-0.03em] drop-shadow-lg">
-              Surfaces that make<br />
-              an <span className="italic text-[#eadbc0]">entrance.</span>
+            {/* Dynamic Headline */}
+            <h1 className="font-serif text-3xl font-semibold leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-5.5xl">
+              {currentSlide.title}
             </h1>
 
-            <p className="mt-5 max-w-lg text-sm leading-relaxed text-white/90 sm:text-base sm:leading-7 drop-shadow">
-              Considered wall finishes, luxury SPC flooring, and architectural details engineered for high-end residential villas and commercial spaces across the UAE.
+            {/* Dynamic Description */}
+            <p className="mt-4 text-xs leading-relaxed text-stone-200 sm:text-sm sm:leading-6">
+              {currentSlide.description}
             </p>
 
-            {/* CTAs with Gold Specular Elevation */}
-            <div className="mt-8 flex flex-wrap items-center gap-4">
+            {/* Architectural Specifications Pill */}
+            <div className="mt-4 border-t border-white/15 pt-3">
+              <span className="text-[11px] font-medium text-[#e6d5b2]">
+                Specification: {currentSlide.specs}
+              </span>
+            </div>
+
+            {/* Dynamic CTAs */}
+            <div className="mt-6 flex flex-wrap items-center gap-3">
               <a
                 href="#product-catalog"
-                className="group inline-flex min-h-12 items-center gap-3 rounded-xl bg-gradient-to-r from-[#e7d5b2] via-[#f3e5cb] to-[#d4b77a] px-6 text-xs font-bold uppercase tracking-wider text-stone-900 shadow-xl transition-all duration-300 hover:scale-[1.03] hover:shadow-[#e7d5b2]/30 active:scale-[0.98]"
+                className="group inline-flex min-h-12 items-center gap-2.5 rounded-xl bg-gradient-to-r from-[#e7d5b2] via-[#f3e5cb] to-[#d4b77a] px-6 text-xs font-bold uppercase tracking-wider text-stone-900 shadow-xl transition-all duration-300 hover:scale-105 active:scale-95"
               >
-                Explore Materials
+                {currentSlide.actionText}
                 <ArrowUpRight aria-hidden="true" className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </a>
 
               <button
                 type="button"
-                onClick={() => onOpenQuote?.('Material Samples')}
-                className="inline-flex min-h-12 items-center justify-center rounded-xl border border-white/40 bg-black/30 px-6 text-xs font-semibold uppercase tracking-wider text-white backdrop-blur-md transition-all duration-300 hover:border-[#E5A924] hover:bg-white/15 hover:text-[#f3e5cb] active:scale-[0.98]"
+                onClick={() => onOpenQuote?.(currentSlide.actionTopic)}
+                className="inline-flex min-h-12 items-center justify-center rounded-xl border border-white/40 bg-white/10 px-6 text-xs font-semibold uppercase tracking-wider text-white backdrop-blur-md transition-all duration-300 hover:border-[#E5A924] hover:bg-white/20 hover:text-[#f3e5cb] active:scale-95"
               >
-                Request Sample Box
+                Request Sample
               </button>
             </div>
           </div>
+        </div>
 
-          {/* Bottom Controls Bar: Dynamic Progress Bar & Capsule Switchers */}
-          <div className="space-y-4 border-t border-white/20 pt-4">
-            {/* Live Progress Bar for Active Slide */}
-            <div className="h-1 w-full overflow-hidden rounded-full bg-white/20">
-              <div
-                key={active}
-                className={`h-full bg-gradient-to-r from-[#d4b77a] via-[#E5A924] to-[#f3e5cb] ${
-                  paused || reducedMotion ? 'w-full opacity-60' : 'animate-hero-progress'
-                }`}
-                style={{
-                  animationDuration: '5500ms',
-                  animationPlayState: paused ? 'paused' : 'running'
-                }}
-              />
-            </div>
-
-            <div className="flex items-center justify-between gap-4">
-              {/* Slide Capsule Indicators */}
-              <div className="flex items-center gap-1.5 overflow-x-auto py-1 scrollbar-none" aria-label="Select material slide">
-                {SLIDES.map((item, index) => (
-                  <button
-                    key={item.file}
-                    type="button"
-                    aria-label={`View slide ${index + 1}: ${item.label}`}
-                    aria-pressed={active === index}
-                    onClick={() => navigate(index)}
-                    className="group relative flex h-7 items-center justify-center px-1 focus-visible:outline-none"
-                  >
-                    <span
-                      className={`block h-1.5 rounded-full transition-all duration-500 ${
-                        active === index
-                          ? 'w-7 sm:w-10 bg-gradient-to-r from-[#d4b77a] to-[#E5A924] shadow-sm shadow-[#E5A924]/60'
-                          : 'w-2 sm:w-3 bg-white/40 group-hover:bg-white/70'
-                      }`}
-                    />
-                  </button>
-                ))}
-              </div>
-
-              {/* Navigation Arrows & Play/Pause */}
-              <div className="flex items-center gap-2">
-                {!reducedMotion && (
-                  <button
-                    type="button"
-                    aria-label={paused ? 'Play slideshow' : 'Pause slideshow'}
-                    onClick={() => setPaused(value => !value)}
-                    className="hero-control"
-                  >
-                    {paused ? <Play size={15} /> : <Pause size={15} />}
-                  </button>
-                )}
-                <button
-                  type="button"
-                  aria-label="Previous material view"
-                  onClick={() => navigate(active - 1)}
-                  className="hero-control"
-                >
-                  <ChevronLeft size={18} />
-                </button>
-                <button
-                  type="button"
-                  aria-label="Next material view"
-                  onClick={() => navigate(active + 1)}
-                  className="hero-control"
-                >
-                  <ChevronRight size={18} />
-                </button>
-              </div>
-            </div>
+        {/* Bottom Minimalist Controls: Capsule Buttons & Arrows */}
+        <div className="flex items-center justify-between gap-4">
+          {/* Slide Capsule Indicators */}
+          <div className="flex items-center gap-2 overflow-x-auto py-1 scrollbar-none" aria-label="Select material slide">
+            {SLIDES.map((item, index) => (
+              <button
+                key={item.file}
+                type="button"
+                aria-label={`View slide ${index + 1}: ${item.title}`}
+                aria-pressed={active === index}
+                onClick={() => navigate(index)}
+                className="group relative flex h-7 items-center justify-center px-0.5 focus-visible:outline-none"
+              >
+                <span
+                  className={`block h-1.5 rounded-full transition-all duration-300 ${
+                    active === index
+                      ? 'w-7 sm:w-9 bg-[#E5A924] shadow-sm shadow-[#E5A924]/60'
+                      : 'w-2 bg-white/35 group-hover:bg-white/70'
+                  }`}
+                />
+              </button>
+            ))}
           </div>
 
+          {/* Navigation Controls */}
+          <div className="flex items-center gap-2">
+            {!reducedMotion && (
+              <button
+                type="button"
+                aria-label={paused ? 'Play slideshow' : 'Pause slideshow'}
+                onClick={() => setPaused(value => !value)}
+                className="hero-control"
+              >
+                {paused ? <Play size={14} /> : <Pause size={14} />}
+              </button>
+            )}
+            <button
+              type="button"
+              aria-label="Previous material slide"
+              onClick={() => navigate(active - 1)}
+              className="hero-control"
+            >
+              <ChevronLeft size={18} />
+            </button>
+            <button
+              type="button"
+              aria-label="Next material slide"
+              onClick={() => navigate(active + 1)}
+              className="hero-control"
+            >
+              <ChevronRight size={18} />
+            </button>
+          </div>
         </div>
+
       </div>
     </section>
   );
