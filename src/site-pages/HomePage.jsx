@@ -10,7 +10,7 @@ import cloudCatalog from '../../data/products_cloudinary.json';
 import localCatalog from '../../data/products_data.json';
 import { CLIENT_INFO } from '../config/clientInfo.js';
 
-const GROUPS = [{ id: 'all', label: 'All materials' }, { id: 'wall-products', label: 'Walls & surfaces' }, { id: 'flooring-products', label: 'Flooring & skirting' }, { id: 'details', label: 'Profiles & fixing' }];
+const GROUPS = [{ id: 'all', label: 'All materials' }, { id: 'wall-products', label: 'Walls & surfaces' }, { id: 'flooring-products', label: 'Flooring' }, { id: 'details', label: 'Profiles & fixing' }];
 const INITIAL_CATALOG = cloudCatalog.length ? cloudCatalog : localCatalog;
 const MATERIAL_STUDIES = [
   { file: 'project-completed-luxury-villa-wall-cladding-01', title: 'Texture in context', detail: 'Illuminated feature walls' },

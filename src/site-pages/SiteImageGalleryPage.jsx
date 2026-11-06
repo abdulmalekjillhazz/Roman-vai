@@ -13,33 +13,39 @@ import { CLIENT_INFO } from '../config/clientInfo.js';
 const MANIFEST_URL = '/assets/decorforall/gallery-categories.json';
 
 const CATEGORY_ICONS = {
+  'spc-flooring': GalleryVerticalEnd,
+  'lvt-flooring': Grid2X2,
   'flexible-stone': Mountain,
+  'wpc-chipboard-panel-sheet': PanelsTopLeft,
+  'wall-panel': Shapes,
   'pu-stone': BrickWall,
-  'wpc-panels': PanelsTopLeft,
-  'decorative-wall-panels': Shapes,
-  'pvc-marble': Layers3,
-  'acoustic-panels': AudioLines,
-  'spc-straight': GalleryVerticalEnd,
-  'spc-herringbone': Grid3X3,
-  'spc-marble-lvt': Grid2X2,
-  'profiles-skirting': Columns3,
-  woodworking: TreeDeciduous,
-  projects: Building2
+  'molding': Columns3,
+  'columns-partition': Columns3,
+  'acoustic-panel': AudioLines,
+  'pvc-marble-sheet': Layers3,
+  '3d-velvet-fabric-roll': Sparkles,
+  '3d-soft-stone-roll': Mountain,
+  'flexible-3d-sheet': TreeDeciduous,
+  'aluminium-profiles': Columns3,
+  'silicon': CheckCircle2
 };
 
 const CATEGORY_DESCRIPTIONS = {
-  'flexible-stone': 'Architectural bendable natural stone veneer for curved columns, luxury villa facades, and interior feature walls.',
-  'pu-stone': 'Ultra-lightweight high-density polyurethane faux rock slabs with deep 3D geological relief textures.',
-  'wpc-panels': 'High-performance fluted and slatted wood-plastic composite panels for moisture-proof luxury interiors.',
-  'decorative-wall-panels': 'Precision architectural louvers, moldings, and partition slats for elevated Dubai interiors.',
-  'pvc-marble': 'Ultra-glossy monolithic UV-coated marble effect sheets for continuous bookmatched feature walls.',
-  'acoustic-panels': 'Sound-dampening architectural acoustic wood slat panels with premium felt backing for studios and offices.',
-  'spc-straight': 'Stone Polymer Composite rigid core planks with authentic timber embossing and 100% waterproof construction.',
-  'spc-herringbone': 'Timeless European herringbone parquetry with heavy-commercial wear layers for luxury villas and hospitality.',
-  'spc-marble-lvt': 'Polished marble and natural terrazzo look luxury vinyl tiles engineered for high-traffic Dubai spaces.',
-  'profiles-skirting': 'Architectural aluminum LED channels, transition trims, and waterproof polymer skirting.',
-  woodworking: 'Custom decorative architectural sheets and panels for bespoke joinery and interior fit-outs.',
-  projects: 'Real executed hospitality, residential, and corporate projects across Dubai and the UAE.'
+  'spc-flooring': 'Stone Polymer Composite 100% waterproof luxury rigid core flooring planks with authentic wood grain texture.',
+  'lvt-flooring': 'High-traffic Luxury Vinyl Tile (LVT) flooring in natural polished stone, concrete, and timber looks.',
+  'flexible-stone': 'Ultra-thin, bendable natural stone veneer sheets for curved architectural columns, facades, and interior walls.',
+  'wpc-chipboard-panel-sheet': 'Heavy-duty 5mm and 8mm calibrated WPC chipboard sheets and fluted panels for custom joinery and cabinetry.',
+  'wall-panel': 'Architectural fluted, slatted, and 3D textured interior wall panels for luxury villa and commercial feature walls.',
+  'pu-stone': 'Ultra-lightweight high-density polyurethane faux rock and volcanic stone relief panels with 3D geological textures.',
+  'molding': 'High-density polystyrene ceiling cornices, crown moldings, and neoclassical wainscoting wall frames.',
+  'columns-partition': 'Architectural vertical louver screens and fluted room divider columns for elegant spatial separation.',
+  'acoustic-panel': 'Sound-absorbing architectural wood slat acoustic panels with premium black recycled PET felt backing.',
+  'pvc-marble-sheet': 'Ultra-glossy monolithic UV-coated marble effect sheets for continuous bookmatched feature walls.',
+  '3d-velvet-fabric-roll': 'Luxurious 3D embossed acoustic velvet fabric rolls featuring geometric relief patterns for lavish spaces.',
+  '3d-soft-stone-roll': 'Continuous rollable 3D soft stone veneer textured sheets for seamless jointless curved claddings.',
+  'flexible-3d-sheet': 'Flexible textured architectural relief sheets featuring wave carvings and geometric diamond facets.',
+  'aluminium-profiles': 'Architectural-grade extruded aluminum LED channel profiles, edge capping, and stair bullnosings.',
+  'silicon': 'Heavy-duty STARO hybrid polymer structural adhesives and neutral silicone for instant heavy grab.'
 };
 
 export default function SiteImageGalleryPage({ onOpenQuote }) {
