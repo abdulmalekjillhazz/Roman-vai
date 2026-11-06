@@ -205,17 +205,24 @@ export default function HomePage({ onOpenQuote, categorySlug }) {
           )}
         </div>
 
-        {/* Full-Width Products Grid */}
+        {/* Full-Width Products Grid - Asymmetric Pair Rhythm (One Bigger & Highlighted per 2-Up Row) */}
         {filteredProducts.length ? (
-          <div className="grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-3 xl:grid-cols-4">
-            {filteredProducts.map((product, index) => (
-              <ProductCard
-                key={product._id || product.id || product.slug}
-                product={product}
-                priority={Boolean(categorySlug) && index < 2}
-                onSelectProduct={setSelectedProduct}
-              />
-            ))}
+          <div className="grid grid-cols-2 gap-3 sm:gap-6 lg:grid-cols-3 xl:grid-cols-4 items-start">
+            {filteredProducts.map((product, index) => {
+              // Pair-based alternating rhythm on mobile 2-up layout:
+              // Row 0: index 0 (Left is Hero), index 1 (Right is Companion)
+              // Row 1: index 2 (Left is Companion), index 3 (Right is Hero)
+              const isHighlighted = (index % 4 === 0 || index % 4 === 3);
+              return (
+                <ProductCard
+                  key={product._id || product.id || product.slug}
+                  product={product}
+                  priority={Boolean(categorySlug) && index < 2}
+                  isHighlighted={isHighlighted}
+                  onSelectProduct={setSelectedProduct}
+                />
+              );
+            })}
           </div>
         ) : (
           <div role="status" className="rounded-2xl border border-stone-200 bg-white/80 py-16 text-center">

@@ -6,6 +6,10 @@ import FallbackImage from '../components/public/FallbackImage.jsx';
 import OfficialArchiveVaultCard from '../components/public/OfficialArchiveVaultCard.jsx';
 import { getWhatsAppInquiryLink } from '../utils/whatsappHelper.js';
 import { CLIENT_INFO } from '../config/clientInfo.js';
+import cloudCatalog from '../../data/products_cloudinary.json';
+import localCatalog from '../../data/products_data.json';
+
+const STATIC_CATALOG = cloudCatalog.length ? cloudCatalog : localCatalog;
 
 export default function ProductDetailPage({ onOpenQuote, slug }) {
   const [product, setProduct] = useState(null);
@@ -14,16 +18,36 @@ export default function ProductDetailPage({ onOpenQuote, slug }) {
   const fallbackImage = '/assets/decorforall/flexible-stone-desert-gold-accent-wall-10.webp';
 
   useEffect(() => {
+    const controller = new AbortController();
     setLoading(true);
+    setProduct(null);
     const apiBase = process.env.NEXT_PUBLIC_API_BASE_URL || '/api';
     axios
-      .get(`${apiBase}/products/${slug}`)
+      .get(`${apiBase}/products/${slug}`, { signal: controller.signal })
       .then(res => {
+        if (!res.data?.name || !res.data?.slug) {
+          throw new Error(`Product API returned invalid data for "${slug}".`);
+        }
         setProduct(res.data);
         setSelectedImage(0);
       })
-      .catch(err => console.error(err))
-      .finally(() => setLoading(false));
+      .catch(error => {
+        if (controller.signal.aborted) return;
+        const staticProduct = STATIC_CATALOG.find(item => item.slug === slug || item.id === slug);
+        if (staticProduct) {
+          console.warn(`Using built-in catalog details for "${slug}" because the product API is unavailable.`, error);
+          setProduct(staticProduct);
+          setSelectedImage(0);
+          return;
+        }
+        console.error(`Unable to load product details for "${slug}".`, error);
+        setProduct(null);
+      })
+      .finally(() => {
+        if (!controller.signal.aborted) setLoading(false);
+      });
+
+    return () => controller.abort();
   }, [slug]);
 
   if (loading) {

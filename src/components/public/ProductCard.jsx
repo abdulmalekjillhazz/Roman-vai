@@ -3,7 +3,12 @@ import { ArrowUpRight } from 'lucide-react';
 import FallbackImage from './FallbackImage.jsx';
 import { preloadProductCover } from '../../utils/imageCacheWarmup.js';
 
-export default function ProductCard({ product, onSelectProduct, priority = false }) {
+export default function ProductCard({
+  product,
+  onSelectProduct,
+  priority = false,
+  isHighlighted = false
+}) {
   const images = product?.images?.length ? product.images : [];
   // The primary thumbnail is fixed by admin (thumbnail property or 1st image)
   const [activeImgIndex, setActiveImgIndex] = useState(0);
@@ -27,7 +32,11 @@ export default function ProductCard({ product, onSelectProduct, priority = false
 
   return (
     <article
-      className="group min-w-0 overflow-hidden rounded-2xl border border-stone-200/80 bg-white transition-all duration-300 hover:shadow-lg hover:border-amber-500/50"
+      className={`group min-w-0 overflow-hidden rounded-2xl transition-all duration-300 ${
+        isHighlighted
+          ? 'border-2 border-amber-500/70 bg-gradient-to-b from-amber-50/40 via-white to-white shadow-md ring-1 ring-amber-400/25'
+          : 'border border-stone-200/80 bg-white hover:border-amber-500/50 hover:shadow-lg'
+      }`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onTouchStart={() => preloadProductCover(product)}
@@ -38,8 +47,14 @@ export default function ProductCard({ product, onSelectProduct, priority = false
         aria-label={`Explore ${product.name} finishes`}
         className="flex h-full w-full flex-col text-left focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-4 focus-visible:outline-amber-700"
       >
-        {/* 100% Clean Image Hero Container - No Unneeded Text/Badges */}
-        <div className="relative aspect-[4/3] w-full overflow-hidden bg-stone-100">
+        {/* 100% Clean Image Hero Container - No Unneeded Text/Badges. Taller on Highlighted */}
+        <div
+          className={`relative w-full overflow-hidden bg-stone-100 ${
+            isHighlighted
+              ? 'aspect-[3/4] sm:aspect-[4/3]'
+              : 'aspect-square sm:aspect-[4/3]'
+          }`}
+        >
           <FallbackImage
             key={currentImage}
             src={currentImage}
@@ -47,7 +62,7 @@ export default function ProductCard({ product, onSelectProduct, priority = false
             loading={priority ? 'eager' : 'lazy'}
             fetchPriority={priority ? 'high' : 'auto'}
             decoding="async"
-            cloudinaryWidth={480}
+            cloudinaryWidth={isHighlighted ? 640 : 480}
             className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-108 animate-fadeIn"
           />
 
@@ -61,7 +76,9 @@ export default function ProductCard({ product, onSelectProduct, priority = false
             {product.categoryName || 'Architectural Material'}
           </span>
           <h3
-            className="mt-1 font-display text-xs sm:text-sm md:text-base font-bold text-stone-900 group-hover:text-amber-900 truncate block"
+            className={`mt-1 font-display text-xs sm:text-sm md:text-base font-bold truncate block ${
+              isHighlighted ? 'text-amber-950 group-hover:text-amber-800' : 'text-stone-900 group-hover:text-amber-900'
+            }`}
             title={product.name}
           >
             {product.name}
@@ -73,7 +90,9 @@ export default function ProductCard({ product, onSelectProduct, priority = false
             <ArrowUpRight
               aria-hidden="true"
               size={15}
-              className="shrink-0 text-amber-800 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              className={`shrink-0 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 ${
+                isHighlighted ? 'text-amber-700 font-bold' : 'text-amber-800'
+              }`}
             />
           </div>
         </div>
