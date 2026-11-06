@@ -1,8 +1,145 @@
 {
   "categories": [
     {
+      "id": "spc-flooring",
+      "title": "SPC Flooring",
+      "images": [
+        {
+          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955790/dst_deco/gallery/spc-straight/spc-straight-flooring-scandinavian-light-oak-01.webp",
+          "alt": "SPC Straight Flooring Scandinavian Light Oak",
+          "title": "SPC Straight Flooring Scandinavian Light Oak"
+        },
+        {
+          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947956/dst_deco/flooring-products/spc-straight-flooring-warm-honey-oak-plank-02.jpg",
+          "alt": "SPC Straight Flooring Warm Honey Oak Plank",
+          "title": "SPC Straight Flooring Warm Honey Oak Plank"
+        },
+        {
+          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955791/dst_deco/gallery/spc-straight/spc-straight-flooring-smoky-grey-timber-look-03.webp",
+          "alt": "SPC Straight Flooring Smoky Grey Timber Look",
+          "title": "SPC Straight Flooring Smoky Grey Timber Look"
+        },
+        {
+          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955792/dst_deco/gallery/spc-straight/spc-straight-flooring-dmax-5mm-classic-teak-04.webp",
+          "alt": "SPC Straight Flooring DMAX 5mm Classic Teak",
+          "title": "SPC Straight Flooring DMAX 5mm Classic Teak"
+        },
+        {
+          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955793/dst_deco/gallery/spc-straight/spc-straight-flooring-staro-5mm-bleached-pine-05.webp",
+          "alt": "SPC Straight Flooring STARO 5mm Bleached Pine",
+          "title": "SPC Straight Flooring STARO 5mm Bleached Pine"
+        },
+        {
+          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955794/dst_deco/gallery/spc-straight/spc-straight-flooring-staro-top-6mm-antique-walnut-06.webp",
+          "alt": "SPC Straight Flooring STARO Top 6mm Antique Walnut",
+          "title": "SPC Straight Flooring STARO Top 6mm Antique Walnut"
+        },
+        {
+          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955795/dst_deco/gallery/spc-straight/spc-straight-flooring-troy-plus-7mm-heavy-commercial-07.webp",
+          "alt": "SPC Straight Flooring Troy Plus 7mm Heavy Commercial",
+          "title": "SPC Straight Flooring Troy Plus 7mm Heavy Commercial"
+        },
+        {
+          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955796/dst_deco/gallery/spc-straight/spc-straight-flooring-troy-plus-7mm-dark-espresso-08.webp",
+          "alt": "SPC Straight Flooring Troy Plus 7mm Dark Espresso",
+          "title": "SPC Straight Flooring Troy Plus 7mm Dark Espresso"
+        },
+        {
+          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955797/dst_deco/gallery/spc-straight/spc-straight-flooring-troy-5-5mm-natural-elm-09.webp",
+          "alt": "SPC Straight Flooring Troy 5.5mm Natural Elm",
+          "title": "SPC Straight Flooring Troy 5.5mm Natural Elm"
+        },
+        {
+          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955799/dst_deco/gallery/spc-herringbone/spc-herringbone-flooring-royal-parquetry-natural-oak-01.webp",
+          "alt": "SPC Herringbone Flooring Royal Parquetry Natural Oak",
+          "title": "SPC Herringbone Flooring Royal Parquetry Natural Oak"
+        },
+        {
+          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955801/dst_deco/gallery/spc-herringbone/spc-herringbone-flooring-french-parquetry-golden-amber-02.webp",
+          "alt": "SPC Herringbone Flooring French Parquetry Golden Amber",
+          "title": "SPC Herringbone Flooring French Parquetry Golden Amber"
+        },
+        {
+          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955802/dst_deco/gallery/spc-herringbone/spc-herringbone-flooring-modern-chevron-smoky-ash-03.webp",
+          "alt": "SPC Herringbone Flooring Modern Chevron Smoky Ash",
+          "title": "SPC Herringbone Flooring Modern Chevron Smoky Ash"
+        },
+        {
+          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955803/dst_deco/gallery/spc-herringbone/spc-herringbone-flooring-dmax-5mm-hb-rich-walnut-04.webp",
+          "alt": "SPC Herringbone Flooring DMAX 5mm HB Rich Walnut",
+          "title": "SPC Herringbone Flooring DMAX 5mm HB Rich Walnut"
+        },
+        {
+          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955804/dst_deco/gallery/spc-herringbone/spc-herringbone-flooring-staro-5mm-hb-nordic-blonde-05.webp",
+          "alt": "SPC Herringbone Flooring STARO 5mm HB Nordic Blonde",
+          "title": "SPC Herringbone Flooring STARO 5mm HB Nordic Blonde"
+        },
+        {
+          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955805/dst_deco/gallery/spc-herringbone/spc-herringbone-flooring-staro-5mm-hb-dark-chocolate-06.webp",
+          "alt": "SPC Herringbone Flooring STARO 5mm HB Dark Chocolate",
+          "title": "SPC Herringbone Flooring STARO 5mm HB Dark Chocolate"
+        },
+        {
+          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955806/dst_deco/gallery/spc-herringbone/spc-herringbone-flooring-staro-top-6mm-hb-distressed-oak-07.webp",
+          "alt": "SPC Herringbone Flooring STARO Top 6mm HB Distressed Oak",
+          "title": "SPC Herringbone Flooring STARO Top 6mm HB Distressed Oak"
+        },
+        {
+          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955808/dst_deco/gallery/spc-herringbone/spc-herringbone-flooring-staro-top-6mm-hb-champagne-teak-08.webp",
+          "alt": "SPC Herringbone Flooring STARO Top 6mm HB Champagne Teak",
+          "title": "SPC Herringbone Flooring STARO Top 6mm HB Champagne Teak"
+        }
+      ]
+    },
+    {
+      "id": "lvt-flooring",
+      "title": "LVT Flooring",
+      "images": [
+        {
+          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947966/dst_deco/flooring-products/lvt-flooring-staro-luxury-vinyl-tile-warm-stone-01.png",
+          "alt": "LVT Flooring STARO Luxury Vinyl Tile Warm Stone",
+          "title": "LVT Flooring STARO Luxury Vinyl Tile Warm Stone"
+        },
+        {
+          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947967/dst_deco/flooring-products/lvt-flooring-staro-luxury-vinyl-tile-slate-grey-02.png",
+          "alt": "LVT Flooring STARO Luxury Vinyl Tile Slate Grey",
+          "title": "LVT Flooring STARO Luxury Vinyl Tile Slate Grey"
+        },
+        {
+          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947968/dst_deco/flooring-products/lvt-flooring-staro-luxury-vinyl-tile-travertine-beige-03.jpg",
+          "alt": "LVT Flooring STARO Luxury Vinyl Tile Travertine Beige",
+          "title": "LVT Flooring STARO Luxury Vinyl Tile Travertine Beige"
+        },
+        {
+          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955809/dst_deco/gallery/spc-marble-lvt/spc-marble-flooring-carrara-white-large-tile-01.webp",
+          "alt": "SPC Marble Flooring Carrara White Large Tile",
+          "title": "SPC Marble Flooring Carrara White Large Tile"
+        },
+        {
+          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955810/dst_deco/gallery/spc-marble-lvt/spc-marble-flooring-4mm-calacatta-gold-luxury-tile-02.webp",
+          "alt": "SPC Marble Flooring 4mm Calacatta Gold Luxury Tile",
+          "title": "SPC Marble Flooring 4mm Calacatta Gold Luxury Tile"
+        },
+        {
+          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955811/dst_deco/gallery/spc-marble-lvt/spc-marble-flooring-4mm-nero-marquina-dark-tile-03.webp",
+          "alt": "SPC Marble Flooring 4mm Nero Marquina Dark Tile",
+          "title": "SPC Marble Flooring 4mm Nero Marquina Dark Tile"
+        },
+        {
+          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955812/dst_deco/gallery/spc-marble-lvt/spc-marble-flooring-5-5mm-pietra-grey-commercial-tile-04.webp",
+          "alt": "SPC Marble Flooring 5.5mm Pietra Grey Commercial Tile",
+          "title": "SPC Marble Flooring 5.5mm Pietra Grey Commercial Tile"
+        },
+        {
+          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947970/dst_deco/flooring-products/lvt-flooring-staro-luxury-vinyl-tile-urban-concrete-04.png",
+          "alt": "LVT Flooring STARO Luxury Vinyl Tile Urban Concrete",
+          "title": "LVT Flooring STARO Luxury Vinyl Tile Urban Concrete"
+        }
+      ]
+    },
+    {
       "id": "flexible-stone",
-      "title": "Flexible Stone",
+      "title": "Flexible stone",
       "images": [
         {
           "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955752/dst_deco/gallery/flexible-stone/flexible-stone-desert-sand-villa-exterior-01.webp",
@@ -48,6 +185,108 @@
           "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947884/dst_deco/wall-products/flexible-stone-luxury-hallway-cladding-09.jpg",
           "alt": "Flexible Stone Luxury Hallway Wall Cladding",
           "title": "Flexible Stone Luxury Hallway Wall Cladding"
+        }
+      ]
+    },
+    {
+      "id": "wpc-chipboard",
+      "title": "WPC Chipboard Panel & Sheet",
+      "images": [
+        {
+          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955765/dst_deco/gallery/wpc-panels/wpc-chipboard-5mm-natural-oak-fluted-wall-01.webp",
+          "alt": "5mm WPC Chipboard Natural Oak Fluted Wall",
+          "title": "5mm WPC Chipboard Natural Oak Fluted Wall"
+        },
+        {
+          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955766/dst_deco/gallery/wpc-panels/wpc-chipboard-5mm-walnut-linear-slat-02.webp",
+          "alt": "5mm WPC Chipboard Walnut Linear Slat",
+          "title": "5mm WPC Chipboard Walnut Linear Slat"
+        },
+        {
+          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947901/dst_deco/wall-products/wpc-chipboard-5mm-charcoal-fluted-accent-03.jpg",
+          "alt": "5mm WPC Chipboard Charcoal Fluted Accent",
+          "title": "5mm WPC Chipboard Charcoal Fluted Accent"
+        },
+        {
+          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955768/dst_deco/gallery/wpc-panels/wpc-chipboard-5mm-smoked-teak-living-room-04.webp",
+          "alt": "5mm WPC Chipboard Smoked Teak Living Room",
+          "title": "5mm WPC Chipboard Smoked Teak Living Room"
+        },
+        {
+          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947903/dst_deco/wall-products/wpc-chipboard-5mm-warm-ash-bedroom-headboard-05.jpg",
+          "alt": "5mm WPC Chipboard Warm Ash Bedroom Headboard",
+          "title": "5mm WPC Chipboard Warm Ash Bedroom Headboard"
+        },
+        {
+          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955770/dst_deco/gallery/wpc-panels/wpc-chipboard-5mm-cream-beige-slat-panel-06.webp",
+          "alt": "5mm WPC Chipboard Cream Beige Slat Panel",
+          "title": "5mm WPC Chipboard Cream Beige Slat Panel"
+        },
+        {
+          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955771/dst_deco/gallery/wpc-panels/wpc-chipboard-8mm-heavy-duty-dark-ebony-01.webp",
+          "alt": "8mm WPC Heavy Duty Dark Ebony Wall Panel",
+          "title": "8mm WPC Heavy Duty Dark Ebony Wall Panel"
+        },
+        {
+          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955772/dst_deco/gallery/wpc-panels/wpc-chipboard-8mm-heavy-duty-golden-oak-02.webp",
+          "alt": "8mm WPC Heavy Duty Golden Oak Wall Panel",
+          "title": "8mm WPC Heavy Duty Golden Oak Wall Panel"
+        },
+        {
+          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947905/dst_deco/wall-products/wpc-chipboard-8mm-heavy-duty-grey-cedar-03.png",
+          "alt": "8mm WPC Heavy Duty Grey Cedar Wall Panel",
+          "title": "8mm WPC Heavy Duty Grey Cedar Wall Panel"
+        }
+      ]
+    },
+    {
+      "id": "wall-panel",
+      "title": "Wall Panel",
+      "images": [
+        {
+          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955765/dst_deco/gallery/wpc-panels/wpc-chipboard-5mm-natural-oak-fluted-wall-01.webp",
+          "alt": "5mm WPC Chipboard Natural Oak Fluted Wall",
+          "title": "5mm WPC Chipboard Natural Oak Fluted Wall"
+        },
+        {
+          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955766/dst_deco/gallery/wpc-panels/wpc-chipboard-5mm-walnut-linear-slat-02.webp",
+          "alt": "5mm WPC Chipboard Walnut Linear Slat",
+          "title": "5mm WPC Chipboard Walnut Linear Slat"
+        },
+        {
+          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947901/dst_deco/wall-products/wpc-chipboard-5mm-charcoal-fluted-accent-03.jpg",
+          "alt": "5mm WPC Chipboard Charcoal Fluted Accent",
+          "title": "5mm WPC Chipboard Charcoal Fluted Accent"
+        },
+        {
+          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955768/dst_deco/gallery/wpc-panels/wpc-chipboard-5mm-smoked-teak-living-room-04.webp",
+          "alt": "5mm WPC Chipboard Smoked Teak Living Room",
+          "title": "5mm WPC Chipboard Smoked Teak Living Room"
+        },
+        {
+          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947903/dst_deco/wall-products/wpc-chipboard-5mm-warm-ash-bedroom-headboard-05.jpg",
+          "alt": "5mm WPC Chipboard Warm Ash Bedroom Headboard",
+          "title": "5mm WPC Chipboard Warm Ash Bedroom Headboard"
+        },
+        {
+          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955770/dst_deco/gallery/wpc-panels/wpc-chipboard-5mm-cream-beige-slat-panel-06.webp",
+          "alt": "5mm WPC Chipboard Cream Beige Slat Panel",
+          "title": "5mm WPC Chipboard Cream Beige Slat Panel"
+        },
+        {
+          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955771/dst_deco/gallery/wpc-panels/wpc-chipboard-8mm-heavy-duty-dark-ebony-01.webp",
+          "alt": "8mm WPC Heavy Duty Dark Ebony Wall Panel",
+          "title": "8mm WPC Heavy Duty Dark Ebony Wall Panel"
+        },
+        {
+          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955772/dst_deco/gallery/wpc-panels/wpc-chipboard-8mm-heavy-duty-golden-oak-02.webp",
+          "alt": "8mm WPC Heavy Duty Golden Oak Wall Panel",
+          "title": "8mm WPC Heavy Duty Golden Oak Wall Panel"
+        },
+        {
+          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947905/dst_deco/wall-products/wpc-chipboard-8mm-heavy-duty-grey-cedar-03.png",
+          "alt": "8mm WPC Heavy Duty Grey Cedar Wall Panel",
+          "title": "8mm WPC Heavy Duty Grey Cedar Wall Panel"
         }
       ]
     },
@@ -98,59 +337,29 @@
       ]
     },
     {
-      "id": "wpc-panels",
-      "title": "WPC Wall Panels",
+      "id": "molding",
+      "title": "Molding",
       "images": [
         {
-          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955765/dst_deco/gallery/wpc-panels/wpc-chipboard-5mm-natural-oak-fluted-wall-01.webp",
-          "alt": "5mm WPC Chipboard Natural Oak Fluted Wall",
-          "title": "5mm WPC Chipboard Natural Oak Fluted Wall"
+          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955775/dst_deco/gallery/decorative-wall-panels/ps-molding-classic-ceiling-cornice-white-01.webp",
+          "alt": "PS Classic Ceiling Cornice White Molding",
+          "title": "PS Classic Ceiling Cornice White Molding"
         },
         {
-          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955766/dst_deco/gallery/wpc-panels/wpc-chipboard-5mm-walnut-linear-slat-02.webp",
-          "alt": "5mm WPC Chipboard Walnut Linear Slat",
-          "title": "5mm WPC Chipboard Walnut Linear Slat"
+          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955776/dst_deco/gallery/decorative-wall-panels/ps-molding-wainscoting-wall-frame-trim-02.webp",
+          "alt": "PS Wainscoting Wall Frame Trim Molding",
+          "title": "PS Wainscoting Wall Frame Trim Molding"
         },
         {
-          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947901/dst_deco/wall-products/wpc-chipboard-5mm-charcoal-fluted-accent-03.jpg",
-          "alt": "5mm WPC Chipboard Charcoal Fluted Accent",
-          "title": "5mm WPC Chipboard Charcoal Fluted Accent"
-        },
-        {
-          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955768/dst_deco/gallery/wpc-panels/wpc-chipboard-5mm-smoked-teak-living-room-04.webp",
-          "alt": "5mm WPC Chipboard Smoked Teak Living Room",
-          "title": "5mm WPC Chipboard Smoked Teak Living Room"
-        },
-        {
-          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947903/dst_deco/wall-products/wpc-chipboard-5mm-warm-ash-bedroom-headboard-05.jpg",
-          "alt": "5mm WPC Chipboard Warm Ash Bedroom Headboard",
-          "title": "5mm WPC Chipboard Warm Ash Bedroom Headboard"
-        },
-        {
-          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955770/dst_deco/gallery/wpc-panels/wpc-chipboard-5mm-cream-beige-slat-panel-06.webp",
-          "alt": "5mm WPC Chipboard Cream Beige Slat Panel",
-          "title": "5mm WPC Chipboard Cream Beige Slat Panel"
-        },
-        {
-          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955771/dst_deco/gallery/wpc-panels/wpc-chipboard-8mm-heavy-duty-dark-ebony-01.webp",
-          "alt": "8mm WPC Heavy Duty Dark Ebony Wall Panel",
-          "title": "8mm WPC Heavy Duty Dark Ebony Wall Panel"
-        },
-        {
-          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955772/dst_deco/gallery/wpc-panels/wpc-chipboard-8mm-heavy-duty-golden-oak-02.webp",
-          "alt": "8mm WPC Heavy Duty Golden Oak Wall Panel",
-          "title": "8mm WPC Heavy Duty Golden Oak Wall Panel"
-        },
-        {
-          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947905/dst_deco/wall-products/wpc-chipboard-8mm-heavy-duty-grey-cedar-03.png",
-          "alt": "8mm WPC Heavy Duty Grey Cedar Wall Panel",
-          "title": "8mm WPC Heavy Duty Grey Cedar Wall Panel"
+          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955776/dst_deco/gallery/decorative-wall-panels/ps-molding-gold-accent-crown-molding-03.webp",
+          "alt": "PS Gold Accent Crown Molding",
+          "title": "PS Gold Accent Crown Molding"
         }
       ]
     },
     {
-      "id": "decorative-wall-panels",
-      "title": "Decorative Wall Panels & Mouldings",
+      "id": "columns-partition",
+      "title": "Columns & Partition",
       "images": [
         {
           "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947938/dst_deco/wall-products/ps-columns-architectural-room-divider-01.jpg",
@@ -166,37 +375,48 @@
           "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955774/dst_deco/gallery/decorative-wall-panels/ps-columns-modern-vertical-louver-screen-03.webp",
           "alt": "PS Modern Vertical Louver Screen Column",
           "title": "PS Modern Vertical Louver Screen Column"
-        },
-        {
-          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955775/dst_deco/gallery/decorative-wall-panels/ps-molding-classic-ceiling-cornice-white-01.webp",
-          "alt": "PS Classic Ceiling Cornice White Molding",
-          "title": "PS Classic Ceiling Cornice White Molding"
-        },
-        {
-          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955776/dst_deco/gallery/decorative-wall-panels/ps-molding-wainscoting-wall-frame-trim-02.webp",
-          "alt": "PS Wainscoting Wall Frame Trim Molding",
-          "title": "PS Wainscoting Wall Frame Trim Molding"
-        },
-        {
-          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955776/dst_deco/gallery/decorative-wall-panels/ps-molding-gold-accent-crown-molding-03.webp",
-          "alt": "PS Gold Accent Crown Molding",
-          "title": "PS Gold Accent Crown Molding"
-        },
-        {
-          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955777/dst_deco/gallery/decorative-wall-panels/ps-wall-panel-fluted-geometric-decor-01.webp",
-          "alt": "PS Fluted Geometric Wall Panel Decor",
-          "title": "PS Fluted Geometric Wall Panel Decor"
-        },
-        {
-          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955778/dst_deco/gallery/decorative-wall-panels/ps-wall-panel-3d-chevron-accent-wall-02.webp",
-          "alt": "PS 3D Chevron Accent Wall Panel",
-          "title": "PS 3D Chevron Accent Wall Panel"
         }
       ]
     },
     {
-      "id": "pvc-marble",
-      "title": "PVC Marble & Wall Cladding",
+      "id": "acoustic-panel",
+      "title": "Acoustic Panel",
+      "images": [
+        {
+          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955784/dst_deco/gallery/acoustic-panels/acoustic-panel-ps-slatted-charcoal-01.webp",
+          "alt": "PS Slatted Acoustic Panel Charcoal",
+          "title": "PS Slatted Acoustic Panel Charcoal"
+        },
+        {
+          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955787/dst_deco/gallery/acoustic-panels/acoustic-panel-big-timber-slat-oak-hall-01.webp",
+          "alt": "Big Timber Slat Acoustic Panel Oak Hall",
+          "title": "Big Timber Slat Acoustic Panel Oak Hall"
+        },
+        {
+          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955788/dst_deco/gallery/acoustic-panels/acoustic-panel-small-soundproof-slat-walnut-01.webp",
+          "alt": "Small Soundproof Slat Acoustic Panel Walnut",
+          "title": "Small Soundproof Slat Acoustic Panel Walnut"
+        },
+        {
+          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947931/dst_deco/wall-products/acoustic-panel-slat-wood-natural-teak-01.jpg",
+          "alt": "Natural Teak Slat Acoustic Panel Only",
+          "title": "Natural Teak Slat Acoustic Panel Only"
+        },
+        {
+          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955788/dst_deco/gallery/acoustic-panels/acoustic-panel-slat-wood-black-felt-ash-02.webp",
+          "alt": "Black Felt Ash Slat Acoustic Panel Only",
+          "title": "Black Felt Ash Slat Acoustic Panel Only"
+        },
+        {
+          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955790/dst_deco/gallery/acoustic-panels/acoustic-panel-flexible-curved-wall-slat-01.webp",
+          "alt": "Flexible Curved Wall Slat Acoustic Panel",
+          "title": "Flexible Curved Wall Slat Acoustic Panel"
+        }
+      ]
+    },
+    {
+      "id": "pvc-marble-sheet",
+      "title": "PVC Marble Sheet",
       "images": [
         {
           "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947916/dst_deco/wall-products/pvc-marble-glossy-calacatta-gold-slab-01.jpg",
@@ -241,14 +461,9 @@
       ]
     },
     {
-      "id": "acoustic-panels",
-      "title": "Acoustic & Fabric Panels",
+      "id": "3d-velvet-fabric-roll",
+      "title": "3D VELVET FABRIC Roll",
       "images": [
-        {
-          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955784/dst_deco/gallery/acoustic-panels/acoustic-panel-ps-slatted-charcoal-01.webp",
-          "alt": "PS Slatted Acoustic Panel Charcoal",
-          "title": "PS Slatted Acoustic Panel Charcoal"
-        },
         {
           "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955785/dst_deco/gallery/acoustic-panels/acoustic-panel-3d-velvet-fabric-emerald-green-01.webp",
           "alt": "3D Velvet Fabric Acoustic Panel Emerald Green",
@@ -258,180 +473,79 @@
           "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955786/dst_deco/gallery/acoustic-panels/acoustic-panel-3d-velvet-fabric-royal-navy-02.webp",
           "alt": "3D Velvet Fabric Acoustic Panel Royal Navy",
           "title": "3D Velvet Fabric Acoustic Panel Royal Navy"
-        },
-        {
-          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955787/dst_deco/gallery/acoustic-panels/acoustic-panel-big-timber-slat-oak-hall-01.webp",
-          "alt": "Big Timber Slat Acoustic Panel Oak Hall",
-          "title": "Big Timber Slat Acoustic Panel Oak Hall"
-        },
-        {
-          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955788/dst_deco/gallery/acoustic-panels/acoustic-panel-small-soundproof-slat-walnut-01.webp",
-          "alt": "Small Soundproof Slat Acoustic Panel Walnut",
-          "title": "Small Soundproof Slat Acoustic Panel Walnut"
-        },
-        {
-          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947931/dst_deco/wall-products/acoustic-panel-slat-wood-natural-teak-01.jpg",
-          "alt": "Natural Teak Slat Acoustic Panel Only",
-          "title": "Natural Teak Slat Acoustic Panel Only"
-        },
-        {
-          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955788/dst_deco/gallery/acoustic-panels/acoustic-panel-slat-wood-black-felt-ash-02.webp",
-          "alt": "Black Felt Ash Slat Acoustic Panel Only",
-          "title": "Black Felt Ash Slat Acoustic Panel Only"
-        },
-        {
-          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955790/dst_deco/gallery/acoustic-panels/acoustic-panel-flexible-curved-wall-slat-01.webp",
-          "alt": "Flexible Curved Wall Slat Acoustic Panel",
-          "title": "Flexible Curved Wall Slat Acoustic Panel"
         }
       ]
     },
     {
-      "id": "spc-straight",
-      "title": "SPC Straight Flooring",
+      "id": "3d-soft-stone-roll",
+      "title": "3D SOFT STONE ROLL",
       "images": [
         {
-          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955790/dst_deco/gallery/spc-straight/spc-straight-flooring-scandinavian-light-oak-01.webp",
-          "alt": "SPC Straight Flooring Scandinavian Light Oak",
-          "title": "SPC Straight Flooring Scandinavian Light Oak"
+          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955763/dst_deco/gallery/pu-stone/pu-stone-3d-soft-stone-roll-textured-01.webp",
+          "alt": "PU Stone 3D Soft Stone Roll Textured",
+          "title": "PU Stone 3D Soft Stone Roll Textured"
         },
         {
-          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947956/dst_deco/flooring-products/spc-straight-flooring-warm-honey-oak-plank-02.jpg",
-          "alt": "SPC Straight Flooring Warm Honey Oak Plank",
-          "title": "SPC Straight Flooring Warm Honey Oak Plank"
+          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955764/dst_deco/gallery/pu-stone/pu-stone-3d-soft-stone-roll-beige-slate-02.webp",
+          "alt": "PU Stone 3D Soft Stone Roll Beige Slate",
+          "title": "PU Stone 3D Soft Stone Roll Beige Slate"
         },
         {
-          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955791/dst_deco/gallery/spc-straight/spc-straight-flooring-smoky-grey-timber-look-03.webp",
-          "alt": "SPC Straight Flooring Smoky Grey Timber Look",
-          "title": "SPC Straight Flooring Smoky Grey Timber Look"
-        },
-        {
-          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955792/dst_deco/gallery/spc-straight/spc-straight-flooring-dmax-5mm-classic-teak-04.webp",
-          "alt": "SPC Straight Flooring DMAX 5mm Classic Teak",
-          "title": "SPC Straight Flooring DMAX 5mm Classic Teak"
-        },
-        {
-          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955793/dst_deco/gallery/spc-straight/spc-straight-flooring-staro-5mm-bleached-pine-05.webp",
-          "alt": "SPC Straight Flooring STARO 5mm Bleached Pine",
-          "title": "SPC Straight Flooring STARO 5mm Bleached Pine"
-        },
-        {
-          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955794/dst_deco/gallery/spc-straight/spc-straight-flooring-staro-top-6mm-antique-walnut-06.webp",
-          "alt": "SPC Straight Flooring STARO Top 6mm Antique Walnut",
-          "title": "SPC Straight Flooring STARO Top 6mm Antique Walnut"
-        },
-        {
-          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955795/dst_deco/gallery/spc-straight/spc-straight-flooring-troy-plus-7mm-heavy-commercial-07.webp",
-          "alt": "SPC Straight Flooring Troy Plus 7mm Heavy Commercial",
-          "title": "SPC Straight Flooring Troy Plus 7mm Heavy Commercial"
-        },
-        {
-          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955796/dst_deco/gallery/spc-straight/spc-straight-flooring-troy-plus-7mm-dark-espresso-08.webp",
-          "alt": "SPC Straight Flooring Troy Plus 7mm Dark Espresso",
-          "title": "SPC Straight Flooring Troy Plus 7mm Dark Espresso"
-        },
-        {
-          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955797/dst_deco/gallery/spc-straight/spc-straight-flooring-troy-5-5mm-natural-elm-09.webp",
-          "alt": "SPC Straight Flooring Troy 5.5mm Natural Elm",
-          "title": "SPC Straight Flooring Troy 5.5mm Natural Elm"
+          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955764/dst_deco/gallery/pu-stone/pu-stone-3d-soft-stone-roll-grey-granite-03.webp",
+          "alt": "PU Stone 3D Soft Stone Roll Grey Granite",
+          "title": "PU Stone 3D Soft Stone Roll Grey Granite"
         }
       ]
     },
     {
-      "id": "spc-herringbone",
-      "title": "SPC Herringbone Flooring",
+      "id": "flexible-3d-sheet",
+      "title": "Flexible 3D SHEET",
       "images": [
         {
-          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955799/dst_deco/gallery/spc-herringbone/spc-herringbone-flooring-royal-parquetry-natural-oak-01.webp",
-          "alt": "SPC Herringbone Flooring Royal Parquetry Natural Oak",
-          "title": "SPC Herringbone Flooring Royal Parquetry Natural Oak"
+          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955819/dst_deco/gallery/woodworking/woodworking-decorative-joinery-sheet-01.webp",
+          "alt": "Woodworking Decorative Joinery Sheet",
+          "title": "Woodworking Decorative Joinery Sheet"
         },
         {
-          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955801/dst_deco/gallery/spc-herringbone/spc-herringbone-flooring-french-parquetry-golden-amber-02.webp",
-          "alt": "SPC Herringbone Flooring French Parquetry Golden Amber",
-          "title": "SPC Herringbone Flooring French Parquetry Golden Amber"
+          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955821/dst_deco/gallery/woodworking/woodworking-3d-sheet-geometric-wave-pattern-02.webp",
+          "alt": "Woodworking 3D Sheet Geometric Wave Pattern",
+          "title": "Woodworking 3D Sheet Geometric Wave Pattern"
         },
         {
-          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955802/dst_deco/gallery/spc-herringbone/spc-herringbone-flooring-modern-chevron-smoky-ash-03.webp",
-          "alt": "SPC Herringbone Flooring Modern Chevron Smoky Ash",
-          "title": "SPC Herringbone Flooring Modern Chevron Smoky Ash"
+          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955822/dst_deco/gallery/woodworking/woodworking-3d-sheet-fluted-timber-panel-03.webp",
+          "alt": "Woodworking 3D Sheet Fluted Timber Panel",
+          "title": "Woodworking 3D Sheet Fluted Timber Panel"
         },
         {
-          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955803/dst_deco/gallery/spc-herringbone/spc-herringbone-flooring-dmax-5mm-hb-rich-walnut-04.webp",
-          "alt": "SPC Herringbone Flooring DMAX 5mm HB Rich Walnut",
-          "title": "SPC Herringbone Flooring DMAX 5mm HB Rich Walnut"
+          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955823/dst_deco/gallery/woodworking/woodworking-3d-sheet-diamond-carved-texture-04.webp",
+          "alt": "Woodworking 3D Sheet Diamond Carved Texture",
+          "title": "Woodworking 3D Sheet Diamond Carved Texture"
         },
         {
-          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955804/dst_deco/gallery/spc-herringbone/spc-herringbone-flooring-staro-5mm-hb-nordic-blonde-05.webp",
-          "alt": "SPC Herringbone Flooring STARO 5mm HB Nordic Blonde",
-          "title": "SPC Herringbone Flooring STARO 5mm HB Nordic Blonde"
+          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955824/dst_deco/gallery/woodworking/woodworking-3d-sheet-slotted-sculptural-panel-05.webp",
+          "alt": "Woodworking 3D Sheet Slotted Sculptural Panel",
+          "title": "Woodworking 3D Sheet Slotted Sculptural Panel"
         },
         {
-          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955805/dst_deco/gallery/spc-herringbone/spc-herringbone-flooring-staro-5mm-hb-dark-chocolate-06.webp",
-          "alt": "SPC Herringbone Flooring STARO 5mm HB Dark Chocolate",
-          "title": "SPC Herringbone Flooring STARO 5mm HB Dark Chocolate"
+          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955825/dst_deco/gallery/woodworking/woodworking-3d-sheet-acoustic-grooved-veneer-06.webp",
+          "alt": "Woodworking 3D Sheet Acoustic Grooved Veneer",
+          "title": "Woodworking 3D Sheet Acoustic Grooved Veneer"
         },
         {
-          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955806/dst_deco/gallery/spc-herringbone/spc-herringbone-flooring-staro-top-6mm-hb-distressed-oak-07.webp",
-          "alt": "SPC Herringbone Flooring STARO Top 6mm HB Distressed Oak",
-          "title": "SPC Herringbone Flooring STARO Top 6mm HB Distressed Oak"
+          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955827/dst_deco/gallery/woodworking/woodworking-3d-sheet-hexagonal-relief-carving-07.webp",
+          "alt": "Woodworking 3D Sheet Hexagonal Relief Carving",
+          "title": "Woodworking 3D Sheet Hexagonal Relief Carving"
         },
         {
-          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955808/dst_deco/gallery/spc-herringbone/spc-herringbone-flooring-staro-top-6mm-hb-champagne-teak-08.webp",
-          "alt": "SPC Herringbone Flooring STARO Top 6mm HB Champagne Teak",
-          "title": "SPC Herringbone Flooring STARO Top 6mm HB Champagne Teak"
+          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955828/dst_deco/gallery/woodworking/woodworking-3d-sheet-contemporary-grid-texture-08.webp",
+          "alt": "Woodworking 3D Sheet Contemporary Grid Texture",
+          "title": "Woodworking 3D Sheet Contemporary Grid Texture"
         }
       ]
     },
     {
-      "id": "spc-marble-lvt",
-      "title": "SPC Marble & LVT Flooring",
-      "images": [
-        {
-          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947966/dst_deco/flooring-products/lvt-flooring-staro-luxury-vinyl-tile-warm-stone-01.png",
-          "alt": "LVT Flooring STARO Luxury Vinyl Tile Warm Stone",
-          "title": "LVT Flooring STARO Luxury Vinyl Tile Warm Stone"
-        },
-        {
-          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947967/dst_deco/flooring-products/lvt-flooring-staro-luxury-vinyl-tile-slate-grey-02.png",
-          "alt": "LVT Flooring STARO Luxury Vinyl Tile Slate Grey",
-          "title": "LVT Flooring STARO Luxury Vinyl Tile Slate Grey"
-        },
-        {
-          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947968/dst_deco/flooring-products/lvt-flooring-staro-luxury-vinyl-tile-travertine-beige-03.jpg",
-          "alt": "LVT Flooring STARO Luxury Vinyl Tile Travertine Beige",
-          "title": "LVT Flooring STARO Luxury Vinyl Tile Travertine Beige"
-        },
-        {
-          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955809/dst_deco/gallery/spc-marble-lvt/spc-marble-flooring-carrara-white-large-tile-01.webp",
-          "alt": "SPC Marble Flooring Carrara White Large Tile",
-          "title": "SPC Marble Flooring Carrara White Large Tile"
-        },
-        {
-          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955810/dst_deco/gallery/spc-marble-lvt/spc-marble-flooring-4mm-calacatta-gold-luxury-tile-02.webp",
-          "alt": "SPC Marble Flooring 4mm Calacatta Gold Luxury Tile",
-          "title": "SPC Marble Flooring 4mm Calacatta Gold Luxury Tile"
-        },
-        {
-          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955811/dst_deco/gallery/spc-marble-lvt/spc-marble-flooring-4mm-nero-marquina-dark-tile-03.webp",
-          "alt": "SPC Marble Flooring 4mm Nero Marquina Dark Tile",
-          "title": "SPC Marble Flooring 4mm Nero Marquina Dark Tile"
-        },
-        {
-          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955812/dst_deco/gallery/spc-marble-lvt/spc-marble-flooring-5-5mm-pietra-grey-commercial-tile-04.webp",
-          "alt": "SPC Marble Flooring 5.5mm Pietra Grey Commercial Tile",
-          "title": "SPC Marble Flooring 5.5mm Pietra Grey Commercial Tile"
-        },
-        {
-          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947970/dst_deco/flooring-products/lvt-flooring-staro-luxury-vinyl-tile-urban-concrete-04.png",
-          "alt": "LVT Flooring STARO Luxury Vinyl Tile Urban Concrete",
-          "title": "LVT Flooring STARO Luxury Vinyl Tile Urban Concrete"
-        }
-      ]
-    },
-    {
-      "id": "profiles-skirting",
-      "title": "Profiles & Skirting",
+      "id": "aluminium-profiles",
+      "title": "Aluminium profiles",
       "images": [
         {
           "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955813/dst_deco/gallery/profiles-skirting/ps-skirting-board-waterproof-80mm-matte-white-01.webp",
@@ -476,48 +590,13 @@
       ]
     },
     {
-      "id": "woodworking",
-      "title": "Woodworking & 3D Sheets",
+      "id": "silicon",
+      "title": "Silicon",
       "images": [
         {
-          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955819/dst_deco/gallery/woodworking/woodworking-decorative-joinery-sheet-01.webp",
-          "alt": "Woodworking Decorative Joinery Sheet",
-          "title": "Woodworking Decorative Joinery Sheet"
-        },
-        {
-          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955821/dst_deco/gallery/woodworking/woodworking-3d-sheet-geometric-wave-pattern-02.webp",
-          "alt": "Woodworking 3D Sheet Geometric Wave Pattern",
-          "title": "Woodworking 3D Sheet Geometric Wave Pattern"
-        },
-        {
-          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955822/dst_deco/gallery/woodworking/woodworking-3d-sheet-fluted-timber-panel-03.webp",
-          "alt": "Woodworking 3D Sheet Fluted Timber Panel",
-          "title": "Woodworking 3D Sheet Fluted Timber Panel"
-        },
-        {
-          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955823/dst_deco/gallery/woodworking/woodworking-3d-sheet-diamond-carved-texture-04.webp",
-          "alt": "Woodworking 3D Sheet Diamond Carved Texture",
-          "title": "Woodworking 3D Sheet Diamond Carved Texture"
-        },
-        {
-          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955824/dst_deco/gallery/woodworking/woodworking-3d-sheet-slotted-sculptural-panel-05.webp",
-          "alt": "Woodworking 3D Sheet Slotted Sculptural Panel",
-          "title": "Woodworking 3D Sheet Slotted Sculptural Panel"
-        },
-        {
-          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955825/dst_deco/gallery/woodworking/woodworking-3d-sheet-acoustic-grooved-veneer-06.webp",
-          "alt": "Woodworking 3D Sheet Acoustic Grooved Veneer",
-          "title": "Woodworking 3D Sheet Acoustic Grooved Veneer"
-        },
-        {
-          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955827/dst_deco/gallery/woodworking/woodworking-3d-sheet-hexagonal-relief-carving-07.webp",
-          "alt": "Woodworking 3D Sheet Hexagonal Relief Carving",
-          "title": "Woodworking 3D Sheet Hexagonal Relief Carving"
-        },
-        {
-          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955828/dst_deco/gallery/woodworking/woodworking-3d-sheet-contemporary-grid-texture-08.webp",
-          "alt": "Woodworking 3D Sheet Contemporary Grid Texture",
-          "title": "Woodworking 3D Sheet Contemporary Grid Texture"
+          "src": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947995/dst_deco/fixing-materials/staro-hybrid-polymer-silicon-adhesive-cartridge-01.jpg",
+          "alt": "STARO Hybrid Polymer Silicon Adhesive Cartridge",
+          "title": "STARO Hybrid Polymer Silicon Adhesive Cartridge"
         }
       ]
     },

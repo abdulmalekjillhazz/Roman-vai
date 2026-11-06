@@ -1,20 +1,112 @@
 [
   {
-    "id": "cat-01",
-    "name": "Flexible Stone",
+    "id": "cat-spc-flooring",
+    "name": "SPC Flooring",
+    "slug": "spc-flooring",
+    "category": "flooring-products",
+    "categoryGroup": "2. Flooring & Skirting",
+    "categoryName": "Flooring",
+    "description": "Stone Polymer Composite (SPC) rigid core waterproof flooring planks with authentic wood grain embossing, built-in acoustic IXPE backing, and heavy commercial AC5 wear layer.",
+    "featureTitle": "SPC FLOORING — 100% WATERPROOF RIGID CORE LUXURY",
+    "features": [
+      "100% Waterproof Rigid Mineral Core",
+      "Integrated Acoustic IXPE Sound Dampening",
+      "Heavy Commercial AC5 Wear Layer",
+      "Uniclic Click-Lock Fast Installation",
+      "Zero Formaldehyde & Non-Toxic"
+    ],
+    "isFeatured": true,
+    "inStock": true,
+    "specifications": {
+      "thickness": "5.0mm – 6.5mm with 1.5mm IXPE Backing",
+      "dimensions": "1220 x 180mm (Straight) / 600 x 100mm (Herringbone)",
+      "material": "Stone Plastic Composite (Limestone + Virgin PVC)",
+      "features": [
+        "100% Waterproof",
+        "AC5 Scratch Resistant",
+        "Built-in Underlay",
+        "Click-Lock Joint"
+      ]
+    },
+    "images": [
+      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947955/dst_deco/flooring-products/spc-straight-flooring-waterproof-rigid-core-plank-10.jpg",
+      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947956/dst_deco/flooring-products/spc-straight-flooring-warm-honey-oak-plank-02.jpg",
+      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947958/dst_deco/flooring-products/spc-herringbone-flooring-luxury-villa-salon-parquetry-09.jpg",
+      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947959/dst_deco/flooring-products/spc-herringbone-flooring-interlocking-left-right-planks-10.jpg",
+      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947960/dst_deco/flooring-products/spc-herringbone-flooring-boutique-penthouse-foyer-11.jpg",
+      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947962/dst_deco/flooring-products/spc-herringbone-flooring-executive-suite-flooring-12.jpg",
+      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947963/dst_deco/flooring-products/spc-herringbone-flooring-contemporary-loft-parquetry-13.jpg",
+      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947964/dst_deco/flooring-products/spc-straight-flooring-commercial-showroom-floor-11.jpg"
+    ]
+  },
+  {
+    "id": "cat-lvt-flooring",
+    "name": "LVT Flooring",
+    "slug": "lvt-flooring",
+    "category": "flooring-products",
+    "categoryGroup": "2. Flooring & Skirting",
+    "categoryName": "Flooring",
+    "description": "High-traffic Luxury Vinyl Tile (LVT) flooring available in polished natural stone, concrete, and timber textures engineered for high-traffic Dubai commercial and residential spaces.",
+    "featureTitle": "LVT FLOORING — HIGH-TRAFFIC COMMERCIAL LUXURY VINYL",
+    "features": [
+      "Authentic Stone, Marble & Concrete Looks",
+      "Commercial Grade 0.55mm Wear Layer",
+      "Stain & Slip Resistant Surface (R10)",
+      "Waterproof & Easy Maintenance",
+      "Ideal for Villas, Offices & Hotels"
+    ],
+    "isFeatured": true,
+    "inStock": true,
+    "specifications": {
+      "thickness": "2.5mm – 4.0mm Heavy Duty Wear",
+      "dimensions": "600 x 600mm / 914 x 152mm",
+      "material": "Multi-Layer Virgin PVC + Ceramic Bead Shield",
+      "features": [
+        "R10 Anti-Slip",
+        "Commercial Wear Layer",
+        "Sound Cushioning",
+        "Stain Resistant"
+      ]
+    },
+    "images": [
+      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947966/dst_deco/flooring-products/lvt-flooring-staro-luxury-vinyl-tile-warm-stone-01.png",
+      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947967/dst_deco/flooring-products/lvt-flooring-staro-luxury-vinyl-tile-slate-grey-02.png",
+      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947968/dst_deco/flooring-products/lvt-flooring-staro-luxury-vinyl-tile-travertine-beige-03.jpg",
+      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947970/dst_deco/flooring-products/lvt-flooring-staro-luxury-vinyl-tile-urban-concrete-04.png",
+      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947972/dst_deco/flooring-products/lvt-flooring-open-concept-villa-flooring-05.jpg",
+      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947973/dst_deco/flooring-products/lvt-flooring-contemporary-duplex-living-room-06.jpg",
+      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947975/dst_deco/flooring-products/lvt-flooring-commercial-office-interior-floor-07.jpg"
+    ]
+  },
+  {
+    "id": "cat-flexible-stone",
+    "name": "Flexible stone",
+    "slug": "flexible-stone",
     "category": "wall-products",
     "categoryGroup": "1. Wall Panels, Stone & Marble",
-    "categoryName": "Wall Panels",
-    "description": "Ultra-thin, bendable natural stone veneer sheets for interior & exterior walls, curved columns, and facade features.",
-    "featureTitle": "FLEXIBLE STONE — NATURAL LOOK. LIMITLESS POSSIBILITIES.",
+    "categoryName": "Wall Surfaces",
+    "description": "Ultra-thin, bendable natural stone veneer sheets for curved architectural columns, luxury villa facades, and interior statement walls across Dubai and the UAE.",
+    "featureTitle": "FLEXIBLE STONE — NATURAL ROCK ON CURVES & SURFACES",
     "features": [
-      "100% Water Resistant",
-      "Ultra Lightweight & Flexible",
-      "Natural Mineral Stone Texture",
-      "Heat & UV Weatherproof",
-      "Indoor & Outdoor Luxury Use"
+      "Ultra-Thin 2-3mm & Extremely Lightweight (3-5 kg/m²)",
+      "Bendable Around Curved Pillars & Arches",
+      "Natural Mineral Stone Texture (Travertine & Slate)",
+      "Class A Fire-Rated & 100% Waterproof",
+      "Exterior UV Heat & Weather Resilient"
     ],
-    "isNew": false,
+    "isFeatured": true,
+    "inStock": true,
+    "specifications": {
+      "thickness": "2.0mm – 3.5mm",
+      "dimensions": "3000 x 1200mm / 2400 x 1200mm Large Slabs",
+      "material": "Natural Mineral Stone Powder + Polymer Fiber Matrix",
+      "features": [
+        "Bendable & Lightweight",
+        "Fire-Rated Non-Combustible",
+        "Exterior UV Resistant",
+        "Continuous Large Format"
+      ]
+    },
     "images": [
       "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947879/dst_deco/wall-products/flexible-stone-desert-gold-accent-wall-10.jpg",
       "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947881/dst_deco/wall-products/flexible-stone-warm-sandstone-panel-11.jpg",
@@ -24,85 +116,116 @@
       "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947887/dst_deco/wall-products/flexible-stone-rustic-limestone-finish-13.jpg",
       "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947888/dst_deco/wall-products/flexible-stone-amber-onyx-translucent-sheet-14.jpg",
       "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947889/dst_deco/wall-products/flexible-stone-contemporary-curved-facade-15.jpg"
-    ],
-    "inStock": true,
-    "slug": "flexible-stone",
-    "cloudinaryImages": [
-      {
-        "public_id": "dst_deco/wall-products/flexible-stone-desert-gold-accent-wall-10",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947879/dst_deco/wall-products/flexible-stone-desert-gold-accent-wall-10.jpg",
-        "format": "jpg",
-        "width": 1280,
-        "height": 1461
-      },
-      {
-        "public_id": "dst_deco/wall-products/flexible-stone-warm-sandstone-panel-11",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947881/dst_deco/wall-products/flexible-stone-warm-sandstone-panel-11.jpg",
-        "format": "jpg",
-        "width": 1280,
-        "height": 963
-      },
-      {
-        "public_id": "dst_deco/wall-products/flexible-stone-travertine-slab-320x120-04",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947883/dst_deco/wall-products/flexible-stone-travertine-slab-320x120-04.jpg",
-        "format": "jpg",
-        "width": 960,
-        "height": 1278
-      },
-      {
-        "public_id": "dst_deco/wall-products/flexible-stone-luxury-hallway-cladding-09",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947884/dst_deco/wall-products/flexible-stone-luxury-hallway-cladding-09.jpg",
-        "format": "jpg",
-        "width": 1280,
-        "height": 1487
-      },
-      {
-        "public_id": "dst_deco/wall-products/flexible-stone-grey-granite-look-sheet-12",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947885/dst_deco/wall-products/flexible-stone-grey-granite-look-sheet-12.jpg",
-        "format": "jpg",
-        "width": 960,
-        "height": 1096
-      },
-      {
-        "public_id": "dst_deco/wall-products/flexible-stone-rustic-limestone-finish-13",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947887/dst_deco/wall-products/flexible-stone-rustic-limestone-finish-13.jpg",
-        "format": "jpg",
-        "width": 960,
-        "height": 1096
-      },
-      {
-        "public_id": "dst_deco/wall-products/flexible-stone-amber-onyx-translucent-sheet-14",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947888/dst_deco/wall-products/flexible-stone-amber-onyx-translucent-sheet-14.jpg",
-        "format": "jpg",
-        "width": 1280,
-        "height": 808
-      },
-      {
-        "public_id": "dst_deco/wall-products/flexible-stone-contemporary-curved-facade-15",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947889/dst_deco/wall-products/flexible-stone-contemporary-curved-facade-15.jpg",
-        "format": "jpg",
-        "width": 1280,
-        "height": 1703
-      }
-    ],
-    "thumbnail": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947879/dst_deco/wall-products/flexible-stone-desert-gold-accent-wall-10.jpg"
+    ]
   },
   {
-    "id": "cat-02",
-    "name": "PU Faux Rock & Stone",
+    "id": "cat-wpc-chipboard",
+    "name": "WPC Chipboard Panel & Sheet",
+    "slug": "wpc-chipboard-panel-sheet",
     "category": "wall-products",
     "categoryGroup": "1. Wall Panels, Stone & Marble",
-    "categoryName": "Wall Panels",
-    "description": "High-relief 3D architectural polyurethane rock veneer panels providing authentic stone aesthetics without wall reinforcement.",
-    "featureTitle": "PU ROCK PANELS — 3D LUXURY ARCHITECTURAL TEXTURE.",
+    "categoryName": "Wall Surfaces",
+    "description": "High-density 5mm and 8mm WPC chipboard sheets and fluted panels engineered for bespoke TV backdrops, cabinetry, wardrobe doors, and interior partitions.",
+    "featureTitle": "WPC CHIPBOARD — DENSE ARCHITECTURAL JOINERY SHEETS",
     "features": [
-      "Ultra Lightweight Polyurethane",
-      "Thermal & Sound Insulation",
-      "Zero Moisture Absorption",
-      "Simple Adhesive / Screw Mount",
-      "Class A Fire Resistant"
+      "Heavy-Duty 5mm & 8mm Calibrated Thickness",
+      "100% Termite & Moisture Proof Construction",
+      "Ultra-Matte Natural Wood Grain Veneer",
+      "Zero Warping or Swelling in UAE Climate",
+      "Precision Cut for Custom Fit-Outs & Millwork"
     ],
-    "isNew": false,
+    "isFeatured": true,
+    "inStock": true,
+    "specifications": {
+      "thickness": "5mm & 8mm Solid Composite Density",
+      "dimensions": "2900 x 160mm Fluted / Full Size Architectural Sheets",
+      "material": "Wood Plastic Composite High-Pressure Chipboard",
+      "features": [
+        "Moisture Proof",
+        "Termite Proof",
+        "High Impact Strength",
+        "Seamless Fit"
+      ]
+    },
+    "images": [
+      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955765/dst_deco/gallery/wpc-panels/wpc-chipboard-5mm-natural-oak-fluted-wall-01.webp",
+      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955766/dst_deco/gallery/wpc-panels/wpc-chipboard-5mm-walnut-linear-slat-02.webp",
+      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947901/dst_deco/wall-products/wpc-chipboard-5mm-charcoal-fluted-accent-03.jpg",
+      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947905/dst_deco/wall-products/wpc-chipboard-5mm-warm-ash-bedroom-headboard-05.jpg",
+      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947906/dst_deco/wall-products/wpc-chipboard-5mm-cream-beige-slat-panel-06.jpg",
+      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947908/dst_deco/wall-products/wpc-chipboard-5mm-vertical-louver-wall-07.jpg",
+      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947910/dst_deco/wall-products/wpc-chipboard-5mm-scandinavian-light-pine-09.jpg"
+    ]
+  },
+  {
+    "id": "cat-wall-panel",
+    "name": "Wall Panel",
+    "slug": "wall-panel",
+    "category": "wall-products",
+    "categoryGroup": "1. Wall Panels, Stone & Marble",
+    "categoryName": "Wall Surfaces",
+    "description": "Architectural fluted, slatted, and 3D textured interior wall panels designed for luxury villa feature walls, hotel lobbies, and living room media backdrops.",
+    "featureTitle": "WALL PANELS — FLUTED & SLATTED ARCHITECTURAL PROFILES",
+    "features": [
+      "Modern Fluted, Slat & Chevron Geometric Textures",
+      "Seamless Interlocking Tongue & Groove Jointing",
+      "Washable & Scratch Resistant Finish",
+      "Quick Dry-Wall Installation Without Wet Mess",
+      "Wide Palette of Contemporary Architectural Finishes"
+    ],
+    "isFeatured": true,
+    "inStock": true,
+    "specifications": {
+      "thickness": "12mm – 20mm Relief Depth",
+      "dimensions": "2900 x 160mm / 2900 x 200mm Panels",
+      "material": "Solid Polymer Composite / High-Grade Polystyrene",
+      "features": [
+        "Tongue & Groove Joint",
+        "Scratch Resistant",
+        "Waterproof",
+        "Washable"
+      ]
+    },
+    "images": [
+      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947935/dst_deco/wall-products/ps-wall-panel-modern-charcoal-louver-03.png",
+      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947936/dst_deco/wall-products/ps-wall-panel-warm-woodgrain-partition-04.png",
+      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947938/dst_deco/wall-products/ps-columns-architectural-room-divider-01.jpg",
+      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947939/dst_deco/wall-products/ps-wall-panel-cream-slat-feature-screen-05.png",
+      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947940/dst_deco/wall-products/ps-wall-panel-luxury-villa-lounge-partition-06.jpg",
+      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947941/dst_deco/wall-products/ps-wall-panel-commercial-hallway-cladding-07.jpg",
+      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947944/dst_deco/wall-products/project-completed-commercial-office-feature-wall-03.jpg",
+      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947945/dst_deco/wall-products/ps-wall-panel-hotel-reception-accent-wall-08.jpg"
+    ]
+  },
+  {
+    "id": "cat-pu-stone",
+    "name": "PU Stone",
+    "slug": "pu-stone",
+    "category": "wall-products",
+    "categoryGroup": "1. Wall Panels, Stone & Marble",
+    "categoryName": "Wall Surfaces",
+    "description": "Ultra-lightweight high-density polyurethane faux rock and volcanic stone relief panels featuring authentic 3D geological textures and effortless screw/glue mounting.",
+    "featureTitle": "PU STONE — 3D GEOLOGICAL RELIEF WITHOUT STRUCTURAL WEIGHT",
+    "features": [
+      "Featherlight Weight (~3.5 kg/panel) — No Wall Reinforcement",
+      "Deep 3D Molded Relief of Natural Mountain Cliff Rock",
+      "Class B1 Fire-Rated & Moisture Insulating",
+      "Fast Installation with Screw Fasteners & PU Adhesive",
+      "Realistic Tactile Surface in Charcoal, Sandstone & Granite"
+    ],
+    "isFeatured": true,
+    "inStock": true,
+    "specifications": {
+      "thickness": "30mm – 120mm Deep 3D Relief",
+      "dimensions": "1200 x 600mm / 2400 x 600mm Modular Slabs",
+      "material": "High-Density Structural Polyurethane Foam",
+      "features": [
+        "Ultra Lightweight",
+        "Deep 3D Stone Texture",
+        "Fire-Rated Class B1",
+        "Easy Screw Mounting"
+      ]
+    },
     "images": [
       "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947891/dst_deco/wall-products/big-pu-stone-mountain-cliff-facade-03.jpg",
       "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947893/dst_deco/wall-products/small-pu-stone-modern-fireplace-accent-04.jpg",
@@ -112,173 +235,152 @@
       "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947897/dst_deco/wall-products/small-pu-stone-limestone-brick-pattern-07.jpg",
       "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947899/dst_deco/wall-products/big-pu-stone-light-granite-architectural-wall-05.jpg",
       "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947900/dst_deco/wall-products/small-pu-stone-natural-beige-ledge-01.jpg"
-    ],
-    "inStock": true,
-    "slug": "pu-stone-rock-panels",
-    "cloudinaryImages": [
-      {
-        "public_id": "dst_deco/wall-products/big-pu-stone-mountain-cliff-facade-03",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947891/dst_deco/wall-products/big-pu-stone-mountain-cliff-facade-03.jpg",
-        "format": "jpg",
-        "width": 861,
-        "height": 1280
-      },
-      {
-        "public_id": "dst_deco/wall-products/small-pu-stone-modern-fireplace-accent-04",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947893/dst_deco/wall-products/small-pu-stone-modern-fireplace-accent-04.jpg",
-        "format": "jpg",
-        "width": 668,
-        "height": 1178
-      },
-      {
-        "public_id": "dst_deco/wall-products/small-pu-stone-rustic-grey-chiseled-05",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947894/dst_deco/wall-products/small-pu-stone-rustic-grey-chiseled-05.jpg",
-        "format": "jpg",
-        "width": 715,
-        "height": 1280
-      },
-      {
-        "public_id": "dst_deco/wall-products/small-pu-stone-warm-terracotta-ledge-06",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947895/dst_deco/wall-products/small-pu-stone-warm-terracotta-ledge-06.jpg",
-        "format": "jpg",
-        "width": 688,
-        "height": 1227
-      },
-      {
-        "public_id": "dst_deco/wall-products/big-pu-stone-dark-basalt-textured-wall-04",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947896/dst_deco/wall-products/big-pu-stone-dark-basalt-textured-wall-04.jpg",
-        "format": "jpg",
-        "width": 1280,
-        "height": 1323
-      },
-      {
-        "public_id": "dst_deco/wall-products/small-pu-stone-limestone-brick-pattern-07",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947897/dst_deco/wall-products/small-pu-stone-limestone-brick-pattern-07.jpg",
-        "format": "jpg",
-        "width": 672,
-        "height": 1199
-      },
-      {
-        "public_id": "dst_deco/wall-products/big-pu-stone-light-granite-architectural-wall-05",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947899/dst_deco/wall-products/big-pu-stone-light-granite-architectural-wall-05.jpg",
-        "format": "jpg",
-        "width": 736,
-        "height": 761
-      },
-      {
-        "public_id": "dst_deco/wall-products/small-pu-stone-natural-beige-ledge-01",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947900/dst_deco/wall-products/small-pu-stone-natural-beige-ledge-01.jpg",
-        "format": "jpg",
-        "width": 690,
-        "height": 1231
-      }
-    ],
-    "thumbnail": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947891/dst_deco/wall-products/big-pu-stone-mountain-cliff-facade-03.jpg"
+    ]
   },
   {
-    "id": "cat-03",
-    "name": "WPC Fluted Wall Panels",
-    "category": "wall-products",
-    "categoryGroup": "1. Wall Panels, Stone & Marble",
-    "categoryName": "Wall Panels",
-    "description": "5mm & 8mm heavy-duty wood-plastic composite fluted panels with tongue-and-groove interlocking for luxury TV walls and bedrooms.",
-    "featureTitle": "WPC FLUTED CLADDING — SEAMLESS INTERLOCKING LUXURY.",
+    "id": "cat-molding",
+    "name": "Molding",
+    "slug": "molding",
+    "category": "details",
+    "categoryGroup": "3. Architectural Profiles & Adhesives",
+    "categoryName": "Profiles & Details",
+    "description": "Precision-extruded high-density polystyrene ceiling cornices, crown moldings, wainscoting wall frame trims, and door surrounds for grand classical and neoclassical villa interiors.",
+    "featureTitle": "MOLDING — GRAND CLASSICAL CORNICES & WALL FRAMES",
     "features": [
-      "100% Waterproof Composite",
-      "Termite & Mold Proof",
-      "Realistic Wood Grain Finishes",
-      "Hidden Fastener System",
-      "Fast UAE Job-Site Delivery"
+      "High-Density Polystyrene (HDPS) — Will Never Rot or Crack",
+      "Smooth White Factory Primer — Ready for Any Paint Finish",
+      "Crisp Neoclassical, Victorian & Contemporary Profiles",
+      "Ultra-Lightweight for Fast Ceiling & Wall Application",
+      "100% Moisture Proof & Washable"
     ],
-    "isNew": false,
+    "isFeatured": false,
+    "inStock": true,
+    "specifications": {
+      "thickness": "Profiles from 40mm to 160mm Height",
+      "dimensions": "2400mm Standard Profile Lengths",
+      "material": "High-Density Extruded Polystyrene (HDPS)",
+      "features": [
+        "Paint-Ready Primer",
+        "Impact Resistant",
+        "Moisture Proof",
+        "Zero Cracking"
+      ]
+    },
     "images": [
-      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947901/dst_deco/wall-products/wpc-chipboard-5mm-charcoal-fluted-accent-03.jpg",
-      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947903/dst_deco/wall-products/wpc-chipboard-5mm-warm-ash-bedroom-headboard-05.jpg",
-      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947904/dst_deco/wall-products/wpc-chipboard-5mm-vertical-louver-wall-07.jpg",
-      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947905/dst_deco/wall-products/wpc-chipboard-8mm-heavy-duty-grey-cedar-03.png",
-      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947907/dst_deco/wall-products/wpc-chipboard-5mm-modern-tv-console-backdrop-08.jpg",
-      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947908/dst_deco/wall-products/wpc-chipboard-8mm-heavy-duty-royal-walnut-04.png",
-      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947910/dst_deco/wall-products/wpc-chipboard-5mm-scandinavian-light-pine-09.jpg",
-      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947912/dst_deco/wall-products/wpc-chipboard-5mm-japandi-minimalist-slat-10.jpg"
-    ],
-    "inStock": true,
-    "slug": "wpc-fluted-wall-panels",
-    "cloudinaryImages": [
-      {
-        "public_id": "dst_deco/wall-products/wpc-chipboard-5mm-charcoal-fluted-accent-03",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947901/dst_deco/wall-products/wpc-chipboard-5mm-charcoal-fluted-accent-03.jpg",
-        "format": "jpg",
-        "width": 1280,
-        "height": 1772
-      },
-      {
-        "public_id": "dst_deco/wall-products/wpc-chipboard-5mm-warm-ash-bedroom-headboard-05",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947903/dst_deco/wall-products/wpc-chipboard-5mm-warm-ash-bedroom-headboard-05.jpg",
-        "format": "jpg",
-        "width": 1280,
-        "height": 1980
-      },
-      {
-        "public_id": "dst_deco/wall-products/wpc-chipboard-5mm-vertical-louver-wall-07",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947904/dst_deco/wall-products/wpc-chipboard-5mm-vertical-louver-wall-07.jpg",
-        "format": "jpg",
-        "width": 1170,
-        "height": 1621
-      },
-      {
-        "public_id": "dst_deco/wall-products/wpc-chipboard-8mm-heavy-duty-grey-cedar-03",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947905/dst_deco/wall-products/wpc-chipboard-8mm-heavy-duty-grey-cedar-03.png",
-        "format": "png",
-        "width": 763,
-        "height": 1732
-      },
-      {
-        "public_id": "dst_deco/wall-products/wpc-chipboard-5mm-modern-tv-console-backdrop-08",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947907/dst_deco/wall-products/wpc-chipboard-5mm-modern-tv-console-backdrop-08.jpg",
-        "format": "jpg",
-        "width": 1280,
-        "height": 1772
-      },
-      {
-        "public_id": "dst_deco/wall-products/wpc-chipboard-8mm-heavy-duty-royal-walnut-04",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947908/dst_deco/wall-products/wpc-chipboard-8mm-heavy-duty-royal-walnut-04.png",
-        "format": "png",
-        "width": 746,
-        "height": 1695
-      },
-      {
-        "public_id": "dst_deco/wall-products/wpc-chipboard-5mm-scandinavian-light-pine-09",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947910/dst_deco/wall-products/wpc-chipboard-5mm-scandinavian-light-pine-09.jpg",
-        "format": "jpg",
-        "width": 1280,
-        "height": 1981
-      },
-      {
-        "public_id": "dst_deco/wall-products/wpc-chipboard-5mm-japandi-minimalist-slat-10",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947912/dst_deco/wall-products/wpc-chipboard-5mm-japandi-minimalist-slat-10.jpg",
-        "format": "jpg",
-        "width": 683,
-        "height": 946
-      }
-    ],
-    "thumbnail": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947901/dst_deco/wall-products/wpc-chipboard-5mm-charcoal-fluted-accent-03.jpg"
+      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947946/dst_deco/wall-products/ps-molding-ornate-victorian-ceiling-cornice-01.jpg",
+      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947948/dst_deco/wall-products/ps-molding-neoclassical-wall-panel-frames-02.jpg",
+      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947949/dst_deco/wall-products/ps-molding-grand-villa-foyer-cornice-03.jpg",
+      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947950/dst_deco/wall-products/ps-molding-luxury-bedroom-ceiling-coving-04.jpg",
+      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947951/dst_deco/wall-products/ps-molding-palace-style-door-surround-trim-05.jpg",
+      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947953/dst_deco/wall-products/project-completed-luxury-villa-wall-cladding-01.jpg",
+      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947954/dst_deco/wall-products/ps-molding-hotel-corridor-wainscot-rail-06.jpg"
+    ]
   },
   {
-    "id": "cat-04",
-    "name": "PVC Marble Sheets",
+    "id": "cat-columns-partition",
+    "name": "Columns & Partition",
+    "slug": "columns-partition",
     "category": "wall-products",
     "categoryGroup": "1. Wall Panels, Stone & Marble",
-    "categoryName": "Wall Panels",
-    "description": "Large-format UV high-gloss and matte marble sheets for luxury living room feature walls, reception desks, and bathrooms.",
-    "featureTitle": "PVC UV MARBLE — HIGH GLOSS ITALIAN AESTHETICS.",
+    "categoryName": "Wall Surfaces",
+    "description": "Architectural vertical louver screens, fluted entryway partitions, and room divider columns for elegant spatial separation in luxury residential and hospitality projects.",
+    "featureTitle": "COLUMNS & PARTITION — FREESTANDING ARCHITECTURAL ROOM DIVIDERS",
     "features": [
-      "Stain & Scratch Resistant UV Coat",
-      "100% Waterproof & Washable",
-      "Realistic Bookmatch Veining",
-      "Lightweight Fast Application",
-      "Commercial Grade Durability"
+      "Modular Freestanding Louver Columns & Divider Screens",
+      "Visual Privacy with Open Air & Natural Light Flow",
+      "Fluted & Ribbed Textures with Aluminum Core Reinforcement",
+      "Floor-to-Ceiling Height Adaptable (Up to 3 Meters)",
+      "Durable Scratch-Resistant Architectural Finishes"
     ],
-    "isNew": false,
+    "isFeatured": false,
+    "inStock": true,
+    "specifications": {
+      "thickness": "50 x 50mm / 50 x 100mm Modular Louver Profiles",
+      "dimensions": "2900mm Standard Ceiling Height",
+      "material": "Reinforced Polymer Composite & Aluminum Core",
+      "features": [
+        "Freestanding Divider",
+        "Light & Air Flow",
+        "High Impact Strength",
+        "Custom Ceiling Mounting"
+      ]
+    },
+    "images": [
+      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947938/dst_deco/wall-products/ps-columns-architectural-room-divider-01.jpg",
+      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955773/dst_deco/gallery/decorative-wall-panels/ps-columns-fluted-entryway-partition-02.webp",
+      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955773/dst_deco/gallery/decorative-wall-panels/ps-columns-modern-vertical-louver-screen-03.webp",
+      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955753/dst_deco/gallery/flexible-stone/flexible-stone-curved-column-interior-02.webp"
+    ]
+  },
+  {
+    "id": "cat-acoustic-panel",
+    "name": "Acoustic Panel",
+    "slug": "acoustic-panel",
+    "category": "wall-products",
+    "categoryGroup": "1. Wall Panels, Stone & Marble",
+    "categoryName": "Wall Surfaces",
+    "description": "High-performance sound-absorbing architectural wood slat acoustic panels with premium black recycled PET felt backing for home cinemas, studios, and executive conference rooms.",
+    "featureTitle": "ACOUSTIC PANELS — SCANDINAVIAN SLAT DESIGN & SOUND DAMPENING",
+    "features": [
+      "Certified Acoustic Sound Absorption (NRC 0.85)",
+      "Natural Wood Veneer Slats on Recycled Acoustic Felt",
+      "Eliminates Reverberation & Echo in Large Open Spaces",
+      "Modern Scandinavian Minimalist Aesthetic",
+      "Class A Flame-Retardant Testing Compliance"
+    ],
+    "isFeatured": true,
+    "inStock": true,
+    "specifications": {
+      "thickness": "21mm (12mm MDF Slat + 9mm Recycled PET Felt)",
+      "dimensions": "2400 x 600mm / 2800 x 600mm Large Panels",
+      "material": "Natural Oak/Walnut Veneer + High-Density PET Acoustic Felt",
+      "features": [
+        "NRC 0.85 Sound Dampening",
+        "Eco-Friendly Recycled Felt",
+        "Flame Retardant",
+        "Modular Mounting"
+      ]
+    },
+    "images": [
+      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947924/dst_deco/wall-products/acoustic-panel-studio-recording-room-wall-03.jpg",
+      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947926/dst_deco/wall-products/acoustic-panel-ps-warm-woodgrain-louver-02.jpg",
+      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947927/dst_deco/wall-products/acoustic-panel-small-home-theatre-baffle-02.jpg",
+      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947928/dst_deco/wall-products/acoustic-panel-office-conference-sound-absorber-04.jpg",
+      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947930/dst_deco/wall-products/acoustic-panel-auditorium-linear-wood-panel-05.jpg",
+      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947931/dst_deco/wall-products/acoustic-panel-slat-wood-natural-teak-01.jpg",
+      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947932/dst_deco/wall-products/acoustic-panel-residential-living-room-accent-06.jpg",
+      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947934/dst_deco/wall-products/acoustic-panel-restaurant-dining-sound-wall-07.jpg"
+    ]
+  },
+  {
+    "id": "cat-pvc-marble-sheet",
+    "name": "PVC Marble Sheet",
+    "slug": "pvc-marble-sheet",
+    "category": "wall-products",
+    "categoryGroup": "1. Wall Panels, Stone & Marble",
+    "categoryName": "Wall Surfaces",
+    "description": "High-gloss monolithic UV-coated marble effect sheets for continuous bookmatched TV feature walls, bathroom wet walls, and luxury reception backdrops.",
+    "featureTitle": "PVC MARBLE — HIGH-GLOSS MONOLITHIC BOOKMATCHED SLABS",
+    "features": [
+      "High-Gloss Mirror Reflection with UV Cured Protective Shield",
+      "100% Waterproof & Mold Proof — Perfect for Wet Areas & Showers",
+      "Bookmatched Continuous Marble Veins (Calacatta, Marquina, Onyx)",
+      "Lightweight & Easy Direct Glue Application on Drywall or Tiles",
+      "Scratch & Chemical Resistant Finish"
+    ],
+    "isFeatured": true,
+    "inStock": true,
+    "specifications": {
+      "thickness": "3.0mm Calibrated Sheet",
+      "dimensions": "2440 x 1220mm / 2800 x 1220mm Monolithic Slabs",
+      "material": "Stone Powder + Virgin PVC Polymer + Triple UV Glaze",
+      "features": [
+        "100% Waterproof",
+        "Mirror Gloss UV Finish",
+        "Bookmatched Slabs",
+        "Scratch Resistant"
+      ]
+    },
     "images": [
       "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947913/dst_deco/wall-products/pvc-marble-glossy-nero-marquina-black-gold-03.jpg",
       "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947914/dst_deco/wall-products/pvc-marble-glossy-emerald-jade-onyx-04.jpg",
@@ -289,604 +391,145 @@
       "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947920/dst_deco/wall-products/pvc-marble-penthouse-dining-feature-wall-05.jpg",
       "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947922/dst_deco/wall-products/pvc-marble-executive-boardroom-backdrop-06.jpg",
       "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947923/dst_deco/wall-products/pvc-marble-hospitality-suite-accent-wall-07.jpg"
-    ],
-    "inStock": true,
-    "slug": "pvc-marble-sheets",
-    "cloudinaryImages": [
-      {
-        "public_id": "dst_deco/wall-products/pvc-marble-glossy-nero-marquina-black-gold-03",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947913/dst_deco/wall-products/pvc-marble-glossy-nero-marquina-black-gold-03.jpg",
-        "format": "jpg",
-        "width": 1280,
-        "height": 1773
-      },
-      {
-        "public_id": "dst_deco/wall-products/pvc-marble-glossy-emerald-jade-onyx-04",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947914/dst_deco/wall-products/pvc-marble-glossy-emerald-jade-onyx-04.jpg",
-        "format": "jpg",
-        "width": 924,
-        "height": 1280
-      },
-      {
-        "public_id": "dst_deco/wall-products/pvc-marble-glossy-calacatta-gold-slab-01",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947916/dst_deco/wall-products/pvc-marble-glossy-calacatta-gold-slab-01.jpg",
-        "format": "jpg",
-        "width": 1280,
-        "height": 492
-      },
-      {
-        "public_id": "dst_deco/wall-products/pvc-marble-matte-silk-travertine-finish-01",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947917/dst_deco/wall-products/pvc-marble-matte-silk-travertine-finish-01.jpg",
-        "format": "jpg",
-        "width": 1280,
-        "height": 477
-      },
-      {
-        "public_id": "dst_deco/wall-products/pvc-marble-glossy-statuario-white-feature-wall-02",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947918/dst_deco/wall-products/pvc-marble-glossy-statuario-white-feature-wall-02.jpg",
-        "format": "jpg",
-        "width": 822,
-        "height": 847
-      },
-      {
-        "public_id": "dst_deco/wall-products/pvc-marble-matte-grey-pietra-slab-02",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947919/dst_deco/wall-products/pvc-marble-matte-grey-pietra-slab-02.png",
-        "format": "png",
-        "width": 1280,
-        "height": 206
-      },
-      {
-        "public_id": "dst_deco/wall-products/pvc-marble-penthouse-dining-feature-wall-05",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947920/dst_deco/wall-products/pvc-marble-penthouse-dining-feature-wall-05.jpg",
-        "format": "jpg",
-        "width": 1280,
-        "height": 1487
-      },
-      {
-        "public_id": "dst_deco/wall-products/pvc-marble-executive-boardroom-backdrop-06",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947922/dst_deco/wall-products/pvc-marble-executive-boardroom-backdrop-06.jpg",
-        "format": "jpg",
-        "width": 1280,
-        "height": 1714
-      },
-      {
-        "public_id": "dst_deco/wall-products/pvc-marble-hospitality-suite-accent-wall-07",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947923/dst_deco/wall-products/pvc-marble-hospitality-suite-accent-wall-07.jpg",
-        "format": "jpg",
-        "width": 900,
-        "height": 1600
-      }
-    ],
-    "thumbnail": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947913/dst_deco/wall-products/pvc-marble-glossy-nero-marquina-black-gold-03.jpg"
+    ]
   },
   {
-    "id": "cat-05",
-    "name": "Acoustic Slat Wood Panels",
+    "id": "cat-3d-velvet-fabric-roll",
+    "name": "3D VELVET FABRIC Roll",
+    "slug": "3d-velvet-fabric-roll",
     "category": "wall-products",
     "categoryGroup": "1. Wall Panels, Stone & Marble",
-    "categoryName": "Wall Panels",
-    "description": "Luxury natural wood veneer acoustic slat panels mounted on recycled acoustic felt for sound dampening and high-end aesthetics.",
-    "featureTitle": "ACOUSTIC SLAT WOOD — ACOUSTIC EXCELLENCE & WARMTH.",
+    "categoryName": "Wall Surfaces",
+    "description": "Luxurious 3D embossed acoustic velvet fabric rolls featuring geometric relief patterns for lavish master bedroom headboard walls, private home theaters, and VIP lounges.",
+    "featureTitle": "3D VELVET FABRIC ROLL — TACTILE OPULENCE & ACOUSTIC LUXURY",
     "features": [
-      "NRC Sound Absorption Rating",
-      "Real Oak & Walnut Veneers",
-      "Eco-Friendly Recycled PET Felt",
-      "Reduces Room Reverberation",
-      "Horizontal & Vertical Mounting"
+      "Ultra-Soft Tactile Velvet Surface with Deep 3D Embossing",
+      "Built-in High-Density Acoustic Foam Cushion Backing",
+      "Supplied in Continuous Rolls for Seamless Room Wall Cladding",
+      "Stain-Resistant & Easy Clean Hydrophobic Velvet Fibers",
+      "Rich Jewel Tones: Emerald Green, Royal Navy, Champagne & Onyx"
     ],
-    "isNew": true,
-    "images": [
-      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947924/dst_deco/wall-products/acoustic-panel-studio-recording-room-wall-03.jpg",
-      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947926/dst_deco/wall-products/acoustic-panel-ps-warm-woodgrain-louver-02.jpg",
-      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947927/dst_deco/wall-products/acoustic-panel-small-home-theatre-baffle-02.jpg",
-      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947928/dst_deco/wall-products/acoustic-panel-office-conference-sound-absorber-04.jpg",
-      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947930/dst_deco/wall-products/acoustic-panel-auditorium-linear-wood-panel-05.jpg",
-      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947931/dst_deco/wall-products/acoustic-panel-slat-wood-natural-teak-01.jpg",
-      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947932/dst_deco/wall-products/acoustic-panel-residential-living-room-accent-06.jpg",
-      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947934/dst_deco/wall-products/acoustic-panel-restaurant-dining-sound-wall-07.jpg"
-    ],
+    "isFeatured": false,
     "inStock": true,
-    "slug": "acoustic-slat-wood-panels",
-    "cloudinaryImages": [
-      {
-        "public_id": "dst_deco/wall-products/acoustic-panel-studio-recording-room-wall-03",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947924/dst_deco/wall-products/acoustic-panel-studio-recording-room-wall-03.jpg",
-        "format": "jpg",
-        "width": 1280,
-        "height": 1280
-      },
-      {
-        "public_id": "dst_deco/wall-products/acoustic-panel-ps-warm-woodgrain-louver-02",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947926/dst_deco/wall-products/acoustic-panel-ps-warm-woodgrain-louver-02.jpg",
-        "format": "jpg",
-        "width": 1280,
-        "height": 1707
-      },
-      {
-        "public_id": "dst_deco/wall-products/acoustic-panel-small-home-theatre-baffle-02",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947927/dst_deco/wall-products/acoustic-panel-small-home-theatre-baffle-02.jpg",
-        "format": "jpg",
-        "width": 1253,
-        "height": 1600
-      },
-      {
-        "public_id": "dst_deco/wall-products/acoustic-panel-office-conference-sound-absorber-04",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947928/dst_deco/wall-products/acoustic-panel-office-conference-sound-absorber-04.jpg",
-        "format": "jpg",
-        "width": 933,
-        "height": 1280
-      },
-      {
-        "public_id": "dst_deco/wall-products/acoustic-panel-auditorium-linear-wood-panel-05",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947930/dst_deco/wall-products/acoustic-panel-auditorium-linear-wood-panel-05.jpg",
-        "format": "jpg",
-        "width": 933,
-        "height": 1280
-      },
-      {
-        "public_id": "dst_deco/wall-products/acoustic-panel-slat-wood-natural-teak-01",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947931/dst_deco/wall-products/acoustic-panel-slat-wood-natural-teak-01.jpg",
-        "format": "jpg",
-        "width": 1280,
-        "height": 1280
-      },
-      {
-        "public_id": "dst_deco/wall-products/acoustic-panel-residential-living-room-accent-06",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947932/dst_deco/wall-products/acoustic-panel-residential-living-room-accent-06.jpg",
-        "format": "jpg",
-        "width": 1280,
-        "height": 1280
-      },
-      {
-        "public_id": "dst_deco/wall-products/acoustic-panel-restaurant-dining-sound-wall-07",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947934/dst_deco/wall-products/acoustic-panel-restaurant-dining-sound-wall-07.jpg",
-        "format": "jpg",
-        "width": 877,
-        "height": 1203
-      }
-    ],
-    "thumbnail": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947924/dst_deco/wall-products/acoustic-panel-studio-recording-room-wall-03.jpg"
+    "specifications": {
+      "thickness": "8mm – 12mm Padded 3D Relief",
+      "dimensions": "1.4 Meter Width x Custom Continuous Roll Length",
+      "material": "Premium Polyester Velvet + Acoustic High-Density Cushion Core",
+      "features": [
+        "Tactile Padded Relief",
+        "Acoustic Sound Absorption",
+        "Stain Resistant",
+        "Seamless Roll Application"
+      ]
+    },
+    "images": [
+      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955785/dst_deco/gallery/acoustic-panels/acoustic-panel-3d-velvet-fabric-emerald-green-01.webp",
+      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955786/dst_deco/gallery/acoustic-panels/acoustic-panel-3d-velvet-fabric-royal-navy-02.webp"
+    ]
   },
   {
-    "id": "cat-06",
-    "name": "PS Wall Louvers & Partitions",
+    "id": "cat-3d-soft-stone-roll",
+    "name": "3D SOFT STONE ROLL",
+    "slug": "3d-soft-stone-roll",
     "category": "wall-products",
     "categoryGroup": "1. Wall Panels, Stone & Marble",
-    "categoryName": "Wall Panels",
-    "description": "Polystyrene architectural fluted slats, vertical space partition columns, and decorative screen room dividers.",
-    "featureTitle": "PS PARTITIONS & LOUVERS — ARCHITECTURAL SPACE DEFINITION.",
+    "categoryName": "Wall Surfaces",
+    "description": "Continuous rollable 3D soft stone veneer textured sheets for seamless wrapping around curved pillars, fluid organic walls, and large architectural feature facades without visible joints.",
+    "featureTitle": "3D SOFT STONE ROLL — CONTINUOUS JOINTLESS FLEXIBLE ROCK",
     "features": [
-      "Moisture & Water Resistant PS",
-      "Lightweight Sturdy Partitions",
-      "Modern Fluted Slat Geometry",
-      "Rich Contemporary Wood Colors",
-      "Ideal for Villas & Hotel Suites"
+      "Continuous Roll Format — Covers Long Walls with Zero Vertical Seams",
+      "Ultra-Flexible — Easily Bends Around Tight Radii, Cylinders & Arches",
+      "Authentic Deep Granite, Slate & Volcanic Texture Impressions",
+      "Interior & Exterior UV Weatherproof Performance",
+      "Applied Easily with Standard Polymer Construction Adhesive"
     ],
-    "isNew": false,
-    "images": [
-      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947935/dst_deco/wall-products/ps-wall-panel-modern-charcoal-louver-03.png",
-      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947936/dst_deco/wall-products/ps-wall-panel-warm-woodgrain-partition-04.png",
-      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947938/dst_deco/wall-products/ps-columns-architectural-room-divider-01.jpg",
-      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947939/dst_deco/wall-products/ps-wall-panel-cream-slat-feature-screen-05.png",
-      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947940/dst_deco/wall-products/ps-wall-panel-luxury-villa-lounge-partition-06.jpg",
-      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947941/dst_deco/wall-products/ps-wall-panel-commercial-hallway-cladding-07.jpg",
-      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947944/dst_deco/wall-products/project-completed-commercial-office-feature-wall-03.jpg",
-      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947945/dst_deco/wall-products/ps-wall-panel-hotel-reception-accent-wall-08.jpg"
-    ],
+    "isFeatured": false,
     "inStock": true,
-    "slug": "ps-wall-louvers-partitions",
-    "cloudinaryImages": [
-      {
-        "public_id": "dst_deco/wall-products/ps-wall-panel-modern-charcoal-louver-03",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947935/dst_deco/wall-products/ps-wall-panel-modern-charcoal-louver-03.png",
-        "format": "png",
-        "width": 659,
-        "height": 1086
-      },
-      {
-        "public_id": "dst_deco/wall-products/ps-wall-panel-warm-woodgrain-partition-04",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947936/dst_deco/wall-products/ps-wall-panel-warm-woodgrain-partition-04.png",
-        "format": "png",
-        "width": 718,
-        "height": 1147
-      },
-      {
-        "public_id": "dst_deco/wall-products/ps-columns-architectural-room-divider-01",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947938/dst_deco/wall-products/ps-columns-architectural-room-divider-01.jpg",
-        "format": "jpg",
-        "width": 1280,
-        "height": 486
-      },
-      {
-        "public_id": "dst_deco/wall-products/ps-wall-panel-cream-slat-feature-screen-05",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947939/dst_deco/wall-products/ps-wall-panel-cream-slat-feature-screen-05.png",
-        "format": "png",
-        "width": 428,
-        "height": 555
-      },
-      {
-        "public_id": "dst_deco/wall-products/ps-wall-panel-luxury-villa-lounge-partition-06",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947940/dst_deco/wall-products/ps-wall-panel-luxury-villa-lounge-partition-06.jpg",
-        "format": "jpg",
-        "width": 1280,
-        "height": 1487
-      },
-      {
-        "public_id": "dst_deco/wall-products/ps-wall-panel-commercial-hallway-cladding-07",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947941/dst_deco/wall-products/ps-wall-panel-commercial-hallway-cladding-07.jpg",
-        "format": "jpg",
-        "width": 1280,
-        "height": 1488
-      },
-      {
-        "public_id": "dst_deco/wall-products/project-completed-commercial-office-feature-wall-03",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947944/dst_deco/wall-products/project-completed-commercial-office-feature-wall-03.jpg",
-        "format": "jpg",
-        "width": 1066,
-        "height": 1600
-      },
-      {
-        "public_id": "dst_deco/wall-products/ps-wall-panel-hotel-reception-accent-wall-08",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947945/dst_deco/wall-products/ps-wall-panel-hotel-reception-accent-wall-08.jpg",
-        "format": "jpg",
-        "width": 1280,
-        "height": 1922
-      }
-    ],
-    "thumbnail": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947935/dst_deco/wall-products/ps-wall-panel-modern-charcoal-louver-03.png"
+    "specifications": {
+      "thickness": "2.5mm – 4.0mm Lightweight Flexible Caliber",
+      "dimensions": "1.2 Meter Width x 10 Meter Continuous Roll",
+      "material": "Modified Mineral Polymer + Natural Stone Pigments",
+      "features": [
+        "Jointless Roll Application",
+        "Extreme Flexibility",
+        "UV Weatherproof",
+        "Tactile Deep Relief"
+      ]
+    },
+    "images": [
+      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955763/dst_deco/gallery/pu-stone/pu-stone-3d-soft-stone-roll-textured-01.webp",
+      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955764/dst_deco/gallery/pu-stone/pu-stone-3d-soft-stone-roll-beige-slate-02.webp",
+      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955764/dst_deco/gallery/pu-stone/pu-stone-3d-soft-stone-roll-grey-granite-03.webp"
+    ]
   },
   {
-    "id": "cat-07",
-    "name": "PS Moldings & Cornices",
+    "id": "cat-flexible-3d-sheet",
+    "name": "Flexible 3D SHEET",
+    "slug": "flexible-3d-sheet",
     "category": "wall-products",
     "categoryGroup": "1. Wall Panels, Stone & Marble",
-    "categoryName": "Wall Panels",
-    "description": "High-density polystyrene decorative ceiling cornices, wall panel moldings, base trims, and bespoke classical framing.",
-    "featureTitle": "PS DECORATIVE MOLDINGS — CRISP ARCHITECTURAL FRAMING.",
+    "categoryName": "Wall Surfaces",
+    "description": "Flexible textured architectural relief sheets featuring wave carvings, geometric diamond facets, and slotted sculptural grooves for bespoke interior joinery and accent walls.",
+    "featureTitle": "FLEXIBLE 3D SHEET — SCULPTURAL GEOMETRIC TEXTURES",
     "features": [
-      "Pre-Primed Paintable Surface",
-      "Cracks & Shrinkage Free",
-      "100% Waterproof & Washable",
-      "Clean Miter Cut Angles",
-      "Replaces Heavy Fragile Plaster"
+      "Geometric Diamond, Wave, Slotted & Grid Architectural Patterns",
+      "Flexible Core Allows Application on Curved Walls & Counters",
+      "Paint-Ready or Factory Finished in Natural Wood & Matte Colors",
+      "Durable Impact-Resistant Surface for High-Touch Environments",
+      "Standard Large Format Architectural Sheets for Minimal Joints"
     ],
-    "isNew": false,
-    "images": [
-      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947946/dst_deco/wall-products/ps-molding-ornate-victorian-ceiling-cornice-01.jpg",
-      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947948/dst_deco/wall-products/ps-molding-neoclassical-wall-panel-frames-02.jpg",
-      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947949/dst_deco/wall-products/ps-molding-grand-villa-foyer-cornice-03.jpg",
-      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947950/dst_deco/wall-products/ps-molding-luxury-bedroom-ceiling-coving-04.jpg",
-      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947951/dst_deco/wall-products/ps-molding-palace-style-door-surround-trim-05.jpg",
-      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947953/dst_deco/wall-products/project-completed-luxury-villa-wall-cladding-01.jpg",
-      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947954/dst_deco/wall-products/ps-molding-hotel-corridor-wainscot-rail-06.jpg"
-    ],
+    "isFeatured": false,
     "inStock": true,
-    "slug": "ps-moldings-cornices",
-    "cloudinaryImages": [
-      {
-        "public_id": "dst_deco/wall-products/ps-molding-ornate-victorian-ceiling-cornice-01",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947946/dst_deco/wall-products/ps-molding-ornate-victorian-ceiling-cornice-01.jpg",
-        "format": "jpg",
-        "width": 1280,
-        "height": 478
-      },
-      {
-        "public_id": "dst_deco/wall-products/ps-molding-neoclassical-wall-panel-frames-02",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947948/dst_deco/wall-products/ps-molding-neoclassical-wall-panel-frames-02.jpg",
-        "format": "jpg",
-        "width": 1200,
-        "height": 1313
-      },
-      {
-        "public_id": "dst_deco/wall-products/ps-molding-grand-villa-foyer-cornice-03",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947949/dst_deco/wall-products/ps-molding-grand-villa-foyer-cornice-03.jpg",
-        "format": "jpg",
-        "width": 1278,
-        "height": 720
-      },
-      {
-        "public_id": "dst_deco/wall-products/ps-molding-luxury-bedroom-ceiling-coving-04",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947950/dst_deco/wall-products/ps-molding-luxury-bedroom-ceiling-coving-04.jpg",
-        "format": "jpg",
-        "width": 1180,
-        "height": 1125
-      },
-      {
-        "public_id": "dst_deco/wall-products/ps-molding-palace-style-door-surround-trim-05",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947951/dst_deco/wall-products/ps-molding-palace-style-door-surround-trim-05.jpg",
-        "format": "jpg",
-        "width": 1280,
-        "height": 1220
-      },
-      {
-        "public_id": "dst_deco/wall-products/project-completed-luxury-villa-wall-cladding-01",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947953/dst_deco/wall-products/project-completed-luxury-villa-wall-cladding-01.jpg",
-        "format": "jpg",
-        "width": 1280,
-        "height": 772
-      },
-      {
-        "public_id": "dst_deco/wall-products/ps-molding-hotel-corridor-wainscot-rail-06",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947954/dst_deco/wall-products/ps-molding-hotel-corridor-wainscot-rail-06.jpg",
-        "format": "jpg",
-        "width": 736,
-        "height": 816
-      }
-    ],
-    "thumbnail": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947946/dst_deco/wall-products/ps-molding-ornate-victorian-ceiling-cornice-01.jpg"
+    "specifications": {
+      "thickness": "3.0mm – 6.0mm Sculptural Relief",
+      "dimensions": "2440 x 1220mm Full Size Architectural Sheets",
+      "material": "Flexible Engineered Polymer Composite Veneer",
+      "features": [
+        "Geometric 3D Relief",
+        "Bendable for Curved Counters",
+        "Impact Resistant",
+        "Paintable or Pre-Finished"
+      ]
+    },
+    "images": [
+      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955821/dst_deco/gallery/woodworking/woodworking-3d-sheet-geometric-wave-pattern-02.webp",
+      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955822/dst_deco/gallery/woodworking/woodworking-3d-sheet-fluted-timber-panel-03.webp",
+      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955822/dst_deco/gallery/woodworking/woodworking-3d-sheet-diamond-carved-texture-04.webp",
+      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955823/dst_deco/gallery/woodworking/woodworking-3d-sheet-slotted-sculptural-panel-05.webp",
+      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955823/dst_deco/gallery/woodworking/woodworking-3d-sheet-acoustic-grooved-veneer-06.webp",
+      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955824/dst_deco/gallery/woodworking/woodworking-3d-sheet-hexagonal-relief-carving-07.webp",
+      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793955825/dst_deco/gallery/woodworking/woodworking-3d-sheet-contemporary-grid-texture-08.webp"
+    ]
   },
   {
-    "id": "cat-08",
-    "name": "SPC Luxury Rigid Flooring",
-    "category": "flooring-products",
-    "categoryGroup": "2. Flooring Products & Skirting",
-    "categoryName": "Flooring",
-    "description": "Heavy commercial stone-plastic composite rigid core flooring with Uniclic locking in straight plank and French herringbone patterns.",
-    "featureTitle": "SPC FLOORING — 100% WATERPROOF RIGID CORE.",
+    "id": "cat-aluminium-profiles",
+    "name": "Aluminium profiles",
+    "slug": "aluminium-profiles",
+    "category": "details",
+    "categoryGroup": "3. Architectural Profiles & Adhesives",
+    "categoryName": "Profiles & Details",
+    "description": "Architectural-grade extruded aluminum LED channel profiles, edge capping, flooring transition trims, and stair bullnosings in anodized champagne, gold, matte black, and brushed titanium.",
+    "featureTitle": "ALUMINIUM PROFILES — ARCHITECTURAL LED TRIMS & TRANSITIONS",
     "features": [
-      "100% Waterproof Stone Core",
-      "Straight Plank & French Herringbone",
-      "Integrated Acoustic Underlayment",
-      "Commercial Anti-Scratch Wear Layer",
-      "Zero Formaldehyde Certified"
+      "6063-T5 Architectural Anodized Aluminum Alloy",
+      "Recessed & Surface LED Light Channel Profiles with Diffusers",
+      "Flush Transitions Between Tile, Stone, SPC Flooring & Wood",
+      "Anti-Slip Heavy-Duty Commercial Stair Nosings",
+      "Anodized Matte Black, Champagne, Brushed Gold & Silver"
     ],
-    "isNew": false,
-    "images": [
-      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947955/dst_deco/flooring-products/spc-straight-flooring-waterproof-rigid-core-plank-10.jpg",
-      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947956/dst_deco/flooring-products/spc-straight-flooring-warm-honey-oak-plank-02.jpg",
-      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947958/dst_deco/flooring-products/spc-herringbone-flooring-luxury-villa-salon-parquetry-09.jpg",
-      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947959/dst_deco/flooring-products/spc-herringbone-flooring-interlocking-left-right-planks-10.jpg",
-      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947960/dst_deco/flooring-products/spc-herringbone-flooring-boutique-penthouse-foyer-11.jpg",
-      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947962/dst_deco/flooring-products/spc-herringbone-flooring-executive-suite-flooring-12.jpg",
-      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947963/dst_deco/flooring-products/spc-herringbone-flooring-contemporary-loft-parquetry-13.jpg",
-      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947964/dst_deco/flooring-products/spc-straight-flooring-commercial-showroom-floor-11.jpg"
-    ],
+    "isFeatured": false,
     "inStock": true,
-    "slug": "spc-luxury-flooring",
-    "cloudinaryImages": [
-      {
-        "public_id": "dst_deco/flooring-products/spc-straight-flooring-waterproof-rigid-core-plank-10",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947955/dst_deco/flooring-products/spc-straight-flooring-waterproof-rigid-core-plank-10.jpg",
-        "format": "jpg",
-        "width": 1280,
-        "height": 1754
-      },
-      {
-        "public_id": "dst_deco/flooring-products/spc-straight-flooring-warm-honey-oak-plank-02",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947956/dst_deco/flooring-products/spc-straight-flooring-warm-honey-oak-plank-02.jpg",
-        "format": "jpg",
-        "width": 1280,
-        "height": 1754
-      },
-      {
-        "public_id": "dst_deco/flooring-products/spc-herringbone-flooring-luxury-villa-salon-parquetry-09",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947958/dst_deco/flooring-products/spc-herringbone-flooring-luxury-villa-salon-parquetry-09.jpg",
-        "format": "jpg",
-        "width": 1280,
-        "height": 1755
-      },
-      {
-        "public_id": "dst_deco/flooring-products/spc-herringbone-flooring-interlocking-left-right-planks-10",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947959/dst_deco/flooring-products/spc-herringbone-flooring-interlocking-left-right-planks-10.jpg",
-        "format": "jpg",
-        "width": 1280,
-        "height": 1332
-      },
-      {
-        "public_id": "dst_deco/flooring-products/spc-herringbone-flooring-boutique-penthouse-foyer-11",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947960/dst_deco/flooring-products/spc-herringbone-flooring-boutique-penthouse-foyer-11.jpg",
-        "format": "jpg",
-        "width": 1280,
-        "height": 1738
-      },
-      {
-        "public_id": "dst_deco/flooring-products/spc-herringbone-flooring-executive-suite-flooring-12",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947962/dst_deco/flooring-products/spc-herringbone-flooring-executive-suite-flooring-12.jpg",
-        "format": "jpg",
-        "width": 1176,
-        "height": 1600
-      },
-      {
-        "public_id": "dst_deco/flooring-products/spc-herringbone-flooring-contemporary-loft-parquetry-13",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947963/dst_deco/flooring-products/spc-herringbone-flooring-contemporary-loft-parquetry-13.jpg",
-        "format": "jpg",
-        "width": 1178,
-        "height": 1600
-      },
-      {
-        "public_id": "dst_deco/flooring-products/spc-straight-flooring-commercial-showroom-floor-11",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947964/dst_deco/flooring-products/spc-straight-flooring-commercial-showroom-floor-11.jpg",
-        "format": "jpg",
-        "width": 1200,
-        "height": 1600
-      }
-    ],
-    "thumbnail": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947955/dst_deco/flooring-products/spc-straight-flooring-waterproof-rigid-core-plank-10.jpg"
-  },
-  {
-    "id": "cat-09",
-    "name": "LVT Luxury Vinyl Flooring",
-    "category": "flooring-products",
-    "categoryGroup": "2. Flooring Products & Skirting",
-    "categoryName": "Flooring",
-    "description": "Staro luxury vinyl tiles engineered for silent underfoot cushioning, heavy footfall commercial durability, and refined textures.",
-    "featureTitle": "LVT STARO — CUSHIONED ACOUSTIC LUXURY FLOORING.",
-    "features": [
-      "Glue-Down Dimension Stability",
-      "Silent & Warm Underfoot Touch",
-      "Commercial Wear Layer 0.55mm",
-      "High Slip & Stain Rating",
-      "Perfect for High-Traffic Interiors"
-    ],
-    "isNew": false,
-    "images": [
-      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947966/dst_deco/flooring-products/lvt-flooring-staro-luxury-vinyl-tile-warm-stone-01.png",
-      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947967/dst_deco/flooring-products/lvt-flooring-staro-luxury-vinyl-tile-slate-grey-02.png",
-      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947968/dst_deco/flooring-products/lvt-flooring-staro-luxury-vinyl-tile-travertine-beige-03.jpg",
-      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947970/dst_deco/flooring-products/lvt-flooring-staro-luxury-vinyl-tile-urban-concrete-04.png",
-      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947972/dst_deco/flooring-products/lvt-flooring-open-concept-villa-flooring-05.jpg",
-      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947973/dst_deco/flooring-products/lvt-flooring-contemporary-duplex-living-room-06.jpg",
-      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947975/dst_deco/flooring-products/lvt-flooring-commercial-office-interior-floor-07.jpg"
-    ],
-    "inStock": true,
-    "slug": "lvt-luxury-flooring",
-    "cloudinaryImages": [
-      {
-        "public_id": "dst_deco/flooring-products/lvt-flooring-staro-luxury-vinyl-tile-warm-stone-01",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947966/dst_deco/flooring-products/lvt-flooring-staro-luxury-vinyl-tile-warm-stone-01.png",
-        "format": "png",
-        "width": 1040,
-        "height": 525
-      },
-      {
-        "public_id": "dst_deco/flooring-products/lvt-flooring-staro-luxury-vinyl-tile-slate-grey-02",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947967/dst_deco/flooring-products/lvt-flooring-staro-luxury-vinyl-tile-slate-grey-02.png",
-        "format": "png",
-        "width": 1040,
-        "height": 525
-      },
-      {
-        "public_id": "dst_deco/flooring-products/lvt-flooring-staro-luxury-vinyl-tile-travertine-beige-03",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947968/dst_deco/flooring-products/lvt-flooring-staro-luxury-vinyl-tile-travertine-beige-03.jpg",
-        "format": "jpg",
-        "width": 1280,
-        "height": 1755
-      },
-      {
-        "public_id": "dst_deco/flooring-products/lvt-flooring-staro-luxury-vinyl-tile-urban-concrete-04",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947970/dst_deco/flooring-products/lvt-flooring-staro-luxury-vinyl-tile-urban-concrete-04.png",
-        "format": "png",
-        "width": 1040,
-        "height": 525
-      },
-      {
-        "public_id": "dst_deco/flooring-products/lvt-flooring-open-concept-villa-flooring-05",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947972/dst_deco/flooring-products/lvt-flooring-open-concept-villa-flooring-05.jpg",
-        "format": "jpg",
-        "width": 1280,
-        "height": 2007
-      },
-      {
-        "public_id": "dst_deco/flooring-products/lvt-flooring-contemporary-duplex-living-room-06",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947973/dst_deco/flooring-products/lvt-flooring-contemporary-duplex-living-room-06.jpg",
-        "format": "jpg",
-        "width": 1280,
-        "height": 2006
-      },
-      {
-        "public_id": "dst_deco/flooring-products/lvt-flooring-commercial-office-interior-floor-07",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947975/dst_deco/flooring-products/lvt-flooring-commercial-office-interior-floor-07.jpg",
-        "format": "jpg",
-        "width": 1280,
-        "height": 1704
-      }
-    ],
-    "thumbnail": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947966/dst_deco/flooring-products/lvt-flooring-staro-luxury-vinyl-tile-warm-stone-01.png"
-  },
-  {
-    "id": "cat-10",
-    "name": "PS Waterproof Skirting",
-    "category": "flooring-products",
-    "categoryGroup": "2. Flooring Products & Skirting",
-    "categoryName": "Flooring",
-    "description": "Polystyrene perimeter baseboard skirting profiles available in 80mm to 120mm heights with concealed wiring raceways.",
-    "featureTitle": "PS SKIRTING — PERIMETER PROTECTION & CABLE CONCEALMENT.",
-    "features": [
-      "100% Waterproof & Termite Proof",
-      "Integrated Cable Channel Conduit",
-      "Matches All Wood & Stone Tones",
-      "Never Rots, Warps or Swells",
-      "Impact Resistant Tough Surface"
-    ],
-    "isNew": false,
-    "images": [
-      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947976/dst_deco/flooring-products/ps-skirting-board-curved-baseboard-trim-05.jpg",
-      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947978/dst_deco/flooring-products/ps-skirting-board-luxury-hallway-installation-06.png",
-      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947979/dst_deco/flooring-products/ps-skirting-board-modern-bedroom-baseboard-07.jpg",
-      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947980/dst_deco/flooring-products/ps-skirting-board-architectural-wall-joint-08.jpg",
-      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947981/dst_deco/flooring-products/ps-skirting-board-flush-mount-shadowline-trim-09.jpg",
-      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947983/dst_deco/flooring-products/ps-skirting-board-villa-staircase-edging-10.jpg",
-      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947984/dst_deco/flooring-products/ps-skirting-board-penthouse-perimeter-detail-11.jpg",
-      "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947985/dst_deco/flooring-products/ps-skirting-board-hospitality-suite-baseboard-12.jpg"
-    ],
-    "inStock": true,
-    "slug": "ps-waterproof-skirting",
-    "cloudinaryImages": [
-      {
-        "public_id": "dst_deco/flooring-products/ps-skirting-board-curved-baseboard-trim-05",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947976/dst_deco/flooring-products/ps-skirting-board-curved-baseboard-trim-05.jpg",
-        "format": "jpg",
-        "width": 1280,
-        "height": 1082
-      },
-      {
-        "public_id": "dst_deco/flooring-products/ps-skirting-board-luxury-hallway-installation-06",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947978/dst_deco/flooring-products/ps-skirting-board-luxury-hallway-installation-06.png",
-        "format": "png",
-        "width": 864,
-        "height": 389
-      },
-      {
-        "public_id": "dst_deco/flooring-products/ps-skirting-board-modern-bedroom-baseboard-07",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947979/dst_deco/flooring-products/ps-skirting-board-modern-bedroom-baseboard-07.jpg",
-        "format": "jpg",
-        "width": 1153,
-        "height": 1535
-      },
-      {
-        "public_id": "dst_deco/flooring-products/ps-skirting-board-architectural-wall-joint-08",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947980/dst_deco/flooring-products/ps-skirting-board-architectural-wall-joint-08.jpg",
-        "format": "jpg",
-        "width": 1200,
-        "height": 1597
-      },
-      {
-        "public_id": "dst_deco/flooring-products/ps-skirting-board-flush-mount-shadowline-trim-09",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947981/dst_deco/flooring-products/ps-skirting-board-flush-mount-shadowline-trim-09.jpg",
-        "format": "jpg",
-        "width": 1200,
-        "height": 1597
-      },
-      {
-        "public_id": "dst_deco/flooring-products/ps-skirting-board-villa-staircase-edging-10",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947983/dst_deco/flooring-products/ps-skirting-board-villa-staircase-edging-10.jpg",
-        "format": "jpg",
-        "width": 1200,
-        "height": 1542
-      },
-      {
-        "public_id": "dst_deco/flooring-products/ps-skirting-board-penthouse-perimeter-detail-11",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947984/dst_deco/flooring-products/ps-skirting-board-penthouse-perimeter-detail-11.jpg",
-        "format": "jpg",
-        "width": 1200,
-        "height": 1540
-      },
-      {
-        "public_id": "dst_deco/flooring-products/ps-skirting-board-hospitality-suite-baseboard-12",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947985/dst_deco/flooring-products/ps-skirting-board-hospitality-suite-baseboard-12.jpg",
-        "format": "jpg",
-        "width": 1153,
-        "height": 1574
-      }
-    ],
-    "thumbnail": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947976/dst_deco/flooring-products/ps-skirting-board-curved-baseboard-trim-05.jpg"
-  },
-  {
-    "id": "cat-11",
-    "name": "Architectural Aluminum Profiles",
-    "category": "fixing-materials",
-    "categoryGroup": "3. Profiles & Fixing Materials",
-    "categoryName": "Profiles & Fixing",
-    "description": "Precision anodized champagne gold, rose gold, and matte black aluminum T-profiles, edge trims, and tile-to-wall transition strips.",
-    "featureTitle": "ARCHITECTURAL PROFILES — PRECISE SEAMLESS TRANSITIONS.",
-    "features": [
-      "Anodized Scratch-Proof Coating",
-      "Champagne, Brushed Gold & Black",
-      "Flawless Tile & Marble Junctions",
-      "Concealed Expansion Gap Covers",
-      "Dubai Five-Star Hotel Standard"
-    ],
-    "isNew": false,
+    "specifications": {
+      "thickness": "1.2mm – 2.0mm Heavy Wall Extrusion",
+      "dimensions": "2700mm / 3000mm Commercial Lengths",
+      "material": "Architectural Anodized Aluminum 6063-T5",
+      "features": [
+        "LED Diffuser Channels",
+        "Stair Bullnose Profiles",
+        "Expansion Joint Trims",
+        "UV & Scratch Proof Anodizing"
+      ]
+    },
     "images": [
       "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947987/dst_deco/fixing-materials/aluminum-profile-tile-transition-strip-silver-03.jpg",
       "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947988/dst_deco/fixing-materials/aluminum-profile-round-bullnose-corner-trim-04.jpg",
@@ -896,99 +539,39 @@
       "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947992/dst_deco/fixing-materials/aluminum-profile-capping-molding-rose-gold-08.jpg",
       "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947993/dst_deco/fixing-materials/aluminum-profile-skirting-led-channel-trim-09.jpg",
       "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947994/dst_deco/fixing-materials/aluminum-profile-heavy-commercial-threshold-10.jpg"
-    ],
-    "inStock": true,
-    "slug": "aluminum-architectural-profiles",
-    "cloudinaryImages": [
-      {
-        "public_id": "dst_deco/fixing-materials/aluminum-profile-tile-transition-strip-silver-03",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947987/dst_deco/fixing-materials/aluminum-profile-tile-transition-strip-silver-03.jpg",
-        "format": "jpg",
-        "width": 1080,
-        "height": 524
-      },
-      {
-        "public_id": "dst_deco/fixing-materials/aluminum-profile-round-bullnose-corner-trim-04",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947988/dst_deco/fixing-materials/aluminum-profile-round-bullnose-corner-trim-04.jpg",
-        "format": "jpg",
-        "width": 1080,
-        "height": 524
-      },
-      {
-        "public_id": "dst_deco/fixing-materials/aluminum-profile-stair-nosing-anti-slip-05",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947989/dst_deco/fixing-materials/aluminum-profile-stair-nosing-anti-slip-05.jpg",
-        "format": "jpg",
-        "width": 1080,
-        "height": 524
-      },
-      {
-        "public_id": "dst_deco/fixing-materials/aluminum-profile-u-channel-wall-divider-06",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947990/dst_deco/fixing-materials/aluminum-profile-u-channel-wall-divider-06.jpg",
-        "format": "jpg",
-        "width": 1080,
-        "height": 524
-      },
-      {
-        "public_id": "dst_deco/fixing-materials/aluminum-profile-expansion-joint-flooring-strip-07",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947991/dst_deco/fixing-materials/aluminum-profile-expansion-joint-flooring-strip-07.jpg",
-        "format": "jpg",
-        "width": 1080,
-        "height": 524
-      },
-      {
-        "public_id": "dst_deco/fixing-materials/aluminum-profile-capping-molding-rose-gold-08",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947992/dst_deco/fixing-materials/aluminum-profile-capping-molding-rose-gold-08.jpg",
-        "format": "jpg",
-        "width": 1080,
-        "height": 524
-      },
-      {
-        "public_id": "dst_deco/fixing-materials/aluminum-profile-skirting-led-channel-trim-09",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947993/dst_deco/fixing-materials/aluminum-profile-skirting-led-channel-trim-09.jpg",
-        "format": "jpg",
-        "width": 1080,
-        "height": 524
-      },
-      {
-        "public_id": "dst_deco/fixing-materials/aluminum-profile-heavy-commercial-threshold-10",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947994/dst_deco/fixing-materials/aluminum-profile-heavy-commercial-threshold-10.jpg",
-        "format": "jpg",
-        "width": 1080,
-        "height": 524
-      }
-    ],
-    "thumbnail": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947987/dst_deco/fixing-materials/aluminum-profile-tile-transition-strip-silver-03.jpg"
+    ]
   },
   {
-    "id": "cat-12",
-    "name": "STARO Hybrid Polymer Adhesive",
-    "category": "fixing-materials",
-    "categoryGroup": "3. Profiles & Fixing Materials",
-    "categoryName": "Profiles & Fixing",
-    "description": "Ultra-high initial grab hybrid silicon polymer adhesives engineered for immediate vertical bonding of stone, WPC, and marble.",
-    "featureTitle": "STARO HYBRID ADHESIVE — EXTREME VERTICAL GRAB.",
+    "id": "cat-silicon",
+    "name": "Silicon",
+    "slug": "silicon",
+    "category": "details",
+    "categoryGroup": "3. Architectural Profiles & Adhesives",
+    "categoryName": "Profiles & Details",
+    "description": "Heavy-duty STARO hybrid polymer structural adhesive and architectural neutral silicone for instant initial grab, waterproof sealing, and permanent bonding of stone, wall panels, and flooring.",
+    "featureTitle": "SILICON & ADHESIVES — INSTANT GRAB HYBRID POLYMER",
     "features": [
-      "Extreme Instant Initial Grab",
-      "Non-Corrosive to Mirror Backings",
-      "Zero Odor, Solvents & Isocyanates",
-      "Bonds on Damp & Porous Surfaces",
-      "Permanent Structural Elasticity"
+      "High Initial Tack & Instant Heavy Grab — No Sagging",
+      "100% Neutral Cure — Will Never Stain Natural Stone or Marble",
+      "Extreme Temperature Resistance (-40°C to +90°C) for UAE Climate",
+      "Bonds to Concrete, Drywall, Wood, Metal, Stone & Tiles",
+      "Waterproof, Elastic & Vibration-Dampening Seal"
     ],
-    "isNew": false,
+    "isFeatured": false,
+    "inStock": true,
+    "specifications": {
+      "thickness": "Structural Gap Filling up to 20mm",
+      "dimensions": "300ml Cartridge / 600ml Foil Sausage",
+      "material": "Advanced Modified Silane (MS) Polymer",
+      "features": [
+        "Instant Tack",
+        "Non-Staining on Stone",
+        "Waterproof Elastic Bond",
+        "Zero Solvent & Low Odor"
+      ]
+    },
     "images": [
       "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947995/dst_deco/fixing-materials/staro-hybrid-polymer-silicon-adhesive-cartridge-01.jpg"
-    ],
-    "inStock": true,
-    "slug": "staro-hybrid-adhesive",
-    "cloudinaryImages": [
-      {
-        "public_id": "dst_deco/fixing-materials/staro-hybrid-polymer-silicon-adhesive-cartridge-01",
-        "secure_url": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947995/dst_deco/fixing-materials/staro-hybrid-polymer-silicon-adhesive-cartridge-01.jpg",
-        "format": "jpg",
-        "width": 1280,
-        "height": 1166
-      }
-    ],
-    "thumbnail": "https://res.cloudinary.com/bxpvt42p/image/upload/v1793947995/dst_deco/fixing-materials/staro-hybrid-polymer-silicon-adhesive-cartridge-01.jpg"
+    ]
   }
 ]
