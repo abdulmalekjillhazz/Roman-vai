@@ -7,7 +7,7 @@ const cachedUrlRegistry = new Set();
  * Preloads one product cover when a touch user is about to open its details.
  */
 export function preloadProductCover(product) {
-  const cover = product?.thumbnail || product?.images?.[0];
+  const cover = product?.images?.[0] || product?.thumbnail;
   if (!cover || typeof window === 'undefined') return;
 
   const url = optimizedCloudinaryUrl(cover, 1200);
