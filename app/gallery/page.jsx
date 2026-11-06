@@ -6,7 +6,7 @@ import SiteImageGalleryPage from '../../src/site-pages/SiteImageGalleryPage.jsx'
 export default function GalleryRoute() {
   return (
     <AppShell>
-      {() => <SiteImageGalleryPage />}
+      {(onOpenQuote) => <SiteImageGalleryPage onOpenQuote={onOpenQuote} />}
     </AppShell>
   );
 }
