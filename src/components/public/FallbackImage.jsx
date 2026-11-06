@@ -1,17 +1,24 @@
 import React from 'react';
 
+function optimizedCloudinaryUrl(src, width) {
+  if (!width || !/^https:\/\/res\.cloudinary\.com\//i.test(src || '')) return src;
+  return src.replace('/image/upload/', `/image/upload/f_auto,q_auto,c_limit,w_${width}/`);
+}
+
 export default function FallbackImage({
   src,
   alt,
   className = '',
   fallbackSrc = '/assets/decorforall/flexible-stone-desert-gold-accent-wall-10.webp',
+  cloudinaryWidth,
   ...props
 }) {
-  const [currentSrc, setCurrentSrc] = React.useState(src || fallbackSrc);
+  const optimizedSrc = optimizedCloudinaryUrl(src, cloudinaryWidth);
+  const [currentSrc, setCurrentSrc] = React.useState(optimizedSrc || fallbackSrc);
 
   React.useEffect(() => {
-    setCurrentSrc(src || fallbackSrc);
-  }, [src, fallbackSrc]);
+    setCurrentSrc(optimizedSrc || fallbackSrc);
+  }, [optimizedSrc, fallbackSrc]);
 
   return (
     <img

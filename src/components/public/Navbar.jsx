@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import { Phone } from 'lucide-react';
 import { CLIENT_INFO } from '../../config/clientInfo.js';
 
 export default function Navbar({ onOpenQuote }) {
@@ -23,23 +24,15 @@ export default function Navbar({ onOpenQuote }) {
         <div className="flex items-center gap-1.5 sm:gap-3">
           <Link
             href="/gallery"
-            className="inline-flex items-center justify-center rounded-lg border border-stone-300 bg-white px-2.5 py-2 text-[10px] font-sans font-bold text-stone-800 shadow-xs transition hover:border-amber-500 hover:bg-stone-50 sm:px-3"
+            className="inline-flex items-center justify-center rounded-lg border border-stone-300 bg-white px-2.5 py-2 text-[10px] font-sans font-bold text-stone-800 shadow-xs transition hover:border-amber-500 hover:bg-stone-50 sm:px-3 sm:text-xs"
           >
-            Products
+            Gallery
           </Link>
 
           <button
             type="button"
-            onClick={() => onOpenQuote?.('General product inquiry')}
-            className="inline-flex items-center justify-center rounded-lg border border-stone-200 bg-stone-100 px-2.5 py-2 text-[10px] font-sans font-bold text-stone-800 shadow-xs transition hover:border-amber-500 hover:bg-stone-50 sm:px-3"
-          >
-            Quote
-          </button>
-
-          <button
-            type="button"
             onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-            className="hidden sm:inline-flex items-center gap-1.5 rounded-lg border border-stone-200 bg-stone-100 px-2.5 py-2 text-[10px] font-sans font-bold text-stone-800 transition hover:border-amber-500 hover:bg-stone-50 sm:text-xs"
+            className="inline-flex items-center justify-center rounded-lg border border-stone-200 bg-stone-100 px-2.5 py-2 text-[10px] font-sans font-bold text-stone-800 shadow-xs transition hover:border-amber-500 hover:bg-stone-50 sm:px-3 sm:text-xs"
           >
             Contact
           </button>
@@ -48,7 +41,7 @@ export default function Navbar({ onOpenQuote }) {
             href={`tel:+${CLIENT_INFO.whatsappNumber.replace(/\D/g, '')}`}
             className="hidden sm:inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs font-mono font-medium text-stone-800 transition hover:text-amber-700"
           >
-            <span className="text-stone-500">📞</span>
+            <Phone className="h-3.5 w-3.5 text-stone-500" />
             <span className="font-semibold">{CLIENT_INFO.phoneDisplay}</span>
           </a>
 
@@ -57,10 +50,10 @@ export default function Navbar({ onOpenQuote }) {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="WhatsApp"
-            className="inline-flex items-center justify-center rounded-lg bg-[#25D366] px-2.5 py-2 text-white shadow-sm transition hover:bg-[#20ba59] active:bg-[#1da850] sm:px-3.5 sm:py-2"
+            className="inline-flex items-center justify-center rounded-lg bg-[#25D366] px-2.5 py-2 text-white shadow-sm transition hover:bg-[#20ba59] active:bg-[#1da850] sm:px-3.5 sm:py-2 text-xs font-bold"
           >
             <svg
-              className="h-4 w-4 fill-current"
+              className="h-4 w-4 fill-current sm:mr-1.5"
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
             >

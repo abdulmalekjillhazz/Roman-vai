@@ -24,8 +24,8 @@ const emptyCategoryForm = {
 };
 
 export default function AdminDashboard() {
-  const [token, setToken] = useState(() => sessionStorage.getItem('dst_admin_token') || '');
-  const [adminUser, setAdminUser] = useState(() => sessionStorage.getItem('dst_admin_email') || '');
+  const [token, setToken] = useState('');
+  const [adminUser, setAdminUser] = useState('');
 
   const [loginEmail, setLoginEmail] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
@@ -46,13 +46,29 @@ export default function AdminDashboard() {
   const [productError, setProductError] = useState('');
   const [categoryError, setCategoryError] = useState('');
   const [uploadFiles, setUploadFiles] = useState([]);
+  const [uploadPreviews, setUploadPreviews] = useState([]);
+  const [savingProduct, setSavingProduct] = useState(false);
+  const [catalogStatus, setCatalogStatus] = useState(null);
+  const [cleanupWarning, setCleanupWarning] = useState('');
 
   const apiBase = process.env.NEXT_PUBLIC_API_BASE_URL || '/api';
+
+  useEffect(() => {
+    setToken(sessionStorage.getItem('dst_admin_token') || '');
+    setAdminUser(sessionStorage.getItem('dst_admin_email') || '');
+  }, []);
+
+  useEffect(() => {
+    const previews = uploadFiles.map(file => ({ file, url: URL.createObjectURL(file) }));
+    setUploadPreviews(previews);
+    return () => previews.forEach(preview => URL.revokeObjectURL(preview.url));
+  }, [uploadFiles]);
 
   useEffect(() => {
     if (token) {
       fetchProducts();
       fetchCategories();
+      fetchCatalogStatus();
     }
   }, [token]);
 
@@ -63,6 +79,20 @@ export default function AdminDashboard() {
     };
   }
 
+  async function fetchCatalogStatus() {
+    try {
+      const response = await axios.get(`${apiBase}/products/admin/status`, { headers: authHeaders() });
+      setCatalogStatus(response.data);
+    } catch {
+      setCatalogStatus({ persistenceAvailable: false, uploadsAvailable: false, message: 'Cannot verify catalog storage. Refresh or sign in again before making changes.' });
+    }
+  }
+
+  function showCleanupWarning(response) {
+    const failures = response?.data?.cloudinaryFailures || [];
+    setCleanupWarning(failures.length ? `The catalog change was saved, but these unused Cloudinary images could not be deleted. Ask your administrator to remove them: ${failures.join(', ')}` : '');
+  }
+
   
   async function fetchProducts() {
     setLoading(true);
@@ -70,7 +100,7 @@ export default function AdminDashboard() {
       const res = await axios.get(`${apiBase}/products`, { headers: authHeaders() });
       setProducts(res.data);
     } catch (err) {
-      console.error(err);
+      setProductError(err.response?.data?.message || 'Could not load the product catalog. Please refresh.');
     } finally {
       setLoading(false);
     }
@@ -81,7 +111,7 @@ export default function AdminDashboard() {
       const res = await axios.get(`${apiBase}/categories`, { headers: authHeaders() });
       setCategories(res.data);
     } catch (err) {
-      console.error(err);
+      setCategoryError(err.response?.data?.message || 'Could not load categories. Please refresh.');
     }
   }
 
@@ -121,6 +151,8 @@ export default function AdminDashboard() {
     setSelectedCategoryId('');
     setProductForm(emptyProductForm);
     setCategoryForm(emptyCategoryForm);
+    setUploadFiles([]);
+    setCatalogStatus(null);
   }
 
   function resetProductForm() {
@@ -142,10 +174,52 @@ export default function AdminDashboard() {
     setProductForm(prev => ({ ...prev, [field]: value }));
   }
 
-  const productImagePreview = [
-    ...((productForm.imageUrls || '').split(/[\n,]/).map(url => url.trim()).filter(Boolean)),
-    ...(uploadFiles || []).slice(0, 3).map(file => URL.createObjectURL(file))
-  ].slice(0, 4);
+  const existingImageUrls = (productForm.imageUrls || '').split(/\r?\n/).map(url => url.trim()).filter(Boolean);
+
+  function removeExistingImage(urlToRemove) {
+    const remainingUrls = (productForm.imageUrls || '')
+      .split(/\r?\n/)
+      .map(url => url.trim())
+      .filter(url => url && url !== urlToRemove);
+    handleProductFieldChange('imageUrls', remainingUrls.join('\n'));
+  }
+
+  function removeUploadFile(fileToRemove) {
+    setUploadFiles(files => files.filter(file => file !== fileToRemove));
+  }
+
+  function moveExistingImage(index, direction) {
+    const urls = [...existingImageUrls];
+    const target = index + direction;
+    if (target < 0 || target >= urls.length) return;
+    [urls[index], urls[target]] = [urls[target], urls[index]];
+    handleProductFieldChange('imageUrls', urls.join('\n'));
+  }
+
+  function moveUpload(index, direction) {
+    setUploadFiles(files => {
+      const next = [...files];
+      const target = index + direction;
+      if (target < 0 || target >= next.length) return files;
+      [next[index], next[target]] = [next[target], next[index]];
+      return next;
+    });
+  }
+
+  function selectUploadFiles(event) {
+    const files = Array.from(event.target.files || []);
+    event.target.value = '';
+    if (uploadFiles.length + files.length > 12) {
+      setProductError('Select a maximum of 12 new images per save. Remove a selected image to add another.');
+      return;
+    }
+    if (files.some(file => file.size > 8 * 1024 * 1024 || !['image/jpeg', 'image/png', 'image/webp'].includes(file.type))) {
+      setProductError('Use JPG, PNG or WebP images, each 8 MB or smaller.');
+      return;
+    }
+    setProductError('');
+    setUploadFiles(current => [...current, ...files]);
+  }
 
   function handleCategoryFieldChange(field, value) {
     setCategoryForm(prev => ({ ...prev, [field]: value }));
@@ -156,8 +230,18 @@ export default function AdminDashboard() {
     setProductMsg('');
     setProductError('');
 
+    if (savingProduct) return;
+    if (!catalogStatus?.persistenceAvailable) {
+      setProductError('Catalog is read-only. Connect MongoDB before saving changes.');
+      return;
+    }
+
     if (!productForm.name.trim()) {
       setProductError('Product name is required.');
+      return;
+    }
+    if (!productForm.description.trim()) {
+      setProductError('Add a useful product description before saving.');
       return;
     }
 
@@ -173,25 +257,29 @@ export default function AdminDashboard() {
     formData.append('inStock', String(productForm.inStock));
     formData.append('isFeatured', String(productForm.isFeatured));
 
-    if (productForm.imageUrls) {
-      const urls = productForm.imageUrls.split(/[\n,]/).map(url => url.trim()).filter(Boolean);
-      urls.forEach(url => formData.append('images', url));
-    }
+    formData.append('imageUrls', JSON.stringify(existingImageUrls));
 
+    if (uploadFiles.length > 12) {
+      setProductError('Upload a maximum of 12 images at a time.');
+      return;
+    }
     uploadFiles.forEach(file => formData.append('images', file));
 
+    setSavingProduct(true);
     try {
+      let response;
       if (selectedProductId) {
-        await axios.put(`${apiBase}/products/${selectedProductId}`, formData, {
-          headers: { ...authHeaders(), 'Content-Type': 'multipart/form-data' }
+        response = await axios.put(`${apiBase}/products/${selectedProductId}`, formData, {
+          headers: authHeaders()
         });
         setProductMsg('Product updated successfully.');
       } else {
-        await axios.post(`${apiBase}/products`, formData, {
-          headers: { ...authHeaders(), 'Content-Type': 'multipart/form-data' }
+        response = await axios.post(`${apiBase}/products`, formData, {
+          headers: authHeaders()
         });
         setProductMsg('Product created successfully.');
       }
+      showCleanupWarning(response);
 
       setUploadFiles([]);
       setProductForm(emptyProductForm);
@@ -199,6 +287,10 @@ export default function AdminDashboard() {
       fetchProducts();
     } catch (err) {
       setProductError(err.response?.data?.message || 'Failed to save product.');
+      const failures = err.response?.data?.cloudinaryFailures || [];
+      if (failures.length) setCleanupWarning(`Upload cleanup needs attention. Cloudinary asset IDs: ${failures.join(', ')}`);
+    } finally {
+      setSavingProduct(false);
     }
   }
 
@@ -236,10 +328,13 @@ export default function AdminDashboard() {
   }
 
   async function deleteProduct(id) {
+    if (!catalogStatus?.persistenceAvailable) return;
     if (!window.confirm('Delete this product?')) return;
     try {
-      await axios.delete(`${apiBase}/products/${id}`, { headers: authHeaders() });
+      const response = await axios.delete(`${apiBase}/products/${id}`, { headers: authHeaders() });
       if (selectedProductId === id) resetProductForm();
+      showCleanupWarning(response);
+      setProductMsg('Product deleted successfully.');
       fetchProducts();
     } catch (err) {
       setProductError(err.response?.data?.message || 'Delete failed.');
@@ -258,6 +353,9 @@ export default function AdminDashboard() {
   }
 
   function editProduct(product) {
+    setUploadFiles([]);
+    setProductError('');
+    setProductMsg('');
     setSelectedProductId(product.id || product._id);
     setProductForm({
       name: product.name || '',
@@ -268,7 +366,7 @@ export default function AdminDashboard() {
       dimensions: product.specifications?.dimensions || 'Custom',
       material: product.specifications?.material || 'Composite',
       features: (product.specifications?.features || []).join(', '),
-      imageUrls: (product.images || []).join(', '),
+      imageUrls: (product.images || []).join('\n'),
       inStock: Boolean(product.inStock),
       isFeatured: Boolean(product.isFeatured)
     });
@@ -542,7 +640,7 @@ export default function AdminDashboard() {
 
               <div className="md:col-span-2">
                 <label className="mb-1 block text-[11px] font-bold uppercase tracking-wider text-brand-charcoal">Existing / Remote Image URLs</label>
-                <textarea rows="3" value={productForm.imageUrls} onChange={e => handleProductFieldChange('imageUrls', e.target.value)} className="w-full rounded-xl border border-stone-200/90 bg-white px-3.5 py-2.5 text-xs text-brand-charcoal placeholder-gray-200 focus:outline-none focus:border-brand-gold floating-input" placeholder="https://example.com/1.jpg, https://example.com/2.jpg" />
+                <textarea rows="3" value={productForm.imageUrls} onChange={e => handleProductFieldChange('imageUrls', e.target.value)} className="w-full rounded-xl border border-stone-200/90 bg-white px-3.5 py-2.5 text-xs text-brand-charcoal placeholder-gray-200 focus:outline-none focus:border-brand-gold floating-input" placeholder="One image URL per line" />
               </div>
 
               <div className="md:col-span-2">
@@ -551,22 +649,31 @@ export default function AdminDashboard() {
                   type="file"
                   multiple
                   accept="image/*"
-                  onChange={e => setUploadFiles(Array.from(e.target.files || []))}
+                  onChange={e => setUploadFiles(Array.from(e.target.files || []).slice(0, 12))}
                   className="w-full rounded-xl border border-dashed border-stone-300 bg-white px-3 py-3 text-xs text-brand-charcoal file:mr-3 file:rounded file:border-0 file:bg-brand-charcoal file:px-3 file:py-2 file:text-xs file:font-bold file:text-white floating-input"
                 />
-                {uploadFiles.length > 0 && <div className="mt-2 text-[10px] text-brand-muted">{uploadFiles.length} file(s) selected</div>}
+                <p className="mt-2 text-[10px] text-brand-muted">Upload up to 12 images at once; each image can be up to 8 MB.</p>
               </div>
 
-              {productImagePreview.length > 0 && (
+              {(existingImageUrls.length > 0 || uploadFiles.length > 0) && (
                 <div className="md:col-span-2">
-                  <div className="mb-2 text-[11px] font-bold uppercase tracking-wider text-brand-charcoal">Preview</div>
+                  <div className="mb-2 text-[11px] font-bold uppercase tracking-wider text-brand-charcoal">Photos</div>
                   <div className="grid grid-cols-4 gap-3">
-                    {productImagePreview.map((src, index) => (
-                      <div key={`${src}-${index}`} className="overflow-hidden rounded-xl border border-brand-sand bg-brand-cream/30">
+                    {existingImageUrls.map((src, index) => (
+                      <div key={src} className="relative overflow-hidden rounded-xl border border-brand-sand bg-brand-cream/30">
                         <img src={src} alt={`Preview ${index + 1}`} className="h-24 w-full object-cover" />
+                        <button type="button" onClick={() => removeExistingImage(src)} className="absolute right-1.5 top-1.5 rounded-full bg-black/75 px-2 py-1 text-[10px] font-bold text-white hover:bg-red-700">Remove</button>
+                      </div>
+                    ))}
+                    {uploadFiles.map((file, index) => (
+                      <div key={`${file.name}-${file.lastModified}-${index}`} className="relative overflow-hidden rounded-xl border border-brand-sand bg-brand-cream/30 p-2">
+                        <img src={URL.createObjectURL(file)} alt={file.name} className="h-20 w-full object-cover" />
+                        <p className="mt-1 truncate text-[9px] text-brand-muted">New: {file.name}</p>
+                        <button type="button" onClick={() => removeUploadFile(file)} className="absolute right-1.5 top-1.5 rounded-full bg-black/75 px-2 py-1 text-[10px] font-bold text-white hover:bg-red-700">Remove</button>
                       </div>
                     ))}
                   </div>
+                  {selectedProductId && <p className="mt-2 text-[10px] text-brand-muted">Removing an existing Cloudinary photo here and saving will permanently delete that photo from Cloudinary.</p>}
                 </div>
               )}
 

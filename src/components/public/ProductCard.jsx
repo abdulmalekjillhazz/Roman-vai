@@ -1,72 +1,40 @@
-import React from 'react';
+﻿import React from 'react';
+import { ArrowUpRight } from 'lucide-react';
 import FallbackImage from './FallbackImage.jsx';
 
 export default function ProductCard({ product, onSelectProduct }) {
-  const images = product.images || [];
-  const fallbackImage = '/assets/decorforall/flexible-stone-desert-gold-accent-wall-10.webp';
-  const thumbnail = images.length > 0 ? images[0] : fallbackImage;
-
-  const thickness = product.specifications?.thickness || product.thickness || 'Custom';
-  const material = product.specifications?.material || product.material || 'Premium finish';
+  const specification = product.specifications?.thickness || product.thickness
+    || product.specifications?.dimensions || product.dimensions;
 
   return (
-    <div
-      onClick={() => onSelectProduct(product)}
-      className="group flex cursor-pointer flex-col rounded-2xl border border-white/80 p-2.5 text-left floating-card sm:p-3 hover:border-amber-300/80"
-    >
-      <div className="relative aspect-square w-full overflow-hidden rounded-xl bg-stone-100 shadow-inner">
-        <FallbackImage
-          src={thumbnail}
-          alt={`${product.name} architectural surface Dubai`}
-          loading="lazy"
-          className="h-full w-full object-cover transition duration-500 ease-out group-hover:scale-105"
-          fallbackSrc={fallbackImage}
-        />
-
-        {images.length > 1 && (
-          <span className="absolute bottom-2 right-2 flex items-center gap-1 rounded-full bg-black/70 px-2 py-0.5 text-[10px] font-sans font-medium text-white shadow-sm backdrop-blur-xs">
-            <span>📷</span>
-            <span>{images.length} Photos</span>
-          </span>
-        )}
-
-        {product.isNew && (
-          <span className="absolute right-2 top-2 rounded-full bg-[#e02424] px-2 py-0.5 text-[10px] font-bold tracking-wider text-white shadow-md">
-            NEW
-          </span>
-        )}
-      </div>
-
-      <div className="flex flex-1 flex-col px-1 pt-2.5">
-        <span className="text-[10px] font-sans font-bold uppercase tracking-[0.18em] text-amber-700">
-          {product.categoryName || 'Architectural Surface'}
-        </span>
-
-        <h3
-          className="mt-1 truncate text-xs font-sans font-bold text-stone-900 transition group-hover:text-amber-800 sm:text-[13px]"
-          title={product.name}
-        >
-          {product.name}
-        </h3>
-
-        <div className="mt-2 flex flex-wrap gap-1.5">
-          <span className="rounded-full border border-stone-200 bg-stone-50 px-2 py-1 text-[10px] font-medium text-stone-700">
-            {thickness}
-          </span>
-          <span className="rounded-full border border-stone-200 bg-stone-50 px-2 py-1 text-[10px] font-medium text-stone-700">
-            {material}
-          </span>
+    <article className="group min-w-0 overflow-hidden rounded-2xl border border-stone-200/80 bg-white">
+      <button
+        type="button"
+        onClick={() => onSelectProduct(product)}
+        aria-label={`Explore ${product.name}`}
+        className="flex h-full w-full flex-col text-left focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-4 focus-visible:outline-amber-700"
+      >
+        <div className="aspect-[4/3] w-full overflow-hidden bg-stone-100">
+          <FallbackImage
+            src={product.images?.[0]}
+            alt={`${product.name} material and finish`}
+            loading="lazy"
+            decoding="async"
+            cloudinaryWidth={480}
+            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105 motion-reduce:transform-none motion-reduce:transition-none"
+          />
         </div>
-
-        <div className="mt-3 flex items-center justify-between gap-2 border-t border-stone-100 pt-3">
-          <span className="text-[10px] font-sans font-semibold uppercase tracking-[0.12em] text-stone-500">
-            Trade ready
+        <div className="flex w-full flex-1 flex-col p-4 sm:p-5">
+          <span className="text-[10px] font-semibold uppercase tracking-[0.15em] text-stone-500">
+            {product.categoryName || 'Architectural material'}
           </span>
-          <span className="text-[10px] font-sans font-bold text-emerald-600">
-            {product.inStock === false ? 'Backorder' : 'In stock'}
-          </span>
+          <h3 className="mt-2 text-sm font-semibold leading-relaxed text-stone-900 sm:text-base">{product.name}</h3>
+          <div className="mt-auto flex items-center justify-between gap-3 pt-4">
+            <span className="text-xs text-stone-600">{specification || 'Explore finishes & specifications'}</span>
+            <ArrowUpRight aria-hidden="true" size={18} className="shrink-0 text-amber-800 transition-transform group-hover:-translate-y-0.5 motion-reduce:transform-none" />
+          </div>
         </div>
-      </div>
-    </div>
+      </button>
+    </article>
   );
 }

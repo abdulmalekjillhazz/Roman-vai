@@ -1,213 +1,135 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect, useRef } from 'react';
+import { ChevronLeft, ChevronRight, MessageCircle, X } from 'lucide-react';
 import FallbackImage from './FallbackImage.jsx';
+import useModalDialog from '../../hooks/useModalDialog.js';
 import { CLIENT_INFO } from '../../config/clientInfo.js';
 
-export default function ProductModal({ product, isOpen, onClose }) {
+export default function ProductModal({ product, isOpen, onClose, onOpenQuote }) {
   const [activeImageIndex, setActiveImageIndex] = useState(0);
-  const fallbackImage = '/assets/decorforall/flexible-stone-desert-gold-accent-wall-10.webp';
+  const [dragOffset, setDragOffset] = useState(0);
+  const dragStart = useRef(null);
+  const thumbnailStrip = useRef(null);
+  const images = product?.images?.length ? product.images : [undefined];
+  const dialogRef = useModalDialog(Boolean(isOpen && product), onClose, event => {
+    if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') {
+      event.preventDefault();
+      moveImage(event.key === 'ArrowRight' ? 1 : -1);
+    }
+  });
 
   useEffect(() => {
     setActiveImageIndex(0);
-  }, [product]);
+    setDragOffset(0);
+    dragStart.current = null;
+  }, [product, isOpen]);
 
-  // Lock body scroll when modal is open
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
+    const strip = thumbnailStrip.current;
+    const active = strip?.children[activeImageIndex];
+    if (strip && active) {
+      strip.scrollTo({ left: active.offsetLeft - strip.offsetLeft - (strip.clientWidth - active.clientWidth) / 2, behavior: 'auto' });
     }
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
-  }, [isOpen]);
+  }, [activeImageIndex, isOpen]);
+
+  function moveImage(direction) {
+    setActiveImageIndex(index => (index + direction + images.length) % images.length);
+  }
+  function handlePointerDown(event) {
+    if (images.length < 2 || (event.pointerType === 'mouse' && event.button !== 0)) return;
+    dragStart.current = { x: event.clientX, y: event.clientY };
+    event.currentTarget.setPointerCapture?.(event.pointerId);
+  }
+  function handlePointerMove(event) {
+    if (!dragStart.current) return;
+    const dx = event.clientX - dragStart.current.x;
+    const dy = event.clientY - dragStart.current.y;
+    if (Math.abs(dx) > Math.abs(dy)) setDragOffset(Math.max(-80, Math.min(80, dx)));
+  }
+  function handlePointerEnd(event) {
+    const drag = dragStart.current;
+    dragStart.current = null;
+    setDragOffset(0);
+    if (!drag || event.type === 'pointercancel') return;
+    const dx = event.clientX - drag.x;
+    if (Math.abs(dx) > 55 && Math.abs(dx) > Math.abs(event.clientY - drag.y)) moveImage(dx < 0 ? 1 : -1);
+  }
 
   if (!isOpen || !product) return null;
-
-  const images = product.images && product.images.length > 0
-    ? product.images
-    : ['/assets/decorforall/flexible-stone-desert-gold-accent-wall-10.webp'];
-
-  const currentImage = images[activeImageIndex] || images[0];
-
-  function handlePrevImage(e) {
-    e.stopPropagation();
-    setActiveImageIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
-  }
-
-  function handleNextImage(e) {
-    e.stopPropagation();
-    setActiveImageIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
-  }
-
-  const specificationList = [
-    { label: 'Thickness', value: product.specifications?.thickness || product.thickness || 'Custom' },
-    { label: 'Dimensions', value: product.specifications?.dimensions || product.dimensions || 'Project-based' },
-    { label: 'Material', value: product.specifications?.material || product.material || 'Premium surface' },
-    { label: 'Availability', value: product.inStock === false ? 'On request' : 'Ready for order' }
-  ];
-
-  const waText = encodeURIComponent(
-    `Hello Classical Decor ID,\nI am interested in ${product.name}.\nPlease share product details, finish options, trade pricing, and delivery availability.`
-  );
-  const waLink = `https://wa.me/${CLIENT_INFO.whatsappNumber}?text=${waText}`;
+  const specifications = [
+    { label: 'Thickness', value: product.specifications?.thickness || product.thickness },
+    { label: 'Dimensions', value: product.specifications?.dimensions || product.dimensions },
+    { label: 'Material', value: product.specifications?.material || product.material },
+    { label: 'Availability', value: product.inStock === true ? 'In stock' : product.inStock === false ? 'Available to order' : 'Please confirm with our team' }
+  ].filter(item => item.value);
+  const features = product.specifications?.features || product.features || [];
+  const waLink = `https://wa.me/${CLIENT_INFO.whatsappNumber}?text=${encodeURIComponent(
+    `Hello Classical Decor ID, I am interested in ${product.name}. Please share finish options, specifications and sample availability.`
+  )}`;
 
   return (
-    <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 bg-black/80 backdrop-blur-sm animate-fadeIn"
-      onClick={onClose}
-    >
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/75 p-3 backdrop-blur-sm sm:p-6" onClick={onClose}>
       <div
-        className="relative w-full max-w-2xl bg-white rounded-2xl sm:rounded-3xl floating-modal overflow-hidden border border-white/60 max-h-[92vh] flex flex-col animate-scaleUp"
-        onClick={(e) => e.stopPropagation()}
+        ref={dialogRef}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="product-dialog-title"
+        tabIndex={-1}
+        className="relative flex max-h-[calc(100dvh-24px)] w-full max-w-5xl flex-col overflow-hidden rounded-2xl bg-white shadow-2xl sm:max-h-[calc(100dvh-48px)] sm:rounded-3xl"
+        onClick={event => event.stopPropagation()}
       >
-        {/* Round Black Close Button */}
-        <button
-          onClick={onClose}
-          aria-label="Close modal"
-          className="absolute top-3 right-3 z-30 w-8 h-8 rounded-full bg-black/80 hover:bg-black text-white flex items-center justify-center transition shadow-lg backdrop-blur-sm focus:outline-none"
-        >
-          <span className="text-sm font-bold leading-none">✕</span>
+        <button type="button" onClick={onClose} aria-label="Close product details" className="absolute right-3 top-3 z-20 flex h-11 w-11 items-center justify-center rounded-full bg-black/75 text-white hover:bg-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-amber-400">
+          <X size={20} />
         </button>
-
-        {/* Top Architectural Photo Gallery */}
-        <div className="relative w-full h-64 sm:h-80 md:h-96 bg-stone-900 select-none shrink-0 group">
-          <FallbackImage
-            src={currentImage || fallbackImage}
-            alt={`${product.name} Dubai luxury architecture`}
-            className="w-full h-full object-cover transition-opacity duration-300"
-            fallbackSrc={fallbackImage}
-          />
-
-          {/* Photo Caption & Counter */}
-          {images.length > 1 && (
-            <>
-              <button
-                onClick={handlePrevImage}
-                className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/60 hover:bg-black/90 text-white flex items-center justify-center transition backdrop-blur-xs text-lg"
-                aria-label="Previous image"
-              >
-                ‹
-              </button>
-              <button
-                onClick={handleNextImage}
-                className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/60 hover:bg-black/90 text-white flex items-center justify-center transition backdrop-blur-xs text-lg"
-                aria-label="Next image"
-              >
-                ›
-              </button>
-
-              <div className="absolute bottom-3 left-3 bg-black/70 backdrop-blur text-white text-[11px] font-sans font-medium px-3 py-1 rounded-full max-w-[65%] truncate shadow-md">
-                {currentImage.split('/').pop().replace(/\.[^/.]+$/, '').replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase())}
-              </div>
-
-              <div className="absolute bottom-3 right-3 bg-black/70 backdrop-blur text-white text-[11px] font-mono font-medium px-2.5 py-0.5 rounded-full">
-                {activeImageIndex + 1} / {images.length}
-              </div>
-            </>
-          )}
-
-          {/* New / Featured Tag */}
-          {product.isNew && (
-            <span className="absolute top-3 left-3 bg-[#e02424] text-white text-[11px] font-bold px-3 py-1 rounded-full shadow-md tracking-wider">
-              NEW
-            </span>
-          )}
+        <div className="min-h-0 overflow-y-auto overscroll-contain lg:grid lg:grid-cols-[1.1fr_1fr]">
+          <div className="min-w-0 bg-stone-100 lg:sticky lg:top-0 lg:self-start">
+            <div
+              className="relative h-[32dvh] min-h-44 touch-pan-y select-none overflow-hidden bg-stone-100 sm:h-[42dvh] lg:h-[55dvh] lg:max-h-[540px]"
+              onPointerDown={handlePointerDown}
+              onPointerMove={handlePointerMove}
+              onPointerUp={handlePointerEnd}
+              onPointerCancel={handlePointerEnd}
+            >
+              <FallbackImage
+                src={images[activeImageIndex] || images[0]}
+                alt={`${product.name} finish`}
+                cloudinaryWidth={1400}
+                draggable={false}
+                className="h-full w-full object-contain"
+                style={{ transform: `translateX(${dragOffset}px)` }}
+              />
+              {images.length > 1 && <>
+                <button type="button" onPointerDown={event => event.stopPropagation()} onClick={() => moveImage(-1)} aria-label="Previous product image" className="absolute left-3 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-black/65 text-white hover:bg-black"><ChevronLeft size={22} /></button>
+                <button type="button" onPointerDown={event => event.stopPropagation()} onClick={() => moveImage(1)} aria-label="Next product image" className="absolute right-3 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-black/65 text-white hover:bg-black"><ChevronRight size={22} /></button>
+              </>}
+            </div>
+            {images.length > 1 && <div ref={thumbnailStrip} aria-label="Product image previews" className="relative flex gap-2 overflow-x-auto border-t border-stone-200 p-3">
+              {images.map((src, index) => <button
+                key={`${src}-${index}`}
+                type="button"
+                onClick={() => setActiveImageIndex(index)}
+                aria-label={`Show ${product.name} image ${index + 1}`}
+                aria-pressed={activeImageIndex === index}
+                className={`h-14 w-14 shrink-0 overflow-hidden rounded-lg border-2 ${activeImageIndex === index ? 'border-amber-800' : 'border-transparent opacity-65 hover:opacity-100'}`}
+              ><FallbackImage src={src} alt="" loading="lazy" cloudinaryWidth={160} className="h-full w-full object-cover" /></button>)}
+            </div>}
+          </div>
+          <div className="p-5 sm:p-8 lg:pt-16">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-amber-800">{product.categoryName || product.categoryGroup || 'Architectural materials'}</p>
+            <h2 id="product-dialog-title" className="mt-2 font-serif text-3xl leading-tight text-stone-950 sm:text-4xl">{product.name}</h2>
+            {product.description && <p className="mt-4 text-sm leading-relaxed text-stone-600">{product.description}</p>}
+            <h3 className="mb-1 mt-7 text-xs font-semibold uppercase tracking-[0.13em] text-stone-900">Key specifications</h3>
+            <dl className="divide-y divide-stone-200">
+              {specifications.map(item => <div key={item.label} className="grid grid-cols-[100px_1fr] gap-4 py-3 text-sm">
+                <dt className="text-stone-500">{item.label}</dt><dd className="break-words text-stone-900">{item.value}</dd>
+              </div>)}
+            </dl>
+            {features.length > 0 && <ul className="mt-5 list-disc space-y-2 pl-4 text-sm leading-relaxed text-stone-600">{features.map((feature, index) => <li key={index}>{feature}</li>)}</ul>}
+          </div>
         </div>
-
-        {/* Thumbnail Carousel */}
-        {images.length > 1 && (
-          <div className="flex items-center gap-2 px-4 py-2 bg-stone-50 border-b border-stone-200 overflow-x-auto no-scrollbar shrink-0">
-            {images.map((img, idx) => (
-              <button
-                key={idx}
-                onClick={() => setActiveImageIndex(idx)}
-                className={`relative w-12 h-12 rounded-lg overflow-hidden shrink-0 border-2 transition ${
-                  activeImageIndex === idx
-                    ? 'border-[#25D366] scale-105 shadow-sm'
-                    : 'border-stone-200 opacity-60 hover:opacity-100'
-                }`}
-              >
-                <FallbackImage src={img || fallbackImage} alt="" className="w-full h-full object-cover" fallbackSrc={fallbackImage} />
-              </button>
-            ))}
-          </div>
-        )}
-
-        {/* Modal Body Content */}
-        <div className="flex flex-1 flex-col items-center overflow-y-auto p-5 text-center sm:p-7">
-          <h2 className="font-sans text-xl font-bold tracking-tight text-stone-900 sm:text-2xl">
-            {product.name}
-          </h2>
-
-          <span className="mt-1 text-xs font-sans font-semibold uppercase tracking-[0.18em] text-amber-700">
-            {product.categoryGroup || product.categoryName}
-          </span>
-
-          <p className="mt-2 max-w-lg text-xs leading-relaxed text-stone-600 sm:text-sm">
-            {product.description}
-          </p>
-
-          <div className="mt-5 w-full rounded-xl border border-[#d4af37]/40 bg-[#faf8f5] p-4 text-left sm:p-5">
-            <h3 className="mb-3 text-[11px] font-bold uppercase tracking-[0.18em] text-[#996515] sm:text-xs">
-              {product.featureTitle || `${product.name.toUpperCase()} — Key Specifications`}
-            </h3>
-
-            <div className="grid gap-2 sm:grid-cols-2">
-              {specificationList.map((item) => (
-                <div key={item.label} className="rounded-lg border border-stone-200 bg-white px-3 py-2">
-                  <div className="text-[10px] font-sans font-bold uppercase tracking-[0.15em] text-stone-500">
-                    {item.label}
-                  </div>
-                  <div className="mt-1 text-xs font-sans font-semibold text-stone-900">
-                    {item.value}
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-4 flex flex-wrap items-center justify-center gap-2">
-              {(product.features || [
-                'Water resistant',
-                'Architectural finish',
-                'Easy maintenance',
-                'Commercial grade',
-                'Project ready'
-              ]).map((feature, idx) => (
-                <span
-                  key={idx}
-                  className="flex items-center gap-1.5 rounded-full border border-stone-200 bg-white px-3 py-1.5 text-[11px] font-medium text-stone-800 shadow-xs sm:text-xs"
-                >
-                  <span className="font-bold text-emerald-500">✓</span>
-                  <span>{feature}</span>
-                </span>
-              ))}
-            </div>
-          </div>
-
-          <div className="mt-5 flex w-full flex-col gap-3 sm:flex-row">
-            <a
-              href={waLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex flex-1 items-center justify-center gap-2.5 rounded-xl bg-[#25D366] px-6 py-3.5 text-sm font-sans font-bold text-white shadow-md transition duration-200 hover:bg-[#20ba59] active:bg-[#1da850]"
-            >
-              <svg
-                className="h-5 w-5 fill-current"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path d="M12.031 0C5.396 0 .029 5.367.029 12.002c0 2.118.553 4.187 1.603 6.007L0 24l6.167-1.618a11.97 11.97 0 005.864 1.518h.005c6.634 0 12.001-5.367 12.001-12.002C24.037 5.368 18.67 0 12.031 0zm0 21.897c-1.8 0-3.565-.484-5.105-1.4l-.366-.217-3.793.995 1.013-3.697-.238-.379a9.92 9.92 0 01-1.521-5.197c0-5.498 4.474-9.972 9.975-9.972 2.664 0 5.168 1.038 7.051 2.922a9.92 9.92 0 012.921 7.052c0 5.499-4.474 9.973-9.975 9.973zm5.467-7.464c-.299-.15-1.771-.874-2.046-.974-.275-.1-.475-.15-.675.15s-.774.974-.95 1.173c-.174.2-.349.225-.648.075-.3-.15-1.267-.467-2.413-1.488-.892-.796-1.494-1.78-1.669-2.079-.175-.3-.019-.462.131-.611.135-.134.299-.349.449-.524.15-.175.2-.3.3-.5.1-.2.05-.374-.025-.524-.075-.15-.675-1.623-.925-2.222-.243-.583-.49-.504-.674-.513-.174-.009-.374-.01-.574-.01s-.524.075-.798.374c-.275.3-1.049 1.024-1.049 2.5 0 1.474 1.074 2.898 1.224 3.098.15.2 2.113 3.227 5.119 4.526.715.309 1.273.494 1.708.632.718.228 1.371.196 1.888.118.577-.087 1.771-.724 2.021-1.423.25-.699.25-1.298.175-1.423-.075-.125-.275-.2-.575-.35z" />
-              </svg>
-              <span>Contact on WhatsApp</span>
-            </a>
-            <button
-              type="button"
-              onClick={onClose}
-              className="flex flex-1 items-center justify-center rounded-xl border border-stone-300 bg-white px-6 py-3.5 text-sm font-sans font-bold text-stone-800 shadow-sm transition duration-200 hover:border-stone-400"
-            >
-              Continue browsing
-            </button>
+        <div className="shrink-0 border-t border-stone-200 bg-white p-3 sm:p-5">
+          <div className="grid gap-2 sm:grid-cols-2 sm:gap-3">
+            <a href={waLink} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-[#176846] px-3 py-3 text-xs font-semibold text-white transition hover:bg-[#125438] sm:text-sm"><MessageCircle size={18} />Contact on WhatsApp</a>
+            <button type="button" onClick={() => { onClose(); onOpenQuote?.(product.name); }} className="min-h-11 rounded-xl bg-[#ead8b0] px-3 py-3 text-xs font-semibold text-stone-900 transition hover:bg-[#dfc596] sm:text-sm">Request Sample / Booking</button>
           </div>
         </div>
       </div>

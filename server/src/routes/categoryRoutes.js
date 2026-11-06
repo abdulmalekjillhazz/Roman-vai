@@ -6,12 +6,13 @@ import {
   deleteCategory
 } from '../controllers/categoryController.js';
 import { protectAdmin } from '../middlewares/authMiddleware.js';
+import { requireCatalogDatabase } from '../middlewares/requireCatalogDatabase.js';
 
 const router = express.Router();
 
 router.get('/', getCategories);
-router.post('/', protectAdmin, createCategory);
-router.put('/:id', protectAdmin, updateCategory);
-router.delete('/:id', protectAdmin, deleteCategory);
+router.post('/', protectAdmin, requireCatalogDatabase, createCategory);
+router.put('/:id', protectAdmin, requireCatalogDatabase, updateCategory);
+router.delete('/:id', protectAdmin, requireCatalogDatabase, deleteCategory);
 
 export default router;

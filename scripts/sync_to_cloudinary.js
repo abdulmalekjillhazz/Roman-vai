@@ -30,6 +30,7 @@ cloudinary.config({
 const productsDataPath = path.join(__dirname, '../data/products_data.json');
 const cloudinaryCachePath = path.join(__dirname, '../data/products_cloudinary.json');
 const publicAssetsDir = path.join(__dirname, '../client/public');
+const publicCloudinaryCatalogPath = path.join(publicAssetsDir, 'data/products_cloudinary.json');
 
 const products = JSON.parse(fs.readFileSync(productsDataPath, 'utf8'));
 
@@ -162,9 +163,14 @@ async function syncToCloudinary() {
     });
   }
 
-  fs.writeFileSync(cloudinaryCachePath, JSON.stringify(updatedProducts, null, 2), 'utf8');
+  const serializedCatalog = JSON.stringify(updatedProducts, null, 2);
+  fs.writeFileSync(cloudinaryCachePath, serializedCatalog, 'utf8');
+  // Keep the browser's static fallback on the same Cloudinary-backed catalog.
+  fs.mkdirSync(path.dirname(publicCloudinaryCatalogPath), { recursive: true });
+  fs.writeFileSync(publicCloudinaryCatalogPath, serializedCatalog, 'utf8');
   console.log('\n==========================================================');
   console.log(`🎉 Sync Complete! Saved to: ${cloudinaryCachePath}`);
+  console.log(`🎉 Browser fallback catalog saved to: ${publicCloudinaryCatalogPath}`);
   console.log('==========================================================\n');
 }
 

@@ -6,8 +6,7 @@ import { CLIENT_INFO } from '../../config/clientInfo.js';
 export default function CategoryShowcaseSlider({ products = [], activeCategory = 'all', onOpenQuote }) {
   const sliderRef = useRef(null);
   const [isDragging, setIsDragging] = useState(false);
-  const [startX, setStartX] = useState(0);
-  const [scrollLeft, setScrollLeft] = useState(0);
+  const pointerStart = useRef(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [lightboxImg, setLightboxImg] = useState(null);
 
@@ -25,23 +24,21 @@ export default function CategoryShowcaseSlider({ products = [], activeCategory =
     setCurrentIndex(Math.min(Math.max(newIdx, 0), displayItems.length - 1));
   }
 
-  // Mouse drag handlers for desktop
-  function handleMouseDown(e) {
-    if (!sliderRef.current) return;
+  // Pointer events retain the desktop drag affordance while adding touch swiping.
+  function handlePointerDown(event) {
+    if (!sliderRef.current || event.pointerType === 'mouse' && event.button !== 0) return;
+    pointerStart.current = { x: event.clientX, scrollLeft: sliderRef.current.scrollLeft };
     setIsDragging(true);
-    setStartX(e.pageX - sliderRef.current.offsetLeft);
-    setScrollLeft(sliderRef.current.scrollLeft);
+    event.currentTarget.setPointerCapture?.(event.pointerId);
   }
 
-  function handleMouseMove(e) {
-    if (!isDragging || !sliderRef.current) return;
-    e.preventDefault();
-    const x = e.pageX - sliderRef.current.offsetLeft;
-    const walk = (x - startX) * 1.6; // multiplier for smooth drag speed
-    sliderRef.current.scrollLeft = scrollLeft - walk;
+  function handlePointerMove(event) {
+    if (!pointerStart.current || !sliderRef.current) return;
+    sliderRef.current.scrollLeft = pointerStart.current.scrollLeft - (event.clientX - pointerStart.current.x) * 1.6;
   }
 
-  function handleMouseUp() {
+  function handlePointerEnd() {
+    pointerStart.current = null;
     setIsDragging(false);
   }
 
@@ -82,6 +79,8 @@ export default function CategoryShowcaseSlider({ products = [], activeCategory =
 
             <div className="flex gap-1.5">
               <button
+                type="button"
+                onPointerDown={(event) => event.stopPropagation()}
                 onClick={() => scrollByDirection('prev')}
                 aria-label="Previous Material"
                 className="w-9 h-9 rounded-full border border-brand-sand bg-white hover:bg-brand-gold hover:text-white hover:border-brand-gold transition flex items-center justify-center text-sm font-bold shadow-sm"
@@ -89,6 +88,8 @@ export default function CategoryShowcaseSlider({ products = [], activeCategory =
                 ←
               </button>
               <button
+                type="button"
+                onPointerDown={(event) => event.stopPropagation()}
                 onClick={() => scrollByDirection('next')}
                 aria-label="Next Material"
                 className="w-9 h-9 rounded-full border border-brand-sand bg-white hover:bg-brand-gold hover:text-white hover:border-brand-gold transition flex items-center justify-center text-sm font-bold shadow-sm"
@@ -103,10 +104,10 @@ export default function CategoryShowcaseSlider({ products = [], activeCategory =
         <div
           ref={sliderRef}
           onScroll={handleScroll}
-          onMouseDown={handleMouseDown}
-          onMouseMove={handleMouseMove}
-          onMouseUp={handleMouseUp}
-          onMouseLeave={handleMouseUp}
+          onPointerDown={handlePointerDown}
+          onPointerMove={handlePointerMove}
+          onPointerUp={handlePointerEnd}
+          onPointerCancel={handlePointerEnd}
           className={`flex gap-5 overflow-x-auto pb-4 scrollbar-none scroll-smooth ${
             isDragging ? 'cursor-grabbing' : 'cursor-grab'
           }`}

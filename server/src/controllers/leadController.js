@@ -24,7 +24,7 @@ export async function submitLead(req, res) {
     }
 
     const sanitizedPayload = {
-      token: process.env.GOOGLE_SHEETS_SECRET_TOKEN || 'CHANGE_THIS_IN_SCRIPT_PROPERTIES',
+      token: process.env.GOOGLE_SHEETS_SECRET_TOKEN,
       name: sanitizeField(name, 120),
       phone: sanitizeField(phone, 40),
       email: sanitizeField(email, 120),
@@ -34,12 +34,10 @@ export async function submitLead(req, res) {
     };
 
     const webhookUrl = process.env.GOOGLE_SHEETS_WEBHOOK_URL;
-    if (!webhookUrl || webhookUrl.includes('YOUR_DEPLOYMENT_ID')) {
-      console.warn('⚠️ GOOGLE_SHEETS_WEBHOOK_URL not configured yet. Returning dev confirmation.');
-      return res.status(200).json({
-        status: 'success',
-        mode: 'dev_simulated',
-        message: 'Lead validated (Set GOOGLE_SHEETS_WEBHOOK_URL in .env to save to live Google Sheet).'
+    if (!webhookUrl || webhookUrl.includes('YOUR_DEPLOYMENT_ID') || !sanitizedPayload.token || sanitizedPayload.token.includes('CHANGE_THIS')) {
+      return res.status(503).json({
+        status: 'error',
+        message: 'Sample requests are temporarily unavailable. Please contact our team on WhatsApp.'
       });
     }
 

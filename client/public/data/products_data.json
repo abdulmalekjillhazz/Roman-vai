@@ -248,14 +248,13 @@
     ],
     "isNew": false,
     "images": [
-      "/assets/decorforall/spc-marble-flooring-4mm-master-bathroom-waterproof-05.webp",
-      "/assets/decorforall/spc-marble-flooring-4mm-modern-kitchen-island-floor-06.webp",
-      "/assets/decorforall/spc-marble-flooring-4mm-luxury-hotel-suite-tile-07.webp",
-      "/assets/decorforall/spc-marble-flooring-4mm-commercial-reception-tile-08.webp",
+        "/assets/decorforall/lvt-flooring-staro-luxury-vinyl-tile-warm-stone-01.webp",
+        "/assets/decorforall/lvt-flooring-staro-luxury-vinyl-tile-slate-grey-02.webp",
+        "/assets/decorforall/lvt-flooring-staro-luxury-vinyl-tile-travertine-beige-03.webp",
+        "/assets/decorforall/lvt-flooring-staro-luxury-vinyl-tile-urban-concrete-04.webp",
       "/assets/decorforall/lvt-flooring-open-concept-villa-flooring-05.webp",
       "/assets/decorforall/lvt-flooring-contemporary-duplex-living-room-06.webp",
-      "/assets/decorforall/lvt-flooring-commercial-office-interior-floor-07.webp",
-      "/assets/decorforall/project-completed-executive-penthouse-flooring-07.webp"
+        "/assets/decorforall/lvt-flooring-commercial-office-interior-floor-07.webp"
     ],
     "inStock": true,
     "slug": "lvt-luxury-flooring"
@@ -335,10 +334,7 @@
     ],
     "isNew": false,
     "images": [
-      "/assets/decorforall/staro-hybrid-polymer-silicon-adhesive-cartridge-01.webp",
-      "/assets/decorforall/ps-molding-palace-style-door-surround-trim-05.webp",
-      "/assets/decorforall/project-completed-luxury-villa-wall-cladding-01.webp",
-      "/assets/decorforall/ps-molding-hotel-corridor-wainscot-rail-06.webp"
+        "/assets/decorforall/staro-hybrid-polymer-silicon-adhesive-cartridge-01.webp"
     ],
     "inStock": true,
     "slug": "staro-hybrid-adhesive"
