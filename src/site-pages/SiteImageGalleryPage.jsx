@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import {
   AudioLines, BrickWall, Building2, Columns3, GalleryVerticalEnd, Grid2X2,
   Grid3X3, Layers3, Mountain, PanelsTopLeft, Shapes, TreeDeciduous,
@@ -151,16 +151,16 @@ export default function SiteImageGalleryPage() {
             : error ? <div className="rounded-2xl border border-stone-200 bg-white p-6"><p role="alert" className="text-sm text-stone-700">{error}</p><button type="button" onClick={() => setRetry(value => value + 1)} className="mt-4 min-h-11 rounded-xl bg-stone-900 px-5 text-sm text-white">Try again</button></div>
             : selectedCategory ? <section aria-label={`${selectedCategory.title} finishes`}>
               <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3">
-                {visibleImages.map(image => <button key={image.key} type="button" onClick={() => setActiveImage(image)} aria-label={`View ${image.title || image.alt || selectedCategory.title}`} className="group overflow-hidden rounded-xl border border-stone-200 bg-white text-left">
-                  <FallbackImage src={image.src} alt={image.alt || image.title || selectedCategory.title} loading="lazy" decoding="async" cloudinaryWidth={480} className="aspect-[4/3] w-full object-cover transition-transform duration-500 group-hover:scale-105 motion-reduce:transform-none motion-reduce:transition-none" />
+                {visibleImages.map((image, index) => <button key={image.key} type="button" onClick={() => setActiveImage(image)} aria-label={`View ${image.title || image.alt || selectedCategory.title}`} className="group overflow-hidden rounded-xl border border-stone-200 bg-white text-left">
+                  <FallbackImage src={image.src} alt={image.alt || image.title || selectedCategory.title} loading={index < 2 ? "eager" : "lazy"} fetchPriority={index === 0 ? "high" : "auto"} decoding="async" cloudinaryWidth={480} className="aspect-[4/3] w-full object-cover transition-transform duration-500 group-hover:scale-105 motion-reduce:transform-none motion-reduce:transition-none" />
                   <p className="px-3 py-3 text-xs leading-relaxed text-stone-700">{image.title || image.alt || selectedCategory.title}</p>
                 </button>)}
               </div>
               {visibleLimit < filteredImages.length && <div className="mt-8 text-center"><button type="button" onClick={() => setVisibleLimit(limit => limit + 24)} className="min-h-11 rounded-xl border border-stone-300 bg-white px-6 text-sm font-semibold text-stone-800">Explore more finishes</button></div>}
             </section> : <section aria-label="Material collections" className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-              {categories.map(category => <article key={category.id} className="group min-w-0 overflow-hidden rounded-2xl border border-stone-200 bg-white">
+              {categories.map((category, index) => <article key={category.id} className="group min-w-0 overflow-hidden rounded-2xl border border-stone-200 bg-white">
                 <button type="button" onClick={() => selectCategory(category.id)} className="flex h-full w-full flex-col text-left" aria-label={`Explore ${category.title}`}>
-                  <div className="aspect-[4/3] w-full overflow-hidden bg-stone-100"><FallbackImage src={category.images[0].src} alt={category.images[0].alt || category.title} loading="lazy" decoding="async" cloudinaryWidth={480} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105 motion-reduce:transform-none motion-reduce:transition-none" /></div>
+                  <div className="aspect-[4/3] w-full overflow-hidden bg-stone-100"><FallbackImage src={category.images[0].src} alt={category.images[0].alt || category.title} loading={index < 2 ? "eager" : "lazy"} fetchPriority={index === 0 ? "high" : "auto"} decoding="async" cloudinaryWidth={480} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105 motion-reduce:transform-none motion-reduce:transition-none" /></div>
                   <div className="flex w-full items-center justify-between gap-3 p-5"><h2 className="text-sm font-semibold text-stone-900">{category.title}</h2><ArrowUpRight size={18} className="shrink-0 text-amber-800" /></div>
                 </button>
               </article>)}

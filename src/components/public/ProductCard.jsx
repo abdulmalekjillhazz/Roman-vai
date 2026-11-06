@@ -1,8 +1,8 @@
-﻿import React from 'react';
+import React from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import FallbackImage from './FallbackImage.jsx';
 
-export default function ProductCard({ product, onSelectProduct }) {
+export default function ProductCard({ product, onSelectProduct, priority = false }) {
   const specification = product.specifications?.thickness || product.thickness
     || product.specifications?.dimensions || product.dimensions;
 
@@ -18,7 +18,8 @@ export default function ProductCard({ product, onSelectProduct }) {
           <FallbackImage
             src={product.images?.[0]}
             alt={`${product.name} material and finish`}
-            loading="lazy"
+            loading={priority ? 'eager' : 'lazy'}
+            fetchPriority={priority ? 'high' : 'auto'}
             decoding="async"
             cloudinaryWidth={480}
             className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105 motion-reduce:transform-none motion-reduce:transition-none"

@@ -41,6 +41,7 @@ export function HouseMonogram({ className = "w-8 h-8", color = "#141414" }) {
 export default function BrandLogo({ variant = 'dark', showTagline = true, iconOnly = false, compact = false }) {
   const strokeColor = variant === 'light' ? '#FFFFFF' : '#141414';
   const textColor = variant === 'light' ? 'text-white' : 'text-brand-charcoal';
+  const taglineColor = variant === 'light' ? 'text-stone-300' : 'text-stone-600';
 
   if (iconOnly) {
     return <HouseMonogram className="w-9 h-9" color={strokeColor} />;
@@ -56,15 +57,15 @@ export default function BrandLogo({ variant = 'dark', showTagline = true, iconOn
         </span>
         {showTagline && (
           <div className={`${compact ? 'hidden sm:flex' : 'flex'} items-center gap-1.5 mt-1.5`}>
-            <span className="font-sans text-[10px] tracking-[0.22em] font-semibold text-brand-muted uppercase">
+            <span className={`font-sans text-[10px] tracking-[0.22em] font-semibold uppercase ${taglineColor}`}>
               DESIGN
             </span>
             <span className="w-1.5 h-1.5 rounded-full bg-brand-gold" />
-            <span className="font-sans text-[10px] tracking-[0.22em] font-semibold text-brand-muted uppercase">
+            <span className={`font-sans text-[10px] tracking-[0.22em] font-semibold uppercase ${taglineColor}`}>
               DECOR
             </span>
             <span className="w-1.5 h-1.5 rounded-full bg-brand-gold" />
-            <span className="font-sans text-[10px] tracking-[0.22em] font-semibold text-brand-muted uppercase">
+            <span className={`font-sans text-[10px] tracking-[0.22em] font-semibold uppercase ${taglineColor}`}>
               PERFECT
             </span>
           </div>

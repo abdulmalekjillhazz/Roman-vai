@@ -98,9 +98,9 @@ export default function App({ children }) {
               </div>
             </div>
 
-            <div className="max-w-7xl mx-auto mt-12 pt-6 border-t border-stone-800/80 flex flex-col sm:flex-row items-center justify-between text-xs text-stone-500 font-sans">
+            <div className="max-w-7xl mx-auto mt-12 pt-6 border-t border-stone-800/80 flex flex-col sm:flex-row items-center justify-between text-xs text-stone-300 font-sans">
               <p>© {new Date().getFullYear()} {CLIENT_INFO.brandName} ({CLIENT_INFO.tradeName}). All rights reserved.</p>
-              <p className="mt-2 sm:mt-0 font-medium text-stone-400">{CLIENT_INFO.tagline} • {CLIENT_INFO.location}</p>
+              <p className="mt-2 sm:mt-0 font-medium text-stone-300">{CLIENT_INFO.tagline} • {CLIENT_INFO.location}</p>
             </div>
           </section>
 
