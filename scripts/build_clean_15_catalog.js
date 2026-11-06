@@ -146,7 +146,7 @@ const EXACT_15_DEFINITIONS = [
       material: 'Solid Polymer Composite / High-Grade Polystyrene',
       features: ['Tongue & Groove Joint', 'Scratch Resistant', 'Waterproof', 'Washable']
     },
-    filter: f => f.startsWith('ps-wall-panel') || (f.startsWith('wpc-fluted') && !f.includes('chipboard'))
+    filter: f => f.startsWith('ps-wall-panel') || f.startsWith('pvc-wall-panel') || (f.startsWith('wpc-fluted') && !f.includes('chipboard'))
   },
   {
     name: 'PU Stone',
@@ -168,7 +168,7 @@ const EXACT_15_DEFINITIONS = [
       material: 'High-Density Structural Polyurethane Foam',
       features: ['Ultra Lightweight', 'Deep 3D Stone Texture', 'Fire-Rated Class B1', 'Easy Screw Mounting']
     },
-    filter: f => f.startsWith('big-pu-stone') || (f.startsWith('pu-stone') && !f.includes('soft-stone'))
+    filter: f => f.startsWith('big-pu-stone') || f.startsWith('small-pu-stone') || (f.startsWith('pu-stone') && !f.includes('soft-stone'))
   },
   {
     name: 'Molding',
@@ -322,7 +322,7 @@ const EXACT_15_DEFINITIONS = [
       material: 'Flexible Engineered Polymer Composite Veneer',
       features: ['Geometric 3D Relief', 'Bendable for Curved Counters', 'Impact Resistant', 'Paintable or Pre-Finished']
     },
-    filter: f => f.startsWith('woodworking-3d-sheet')
+    filter: f => f.startsWith('woodworking-3d-sheet') || f.startsWith('woodworking-decorative')
   },
   {
     name: 'Aluminium profiles',
