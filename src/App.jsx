@@ -1,6 +1,7 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 import { HelmetProvider } from 'react-helmet-async';
 import Navbar from './components/public/Navbar.jsx';
 import BrandLogo from './components/public/BrandLogo.jsx';
@@ -8,7 +9,24 @@ import LeadFormModal from './components/public/LeadFormModal.jsx';
 import { CLIENT_INFO } from './config/clientInfo.js';
 
 export default function App({ children }) {
+  const pathname = usePathname();
+  const isHome = pathname === '/';
   const [quoteModal, setQuoteModal] = useState({ open: false, item: '' });
+  const [scrolledPastHero, setScrolledPastHero] = useState(false);
+
+  useEffect(() => {
+    if (!isHome) {
+      setScrolledPastHero(true);
+      return;
+    }
+    const handleScroll = () => {
+      // 420px threshold: once scrolled down towards categories/catalog, reveal floating desk
+      setScrolledPastHero(window.scrollY > 420);
+    };
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [isHome]);
 
   function handleOpenQuote(itemName) {
     setQuoteModal({ open: true, item: itemName });
@@ -19,7 +37,7 @@ export default function App({ children }) {
       <div className="min-h-screen flex flex-col bg-brand-cream text-brand-charcoal font-sans">
         <Navbar onOpenQuote={handleOpenQuote} />
 
-        <main className="flex-1">
+        <main className={`flex-1 ${isHome ? '' : 'pt-16 sm:pt-20'}`}>
           {typeof children === 'function' ? children(handleOpenQuote) : children}
         </main>
 
@@ -104,12 +122,17 @@ export default function App({ children }) {
             </div>
           </section>
 
-          {/* Luxury Floating WhatsApp Trade Concierge */}
+          {/* Luxury Floating WhatsApp Trade Concierge (Hidden while on hero section, emerges on catalog scroll & all subpages) */}
           <a
             href={`https://wa.me/${CLIENT_INFO.whatsappNumber}?text=${encodeURIComponent("Hello Classical Decor ID, I'd like to inquire about your architectural catalog and wholesale pricing.")}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="fixed bottom-4 right-4 z-40 group flex items-center gap-3 bg-gradient-to-r from-[#25D366] to-[#128C7E] hover:from-[#20ba59] hover:to-[#0e7467] text-white pl-3.5 pr-4 py-2.5 rounded-full floating-whatsapp-btn border border-white/35 backdrop-blur-sm sm:bottom-6 sm:right-6 sm:pl-4 sm:pr-5 sm:py-3"
+            aria-label="Chat with Dubai Trade Desk on WhatsApp"
+            className={`fixed bottom-4 right-4 z-40 group flex items-center gap-3 bg-gradient-to-r from-[#25D366] to-[#128C7E] hover:from-[#20ba59] hover:to-[#0e7467] text-white pl-3.5 pr-4 py-2.5 rounded-full floating-whatsapp-btn border border-white/35 backdrop-blur-sm sm:bottom-6 sm:right-6 sm:pl-4 sm:pr-5 sm:py-3 transition-all duration-500 ${
+              isHome && !scrolledPastHero
+                ? 'opacity-0 translate-y-12 pointer-events-none'
+                : 'opacity-100 translate-y-0 pointer-events-auto'
+            }`}
           >
             <div className="relative">
               <svg

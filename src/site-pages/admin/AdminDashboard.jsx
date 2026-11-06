@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Eye, EyeOff } from 'lucide-react';
+import { ArrowRight, Eye, EyeOff, LockKeyhole, Mail } from 'lucide-react';
 import BrandLogo from '../../components/public/BrandLogo.jsx';
 
 const emptyProductForm = {
@@ -385,52 +385,57 @@ export default function AdminDashboard() {
 
   if (!token) {
     return (
-      <div className="min-h-[85vh] bg-brand-cream flex items-center justify-center p-4">
-        <div className="bg-white rounded-3xl border border-brand-sand max-w-md w-full p-8 sm:p-10 shadow-xl relative overflow-hidden">
-          <div className="absolute top-0 left-0 right-0 h-1.5 bg-brand-gold" />
+      <div className="flex min-h-[85vh] items-center justify-center bg-white p-4 font-sans">
+        <div className="relative w-full max-w-md overflow-hidden rounded-[20px] border border-stone-100 bg-white p-7 shadow-[0_20px_55px_rgba(15,23,42,0.2)] sm:p-9">
           <div className="text-center">
-            <BrandLogo variant="dark" showTagline={false} />
-            <h1 className="font-display text-2xl font-bold text-brand-charcoal mt-6">DST Deco Admin Portal</h1>
-            <p className="font-sans text-xs text-brand-muted mt-2">
+            <div className="flex justify-center">
+              <BrandLogo variant="dark" showTagline={false} />
+            </div>
+            <h1 className="mt-5 font-display text-[28px] font-bold leading-tight text-stone-950">DST Deco Admin Portal</h1>
+            <p className="mt-2 text-sm leading-6 text-slate-600">
               Protected Area. Please enter the master admin credentials configured in your <code className="font-mono text-brand-charcoal bg-stone-100 px-1 py-0.5 rounded">.env</code> file.
             </p>
           </div>
 
-          <form onSubmit={handleLogin} className="mt-8 space-y-4 font-sans">
+          <form onSubmit={handleLogin} className="mt-7 space-y-4">
             {loginError && (
-              <div className="p-3 bg-red-50 border border-red-200 rounded-xl text-red-700 text-xs font-semibold flex items-center gap-2">
+              <div className="flex items-center gap-2 rounded-xl border border-red-200 bg-red-50 p-3 text-xs font-semibold text-red-700">
                 <span>⚠️</span>
                 <span>{loginError}</span>
               </div>
             )}
 
             <div>
-              <label className="block text-xs font-bold uppercase tracking-wider text-brand-charcoal mb-1.5">Admin Email</label>
-              <input
-                type="email"
-                required
-                value={loginEmail}
-                onChange={e => setLoginEmail(e.target.value)}
-                placeholder="example@gmail.com"
-                className="w-full bg-white border border-stone-200/90 rounded-xl px-4 py-3 text-xs text-brand-charcoal placeholder-gray-200 focus:outline-none focus:border-brand-gold floating-input"
-              />
+              <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-slate-900">Admin Email</label>
+              <div className="relative">
+                <Mail aria-hidden="true" size={17} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500" />
+                <input
+                  type="email"
+                  required
+                  value={loginEmail}
+                  onChange={e => setLoginEmail(e.target.value)}
+                  placeholder="example@gmail.com"
+                  className="w-full rounded-xl border border-stone-200 bg-white py-3 pl-11 pr-4 text-sm text-brand-charcoal shadow-[0_5px_14px_rgba(15,23,42,0.12)] placeholder:text-slate-400 focus:border-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-700/15"
+                />
+              </div>
             </div>
 
             <div>
-              <label className="block text-xs font-bold uppercase tracking-wider text-brand-charcoal mb-1.5">Master Password</label>
+              <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-slate-900">Master Password</label>
               <div className="relative">
+                <LockKeyhole aria-hidden="true" size={17} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500" />
                 <input
                   type={showPassword ? 'text' : 'password'}
                   required
                   value={loginPassword}
                   onChange={e => setLoginPassword(e.target.value)}
                   placeholder="••••••••••••"
-                  className="w-full bg-white border border-stone-200/90 rounded-xl pl-4 pr-11 py-3 text-xs text-brand-charcoal placeholder-gray-200 focus:outline-none focus:border-brand-gold floating-input"
+                  className="w-full rounded-xl border border-stone-200 bg-white py-3 pl-11 pr-11 text-sm text-brand-charcoal shadow-[0_5px_14px_rgba(15,23,42,0.12)] placeholder:text-slate-400 focus:border-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-700/15"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(prev => !prev)}
-                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-stone-400 hover:text-stone-700 transition focus:outline-none p-1 flex items-center justify-center cursor-pointer"
+                  className="absolute right-3.5 top-1/2 flex -translate-y-1/2 cursor-pointer items-center justify-center p-1 text-slate-500 transition hover:text-slate-800 focus:outline-none"
                   aria-label={showPassword ? 'Hide password' : 'Show password'}
                 >
                   {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
@@ -441,13 +446,14 @@ export default function AdminDashboard() {
             <button
               type="submit"
               disabled={loginLoading}
-              className="mt-3 w-full py-3.5 bg-brand-charcoal hover:bg-stone-800 text-white rounded-xl font-bold text-xs font-sans tracking-wider uppercase transition shadow-md disabled:opacity-50"
+              className="mt-3 flex w-full items-center justify-center gap-2 rounded-xl bg-emerald-700 py-3.5 text-sm font-bold text-white shadow-[0_10px_20px_rgba(5,150,105,0.3)] transition hover:bg-emerald-800 disabled:cursor-not-allowed disabled:opacity-50"
             >
               {loginLoading ? 'Authenticating...' : 'Sign In to Dashboard'}
+              <ArrowRight aria-hidden="true" size={17} />
             </button>
           </form>
 
-          <div className="mt-8 pt-6 border-t border-brand-sand/50 text-center font-mono text-[10px] text-stone-400">
+          <div className="mt-7 border-t border-slate-200 pt-5 text-center font-mono text-[10px] text-stone-400">
             CLASSICAL DECOR I D • SECURE ACCESS GATE
           </div>
         </div>
@@ -582,7 +588,7 @@ export default function AdminDashboard() {
             <form onSubmit={submitProduct} className="grid gap-4 md:grid-cols-2">
               <div className="md:col-span-2">
                 <label className="mb-1 block text-[11px] font-bold uppercase tracking-wider text-brand-charcoal">Product Name</label>
-                <input value={productForm.name} onChange={e => handleProductFieldChange('name', e.target.value)} placeholder="e.g. Natural Flexible Stone" className="w-full rounded-xl border border-stone-200/90 bg-white px-3.5 py-2.5 text-xs text-brand-charcoal placeholder-gray-200 focus:outline-none focus:border-brand-gold floating-input" />
+                <input value={productForm.name} onChange={e => handleProductFieldChange('name', e.target.value)} placeholder="e.g. Natural Flexible Stone" className="w-full rounded-xl border border-stone-200/90 bg-white px-3.5 py-2.5 text-xs text-brand-charcoal placeholder-stone-400 focus:outline-none focus:border-brand-gold floating-input" />
               </div>
 
               <div>
@@ -602,27 +608,27 @@ export default function AdminDashboard() {
 
               <div>
                 <label className="mb-1 block text-[11px] font-bold uppercase tracking-wider text-brand-charcoal">Category Label</label>
-                <input value={productForm.categoryName} onChange={e => handleProductFieldChange('categoryName', e.target.value)} placeholder="Wall Panels" className="w-full rounded-xl border border-stone-200/90 bg-white px-3.5 py-2.5 text-xs text-brand-charcoal placeholder-gray-200 focus:outline-none focus:border-brand-gold floating-input" />
+                <input value={productForm.categoryName} onChange={e => handleProductFieldChange('categoryName', e.target.value)} placeholder="Wall Panels" className="w-full rounded-xl border border-stone-200/90 bg-white px-3.5 py-2.5 text-xs text-brand-charcoal placeholder-stone-400 focus:outline-none focus:border-brand-gold floating-input" />
               </div>
 
               <div className="md:col-span-2">
                 <label className="mb-1 block text-[11px] font-bold uppercase tracking-wider text-brand-charcoal">Description</label>
-                <textarea rows="4" value={productForm.description} onChange={e => handleProductFieldChange('description', e.target.value)} placeholder="Architectural description..." className="w-full rounded-xl border border-stone-200/90 bg-white px-3.5 py-2.5 text-xs text-brand-charcoal placeholder-gray-200 focus:outline-none focus:border-brand-gold floating-input" />
+                <textarea rows="4" value={productForm.description} onChange={e => handleProductFieldChange('description', e.target.value)} placeholder="Architectural description..." className="w-full rounded-xl border border-stone-200/90 bg-white px-3.5 py-2.5 text-xs text-brand-charcoal placeholder-stone-400 focus:outline-none focus:border-brand-gold floating-input" />
               </div>
 
               <div>
                 <label className="mb-1 block text-[11px] font-bold uppercase tracking-wider text-brand-charcoal">Thickness</label>
-                <input value={productForm.thickness} onChange={e => handleProductFieldChange('thickness', e.target.value)} placeholder="e.g. 5mm" className="w-full rounded-xl border border-stone-200/90 bg-white px-3.5 py-2.5 text-xs text-brand-charcoal placeholder-gray-200 focus:outline-none focus:border-brand-gold floating-input" />
+                <input value={productForm.thickness} onChange={e => handleProductFieldChange('thickness', e.target.value)} placeholder="e.g. 5mm" className="w-full rounded-xl border border-stone-200/90 bg-white px-3.5 py-2.5 text-xs text-brand-charcoal placeholder-stone-400 focus:outline-none focus:border-brand-gold floating-input" />
               </div>
 
               <div>
                 <label className="mb-1 block text-[11px] font-bold uppercase tracking-wider text-brand-charcoal">Dimensions</label>
-                <input value={productForm.dimensions} onChange={e => handleProductFieldChange('dimensions', e.target.value)} placeholder="e.g. 1220mm x 2440mm" className="w-full rounded-xl border border-stone-200/90 bg-white px-3.5 py-2.5 text-xs text-brand-charcoal placeholder-gray-200 focus:outline-none focus:border-brand-gold floating-input" />
+                <input value={productForm.dimensions} onChange={e => handleProductFieldChange('dimensions', e.target.value)} placeholder="e.g. 1220mm x 2440mm" className="w-full rounded-xl border border-stone-200/90 bg-white px-3.5 py-2.5 text-xs text-brand-charcoal placeholder-stone-400 focus:outline-none focus:border-brand-gold floating-input" />
               </div>
 
               <div>
                 <label className="mb-1 block text-[11px] font-bold uppercase tracking-wider text-brand-charcoal">Material</label>
-                <input value={productForm.material} onChange={e => handleProductFieldChange('material', e.target.value)} placeholder="e.g. Natural Stone / Resin" className="w-full rounded-xl border border-stone-200/90 bg-white px-3.5 py-2.5 text-xs text-brand-charcoal placeholder-gray-200 focus:outline-none focus:border-brand-gold floating-input" />
+                <input value={productForm.material} onChange={e => handleProductFieldChange('material', e.target.value)} placeholder="e.g. Natural Stone / Resin" className="w-full rounded-xl border border-stone-200/90 bg-white px-3.5 py-2.5 text-xs text-brand-charcoal placeholder-stone-400 focus:outline-none focus:border-brand-gold floating-input" />
               </div>
 
               <div>
@@ -635,12 +641,12 @@ export default function AdminDashboard() {
 
               <div className="md:col-span-2">
                 <label className="mb-1 block text-[11px] font-bold uppercase tracking-wider text-brand-charcoal">Features (comma separated)</label>
-                <input value={productForm.features} onChange={e => handleProductFieldChange('features', e.target.value)} placeholder="Waterproof, Fire rated, Eco friendly" className="w-full rounded-xl border border-stone-200/90 bg-white px-3.5 py-2.5 text-xs text-brand-charcoal placeholder-gray-200 focus:outline-none focus:border-brand-gold floating-input" />
+                <input value={productForm.features} onChange={e => handleProductFieldChange('features', e.target.value)} placeholder="Waterproof, Fire rated, Eco friendly" className="w-full rounded-xl border border-stone-200/90 bg-white px-3.5 py-2.5 text-xs text-brand-charcoal placeholder-stone-400 focus:outline-none focus:border-brand-gold floating-input" />
               </div>
 
               <div className="md:col-span-2">
                 <label className="mb-1 block text-[11px] font-bold uppercase tracking-wider text-brand-charcoal">Existing / Remote Image URLs</label>
-                <textarea rows="3" value={productForm.imageUrls} onChange={e => handleProductFieldChange('imageUrls', e.target.value)} className="w-full rounded-xl border border-stone-200/90 bg-white px-3.5 py-2.5 text-xs text-brand-charcoal placeholder-gray-200 focus:outline-none focus:border-brand-gold floating-input" placeholder="One image URL per line" />
+                <textarea rows="3" value={productForm.imageUrls} onChange={e => handleProductFieldChange('imageUrls', e.target.value)} className="w-full rounded-xl border border-stone-200/90 bg-white px-3.5 py-2.5 text-xs text-brand-charcoal placeholder-stone-400 focus:outline-none focus:border-brand-gold floating-input" placeholder="One image URL per line" />
               </div>
 
               <div className="md:col-span-2">
@@ -735,17 +741,17 @@ export default function AdminDashboard() {
               <form onSubmit={submitCategory} className="mt-5 space-y-4">
                 <div>
                   <label className="mb-1 block text-[11px] font-bold uppercase tracking-wider text-brand-charcoal">Category Name</label>
-                  <input value={categoryForm.name} onChange={e => handleCategoryFieldChange('name', e.target.value)} placeholder="e.g. Wall Panels" className="w-full rounded-xl border border-stone-200/90 bg-white px-3.5 py-2.5 text-xs text-brand-charcoal placeholder-gray-200 focus:outline-none focus:border-brand-gold floating-input" />
+                  <input value={categoryForm.name} onChange={e => handleCategoryFieldChange('name', e.target.value)} placeholder="e.g. Wall Panels" className="w-full rounded-xl border border-stone-200/90 bg-white px-3.5 py-2.5 text-xs text-brand-charcoal placeholder-stone-400 focus:outline-none focus:border-brand-gold floating-input" />
                 </div>
 
                 <div>
                   <label className="mb-1 block text-[11px] font-bold uppercase tracking-wider text-brand-charcoal">Category Slug</label>
-                  <input value={categoryForm.slug} onChange={e => handleCategoryFieldChange('slug', e.target.value)} className="w-full rounded-xl border border-stone-200/90 bg-white px-3.5 py-2.5 text-xs text-brand-charcoal placeholder-gray-200 focus:outline-none focus:border-brand-gold floating-input" placeholder="wall-panels" />
+                  <input value={categoryForm.slug} onChange={e => handleCategoryFieldChange('slug', e.target.value)} className="w-full rounded-xl border border-stone-200/90 bg-white px-3.5 py-2.5 text-xs text-brand-charcoal placeholder-stone-400 focus:outline-none focus:border-brand-gold floating-input" placeholder="wall-panels" />
                 </div>
 
                 <div>
                   <label className="mb-1 block text-[11px] font-bold uppercase tracking-wider text-brand-charcoal">Description</label>
-                  <textarea rows="4" value={categoryForm.description} onChange={e => handleCategoryFieldChange('description', e.target.value)} placeholder="Category summary..." className="w-full rounded-xl border border-stone-200/90 bg-white px-3.5 py-2.5 text-xs text-brand-charcoal placeholder-gray-200 focus:outline-none focus:border-brand-gold floating-input" />
+                  <textarea rows="4" value={categoryForm.description} onChange={e => handleCategoryFieldChange('description', e.target.value)} placeholder="Category summary..." className="w-full rounded-xl border border-stone-200/90 bg-white px-3.5 py-2.5 text-xs text-brand-charcoal placeholder-stone-400 focus:outline-none focus:border-brand-gold floating-input" />
                 </div>
 
                 <div className="flex justify-end gap-3">

@@ -38,31 +38,31 @@
     inset 0 1px 0 0 rgba(255, 255, 255, 1);
 }
 
-/* 2. Floating Input: Pronounced 3D ambient shadow around input boxes */
+/* 2. Floating Input: Zero lines, pure snow-white 3D ambient floating elevation */
 .floating-input {
+  border: none !important;
+  outline: none !important;
+  background-color: #ffffff !important;
   box-shadow: 
-    0 10px 24px -3px rgba(15, 23, 42, 0.13),
-    0 4px 10px -2px rgba(15, 23, 42, 0.07),
-    0 1px 3px 0 rgba(15, 23, 42, 0.04),
-    inset 0 1px 0 0 rgba(255, 255, 255, 1);
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    0 10px 24px -3px rgba(15, 23, 42, 0.10),
+    0 4px 10px -2px rgba(15, 23, 42, 0.05);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .floating-input:hover {
+  transform: translateY(-1px);
   box-shadow: 
-    0 14px 28px -3px rgba(15, 23, 42, 0.17),
-    0 6px 12px -2px rgba(15, 23, 42, 0.09),
-    inset 0 1px 0 0 rgba(255, 255, 255, 1);
+    0 14px 28px -3px rgba(15, 23, 42, 0.14),
+    0 6px 12px -2px rgba(15, 23, 42, 0.07);
 }
 
 .floating-input:focus {
   transform: translateY(-2px);
-  border-color: #E5A924 !important;
+  border: none !important;
+  outline: none !important;
   box-shadow: 
-    0 18px 38px -4px rgba(229, 169, 36, 0.34),
-    0 6px 14px -2px rgba(15, 23, 42, 0.10),
-    0 0 0 3px rgba(229, 169, 36, 0.25),
-    inset 0 1px 0 0 rgba(255, 255, 255, 1);
+    0 18px 36px -4px rgba(229, 169, 36, 0.32),
+    0 6px 14px -2px rgba(15, 23, 42, 0.08);
 }
 
 /* 3. Floating Pills & Filter Buttons */
@@ -232,4 +232,170 @@
 .animate-gear-slow {
   animation: slowGearRotate 28s linear infinite;
 }
+
+/* ==========================================================================
+   9. LUXURY CINEMATIC HERO & CHOREOGRAPHED MOTION SUITE
+   ========================================================================== */
+
+/* Cinematic Ken Burns Zoom & Ambient Pan on Active Slide */
+@keyframes kenBurnsSlow {
+  0% {
+    transform: scale(1.0) translate3d(0, 0, 0);
+  }
+  100% {
+    transform: scale(1.08) translate3d(-0.6%, -0.4%, 0);
+  }
+}
+
+.animate-ken-burns {
+  animation: kenBurnsSlow 7.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  will-change: transform;
+}
+
+/* ==========================================================================
+   SMOKE DISSIPATION & CONDENSATION ENGINE (ধোঁয়ার মতো উড়ে যাওয়া ও ফিরে আসা)
+   ========================================================================== */
+
+/* 1. Smoke Dissipation / Evaporation Keyframes (ধোঁয়া হয়ে উড়ে যাওয়া) */
+@keyframes smokeDissolveUp {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0px);
+    letter-spacing: normal;
+  }
+  35% {
+    opacity: 0.65;
+    filter: blur(6px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-22px) scale(1.07);
+    filter: blur(22px);
+    letter-spacing: 0.05em;
+  }
+}
+
+/* 2. Smoke Condensation / Materialization Keyframes (ধোঁয়ার মতো ফিরে আসা) */
+@keyframes smokeCondenseIn {
+  0% {
+    opacity: 0;
+    transform: translateY(22px) scale(0.93);
+    filter: blur(24px);
+    letter-spacing: 0.04em;
+  }
+  45% {
+    opacity: 0.75;
+    filter: blur(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0px);
+    letter-spacing: normal;
+  }
+}
+
+/* Staggered Smoke Dissolve Classes (Evaporation) */
+.smoke-out-1 {
+  animation: smokeDissolveUp 0.38s cubic-bezier(0.4, 0, 0.2, 1) 0.00s forwards !important;
+  will-change: transform, opacity, filter;
+}
+.smoke-out-2 {
+  animation: smokeDissolveUp 0.40s cubic-bezier(0.4, 0, 0.2, 1) 0.03s forwards !important;
+  will-change: transform, opacity, filter;
+}
+.smoke-out-3 {
+  animation: smokeDissolveUp 0.40s cubic-bezier(0.4, 0, 0.2, 1) 0.06s forwards !important;
+  will-change: transform, opacity, filter;
+}
+.smoke-out-4 {
+  animation: smokeDissolveUp 0.40s cubic-bezier(0.4, 0, 0.2, 1) 0.09s forwards !important;
+  will-change: transform, opacity, filter;
+}
+.smoke-out-5 {
+  animation: smokeDissolveUp 0.40s cubic-bezier(0.4, 0, 0.2, 1) 0.12s forwards !important;
+  will-change: transform, opacity, filter;
+}
+
+/* Staggered Smoke Condense Classes (Comeback) */
+.smoke-in-1 {
+  animation: smokeCondenseIn 0.72s cubic-bezier(0.16, 1, 0.3, 1) 0.04s both !important;
+  will-change: transform, opacity, filter;
+}
+.smoke-in-2 {
+  animation: smokeCondenseIn 0.82s cubic-bezier(0.16, 1, 0.3, 1) 0.12s both !important;
+  will-change: transform, opacity, filter;
+}
+.smoke-in-3 {
+  animation: smokeCondenseIn 0.84s cubic-bezier(0.16, 1, 0.3, 1) 0.20s both !important;
+  will-change: transform, opacity, filter;
+}
+.smoke-in-4 {
+  animation: smokeCondenseIn 0.84s cubic-bezier(0.16, 1, 0.3, 1) 0.28s both !important;
+  will-change: transform, opacity, filter;
+}
+.smoke-in-5 {
+  animation: smokeCondenseIn 0.90s cubic-bezier(0.16, 1, 0.3, 1) 0.36s both !important;
+  will-change: transform, opacity, filter;
+}
+
+/* Luxury Choreographed Staggered Reveal */
+@keyframes luxuryRevealUp {
+  0% {
+    opacity: 0;
+    transform: translateY(22px);
+    filter: blur(5px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+.animate-luxury-reveal-1 {
+  animation: luxuryRevealUp 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.05s both;
+}
+
+.animate-luxury-reveal-2 {
+  animation: luxuryRevealUp 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.16s both;
+}
+
+.animate-luxury-reveal-3 {
+  animation: luxuryRevealUp 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.28s both;
+}
+
+.animate-luxury-reveal-4 {
+  animation: luxuryRevealUp 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.38s both;
+}
+
+.animate-luxury-reveal-5 {
+  animation: luxuryRevealUp 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.48s both;
+}
+
+/* Luxury Timeline Live Progress Bar */
+@keyframes progressFill {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+/* Dubai Royal Gold Metallic Sheen CTA Button */
+.btn-luxury-gold {
+  background: linear-gradient(115deg, #f0dfb8 0%, #E5A924 35%, #fff6e0 50%, #d89b1b 65%, #b38012 100%);
+  background-size: 240% auto;
+  box-shadow: 0 10px 25px -4px rgba(229, 169, 36, 0.45), 0 4px 10px -2px rgba(229, 169, 36, 0.25);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-luxury-gold:hover {
+  background-position: right center;
+  box-shadow: 0 18px 40px -4px rgba(229, 169, 36, 0.65), 0 6px 18px -2px rgba(229, 169, 36, 0.45);
+  transform: translateY(-2px) scale(1.02);
+}
+
 

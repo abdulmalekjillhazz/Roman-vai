@@ -1,13 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
-import { ChevronLeft, ChevronRight, MessageCircle, X, ArrowUpRight } from 'lucide-react';
-import FallbackImage from './FallbackImage.jsx';
+import { ChevronLeft, ChevronRight, MessageCircle, X, ArrowUpRight, Info } from 'lucide-react';
+import FallbackImage, { optimizedCloudinaryUrl } from './FallbackImage.jsx';
 import useModalDialog from '../../hooks/useModalDialog.js';
 import { CLIENT_INFO } from '../../config/clientInfo.js';
 
 export default function ProductModal({ product, isOpen, onClose, onOpenQuote }) {
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const [dragOffset, setDragOffset] = useState(0);
+  const [showMobileDetails, setShowMobileDetails] = useState(false);
   const dragStart = useRef(null);
   const thumbnailStrip = useRef(null);
   const images = product?.images?.length ? product.images : [undefined];
@@ -22,7 +23,50 @@ export default function ProductModal({ product, isOpen, onClose, onOpenQuote }) 
     setActiveImageIndex(0);
     setDragOffset(0);
     dragStart.current = null;
+    setShowMobileDetails(false);
   }, [product, isOpen]);
+
+  useEffect(() => {
+    if (!isOpen || !product) return undefined;
+
+    const sources = [...new Set(
+      (product.images || [])
+        .filter(Boolean)
+        .map(src => optimizedCloudinaryUrl(src, 1400))
+    )];
+    const pending = new Set();
+    let nextSourceIndex = 0;
+    let cancelled = false;
+
+    function preloadNext() {
+      if (cancelled || nextSourceIndex >= sources.length) return;
+
+      const image = new window.Image();
+      image.decoding = 'async';
+      image.fetchPriority = 'low';
+      image.onload = image.onerror = () => {
+        image.onload = null;
+        image.onerror = null;
+        pending.delete(image);
+        preloadNext();
+      };
+      pending.add(image);
+      image.src = sources[nextSourceIndex];
+      nextSourceIndex += 1;
+    }
+
+    for (let index = 0; index < Math.min(3, sources.length); index += 1) {
+      preloadNext();
+    }
+
+    return () => {
+      cancelled = true;
+      pending.forEach(image => {
+        image.onload = null;
+        image.onerror = null;
+      });
+    };
+  }, [isOpen, product]);
 
   useEffect(() => {
     const strip = thumbnailStrip.current;
@@ -78,43 +122,95 @@ export default function ProductModal({ product, isOpen, onClose, onOpenQuote }) 
         className="relative flex max-h-[calc(100dvh-24px)] w-full max-w-5xl flex-col overflow-hidden rounded-2xl bg-white shadow-2xl sm:max-h-[calc(100dvh-48px)] sm:rounded-3xl"
         onClick={event => event.stopPropagation()}
       >
-        <button type="button" onClick={onClose} aria-label="Close product details" className="absolute right-3 top-3 z-20 flex h-11 w-11 items-center justify-center rounded-full bg-black/75 text-white hover:bg-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-amber-400">
+        <button type="button" onClick={onClose} aria-label="Close product details" className="absolute right-3 top-3 z-40 flex h-11 w-11 items-center justify-center rounded-full bg-black/75 text-white hover:bg-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-amber-400">
           <X size={20} />
         </button>
         <div className="min-h-0 overflow-y-auto overscroll-contain lg:grid lg:grid-cols-[1.1fr_1fr]">
           <div className="min-w-0 bg-stone-100 lg:sticky lg:top-0 lg:self-start">
             <div
-              className="relative h-[32dvh] min-h-44 touch-pan-y select-none overflow-hidden bg-stone-100 sm:h-[42dvh] lg:h-[55dvh] lg:max-h-[540px]"
+              className="relative h-[48dvh] min-h-64 touch-pan-y select-none overflow-hidden bg-stone-100 sm:h-[50dvh] lg:h-[55dvh] lg:max-h-[540px]"
               onPointerDown={handlePointerDown}
               onPointerMove={handlePointerMove}
               onPointerUp={handlePointerEnd}
               onPointerCancel={handlePointerEnd}
             >
               <FallbackImage
+                key={images[activeImageIndex] || images[0]}
                 src={images[activeImageIndex] || images[0]}
                 alt={`${product.name} finish`}
                 cloudinaryWidth={1400}
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
                 draggable={false}
                 className="h-full w-full object-contain"
                 style={{ transform: `translateX(${dragOffset}px)` }}
               />
+
+              {/* Image Counter Badge on Top Left */}
+              {images.length > 1 && (
+                <div className="absolute left-3 top-3 z-20 rounded-full border border-white/20 bg-black/60 px-2.5 py-1 font-mono text-[11px] font-medium text-white backdrop-blur-md shadow-sm">
+                  {activeImageIndex + 1} / {images.length}
+                </div>
+              )}
+
+              {/* Mobile View: Small Button on Top of Image to View Details */}
+              <button
+                type="button"
+                onClick={() => setShowMobileDetails(true)}
+                className="lg:hidden absolute bottom-3 right-3 z-20 flex items-center gap-1.5 rounded-full border border-white/35 bg-black/70 px-3.5 py-1.5 text-xs font-semibold text-white shadow-lg backdrop-blur-md transition hover:bg-black active:scale-95"
+              >
+                <Info size={14} className="text-[#E5A924]" />
+                <span>Specs & Details</span>
+              </button>
+
               {images.length > 1 && <>
-                <button type="button" onPointerDown={event => event.stopPropagation()} onClick={() => moveImage(-1)} aria-label="Previous product image" className="absolute left-3 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-black/65 text-white hover:bg-black"><ChevronLeft size={22} /></button>
-                <button type="button" onPointerDown={event => event.stopPropagation()} onClick={() => moveImage(1)} aria-label="Next product image" className="absolute right-3 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-black/65 text-white hover:bg-black"><ChevronRight size={22} /></button>
+                <button type="button" onPointerDown={event => event.stopPropagation()} onClick={() => moveImage(-1)} aria-label="Previous product image" className="absolute left-3 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-black/65 text-white hover:bg-black z-20"><ChevronLeft size={22} /></button>
+                <button type="button" onPointerDown={event => event.stopPropagation()} onClick={() => moveImage(1)} aria-label="Next product image" className="absolute right-3 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-black/65 text-white hover:bg-black z-20"><ChevronRight size={22} /></button>
               </>}
             </div>
-            {images.length > 1 && <div ref={thumbnailStrip} aria-label="Product image previews" className="relative flex gap-2 overflow-x-auto border-t border-stone-200 p-3">
-              {images.map((src, index) => <button
-                key={`${src}-${index}`}
+
+            {/* Thumbnail Previews Strip */}
+            {images.length > 1 && (
+              <div ref={thumbnailStrip} aria-label="Product image previews" className="relative flex gap-2 overflow-x-auto border-t border-stone-200 p-3 bg-white sm:bg-stone-100">
+                {images.map((src, index) => (
+                  <button
+                    key={`${src}-${index}`}
+                    type="button"
+                    onClick={() => setActiveImageIndex(index)}
+                    aria-label={`Show ${product.name} image ${index + 1}`}
+                    aria-pressed={activeImageIndex === index}
+                    className={`h-14 w-14 shrink-0 overflow-hidden rounded-lg border-2 transition ${activeImageIndex === index ? 'border-amber-800 scale-105 shadow-md' : 'border-transparent opacity-65 hover:opacity-100'}`}
+                  >
+                    <FallbackImage src={src} alt="" loading="eager" fetchPriority="low" decoding="async" cloudinaryWidth={160} className="h-full w-full object-cover" />
+                  </button>
+                ))}
+              </div>
+            )}
+
+            {/* Mobile View Summary Bar: Clean Title & Quick Button */}
+            <div className="lg:hidden flex items-center justify-between border-t border-stone-200/80 bg-white px-4 py-3">
+              <div className="min-w-0 pr-3">
+                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#E5A924] truncate">
+                  {product.categoryName || product.categoryGroup || 'Architectural materials'}
+                </p>
+                <h2 className="font-serif text-lg sm:text-xl font-bold text-stone-950 truncate mt-0.5">
+                  {product.name}
+                </h2>
+              </div>
+              <button
                 type="button"
-                onClick={() => setActiveImageIndex(index)}
-                aria-label={`Show ${product.name} image ${index + 1}`}
-                aria-pressed={activeImageIndex === index}
-                className={`h-14 w-14 shrink-0 overflow-hidden rounded-lg border-2 ${activeImageIndex === index ? 'border-amber-800' : 'border-transparent opacity-65 hover:opacity-100'}`}
-              ><FallbackImage src={src} alt="" loading="lazy" cloudinaryWidth={160} className="h-full w-full object-cover" /></button>)}
-            </div>}
+                onClick={() => setShowMobileDetails(true)}
+                className="shrink-0 flex items-center gap-1.5 rounded-xl bg-stone-100 hover:bg-stone-200 px-3.5 py-2 text-xs font-bold text-stone-800 transition"
+              >
+                <span>Full Details</span>
+                <ChevronRight size={14} />
+              </button>
+            </div>
           </div>
-          <div className="p-5 sm:p-8 lg:pt-16">
+
+          {/* Desktop View Column: Side-by-Side (Unchanged for PC) */}
+          <div className="hidden lg:block p-8 pt-16">
             <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-amber-800">{product.categoryName || product.categoryGroup || 'Architectural materials'}</p>
             <h2 id="product-dialog-title" className="mt-2 font-serif text-3xl leading-tight text-stone-950 sm:text-4xl">{product.name}</h2>
             {product.description && <p className="mt-4 text-sm leading-relaxed text-stone-600">{product.description}</p>}
@@ -138,7 +234,101 @@ export default function ProductModal({ product, isOpen, onClose, onOpenQuote }) 
             </div>
           </div>
         </div>
-        <div className="shrink-0 border-t border-stone-200 bg-white p-3 sm:p-5">
+
+        {/* Mobile Slide-Up Full Details Sheet (Opens when user taps button on image or title) */}
+        <div
+          className={`lg:hidden absolute inset-0 z-30 flex flex-col bg-white transition-transform duration-300 ease-in-out ${
+            showMobileDetails ? 'translate-y-0' : 'translate-y-full pointer-events-none'
+          }`}
+        >
+          {/* Mobile Sheet Top Bar */}
+          <div className="flex shrink-0 items-center justify-between border-b border-stone-200 bg-stone-50 px-4 py-3.5">
+            <div className="min-w-0 pr-3">
+              <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#E5A924] truncate">
+                {product.categoryName || product.categoryGroup || 'Architectural materials'}
+              </p>
+              <h3 className="font-serif text-base font-bold text-stone-950 truncate">
+                {product.name}
+              </h3>
+            </div>
+            <button
+              type="button"
+              onClick={() => setShowMobileDetails(false)}
+              className="flex shrink-0 items-center gap-1.5 rounded-full bg-stone-200/80 px-3.5 py-1.5 text-xs font-bold text-stone-800 hover:bg-stone-300 transition"
+            >
+              <X size={14} />
+              <span>Back to Photos</span>
+            </button>
+          </div>
+
+          {/* Mobile Sheet Scrollable Content */}
+          <div className="flex-1 overflow-y-auto p-5 space-y-5">
+            <div>
+              <h4 className="font-serif text-2xl font-semibold text-stone-950 leading-tight">
+                {product.name}
+              </h4>
+              {product.description && (
+                <p className="mt-2 text-xs sm:text-sm leading-relaxed text-stone-600">
+                  {product.description}
+                </p>
+              )}
+            </div>
+
+            {specifications.length > 0 && (
+              <div className="rounded-2xl border border-stone-200/80 bg-stone-50/60 p-4">
+                <h4 className="mb-2 text-xs font-bold uppercase tracking-wider text-stone-900">
+                  Key Specifications
+                </h4>
+                <dl className="divide-y divide-stone-200/70">
+                  {specifications.map(item => (
+                    <div key={item.label} className="grid grid-cols-[100px_1fr] gap-2 py-2.5 text-xs sm:text-sm">
+                      <dt className="text-stone-500 font-medium">{item.label}</dt>
+                      <dd className="break-words font-semibold text-stone-900">{item.value}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </div>
+            )}
+
+            {features.length > 0 && (
+              <div className="rounded-2xl border border-stone-200/80 bg-stone-50/60 p-4">
+                <h4 className="mb-2 text-xs font-bold uppercase tracking-wider text-stone-900">
+                  Features & Characteristics
+                </h4>
+                <ul className="list-disc space-y-1.5 pl-4 text-xs sm:text-sm text-stone-600">
+                  {features.map((feature, index) => (
+                    <li key={index}>{feature}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            <div className="pt-2">
+              <Link
+                href={`/product/${product.slug}`}
+                onClick={onClose}
+                className="flex items-center justify-between rounded-xl border border-stone-200 p-3.5 text-xs font-bold text-amber-800 hover:bg-stone-50 transition"
+              >
+                <span>View Full Architectural Page & All Finishes</span>
+                <ArrowUpRight size={15} />
+              </Link>
+            </div>
+          </div>
+
+          {/* Quick Tap to Return Bar */}
+          <div className="border-t border-stone-200 p-3 bg-stone-50 text-center">
+            <button
+              type="button"
+              onClick={() => setShowMobileDetails(false)}
+              className="w-full py-2 text-xs font-bold text-stone-600 hover:text-stone-950 uppercase tracking-wider"
+            >
+              ↑ Tap to Return to Photos ↑
+            </button>
+          </div>
+        </div>
+
+        {/* Fixed Bottom Action Bar: Always Clickable on Mobile & PC */}
+        <div className="shrink-0 border-t border-stone-200 bg-white p-3 sm:p-5 relative z-40">
           <div className="grid gap-2 sm:grid-cols-2 sm:gap-3">
             <a href={waLink} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-[#176846] px-3 py-3 text-xs font-semibold text-white transition hover:bg-[#125438] sm:text-sm"><MessageCircle size={18} />Contact on WhatsApp</a>
             <button type="button" onClick={() => { onClose(); onOpenQuote?.(product.name); }} className="min-h-11 rounded-xl bg-[#ead8b0] px-3 py-3 text-xs font-semibold text-stone-900 transition hover:bg-[#dfc596] sm:text-sm">Request Sample / Booking</button>

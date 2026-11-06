@@ -49,61 +49,67 @@ export default function LeadFormModal({ isOpen, onClose, initialCategory = '' })
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4 backdrop-blur-sm"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4 backdrop-blur-md animate-fadeIn"
       onClick={onClose}
       aria-modal="true"
       role="dialog"
     >
+      {/* Luxury Silk Cream Modal Stage to Make Pure Snow-White Inputs Float Crystal Clear */}
       <div
-        className="relative w-full max-w-md rounded-3xl border border-white/80 bg-white p-6 floating-modal sm:p-8"
+        className="relative w-full max-w-lg rounded-3xl bg-[#FAF8F5] p-6 shadow-[0_30px_90px_rgba(0,0,0,0.55)] sm:p-9"
         onClick={(e) => e.stopPropagation()}
       >
+        {/* Minimalist Round Close Button */}
         <button
           onClick={onClose}
-          className="absolute right-5 top-5 flex h-8 w-8 items-center justify-center rounded-full bg-stone-100 text-lg font-bold text-stone-400 transition hover:bg-stone-200 hover:text-brand-charcoal"
+          className="absolute right-5 top-5 flex h-9 w-9 items-center justify-center rounded-full bg-white text-stone-500 shadow-sm transition hover:bg-stone-200 hover:text-stone-950"
           aria-label="Close quote form"
         >
           ✕
         </button>
 
-        <span className="font-sans text-[10px] font-bold uppercase tracking-[0.2em] text-brand-gold">
+        {/* Brand Gold Eyebrow */}
+        <span className="font-mono text-[10px] font-bold uppercase tracking-[0.22em] text-[#E5A924]">
           Dubai Trade Supply Portal
         </span>
-        <h3 className="mt-1 font-display text-xl font-bold text-brand-charcoal sm:text-2xl">
+
+        {/* Brand Charcoal Headline */}
+        <h3 className="mt-1 font-serif text-2xl sm:text-3xl font-semibold text-[#141414] tracking-tight">
           Request free samples & trade pricing
         </h3>
-        <p className="mt-1.5 text-xs text-brand-muted font-sans">
-          Selected Material: <span className="font-mono font-semibold text-brand-charcoal">{initialCategory || 'Catalog Inquiry'}</span>
+
+        {/* Selected Material Context */}
+        <p className="mt-2 text-xs text-stone-500 font-sans">
+          Selected Material:{' '}
+          <span className="font-bold text-[#141414]">
+            {initialCategory || 'VIP Material Sample Box'}
+          </span>
         </p>
 
-        <div className="mt-3 flex flex-wrap gap-2 text-[10px] font-sans text-stone-600">
-          <span className="rounded-full border border-emerald-200 bg-emerald-50 px-2 py-1 text-emerald-700">Fast UAE response</span>
-          <span className="rounded-full border border-amber-200 bg-amber-50 px-2 py-1 text-amber-700">Trade pricing</span>
-          <span className="rounded-full border border-stone-200 bg-stone-50 px-2 py-1">Free samples</span>
-        </div>
-
+        {/* Status Message */}
         {status.success ? (
-          <div className="mt-6 rounded-2xl border border-emerald-200 bg-emerald-50 p-5 text-xs font-sans text-emerald-900">
-            <p className="text-sm font-bold">✅ Inquiry sent successfully!</p>
-            <p className="mt-1 leading-relaxed text-emerald-800">{status.success}</p>
-            <p className="mt-2 text-[11px] text-emerald-700">Our Dubai sales team will contact you shortly with samples, pricing, and product recommendations.</p>
+          <div className="mt-6 rounded-2xl bg-white p-6 text-xs font-sans text-[#141414] shadow-sm">
+            <p className="text-sm font-bold text-[#141414]">Inquiry sent successfully</p>
+            <p className="mt-1.5 leading-relaxed text-stone-600">{status.success}</p>
+            <p className="mt-2 text-[11px] text-stone-500">Our Dubai sales desk will contact you shortly with material samples, specifications, and project quotations.</p>
             <button
               onClick={onClose}
-              className="mt-4 w-full rounded-xl bg-brand-charcoal py-2.5 text-xs font-bold tracking-wide text-white transition hover:bg-stone-800"
+              className="mt-5 w-full rounded-2xl bg-[#141414] py-3.5 text-xs font-bold tracking-wider uppercase text-white transition hover:bg-stone-800"
             >
               Done
             </button>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="mt-5 space-y-3.5 font-sans">
+          <form onSubmit={handleSubmit} className="mt-6 space-y-4 font-sans">
             {status.error && (
-              <div className="rounded-xl border border-red-200 bg-red-50 p-3 text-xs text-red-700">
+              <div className="rounded-xl bg-red-50 p-3 text-xs text-red-700 font-medium">
                 {status.error}
               </div>
             )}
 
+            {/* Input 1: Full Name (Zero Lines, 100% Snow-White Background, Floating 3D Ambient Shadow) */}
             <div>
-              <label className="mb-1 block text-[11px] font-bold uppercase tracking-wider text-brand-charcoal">
+              <label className="mb-1.5 block text-xs font-bold text-[#141414]">
                 Full Name *
               </label>
               <input
@@ -112,13 +118,14 @@ export default function LeadFormModal({ isOpen, onClose, initialCategory = '' })
                 value={formData.name}
                 onChange={e => setFormData({ ...formData, name: e.target.value })}
                 placeholder="e.g. Tariq Al Mansoori"
-                className="floating-input w-full rounded-xl border border-stone-200/90 bg-white px-3.5 py-2.5 text-xs text-brand-charcoal placeholder-gray-200 focus:outline-none"
+                className="floating-input w-full rounded-2xl border-none bg-white px-4 py-3.5 text-xs sm:text-sm font-medium text-[#141414] placeholder:text-stone-400 focus:outline-none"
               />
             </div>
 
+            {/* Input 2: Phone / WhatsApp (Zero Lines, 100% Snow-White Background, Floating 3D Ambient Shadow) */}
             <div>
-              <label className="mb-1 block text-[11px] font-bold uppercase tracking-wider text-brand-charcoal">
-                Phone / WhatsApp *
+              <label className="mb-1.5 block text-xs font-bold text-[#141414]">
+                Phone / WhatsApp Number *
               </label>
               <input
                 type="tel"
@@ -126,12 +133,13 @@ export default function LeadFormModal({ isOpen, onClose, initialCategory = '' })
                 value={formData.phone}
                 onChange={e => setFormData({ ...formData, phone: e.target.value })}
                 placeholder="+971 50 123 4567"
-                className="floating-input w-full rounded-xl border border-stone-200/90 bg-white px-3.5 py-2.5 text-xs text-brand-charcoal placeholder-gray-200 focus:outline-none"
+                className="floating-input w-full rounded-2xl border-none bg-white px-4 py-3.5 text-xs sm:text-sm font-mono font-medium text-[#141414] placeholder:text-stone-400 focus:outline-none"
               />
             </div>
 
+            {/* Input 3: Email Address (Zero Lines, 100% Snow-White Background, Floating 3D Ambient Shadow) */}
             <div>
-              <label className="mb-1 block text-[11px] font-bold uppercase tracking-wider text-brand-charcoal">
+              <label className="mb-1.5 block text-xs font-bold text-[#141414]">
                 Email Address
               </label>
               <input
@@ -139,60 +147,68 @@ export default function LeadFormModal({ isOpen, onClose, initialCategory = '' })
                 value={formData.email}
                 onChange={e => setFormData({ ...formData, email: e.target.value })}
                 placeholder="project@company.com"
-                className="floating-input w-full rounded-xl border border-stone-200/90 bg-white px-3.5 py-2.5 text-xs text-brand-charcoal placeholder-gray-200 focus:outline-none"
+                className="floating-input w-full rounded-2xl border-none bg-white px-4 py-3.5 text-xs sm:text-sm font-medium text-[#141414] placeholder:text-stone-400 focus:outline-none"
               />
             </div>
 
-            <div className="grid gap-3.5 sm:grid-cols-2">
+            {/* 2-Column Split */}
+            <div className="grid gap-4 sm:grid-cols-2">
               <div>
-                <label className="mb-1 block text-[11px] font-bold uppercase tracking-wider text-brand-charcoal">
+                <label className="mb-1.5 block text-xs font-bold text-[#141414]">
                   Project Type
                 </label>
-                <select
-                  value={formData.projectType}
-                  onChange={e => setFormData({ ...formData, projectType: e.target.value })}
-                  className="floating-input w-full rounded-xl border border-stone-200/90 bg-white px-3.5 py-2.5 text-xs text-brand-charcoal focus:outline-none"
-                >
-                  <option>Residential</option>
-                  <option>Commercial</option>
-                  <option>Hospitality</option>
-                  <option>Developer / Contractor</option>
-                </select>
+                <div className="relative">
+                  <select
+                    value={formData.projectType}
+                    onChange={e => setFormData({ ...formData, projectType: e.target.value })}
+                    className="floating-input w-full rounded-2xl border-none bg-white px-4 py-3.5 text-xs sm:text-sm font-medium text-[#141414] focus:outline-none appearance-none cursor-pointer"
+                  >
+                    <option>Residential Villa</option>
+                    <option>Commercial Office</option>
+                    <option>Hotel & Hospitality</option>
+                    <option>Developer / Fit-Out Contractor</option>
+                  </select>
+                  <div className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-stone-400 text-xs">
+                    ▼
+                  </div>
+                </div>
               </div>
 
               <div>
-                <label className="mb-1 block text-[11px] font-bold uppercase tracking-wider text-brand-charcoal">
+                <label className="mb-1.5 block text-xs font-bold text-[#141414]">
                   Approx. Area
                 </label>
                 <input
                   type="text"
                   value={formData.projectArea}
                   onChange={e => setFormData({ ...formData, projectArea: e.target.value })}
-                  placeholder="350 sqm"
-                  className="floating-input w-full rounded-xl border border-stone-200/90 bg-white px-3.5 py-2.5 text-xs text-brand-charcoal placeholder-gray-200 focus:outline-none"
+                  placeholder="e.g. 350 sqm"
+                  className="floating-input w-full rounded-2xl border-none bg-white px-4 py-3.5 text-xs sm:text-sm font-medium text-[#141414] placeholder:text-stone-400 focus:outline-none"
                 />
               </div>
             </div>
 
+            {/* Input 4: Textarea (Zero Lines, 100% Snow-White Background, Floating 3D Ambient Shadow) */}
             <div>
-              <label className="mb-1 block text-[11px] font-bold uppercase tracking-wider text-brand-charcoal">
+              <label className="mb-1.5 block text-xs font-bold text-[#141414]">
                 Project Requirements / Notes
               </label>
               <textarea
                 rows="3"
                 value={formData.message}
                 onChange={e => setFormData({ ...formData, message: e.target.value })}
-                placeholder="Villa interior in Dubai Hills, porcelain look wall panels, approx 350 sqm..."
-                className="floating-input w-full resize-none rounded-xl border border-stone-200/90 bg-white px-3.5 py-2.5 text-xs text-brand-charcoal placeholder-gray-200 focus:outline-none"
+                placeholder="e.g. Villa interior in Dubai Hills, looking for travertine look flexible stone and 5mm WPC fluted panels..."
+                className="floating-input w-full resize-none rounded-2xl border-none bg-white px-4 py-3.5 text-xs sm:text-sm font-medium text-[#141414] placeholder:text-stone-400 focus:outline-none"
               />
             </div>
 
+            {/* Brand Gold Submit Button */}
             <button
               type="submit"
               disabled={status.loading}
-              className="mt-2 w-full rounded-xl bg-brand-gold px-4 py-3 text-xs font-bold tracking-wide text-brand-charcoal shadow-sm transition hover:bg-brand-goldHover disabled:opacity-50"
+              className="mt-4 w-full rounded-2xl bg-[#E5A924] hover:bg-[#c48b12] py-4 text-xs font-bold uppercase tracking-widest text-[#141414] shadow-[0_10px_25px_-4px_rgba(229,169,36,0.45)] hover:shadow-[0_14px_30px_-4px_rgba(229,169,36,0.65)] transition-all active:scale-[0.98] disabled:opacity-50"
             >
-              {status.loading ? 'Submitting to sales team...' : 'Submit sample request'}
+              {status.loading ? 'Submitting to Dubai Sales Desk...' : 'Submit Sample Request'}
             </button>
           </form>
         )}

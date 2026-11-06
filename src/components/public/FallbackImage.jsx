@@ -1,6 +1,6 @@
 import React from 'react';
 
-function optimizedCloudinaryUrl(src, width) {
+export function optimizedCloudinaryUrl(src, width) {
   if (!width || !/^https:\/\/res\.cloudinary\.com\//i.test(src || '')) return src;
   return src.replace('/image/upload/', `/image/upload/f_auto,q_auto,c_limit,w_${width}/`);
 }
