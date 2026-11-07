@@ -149,12 +149,12 @@ export default function MaterialHero({ onOpenQuote }) {
                   draggable={false}
                   width={1920}
                   height={1080}
-                  className={`h-full w-full transition-transform duration-700 ${
+                  className={`h-full w-full ${
                     slideHideTextBox
                       ? 'object-contain sm:object-cover'
                       : 'object-cover object-center'
                   } ${
-                    isCurrent && !reducedMotion ? 'sm:animate-ken-burns' : 'scale-100'
+                    isCurrent && !reducedMotion ? 'animate-ken-burns' : 'scale-100'
                   }`}
                 />
               </>
