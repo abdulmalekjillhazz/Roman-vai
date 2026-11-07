@@ -142,6 +142,7 @@ export default function MaterialHero({ onOpenQuote }) {
                 )}
 
                 <FallbackImage
+                  key={`${slide.file}-${isCurrent}`}
                   src={imageSrc}
                   alt={`${customForSlide.title || slide.title} - ${customForSlide.eyebrow || slide.eyebrow}`}
                   fetchPriority={isCurrent && index === 0 ? 'high' : 'auto'}
