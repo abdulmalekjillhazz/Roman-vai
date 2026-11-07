@@ -2,14 +2,24 @@ import { useCallback, useEffect, useState } from 'react';
 
 export default function useHeroImages(api, enabled) {
   const [heroImages, setHeroImages] = useState({});
+  const [heroContent, setHeroContent] = useState({});
   const [heroSavingKey, setHeroSavingKey] = useState('');
   const [heroMessage, setHeroMessage] = useState('');
   const [heroError, setHeroError] = useState('');
+  const [editingSlideKey, setEditingSlideKey] = useState(null);
+  const [editFormData, setEditFormData] = useState({
+    title: '',
+    eyebrow: '',
+    description: '',
+    specs: '',
+    actionText: ''
+  });
 
   const fetchHeroImages = useCallback(async () => {
     try {
       const response = await api.get(`/hero-slides`);
       setHeroImages(response.data.slides || {});
+      setHeroContent(response.data.content || {});
       setHeroError('');
     } catch (err) {
       setHeroError(err.response?.data?.message || 'Could not load saved hero images. Please refresh.');
@@ -47,6 +57,13 @@ export default function useHeroImages(api, enabled) {
         formData
       );
       setHeroImages(current => ({ ...current, [slide.file]: response.data.imageUrl }));
+      setHeroContent(current => ({
+        ...current,
+        [slide.file]: {
+          ...(current[slide.file] || {}),
+          imageUrl: response.data.imageUrl
+        }
+      }));
       setHeroMessage(`${slide.title} image updated. The new image is now live.`);
       if (response.data.cleanupWarning) setHeroMessage(current => `${current} ${response.data.cleanupWarning}`);
     } catch (err) {
@@ -56,5 +73,52 @@ export default function useHeroImages(api, enabled) {
     }
   }
 
-  return { heroImages, heroSavingKey, heroMessage, heroError, handleHeroImageSelection };
+  async function updateHeroText(slideKey, textFields) {
+    setHeroSavingKey(slideKey);
+    setHeroError('');
+    setHeroMessage('');
+
+    try {
+      const response = await api.post(
+        `/hero-slides/${encodeURIComponent(slideKey)}`,
+        textFields
+      );
+      const updated = response.data;
+      setHeroContent(current => ({
+        ...current,
+        [slideKey]: {
+          ...(current[slideKey] || {}),
+          title: updated.title,
+          eyebrow: updated.eyebrow,
+          description: updated.description,
+          specs: updated.specs,
+          actionText: updated.actionText,
+          imageUrl: updated.imageUrl || current[slideKey]?.imageUrl || ''
+        }
+      }));
+      setHeroMessage('Slide texts updated successfully! The changes are now live.');
+      return { success: true, data: updated };
+    } catch (err) {
+      const errMsg = err.response?.data?.message || 'Could not update slide texts. Please try again.';
+      setHeroError(errMsg);
+      return { success: false, error: errMsg };
+    } finally {
+      setHeroSavingKey('');
+    }
+  }
+
+  return {
+    heroImages,
+    heroContent,
+    heroSavingKey,
+    heroMessage,
+    heroError,
+    handleHeroImageSelection,
+    updateHeroText,
+    fetchHeroImages,
+    editingSlideKey,
+    setEditingSlideKey,
+    editFormData,
+    setEditFormData
+  };
 }

@@ -13,6 +13,7 @@ export default function MaterialHero({ onOpenQuote }) {
   const [reducedMotion, setReducedMotion] = useState(false);
   const [visible, setVisible] = useState(true);
   const [imageOverrides, setImageOverrides] = useState({});
+  const [contentOverrides, setContentOverrides] = useState({});
   const pointerStart = useRef(null);
   const previousTimer = useRef(null);
   const apiBase = process.env.NEXT_PUBLIC_API_BASE_URL || '/api';
@@ -51,6 +52,7 @@ export default function MaterialHero({ onOpenQuote }) {
       })
       .then(data => {
         if (data.slides && typeof data.slides === 'object') setImageOverrides(data.slides);
+        if (data.content && typeof data.content === 'object') setContentOverrides(data.content);
       })
       .catch(error => {
         if (error.name !== 'AbortError') console.warn('Using default hero images:', error.message);
@@ -70,7 +72,16 @@ export default function MaterialHero({ onOpenQuote }) {
 
   useEffect(() => () => window.clearTimeout(previousTimer.current), []);
 
-  const currentSlide = MATERIAL_HERO_SLIDES[active];
+  const rawSlide = MATERIAL_HERO_SLIDES[active] || MATERIAL_HERO_SLIDES[0];
+  const custom = contentOverrides[rawSlide.file] || {};
+  const currentSlide = {
+    ...rawSlide,
+    title: custom.title || rawSlide.title,
+    eyebrow: custom.eyebrow || rawSlide.eyebrow,
+    description: custom.description || rawSlide.description,
+    specs: custom.specs || rawSlide.specs,
+    actionText: custom.actionText || rawSlide.actionText,
+  };
 
   return (
     <section
@@ -111,8 +122,8 @@ export default function MaterialHero({ onOpenQuote }) {
           >
             {shouldRenderImage && (
               <FallbackImage
-                src={imageOverrides[slide.file] || (slide.file.includes('.') ? `/assets/decorforall/${slide.file}` : `/assets/decorforall/${slide.file}.webp`)}
-                alt={`${slide.title} - ${slide.eyebrow}`}
+                src={contentOverrides[slide.file]?.imageUrl || imageOverrides[slide.file] || (slide.file.includes('.') ? `/assets/decorforall/${slide.file}` : `/assets/decorforall/${slide.file}.webp`)}
+                alt={`${contentOverrides[slide.file]?.title || slide.title} - ${contentOverrides[slide.file]?.eyebrow || slide.eyebrow}`}
                 fetchPriority={isCurrent && index === 0 ? 'high' : 'auto'}
                 loading="eager"
                 draggable={false}

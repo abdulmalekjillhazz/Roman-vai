@@ -321,6 +321,49 @@ test('hero replacement validates before uploading and updates only the chosen sl
   hook.unmount();
 });
 
+test('hero content editing updates slide text fields persistently and keeps backward compatibility', async () => {
+  const { api, calls } = fakeApi();
+  const hook = createHookHarness('hooks/useHeroImages.js', () => [api, false]);
+  const slideKey = 'flexible-stone-natural-look-hero-01';
+  const customTexts = {
+    title: 'Custom Stone Title',
+    eyebrow: 'Architectural Feature',
+    description: 'Custom description text for flexible stone.',
+    specs: '3mm Bendable • Fire Rated',
+    actionText: 'Discover Stone'
+  };
+
+  let finishSave;
+  api.post = async (url, payload) => {
+    calls.push({ method: 'post', args: [url, payload] });
+    return new Promise(resolve => { finishSave = resolve; });
+  };
+
+  const savePromise = hook.value.updateHeroText(slideKey, customTexts);
+  assert.equal(hook.value.heroSavingKey, slideKey);
+  assert.equal(calls[0].args[0], `/hero-slides/${encodeURIComponent(slideKey)}`);
+  assert.deepEqual(calls[0].args[1], customTexts);
+
+  finishSave({
+    data: {
+      key: slideKey,
+      ...customTexts,
+      imageUrl: 'https://images.test/stone.webp'
+    }
+  });
+
+  await hook.act(() => savePromise);
+  const result = await savePromise;
+  assert.equal(result.success, true);
+  assert.equal(hook.value.heroSavingKey, '');
+  assert.deepEqual(hook.value.heroContent[slideKey], {
+    ...customTexts,
+    imageUrl: 'https://images.test/stone.webp'
+  });
+  assert.match(hook.value.heroMessage, /Slide texts updated successfully/);
+  hook.unmount();
+});
+
 test('logout clears catalog capability and ignores a previous session response', async () => {
   let enabled = true;
   let finishRead;

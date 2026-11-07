@@ -1,11 +1,19 @@
 import mongoose from 'mongoose';
-import { MATERIAL_HERO_SLIDES } from '../../../src/config/materialHeroSlides.js';
 
 const heroSlideSchema = new mongoose.Schema(
   {
-    key: { type: String, required: true, unique: true, enum: MATERIAL_HERO_SLIDES.map(slide => slide.file) },
-    imageUrl: { type: String, required: true },
-    cloudinaryPublicId: { type: String, required: true }
+    key: {
+      type: String,
+      required: true,
+      unique: true
+    },
+    imageUrl: { type: String },
+    cloudinaryPublicId: { type: String },
+    title: { type: String, trim: true },
+    eyebrow: { type: String, trim: true },
+    description: { type: String, trim: true },
+    specs: { type: String, trim: true },
+    actionText: { type: String, trim: true }
   },
   { timestamps: true }
 );

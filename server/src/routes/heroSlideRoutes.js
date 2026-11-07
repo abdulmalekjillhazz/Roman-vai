@@ -8,6 +8,7 @@ const router = express.Router();
 
 router.get('/', getHeroSlides);
 router.post('/:key', protectAdmin, requireCatalogDatabase, receiveHeroImage, updateHeroSlide);
+router.put('/:key', protectAdmin, requireCatalogDatabase, receiveHeroImage, updateHeroSlide);
 
 function receiveHeroImage(req, res, next) {
   uploadMiddleware.single('image')(req, res, error => {
