@@ -88,7 +88,7 @@ export default function MaterialHero({ onOpenQuote }) {
     <section
       aria-label="Architectural Material Collection Showcase"
       aria-roledescription="carousel"
-      className="relative w-full h-screen min-h-[660px] max-h-[1080px] lg:h-[100dvh] overflow-hidden bg-stone-950 select-none"
+      className="relative w-full h-[100dvh] min-h-[580px] max-h-[1080px] overflow-hidden bg-stone-950 select-none"
       onPointerDown={event => {
         if (event.target.closest('a, button')) return;
         pointerStart.current = { x: event.clientX, y: event.clientY };
@@ -112,6 +112,9 @@ export default function MaterialHero({ onOpenQuote }) {
       {MATERIAL_HERO_SLIDES.map((slide, index) => {
         const isCurrent = index === active;
         const shouldRenderImage = isCurrent || index === previous;
+        const customForSlide = contentOverrides[slide.file] || {};
+        const slideHideTextBox = customForSlide.hideTextBox !== undefined ? Boolean(customForSlide.hideTextBox) : false;
+        const imageSrc = customForSlide.imageUrl || imageOverrides[slide.file] || (slide.file.includes('.') ? `/assets/decorforall/${slide.file}` : `/assets/decorforall/${slide.file}.webp`);
 
         return (
           <div
@@ -122,18 +125,39 @@ export default function MaterialHero({ onOpenQuote }) {
             }`}
           >
             {shouldRenderImage && (
-              <FallbackImage
-                src={contentOverrides[slide.file]?.imageUrl || imageOverrides[slide.file] || (slide.file.includes('.') ? `/assets/decorforall/${slide.file}` : `/assets/decorforall/${slide.file}.webp`)}
-                alt={`${contentOverrides[slide.file]?.title || slide.title} - ${contentOverrides[slide.file]?.eyebrow || slide.eyebrow}`}
-                fetchPriority={isCurrent && index === 0 ? 'high' : 'auto'}
-                loading="eager"
-                draggable={false}
-                width={1920}
-                height={1080}
-                className={`h-full w-full object-cover transition-transform ${
-                  isCurrent && !reducedMotion ? 'animate-ken-burns' : 'scale-100'
-                }`}
-              />
+              <>
+                {/* Mobile Ambient Glow Backdrop when banner text is baked-in (prevents harsh black bars while keeping 100% of the graphic uncropped) */}
+                {slideHideTextBox && (
+                  <div className="absolute inset-0 sm:hidden overflow-hidden">
+                    <FallbackImage
+                      src={imageSrc}
+                      alt=""
+                      aria-hidden="true"
+                      draggable={false}
+                      width={480}
+                      height={640}
+                      className="h-full w-full object-cover blur-3xl opacity-40 scale-125"
+                    />
+                  </div>
+                )}
+
+                <FallbackImage
+                  src={imageSrc}
+                  alt={`${customForSlide.title || slide.title} - ${customForSlide.eyebrow || slide.eyebrow}`}
+                  fetchPriority={isCurrent && index === 0 ? 'high' : 'auto'}
+                  loading="eager"
+                  draggable={false}
+                  width={1920}
+                  height={1080}
+                  className={`h-full w-full transition-transform duration-700 ${
+                    slideHideTextBox
+                      ? 'object-contain sm:object-cover'
+                      : 'object-cover object-center'
+                  } ${
+                    isCurrent && !reducedMotion ? 'sm:animate-ken-burns' : 'scale-100'
+                  }`}
+                />
+              </>
             )}
           </div>
         );
@@ -143,22 +167,22 @@ export default function MaterialHero({ onOpenQuote }) {
           2. MULTI-LAYERED ARCHITECTURAL LUXURY LIGHTING VIGNETTES (SOFTENED FOR MAXIMUM CLARITY)
           ========================================================================= */}
       {/* Top subtle vignette for transparent floating navbar readability */}
-      <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-32 bg-gradient-to-b from-black/55 to-transparent" />
-      {/* Left directional vignette - ultra sheer so the background image remains crisp & bright */}
-      <div className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-r from-black/50 via-black/10 to-transparent" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-24 sm:h-32 bg-gradient-to-b from-black/60 to-transparent" />
+      {/* Left directional vignette - sheer on desktop, softened on mobile so photos remain luminous */}
+      <div className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-t sm:bg-gradient-to-r from-black/50 via-black/15 to-transparent" />
       {/* Bottom vignette for sleek timeline & indicator contrast */}
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-32 bg-gradient-to-t from-black/65 to-transparent" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-28 sm:h-32 bg-gradient-to-t from-black/70 to-transparent" />
 
       {/* =========================================================================
           3. MAIN CONTENT CONTAINER (FLOATING OVER HERO)
           ========================================================================= */}
-      <div className="relative z-20 mx-auto flex h-full w-full max-w-7xl flex-col justify-between px-4 pt-24 pb-8 sm:px-6 sm:pt-28 sm:pb-10 lg:px-8">
+      <div className="relative z-20 mx-auto flex h-full w-full max-w-7xl flex-col justify-between px-3 pt-20 pb-5 sm:px-6 sm:pt-28 sm:pb-10 lg:px-8">
         
         {/* Top Architectural Dispatch Indicator */}
         <div className="flex items-center justify-between gap-4">
-          <div className="inline-flex items-center gap-2.5 rounded-full border border-white/20 bg-black/45 px-3.5 py-1.5 backdrop-blur-xl shadow-lg">
-            <span className="flex h-2 w-2 rounded-full bg-[#E5A924] animate-pulse" />
-            <span className="text-[10px] font-bold uppercase tracking-[0.24em] text-[#f5ebd7] sm:text-xs">
+          <div className="inline-flex items-center gap-2 sm:gap-2.5 rounded-full border border-white/20 bg-black/45 px-3 py-1 sm:px-3.5 sm:py-1.5 backdrop-blur-xl shadow-lg">
+            <span className="flex h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-full bg-[#E5A924] animate-pulse" />
+            <span className="text-[9px] font-bold uppercase tracking-[0.18em] sm:tracking-[0.24em] text-[#f5ebd7] sm:text-xs">
               Architectural Materials · Dubai & UAE Projects
             </span>
           </div>
@@ -166,45 +190,45 @@ export default function MaterialHero({ onOpenQuote }) {
 
         {/* Dedicated Sheer Architectural Showcase Panel - Frosted Glass Blur Under Text for Maximum Contrast */}
         {!currentSlide.hideTextBox ? (
-          <div className="my-auto max-w-2xl pt-4 pb-4">
+          <div className="my-auto max-w-2xl pt-2 pb-2 sm:pt-4 sm:pb-4">
             <div
-              className="rounded-3xl border border-white/15 bg-black/25 sm:bg-black/30 p-6 sm:p-9 shadow-[0_20px_50px_rgba(0,0,0,0.45),inset_0_1px_0_0_rgba(255,255,255,0.15)] backdrop-blur-md transition-all"
+              className="rounded-2xl sm:rounded-3xl border border-white/15 bg-black/35 sm:bg-black/30 p-4 sm:p-9 shadow-[0_20px_50px_rgba(0,0,0,0.45),inset_0_1px_0_0_rgba(255,255,255,0.15)] backdrop-blur-md transition-all"
             >
               {/* Dynamic Text Group (Smoke Mist Condensation on Every Auto/Manual Slide Change) */}
-              <div key={active} className="space-y-3.5">
+              <div key={active} className="space-y-2.5 sm:space-y-3.5">
                 {/* 1. Slide Project Tag */}
-                <div className="smoke-in-1 inline-flex items-center gap-2 rounded-full border border-[#d4b77a]/50 bg-[#d4b77a]/20 px-3.5 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-[#f5ebd7] sm:text-xs shadow-xs">
-                  <Sparkles className="h-3.5 w-3.5 text-[#E5A924]" />
+                <div className="smoke-in-1 inline-flex items-center gap-1.5 sm:gap-2 rounded-full border border-[#d4b77a]/50 bg-[#d4b77a]/20 px-2.5 py-0.5 sm:px-3.5 sm:py-1 text-[9px] sm:text-xs font-bold uppercase tracking-[0.16em] sm:tracking-[0.2em] text-[#f5ebd7] shadow-xs">
+                  <Sparkles className="h-3 w-3 sm:h-3.5 sm:w-3.5 text-[#E5A924]" />
                   <span>{currentSlide.eyebrow}</span>
                 </div>
 
                 {/* 2. Dynamic Headline */}
-                <h1 className="smoke-in-2 font-serif text-3xl font-semibold leading-[1.06] tracking-tight text-white sm:text-5xl lg:text-5.5xl">
+                <h1 className="smoke-in-2 font-serif text-2xl sm:text-5xl lg:text-5.5xl font-semibold leading-[1.1] sm:leading-[1.06] tracking-tight text-white">
                   {currentSlide.title}
                 </h1>
 
                 {/* 3. Dynamic Description */}
-                <p className="smoke-in-3 mt-4 text-xs leading-relaxed text-stone-200 sm:text-sm sm:leading-6">
+                <p className="smoke-in-3 mt-2 sm:mt-4 text-[11px] sm:text-sm leading-relaxed sm:leading-6 text-stone-200 line-clamp-3 sm:line-clamp-none">
                   {currentSlide.description}
                 </p>
 
                 {/* 4. Architectural Specifications Bar */}
-                <div className="smoke-in-4 mt-5 border-t border-white/15 pt-3.5">
-                  <span className="text-[11px] sm:text-xs font-medium text-[#eedec2]">
+                <div className="smoke-in-4 mt-3 sm:mt-5 border-t border-white/15 pt-2.5 sm:pt-3.5">
+                  <span className="text-[10px] sm:text-xs font-medium text-[#eedec2]">
                     Specification: {currentSlide.specs}
                   </span>
                 </div>
               </div>
 
               {/* 5. Luxury Call to Action Buttons (Stable & Permanently Clickable - Outside Smoke Effect) */}
-              <div className="mt-6 flex flex-wrap items-center gap-3">
+              <div className="mt-4 sm:mt-6 flex flex-wrap items-center gap-2.5 sm:gap-3">
                 {/* Primary Metallic Gold CTA Button */}
                 <a
                   href="#product-catalog"
-                  className="btn-luxury-gold group inline-flex min-h-12 items-center gap-2.5 rounded-xl px-6 text-xs font-bold uppercase tracking-wider text-stone-950 active:scale-95 shadow-md transition-all"
+                  className="btn-luxury-gold group inline-flex min-h-10 sm:min-h-12 items-center gap-2 rounded-xl px-4 sm:px-6 text-[11px] sm:text-xs font-bold uppercase tracking-wider text-stone-950 active:scale-95 shadow-md transition-all"
                 >
                   <span>{currentSlide.actionText}</span>
-                  <ArrowUpRight aria-hidden="true" className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  <ArrowUpRight aria-hidden="true" className="h-3.5 w-3.5 sm:h-4 sm:w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </a>
 
                 {/* Direct WhatsApp Easy CTA Button */}
@@ -214,10 +238,10 @@ export default function MaterialHero({ onOpenQuote }) {
                   )}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex min-h-12 items-center justify-center gap-2.5 rounded-xl bg-gradient-to-r from-[#25D366] to-[#128C7E] px-6 text-xs font-bold uppercase tracking-wider text-white shadow-[0_10px_25px_-4px_rgba(37,211,102,0.4)] hover:shadow-[0_14px_30px_-4px_rgba(37,211,102,0.65)] hover:from-[#20ba59] hover:to-[#0e7467] transition-all duration-300 active:scale-95"
+                  className="inline-flex min-h-10 sm:min-h-12 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#25D366] to-[#128C7E] px-4 sm:px-6 text-[11px] sm:text-xs font-bold uppercase tracking-wider text-white shadow-[0_10px_25px_-4px_rgba(37,211,102,0.4)] hover:shadow-[0_14px_30px_-4px_rgba(37,211,102,0.65)] hover:from-[#20ba59] hover:to-[#0e7467] transition-all duration-300 active:scale-95"
                 >
                   <svg
-                    className="w-4 h-4 fill-current shrink-0"
+                    className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-current shrink-0"
                     viewBox="0 0 24 24"
                     xmlns="http://www.w3.org/2000/svg"
                   >
@@ -235,11 +259,11 @@ export default function MaterialHero({ onOpenQuote }) {
         {/* =========================================================================
             4. ARCHITECTURAL TIMELINE, LIVE PROGRESS & CONTROLS
             ========================================================================= */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div className="flex items-center justify-between gap-2 sm:gap-4">
           
           {/* Slide Interactive Timeline with Live Progress */}
           <div
-            className="flex items-center gap-2 overflow-x-auto py-1 scrollbar-none"
+            className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto py-1 scrollbar-none"
             aria-label="Select material slide"
           >
             {MATERIAL_HERO_SLIDES.map((item, index) => {
@@ -256,7 +280,7 @@ export default function MaterialHero({ onOpenQuote }) {
                 >
                   <div className="relative h-1.5 rounded-full overflow-hidden bg-white/25 transition-all duration-300">
                     {isSelected ? (
-                      <div className="w-10 sm:w-14 h-full bg-white/20">
+                      <div className="w-8 sm:w-14 h-full bg-white/20">
                         <div
                           key={`${active}-${isPaused}`}
                           className="h-full bg-gradient-to-r from-[#e7d5b2] via-[#E5A924] to-[#f3e5cb] rounded-full shadow-sm"
@@ -267,7 +291,7 @@ export default function MaterialHero({ onOpenQuote }) {
                         />
                       </div>
                     ) : (
-                      <span className="block w-2.5 sm:w-3 h-full group-hover:w-4 group-hover:bg-white/70 transition-all duration-200" />
+                      <span className="block w-2 sm:w-3 h-full group-hover:w-4 group-hover:bg-white/70 transition-all duration-200" />
                     )}
                   </div>
                 </button>
@@ -276,7 +300,7 @@ export default function MaterialHero({ onOpenQuote }) {
           </div>
 
           {/* Luxury Controls: Play/Pause and Next/Prev */}
-          <div className="flex items-center gap-2.5 self-end sm:self-auto">
+          <div className="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
             
             {/* Status indicator pill */}
             <div className="hidden md:flex items-center gap-2 rounded-full border border-white/15 bg-black/40 px-3 py-1 text-[10px] font-mono uppercase tracking-wider text-stone-300 backdrop-blur-md">
