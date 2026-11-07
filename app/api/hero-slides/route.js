@@ -8,7 +8,7 @@ export async function GET() {
     if (mongoose.connection.readyState === 1 || (await connectDB())) {
       const savedSlides = await HeroSlide.find(
         {},
-        { key: 1, imageUrl: 1, title: 1, eyebrow: 1, description: 1, specs: 1, actionText: 1 }
+        { key: 1, imageUrl: 1, title: 1, eyebrow: 1, description: 1, specs: 1, actionText: 1, hideTextBox: 1 }
       ).lean();
 
       const slides = Object.fromEntries(
@@ -24,7 +24,8 @@ export async function GET() {
             eyebrow: slide.eyebrow || '',
             description: slide.description || '',
             specs: slide.specs || '',
-            actionText: slide.actionText || ''
+            actionText: slide.actionText || '',
+            hideTextBox: Boolean(slide.hideTextBox)
           }
         ])
       );

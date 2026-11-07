@@ -30,7 +30,8 @@ export default function HeroImagesPanel({ heroManager = {}, catalogStatus }) {
       eyebrow: current.eyebrow || slide.eyebrow || '',
       description: current.description || slide.description || '',
       specs: current.specs || slide.specs || '',
-      actionText: current.actionText || slide.actionText || ''
+      actionText: current.actionText || slide.actionText || '',
+      hideTextBox: Boolean(current.hideTextBox)
     });
     setEditingSlideKey(slide.file);
   }
@@ -41,7 +42,8 @@ export default function HeroImagesPanel({ heroManager = {}, catalogStatus }) {
       eyebrow: slide.eyebrow || '',
       description: slide.description || '',
       specs: slide.specs || '',
-      actionText: slide.actionText || ''
+      actionText: slide.actionText || '',
+      hideTextBox: false
     });
   }
 
@@ -92,7 +94,12 @@ export default function HeroImagesPanel({ heroManager = {}, catalogStatus }) {
                   <span className="rounded-full bg-black/75 px-2.5 py-1 text-[10px] font-bold text-white shadow-xs">
                     Slide {index + 1} of {MATERIAL_HERO_SLIDES.length}
                   </span>
-                  {hasCustomText && (
+                  {custom.hideTextBox && (
+                    <span className="rounded-full bg-rose-600/90 px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider text-white shadow-xs">
+                      Text Box Hidden
+                    </span>
+                  )}
+                  {hasCustomText && !custom.hideTextBox && (
                     <span className="rounded-full bg-amber-500/90 px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider text-white shadow-xs">
                       Custom Text
                     </span>
@@ -158,6 +165,34 @@ export default function HeroImagesPanel({ heroManager = {}, catalogStatus }) {
                       <RotateCcw size={11} />
                       <span>Reset</span>
                     </button>
+                  </div>
+
+                  {/* Hide Text Overlay Box Toggle */}
+                  <div className="flex items-center justify-between rounded-xl border border-amber-300/60 bg-amber-50/70 p-3 shadow-xs">
+                    <div className="pr-3">
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs font-bold text-stone-900">
+                          Hide Text Box on Slide
+                        </span>
+                        {editFormData.hideTextBox && (
+                          <span className="rounded bg-rose-100 px-1.5 py-0.5 text-[9px] font-bold text-rose-700">
+                            Hidden
+                          </span>
+                        )}
+                      </div>
+                      <p className="mt-0.5 text-[11px] text-stone-600 leading-normal">
+                        Turn this ON if your uploaded image already has built-in text or banner typography (e.g. PU Stone / Flexible Stone posters).
+                      </p>
+                    </div>
+                    <label className="relative inline-flex shrink-0 cursor-pointer items-center">
+                      <input
+                        type="checkbox"
+                        checked={Boolean(editFormData.hideTextBox)}
+                        disabled={isSaving || isFormDisabled}
+                        onChange={e => setEditFormData({ ...editFormData, hideTextBox: e.target.checked })}
+                        className="h-4 w-4 rounded border-stone-300 text-brand-gold focus:ring-brand-gold disabled:opacity-50"
+                      />
+                    </label>
                   </div>
 
                   <div>

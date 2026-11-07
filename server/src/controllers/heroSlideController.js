@@ -18,7 +18,7 @@ export async function getHeroSlides(req, res) {
 
     const savedSlides = await HeroSlide.find(
       {},
-      { key: 1, imageUrl: 1, title: 1, eyebrow: 1, description: 1, specs: 1, actionText: 1 }
+      { key: 1, imageUrl: 1, title: 1, eyebrow: 1, description: 1, specs: 1, actionText: 1, hideTextBox: 1 }
     ).lean();
 
     // 1. Backward-compatible image mapping (key -> imageUrl string)
@@ -26,7 +26,7 @@ export async function getHeroSlides(req, res) {
       savedSlides.filter(slide => Boolean(slide.imageUrl)).map(slide => [slide.key, slide.imageUrl])
     );
 
-    // 2. New comprehensive content mapping (key -> { title, eyebrow, description, specs, actionText, imageUrl })
+    // 2. New comprehensive content mapping (key -> { title, eyebrow, description, specs, actionText, imageUrl, hideTextBox })
     const content = Object.fromEntries(
       savedSlides.map(slide => [
         slide.key,
@@ -36,7 +36,8 @@ export async function getHeroSlides(req, res) {
           eyebrow: slide.eyebrow || '',
           description: slide.description || '',
           specs: slide.specs || '',
-          actionText: slide.actionText || ''
+          actionText: slide.actionText || '',
+          hideTextBox: Boolean(slide.hideTextBox)
         }
       ])
     );
@@ -59,11 +60,11 @@ export async function updateHeroSlide(req, res) {
   const body = req.body || {};
   const hasFile = Boolean(req.file);
   const textKeys = ['title', 'eyebrow', 'description', 'specs', 'actionText'];
-  const hasTextUpdate = textKeys.some(k => body[k] !== undefined);
+  const hasTextUpdate = textKeys.some(k => body[k] !== undefined) || body.hideTextBox !== undefined;
 
   if (!hasFile && !hasTextUpdate) {
     return res.status(400).json({
-      message: 'Provide an image file or text content (title, eyebrow, description, specs, actionText) to update.'
+      message: 'Provide an image file or text content (title, eyebrow, description, specs, actionText, hideTextBox) to update.'
     });
   }
 
@@ -76,6 +77,10 @@ export async function updateHeroSlide(req, res) {
     if (body[field] !== undefined) {
       updateFields[field] = String(body[field]).trim();
     }
+  }
+
+  if (body.hideTextBox !== undefined) {
+    updateFields.hideTextBox = body.hideTextBox === true || body.hideTextBox === 'true';
   }
 
   try {
@@ -126,6 +131,7 @@ export async function updateHeroSlide(req, res) {
       description: updated.description || '',
       specs: updated.specs || '',
       actionText: updated.actionText || '',
+      hideTextBox: Boolean(updated.hideTextBox),
       cleanupWarning
     });
   } catch (error) {

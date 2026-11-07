@@ -81,6 +81,7 @@ export default function MaterialHero({ onOpenQuote }) {
     description: custom.description || rawSlide.description,
     specs: custom.specs || rawSlide.specs,
     actionText: custom.actionText || rawSlide.actionText,
+    hideTextBox: custom.hideTextBox !== undefined ? Boolean(custom.hideTextBox) : false,
   };
 
   return (
@@ -164,68 +165,72 @@ export default function MaterialHero({ onOpenQuote }) {
         </div>
 
         {/* Dedicated Sheer Architectural Showcase Panel - Frosted Glass Blur Under Text for Maximum Contrast */}
-        <div className="my-auto max-w-2xl pt-4 pb-4">
-          <div
-            className="rounded-3xl border border-white/15 bg-black/25 sm:bg-black/30 p-6 sm:p-9 shadow-[0_20px_50px_rgba(0,0,0,0.45),inset_0_1px_0_0_rgba(255,255,255,0.15)] backdrop-blur-md transition-all"
-          >
-            {/* Dynamic Text Group (Smoke Mist Condensation on Every Auto/Manual Slide Change) */}
-            <div key={active} className="space-y-3.5">
-              {/* 1. Slide Project Tag */}
-              <div className="smoke-in-1 inline-flex items-center gap-2 rounded-full border border-[#d4b77a]/50 bg-[#d4b77a]/20 px-3.5 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-[#f5ebd7] sm:text-xs shadow-xs">
-                <Sparkles className="h-3.5 w-3.5 text-[#E5A924]" />
-                <span>{currentSlide.eyebrow}</span>
+        {!currentSlide.hideTextBox ? (
+          <div className="my-auto max-w-2xl pt-4 pb-4">
+            <div
+              className="rounded-3xl border border-white/15 bg-black/25 sm:bg-black/30 p-6 sm:p-9 shadow-[0_20px_50px_rgba(0,0,0,0.45),inset_0_1px_0_0_rgba(255,255,255,0.15)] backdrop-blur-md transition-all"
+            >
+              {/* Dynamic Text Group (Smoke Mist Condensation on Every Auto/Manual Slide Change) */}
+              <div key={active} className="space-y-3.5">
+                {/* 1. Slide Project Tag */}
+                <div className="smoke-in-1 inline-flex items-center gap-2 rounded-full border border-[#d4b77a]/50 bg-[#d4b77a]/20 px-3.5 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-[#f5ebd7] sm:text-xs shadow-xs">
+                  <Sparkles className="h-3.5 w-3.5 text-[#E5A924]" />
+                  <span>{currentSlide.eyebrow}</span>
+                </div>
+
+                {/* 2. Dynamic Headline */}
+                <h1 className="smoke-in-2 font-serif text-3xl font-semibold leading-[1.06] tracking-tight text-white sm:text-5xl lg:text-5.5xl">
+                  {currentSlide.title}
+                </h1>
+
+                {/* 3. Dynamic Description */}
+                <p className="smoke-in-3 mt-4 text-xs leading-relaxed text-stone-200 sm:text-sm sm:leading-6">
+                  {currentSlide.description}
+                </p>
+
+                {/* 4. Architectural Specifications Bar */}
+                <div className="smoke-in-4 mt-5 border-t border-white/15 pt-3.5">
+                  <span className="text-[11px] sm:text-xs font-medium text-[#eedec2]">
+                    Specification: {currentSlide.specs}
+                  </span>
+                </div>
               </div>
 
-              {/* 2. Dynamic Headline */}
-              <h1 className="smoke-in-2 font-serif text-3xl font-semibold leading-[1.06] tracking-tight text-white sm:text-5xl lg:text-5.5xl">
-                {currentSlide.title}
-              </h1>
-
-              {/* 3. Dynamic Description */}
-              <p className="smoke-in-3 mt-4 text-xs leading-relaxed text-stone-200 sm:text-sm sm:leading-6">
-                {currentSlide.description}
-              </p>
-
-              {/* 4. Architectural Specifications Bar */}
-              <div className="smoke-in-4 mt-5 border-t border-white/15 pt-3.5">
-                <span className="text-[11px] sm:text-xs font-medium text-[#eedec2]">
-                  Specification: {currentSlide.specs}
-                </span>
-              </div>
-            </div>
-
-            {/* 5. Luxury Call to Action Buttons (Stable & Permanently Clickable - Outside Smoke Effect) */}
-            <div className="mt-6 flex flex-wrap items-center gap-3">
-              {/* Primary Metallic Gold CTA Button */}
-              <a
-                href="#product-catalog"
-                className="btn-luxury-gold group inline-flex min-h-12 items-center gap-2.5 rounded-xl px-6 text-xs font-bold uppercase tracking-wider text-stone-950 active:scale-95 shadow-md transition-all"
-              >
-                <span>{currentSlide.actionText}</span>
-                <ArrowUpRight aria-hidden="true" className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </a>
-
-              {/* Direct WhatsApp Easy CTA Button */}
-              <a
-                href={`https://wa.me/${CLIENT_INFO.whatsappNumber}?text=${encodeURIComponent(
-                  `Hello Classical Decor ID, I am interested in ${currentSlide.eyebrow} (${currentSlide.actionTopic}). Please share specifications and wholesale trade pricing.`
-                )}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex min-h-12 items-center justify-center gap-2.5 rounded-xl bg-gradient-to-r from-[#25D366] to-[#128C7E] px-6 text-xs font-bold uppercase tracking-wider text-white shadow-[0_10px_25px_-4px_rgba(37,211,102,0.4)] hover:shadow-[0_14px_30px_-4px_rgba(37,211,102,0.65)] hover:from-[#20ba59] hover:to-[#0e7467] transition-all duration-300 active:scale-95"
-              >
-                <svg
-                  className="w-4 h-4 fill-current shrink-0"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
+              {/* 5. Luxury Call to Action Buttons (Stable & Permanently Clickable - Outside Smoke Effect) */}
+              <div className="mt-6 flex flex-wrap items-center gap-3">
+                {/* Primary Metallic Gold CTA Button */}
+                <a
+                  href="#product-catalog"
+                  className="btn-luxury-gold group inline-flex min-h-12 items-center gap-2.5 rounded-xl px-6 text-xs font-bold uppercase tracking-wider text-stone-950 active:scale-95 shadow-md transition-all"
                 >
-                  <path d="M12.031 0C5.396 0 .029 5.367.029 12.002c0 2.118.553 4.187 1.603 6.007L0 24l6.167-1.618a11.97 11.97 0 005.864 1.518h.005c6.634 0 12.001-5.367 12.001-12.002C24.037 5.368 18.67 0 12.031 0zm0 21.897c-1.8 0-3.565-.484-5.105-1.4l-.366-.217-3.793.995 1.013-3.697-.238-.379a9.92 9.92 0 01-1.521-5.197c0-5.498 4.474-9.972 9.975-9.972 2.664 0 5.168 1.038 7.051 2.922a9.92 9.92 0 012.921 7.052c0 5.499-4.474 9.973-9.975 9.973zm5.467-7.464c-.299-.15-1.771-.874-2.046-.974-.275-.1-.475-.15-.675.15s-.774.974-.95 1.173c-.174.2-.349.225-.648.075-.3-.15-1.267-.467-2.413-1.488-.892-.796-1.494-1.78-1.669-2.079-.175-.3-.019-.462.131-.611.135-.134.299-.349.449-.524.15-.175.2-.3.3-.5.1-.2.05-.374-.025-.524-.075-.15-.675-1.623-.925-2.222-.243-.583-.49-.504-.674-.513-.174-.009-.374-.01-.574-.01s-.524.075-.798.374c-.275.3-1.049 1.024-1.049 2.5 0 1.474 1.074 2.898 1.224 3.098.15.2 2.113 3.227 5.119 4.526.715.309 1.273.494 1.708.632.718.228 1.371.196 1.888.118.577-.087 1.771-.724 2.021-1.423.25-.699.25-1.298.175-1.423-.075-.125-.275-.2-.575-.35z" />
-                </svg>
-                <span>Chat on WhatsApp</span>
-              </a>
+                  <span>{currentSlide.actionText}</span>
+                  <ArrowUpRight aria-hidden="true" className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </a>
+
+                {/* Direct WhatsApp Easy CTA Button */}
+                <a
+                  href={`https://wa.me/${CLIENT_INFO.whatsappNumber}?text=${encodeURIComponent(
+                    `Hello Classical Decor ID, I am interested in ${currentSlide.eyebrow} (${currentSlide.actionTopic}). Please share specifications and wholesale trade pricing.`
+                  )}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex min-h-12 items-center justify-center gap-2.5 rounded-xl bg-gradient-to-r from-[#25D366] to-[#128C7E] px-6 text-xs font-bold uppercase tracking-wider text-white shadow-[0_10px_25px_-4px_rgba(37,211,102,0.4)] hover:shadow-[0_14px_30px_-4px_rgba(37,211,102,0.65)] hover:from-[#20ba59] hover:to-[#0e7467] transition-all duration-300 active:scale-95"
+                >
+                  <svg
+                    className="w-4 h-4 fill-current shrink-0"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M12.031 0C5.396 0 .029 5.367.029 12.002c0 2.118.553 4.187 1.603 6.007L0 24l6.167-1.618a11.97 11.97 0 005.864 1.518h.005c6.634 0 12.001-5.367 12.001-12.002C24.037 5.368 18.67 0 12.031 0zm0 21.897c-1.8 0-3.565-.484-5.105-1.4l-.366-.217-3.793.995 1.013-3.697-.238-.379a9.92 9.92 0 01-1.521-5.197c0-5.498 4.474-9.972 9.975-9.972 2.664 0 5.168 1.038 7.051 2.922a9.92 9.92 0 012.921 7.052c0 5.499-4.474 9.973-9.975 9.973zm5.467-7.464c-.299-.15-1.771-.874-2.046-.974-.275-.1-.475-.15-.675.15s-.774.974-.95 1.173c-.174.2-.349.225-.648.075-.3-.15-1.267-.467-2.413-1.488-.892-.796-1.494-1.78-1.669-2.079-.175-.3-.019-.462.131-.611.135-.134.299-.349.449-.524.15-.175.2-.3.3-.5.1-.2.05-.374-.025-.524-.075-.15-.675-1.623-.925-2.222-.243-.583-.49-.504-.674-.513-.174-.009-.374-.01-.574-.01s-.524.075-.798.374c-.275.3-1.049 1.024-1.049 2.5 0 1.474 1.074 2.898 1.224 3.098.15.2 2.113 3.227 5.119 4.526.715.309 1.273.494 1.708.632.718.228 1.371.196 1.888.118.577-.087 1.771-.724 2.021-1.423.25-.699.25-1.298.175-1.423-.075-.125-.275-.2-.575-.35z" />
+                  </svg>
+                  <span>Chat on WhatsApp</span>
+                </a>
+              </div>
             </div>
           </div>
-        </div>
+        ) : (
+          <div className="my-auto" aria-hidden="true" />
+        )}
 
         {/* =========================================================================
             4. ARCHITECTURAL TIMELINE, LIVE PROGRESS & CONTROLS

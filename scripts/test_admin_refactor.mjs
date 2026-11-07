@@ -330,7 +330,8 @@ test('hero content editing updates slide text fields persistently and keeps back
     eyebrow: 'Architectural Feature',
     description: 'Custom description text for flexible stone.',
     specs: '3mm Bendable • Fire Rated',
-    actionText: 'Discover Stone'
+    actionText: 'Discover Stone',
+    hideTextBox: true
   };
 
   let finishSave;

@@ -40,6 +40,10 @@ export async function POST(request, { params }) {
     }
   }
 
+  if (body.hideTextBox !== undefined) {
+    updateFields.hideTextBox = body.hideTextBox === true || body.hideTextBox === 'true';
+  }
+
   try {
     if (mongoose.connection.readyState === 1 || (await connectDB())) {
       const updated = await HeroSlide.findOneAndUpdate(
@@ -56,6 +60,7 @@ export async function POST(request, { params }) {
         description: updated.description || '',
         specs: updated.specs || '',
         actionText: updated.actionText || '',
+        hideTextBox: Boolean(updated.hideTextBox),
         cleanupWarning: ''
       });
     }

@@ -13,7 +13,8 @@ const heroSlideSchema = new mongoose.Schema(
     eyebrow: { type: String, trim: true },
     description: { type: String, trim: true },
     specs: { type: String, trim: true },
-    actionText: { type: String, trim: true }
+    actionText: { type: String, trim: true },
+    hideTextBox: { type: Boolean, default: false }
   },
   { timestamps: true }
 );

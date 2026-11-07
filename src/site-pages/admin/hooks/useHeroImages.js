@@ -12,7 +12,8 @@ export default function useHeroImages(api, enabled) {
     eyebrow: '',
     description: '',
     specs: '',
-    actionText: ''
+    actionText: '',
+    hideTextBox: false
   });
 
   const fetchHeroImages = useCallback(async () => {
@@ -93,6 +94,7 @@ export default function useHeroImages(api, enabled) {
           description: updated.description,
           specs: updated.specs,
           actionText: updated.actionText,
+          hideTextBox: Boolean(updated.hideTextBox),
           imageUrl: updated.imageUrl || current[slideKey]?.imageUrl || ''
         }
       }));
