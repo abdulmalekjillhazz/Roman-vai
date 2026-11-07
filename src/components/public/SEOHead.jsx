@@ -2,9 +2,9 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 
 export default function SEOHead({ title, description, canonicalPath = '/', product = null }) {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://dstdeco.com';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://classicaldecorid.com';
   const fullUrl = `${siteUrl}${canonicalPath}`;
-  const pageTitle = title || 'DST Deco | Luxury Interior Decor Materials Supplier in Dubai, UAE';
+  const pageTitle = title || 'Classical Decor ID | Luxury Interior Decor Materials Supplier in Dubai, UAE';
   const pageDesc =
     description ||
     'Premium B2B supplier of 100% waterproof SPC flooring, WPC fluted wall panels, flexible stone, PU stone, and architectural moldings in Dubai & UAE.';

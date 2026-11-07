@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import cloudCatalog from '../../data/products_cloudinary.json';
 import localCatalog from '../../data/products_data.json';
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://dstdeco.com';
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://classicaldecorid.com';
 
 export async function GET() {
   const items = cloudCatalog.length ? cloudCatalog : localCatalog;

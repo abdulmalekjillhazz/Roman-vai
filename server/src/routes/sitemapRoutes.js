@@ -8,7 +8,7 @@ const __dirname = path.dirname(__filename);
 const router = express.Router();
 
 router.get('/sitemap.xml', (req, res) => {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://dstdeco.com';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://classicaldecorid.com';
   const dataPath = path.join(__dirname, '../../../data/products_data.json');
   const products = JSON.parse(fs.readFileSync(dataPath, 'utf8'));
 

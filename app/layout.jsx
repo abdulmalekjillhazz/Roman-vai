@@ -6,7 +6,7 @@ const businessSchema = {
   name: 'CLASSICAL DECOR I D',
   alternateName: 'DST Deco',
   slogan: 'DESIGN • DECOR • PERFECT',
-  url: 'https://dstdeco.com',
+  url: 'https://classicaldecorid.com',
   telephone: '+971543532585',
   email: 'dstdeco@gmail.com',
   address: {
@@ -20,8 +20,8 @@ const businessSchema = {
 };
 
 export const metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://dstdeco.com'),
-  title: 'DST Deco | Luxury Interior Materials Supplier in Dubai, UAE',
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://classicaldecorid.com'),
+  title: 'Classical Decor ID | Luxury Interior Materials Supplier in Dubai, UAE',
   description:
     'Premium B2B supply of SPC flooring, WPC wall panels, flexible stone, PU stone, and architectural finishes across Dubai and the UAE.',
   icons: {
@@ -39,7 +39,7 @@ export const metadata = {
     description:
       'DESIGN • DECOR • PERFECT. Premium architectural surfaces across UAE. Call or WhatsApp +971 543 532 585.',
     type: 'website',
-    url: 'https://dstdeco.com',
+    url: 'https://classicaldecorid.com',
     images: ['/assets/business-card-cream.jpeg']
   }
 };
