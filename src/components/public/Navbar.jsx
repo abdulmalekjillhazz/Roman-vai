@@ -49,15 +49,15 @@ export default function Navbar({ onOpenQuote }) {
                 isTransparent ? 'text-white drop-shadow-sm' : 'text-stone-950'
               }`}
             >
-              <span className="max-[359px]:hidden sm:hidden">DST DECO</span>
-              <span className="hidden sm:inline">CLASSICAL DECOR ID</span>
+              <span className="max-[359px]:hidden sm:hidden">{CLIENT_INFO.tradeName}</span>
+              <span className="hidden sm:inline">{CLIENT_INFO.brandName}</span>
             </span>
             <span
               className={`hidden font-sans text-[10px] tracking-wide transition-colors sm:inline sm:text-[11px] ${
                 isTransparent ? 'text-stone-300' : 'text-stone-500'
               }`}
             >
-              classicaldecorid • Architectural Surfaces
+              {CLIENT_INFO.tradeName}
             </span>
           </div>
         </Link>
