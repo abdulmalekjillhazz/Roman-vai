@@ -9,6 +9,7 @@
     "prebuild": "node scripts/prepare-next-public.js",
     "build": "node node_modules/next/dist/bin/next build",
     "start": "node node_modules/next/dist/bin/next start",
+    "start:hosting": "node app.cjs",
     "seed": "node server/src/seed.js"
   },
   "dependencies": {
