@@ -19,6 +19,9 @@ out/
 /public/assets/
 /public/data/
 
+# cPanel Passenger runtime files
+tmp/
+
 # Logs & OS files
 npm-debug.log*
 .DS_Store
