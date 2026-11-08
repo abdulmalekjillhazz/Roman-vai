@@ -3,7 +3,7 @@
  * CLASSICAL DECOR I D (DST Deco) — Dubai Architectural Materials & Trade Supply Portal
  */
 export const CLIENT_INFO = {
-  brandName: process.env.NEXT_PUBLIC_BRAND_NAME || 'Classical Decor ID',
+  brandName: process.env.NEXT_PUBLIC_BRAND_NAME || 'CLASSICAL DECOR I D',
   tradeName: process.env.NEXT_PUBLIC_BRAND_SUBTITLE || 'DST Deco',
   tagline: process.env.NEXT_PUBLIC_BRAND_TAGLINE || 'DESIGN • DECOR • PERFECT',
   domain: process.env.NEXT_PUBLIC_SITE_URL || 'https://classicaldecorid.com',
