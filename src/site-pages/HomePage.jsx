@@ -15,6 +15,26 @@ import { CLIENT_INFO } from '../config/clientInfo.js';
 
 const INITIAL_CATALOG = cloudCatalog.length ? cloudCatalog : localCatalog;
 
+// Frontend-only order for the official catalog; API data remains untouched.
+const CATEGORY_ORDER = [
+  'spc-flooring',
+  'lvt-flooring',
+  'flexible-stone',
+  'wpc-chipboard-panel-sheet',
+  'wall-panel',
+  'pu-stone',
+  'molding',
+  'columns-partition',
+  'acoustic-panel',
+  'pvc-marble-sheet',
+  '3d-velvet-fabric-roll',
+  '3d-soft-stone-roll',
+  'flexible-3d-sheet',
+  'aluminium-profiles',
+  'silicon'
+];
+const CATEGORY_ORDER_INDEX = new Map(CATEGORY_ORDER.map((slug, index) => [slug, index]));
+
 const MATERIAL_STUDIES = [
   { file: 'project-completed-luxury-villa-wall-cladding-01', title: 'Flexible Stone & Facades', detail: 'Curved Surfaces', slug: 'flexible-stone' },
   { file: 'project-completed-herringbone-parquet-residential-05', title: 'SPC Rigid Parquetry', detail: 'Waterproof Flooring', slug: 'spc-flooring' },
@@ -69,6 +89,17 @@ export default function HomePage({ onOpenQuote, categorySlug }) {
       return textToSearch.includes(query);
     });
   }, [products, activeGroup, search]);
+
+  // Sort only the visible copy; keep API and catalog data unchanged.
+  const orderedProducts = useMemo(() => {
+    const getOrder = product => {
+      const slug = product.slug || product.id || '';
+      if (CATEGORY_ORDER_INDEX.has(slug)) return CATEGORY_ORDER_INDEX.get(slug);
+      const normalizedName = (product.name || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+      return CATEGORY_ORDER_INDEX.get(normalizedName) ?? Number.MAX_SAFE_INTEGER;
+    };
+    return [...filteredProducts].sort((a, b) => getOrder(a) - getOrder(b));
+  }, [filteredProducts]);
 
   return (
     <div className="bg-[#FAF6EE] min-h-screen">
@@ -201,7 +232,7 @@ export default function HomePage({ onOpenQuote, categorySlug }) {
         {/* Full-Width Products Grid - 1 Full-Width Video Feed Style Card per Row on Phone */}
         {filteredProducts.length ? (
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {filteredProducts.map((product, index) => (
+            {orderedProducts.map((product, index) => (
               <ProductCard
                 key={product._id || product.id || product.slug}
                 product={product}
