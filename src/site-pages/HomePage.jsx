@@ -11,6 +11,7 @@ import MaterialHero from '../components/public/MaterialHero.jsx';
 import FallbackImage from '../components/public/FallbackImage.jsx';
 import FAQSection from '../components/public/FAQSection.jsx';
 import CustomerReviewsSection from '../components/public/CustomerReviewsSection.jsx';
+import SkyFloatingGallerySection from '../components/public/SkyFloatingGallerySection.jsx';
 import cloudCatalog from '../../data/products_cloudinary.json';
 import localCatalog from '../../data/products_data.json';
 import { CLIENT_INFO } from '../config/clientInfo.js';
@@ -342,6 +343,9 @@ export default function HomePage({ onOpenQuote, categorySlug }) {
 
       {/* Customer Reviews & Testimonials (Database-driven, verified only) */}
       <CustomerReviewsSection />
+
+      {/* Celestial Sky Floating Architectural Gallery & Portfolio (আকাশে ভাসমান শৈল্পিক নিদর্শন) */}
+      <SkyFloatingGallerySection onOpenQuote={onOpenQuote} />
 
       {/* 4. Trade Services Section */}
       <section aria-labelledby="service-title" className="border-t border-stone-200 bg-[#eee9df]">

@@ -436,5 +436,119 @@
   );
 }
 
+/* ==========================================================================
+   10. CELESTIAL SKY FLOATING ARCHITECTURAL GALLERY (আকাশে ভাসমান শৈল্পিক গ্যালারি)
+   ========================================================================== */
+
+@keyframes skyFloatSlow1 {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-24px) rotate(-1.5deg);
+  }
+}
+
+@keyframes skyFloatSlow2 {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(22px) rotate(2deg);
+  }
+}
+
+@keyframes skyFloatSlow3 {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-28px) rotate(2.5deg);
+  }
+}
+
+@keyframes skyFloatSlow4 {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(20px) rotate(-2deg);
+  }
+}
+
+@keyframes skyFloatSlow5 {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-18px) rotate(1.2deg);
+  }
+}
+
+@keyframes skyCloudDriftSlow {
+  0% {
+    transform: translateX(-12%) translateZ(0);
+  }
+  100% {
+    transform: translateX(12%) translateZ(0);
+  }
+}
+
+@keyframes skyStarTwinkle {
+  0%, 100% {
+    opacity: 0.25;
+    transform: scale(0.85);
+  }
+  50% {
+    opacity: 0.95;
+    transform: scale(1.3);
+  }
+}
+
+@keyframes skyGoldenPulse {
+  0%, 100% {
+    opacity: 0.35;
+    transform: scale(1);
+    filter: blur(40px);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.15);
+    filter: blur(55px);
+  }
+}
+
+.sky-float-1 {
+  animation: skyFloatSlow1 9.5s ease-in-out infinite;
+}
+.sky-float-2 {
+  animation: skyFloatSlow2 11.5s ease-in-out infinite 1.2s;
+}
+.sky-float-3 {
+  animation: skyFloatSlow3 8.2s ease-in-out infinite 2.5s;
+}
+.sky-float-4 {
+  animation: skyFloatSlow4 13s ease-in-out infinite 0.8s;
+}
+.sky-float-5 {
+  animation: skyFloatSlow5 10s ease-in-out infinite 3.1s;
+}
+
+.sky-cloud-drift-1 {
+  animation: skyCloudDriftSlow 42s ease-in-out infinite alternate;
+  will-change: transform;
+}
+.sky-cloud-drift-2 {
+  animation: skyCloudDriftSlow 60s ease-in-out infinite alternate-reverse;
+  will-change: transform;
+}
+.sky-star-twinkle {
+  animation: skyStarTwinkle 4s ease-in-out infinite;
+}
+.sky-gold-pulse {
+  animation: skyGoldenPulse 8s ease-in-out infinite;
+}
+
+
 
 
