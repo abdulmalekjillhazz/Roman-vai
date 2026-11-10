@@ -11,7 +11,7 @@
     "start": "node node_modules/next/dist/bin/next start",
     "start:hosting": "node app.cjs",
     "seed": "node server/src/seed.js",
-    "test": "node --test scripts/test_admin_refactor.mjs server/test/dataflow_auth.test.mjs"
+    "test": "node --test scripts/test_admin_refactor.mjs server/test/dataflow_auth.test.mjs server/test/new_modules.test.mjs"
   },
   "dependencies": {
     "axios": "^1.7.2",

@@ -15,6 +15,7 @@ import faqRoutes from './routes/faqRoutes.js';
 import businessProfileRoutes from './routes/businessProfileRoutes.js';
 import serviceRoutes from './routes/serviceRoutes.js';
 import projectRoutes from './routes/projectRoutes.js';
+import reviewRoutes from './routes/reviewRoutes.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -72,6 +73,7 @@ app.use('/api/faqs', faqRoutes);
 app.use('/api/business-profile', businessProfileRoutes);
 app.use('/api/services', serviceRoutes);
 app.use('/api/projects', projectRoutes);
+app.use('/api/reviews', reviewRoutes);
 
 app.get('/api/health', (req, res) => {
   res.json({

@@ -10,6 +10,7 @@ import ProductModal from '../components/public/ProductModal.jsx';
 import MaterialHero from '../components/public/MaterialHero.jsx';
 import FallbackImage from '../components/public/FallbackImage.jsx';
 import FAQSection from '../components/public/FAQSection.jsx';
+import CustomerReviewsSection from '../components/public/CustomerReviewsSection.jsx';
 import cloudCatalog from '../../data/products_cloudinary.json';
 import localCatalog from '../../data/products_data.json';
 import { CLIENT_INFO } from '../config/clientInfo.js';
@@ -338,6 +339,9 @@ export default function HomePage({ onOpenQuote, categorySlug }) {
 
       {/* 3. Frequently Asked Questions (Database-driven & GEO Optimized) */}
       <FAQSection onOpenQuote={onOpenQuote} onFaqsLoaded={setLoadedFaqs} />
+
+      {/* Customer Reviews & Testimonials (Database-driven, verified only) */}
+      <CustomerReviewsSection />
 
       {/* 4. Trade Services Section */}
       <section aria-labelledby="service-title" className="border-t border-stone-200 bg-[#eee9df]">
