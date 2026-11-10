@@ -13,6 +13,18 @@ export default function App({ children }) {
   const isHome = pathname === '/';
   const [quoteModal, setQuoteModal] = useState({ open: false, item: '' });
   const [scrolledPastHero, setScrolledPastHero] = useState(false);
+  const [profile, setProfile] = useState(null);
+
+  useEffect(() => {
+    fetch('/api/business-profile')
+      .then(res => res.ok ? res.json() : null)
+      .then(data => {
+        if (data && typeof data === 'object' && Object.keys(data).length > 0) {
+          setProfile(data);
+        }
+      })
+      .catch(() => {});
+  }, []);
 
   useEffect(() => {
     if (!isHome) {
@@ -31,6 +43,16 @@ export default function App({ children }) {
   function handleOpenQuote(itemName) {
     setQuoteModal({ open: true, item: itemName });
   }
+
+  const location = profile?.showroomAddress || profile?.officeAddress || CLIENT_INFO.location;
+  const workingHours = profile?.operatingHours || CLIENT_INFO.workingHours;
+  const rawWhatsapp = profile?.whatsappNumber || CLIENT_INFO.whatsappNumber;
+  const whatsappNumber = rawWhatsapp.replace(/[^0-9]/g, '');
+  const phoneDisplay = profile?.contactPhone || profile?.whatsappNumber || CLIENT_INFO.phoneDisplay;
+  const email = profile?.contactEmail || CLIENT_INFO.email;
+  const instagramUrl = profile?.socials?.instagramUrl || CLIENT_INFO.socials.instagramUrl;
+  const facebookUrl = profile?.socials?.facebookUrl || CLIENT_INFO.socials.facebookUrl;
+  const linkedinUrl = profile?.socials?.linkedinUrl || CLIENT_INFO.socials.linkedinUrl;
 
   return (
     <HelmetProvider>
@@ -56,10 +78,10 @@ export default function App({ children }) {
                   Dubai's premier B2B interior & exterior architectural surfaces supplier. Supplying wholesale contractors, interior designers, and luxury projects with WPC, SPC, LVT, Flexible Stone, and PU Stone solutions.
                 </p>
                 <div className="mt-4 font-mono text-[11px] text-brand-gold">
-                  Showroom: {CLIENT_INFO.location}
+                  Showroom: {location}
                 </div>
                 <div className="text-[11px] text-stone-400 font-sans mt-1">
-                  Operating Hours: {CLIENT_INFO.workingHours}
+                  Operating Hours: {workingHours}
                 </div>
               </div>
 
@@ -69,14 +91,14 @@ export default function App({ children }) {
                 </h3>
                 <p className="flex items-center gap-3">
                   <span className="w-7 h-7 rounded-full bg-brand-gold text-brand-charcoal flex items-center justify-center font-bold text-xs shrink-0">W</span>
-                  <a href={`https://wa.me/${CLIENT_INFO.whatsappNumber}`} target="_blank" rel="noopener noreferrer" className="hover:text-brand-gold transition font-mono font-medium">
-                    {CLIENT_INFO.phoneDisplay} (Direct WhatsApp)
+                  <a href={`https://wa.me/${whatsappNumber}`} target="_blank" rel="noopener noreferrer" className="hover:text-brand-gold transition font-mono font-medium">
+                    {phoneDisplay} (Direct WhatsApp)
                   </a>
                 </p>
                 <p className="flex items-center gap-3">
                   <span className="w-7 h-7 rounded-full bg-brand-gold text-brand-charcoal flex items-center justify-center font-bold text-xs shrink-0">✉</span>
-                  <a href={`mailto:${CLIENT_INFO.email}`} className="hover:text-brand-gold transition font-medium">
-                    {CLIENT_INFO.email}
+                  <a href={`mailto:${email}`} className="hover:text-brand-gold transition font-medium">
+                    {email}
                   </a>
                 </p>
                 <p className="flex items-center gap-3">
@@ -87,19 +109,19 @@ export default function App({ children }) {
                 </p>
                 <p className="flex items-center gap-3">
                   <span className="w-7 h-7 rounded-full bg-brand-gold text-brand-charcoal flex items-center justify-center font-bold text-xs shrink-0">IG</span>
-                  <a href={CLIENT_INFO.socials.instagramUrl} target="_blank" rel="noopener noreferrer" className="hover:text-brand-gold transition font-medium">
+                  <a href={instagramUrl} target="_blank" rel="noopener noreferrer" className="hover:text-brand-gold transition font-medium">
                     Instagram: {CLIENT_INFO.socials.instagramHandle}
                   </a>
                 </p>
                 <p className="flex items-center gap-3">
                   <span className="w-7 h-7 rounded-full bg-brand-gold text-brand-charcoal flex items-center justify-center font-bold text-xs shrink-0">f</span>
-                  <a href={CLIENT_INFO.socials.facebookUrl} target="_blank" rel="noopener noreferrer" className="hover:text-brand-gold transition font-medium">
+                  <a href={facebookUrl} target="_blank" rel="noopener noreferrer" className="hover:text-brand-gold transition font-medium">
                     Facebook: /{CLIENT_INFO.socials.facebookHandle}
                   </a>
                 </p>
                 <p className="flex items-center gap-3">
                   <span className="w-7 h-7 rounded-full bg-brand-gold text-brand-charcoal flex items-center justify-center font-bold text-xs shrink-0">in</span>
-                  <a href={CLIENT_INFO.socials.linkedinUrl} target="_blank" rel="noopener noreferrer" className="hover:text-brand-gold transition font-medium">
+                  <a href={linkedinUrl} target="_blank" rel="noopener noreferrer" className="hover:text-brand-gold transition font-medium">
                     LinkedIn: /{CLIENT_INFO.socials.linkedinHandle}
                   </a>
                 </p>

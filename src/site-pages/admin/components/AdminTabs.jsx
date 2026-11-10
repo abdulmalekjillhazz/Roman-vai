@@ -3,7 +3,7 @@ import React from 'react';
 export default function AdminTabs({ activeTab, setActiveTab }) {
   return (
     <div className="mb-6 flex flex-wrap gap-3">
-      {['products', 'new-product', 'categories', 'hero-images', 'faqs'].map(tab => (
+      {['products', 'new-product', 'categories', 'hero-images', 'faqs', 'business-profile'].map(tab => (
         <button
           key={tab}
           type="button"
@@ -20,7 +20,9 @@ export default function AdminTabs({ activeTab, setActiveTab }) {
             ? 'Categories'
             : tab === 'hero-images'
             ? 'Hero Images'
-            : 'FAQs'}
+            : tab === 'faqs'
+            ? 'FAQs'
+            : 'Business Profile'}
         </button>
       ))}
     </div>

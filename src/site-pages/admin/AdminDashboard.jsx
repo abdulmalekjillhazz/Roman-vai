@@ -6,6 +6,7 @@ import useProducts from './hooks/useProducts.js';
 import useCategories from './hooks/useCategories.js';
 import useHeroImages from './hooks/useHeroImages.js';
 import useFAQs from './hooks/useFAQs.js';
+import useBusinessProfile from './hooks/useBusinessProfile.js';
 import AdminLogin from './components/AdminLogin.jsx';
 import AdminHeader from './components/AdminHeader.jsx';
 import AdminTabs from './components/AdminTabs.jsx';
@@ -14,6 +15,7 @@ import ProductEditor from './components/ProductEditor.jsx';
 import CategoriesPanel from './components/CategoriesPanel.jsx';
 import HeroImagesPanel from './components/HeroImagesPanel.jsx';
 import FAQPanel from './components/FAQPanel.jsx';
+import BusinessProfilePanel from './components/BusinessProfilePanel.jsx';
 
 export default function AdminDashboard() {
   const auth = useAdminAuth();
@@ -27,6 +29,7 @@ export default function AdminDashboard() {
   const categoryManager = useCategories(api, enabled);
   const heroManager = useHeroImages(api, enabled);
   const faqManager = useFAQs(api, enabled);
+  const businessProfileManager = useBusinessProfile(api, enabled);
 
   function handleLogout() {
     auth.handleLogout();
@@ -82,6 +85,10 @@ export default function AdminDashboard() {
 
         {activeTab === 'faqs' && (
           <FAQPanel faqManager={faqManager} onEditFaq={editFaq} />
+        )}
+
+        {activeTab === 'business-profile' && (
+          <BusinessProfilePanel businessProfileManager={businessProfileManager} />
         )}
       </div>
     </div>
