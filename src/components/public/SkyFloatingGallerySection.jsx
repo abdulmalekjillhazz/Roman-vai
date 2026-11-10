@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef, useMemo } from 'react';
+import Image from 'next/image';
 import {
   Sparkles, Maximize2, Minimize2, ChevronLeft, ChevronRight,
   X, MapPin, ArrowUpRight, Play, Pause, MessageCircle, Eye
@@ -370,16 +371,13 @@ export default function SkyFloatingGallerySection({ onOpenQuote }) {
                       isTall ? 'h-[330px] sm:h-[370px]' : 'h-[270px] sm:h-[300px]'
                     }`}
                   >
-                    <img
+                    <Image
                       src={item.image}
                       alt={item.title}
+                      fill
+                      sizes="(max-width: 640px) 280px, 320px"
                       loading="lazy"
-                      className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-106"
-                      onError={(e) => {
-                        if (item.cloudinary && e.target.src !== item.cloudinary) {
-                          e.target.src = item.cloudinary;
-                        }
-                      }}
+                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-106"
                     />
 
                     {/* Subtle top category tag */}
@@ -464,16 +462,16 @@ export default function SkyFloatingGallerySection({ onOpenQuote }) {
               <ChevronLeft className="w-5 h-5" />
             </button>
 
-            <img
-              src={activeLightbox.image}
-              alt={activeLightbox.title}
-              className="max-h-[68vh] sm:max-h-[72vh] max-w-full object-contain rounded-2xl shadow-2xl border border-white/10"
-              onError={(e) => {
-                if (activeLightbox.cloudinary && e.target.src !== activeLightbox.cloudinary) {
-                  e.target.src = activeLightbox.cloudinary;
-                }
-              }}
-            />
+            <div className="relative max-h-[68vh] sm:max-h-[72vh] w-full max-w-4xl h-[68vh] flex items-center justify-center">
+              <Image
+                src={activeLightbox.image}
+                alt={activeLightbox.title}
+                fill
+                sizes="(max-width: 1024px) 90vw, 1200px"
+                loading="lazy"
+                className="object-contain rounded-2xl shadow-2xl border border-white/10"
+              />
+            </div>
 
             <button
               type="button"
