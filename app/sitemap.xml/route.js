@@ -6,6 +6,7 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://classicaldecorid.c
 
 export async function GET() {
   let items = cloudCatalog.length ? cloudCatalog : localCatalog;
+  let services = [];
 
   try {
     const res = await fetch(`${SITE_URL}/api/products?limit=200`, { next: { revalidate: 300 } });
@@ -19,11 +20,24 @@ export async function GET() {
     // Gracefully fall back to bundled JSON catalog
   }
 
+  try {
+    const sRes = await fetch(`${SITE_URL}/api/services?published=true`, { next: { revalidate: 300 } });
+    if (sRes.ok) {
+      const sData = await sRes.json();
+      if (Array.isArray(sData)) {
+        services = sData;
+      }
+    }
+  } catch {
+    // Silently continue if services API is temporarily unreachable
+  }
+
   const categories = [...new Set(items.map(p => p.category).filter(Boolean))];
 
   const staticPages = [
     { url: '', priority: '1.0', changefreq: 'daily' },
-    { url: 'gallery', priority: '0.9', changefreq: 'daily' }
+    { url: 'gallery', priority: '0.9', changefreq: 'daily' },
+    { url: 'services', priority: '0.8', changefreq: 'weekly' }
   ];
 
   const categoryPages = categories.map(cat => ({
@@ -38,7 +52,13 @@ export async function GET() {
     changefreq: 'weekly'
   }));
 
-  const allUrls = [...staticPages, ...categoryPages, ...productPages];
+  const servicePages = services.map(svc => ({
+    url: `services/${svc.slug}`,
+    priority: '0.7',
+    changefreq: 'weekly'
+  }));
+
+  const allUrls = [...staticPages, ...categoryPages, ...productPages, ...servicePages];
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">

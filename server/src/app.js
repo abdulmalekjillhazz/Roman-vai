@@ -13,6 +13,7 @@ import authRoutes from './routes/authRoutes.js';
 import heroSlideRoutes from './routes/heroSlideRoutes.js';
 import faqRoutes from './routes/faqRoutes.js';
 import businessProfileRoutes from './routes/businessProfileRoutes.js';
+import serviceRoutes from './routes/serviceRoutes.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -68,6 +69,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/hero-slides', heroSlideRoutes);
 app.use('/api/faqs', faqRoutes);
 app.use('/api/business-profile', businessProfileRoutes);
+app.use('/api/services', serviceRoutes);
 
 app.get('/api/health', (req, res) => {
   res.json({
