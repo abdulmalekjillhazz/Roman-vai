@@ -84,7 +84,6 @@ export default function ProductDetailPage({ onOpenQuote, slug }) {
         title={`${product.name} | Premium Interior Material Supplier in Dubai, UAE`}
         description={product.seoDescription || `Discover ${product.name} by Classical Decor ID, a premium architectural material for Dubai and UAE residential, commercial, and hospitality projects.`}
         canonicalPath={`/product/${product.slug}`}
-        product={product}
       />
 
       <div className="max-w-6xl mx-auto">

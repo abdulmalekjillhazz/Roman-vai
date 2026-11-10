@@ -25,7 +25,7 @@ async function start() {
       res.end('Bad request');
       return;
     }
-    if (/^\/api(?:\/|$)/i.test(pathname) || pathname === '/sitemap.xml') {
+    if (/^\/api(?:\/|$)/i.test(pathname)) {
       api(req, res);
       return;
     }

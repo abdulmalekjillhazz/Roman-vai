@@ -5,7 +5,20 @@ import localCatalog from '../../data/products_data.json';
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://classicaldecorid.com';
 
 export async function GET() {
-  const items = cloudCatalog.length ? cloudCatalog : localCatalog;
+  let items = cloudCatalog.length ? cloudCatalog : localCatalog;
+
+  try {
+    const res = await fetch(`${SITE_URL}/api/products?limit=200`, { next: { revalidate: 300 } });
+    if (res.ok) {
+      const data = await res.json();
+      if (Array.isArray(data) && data.length > 0) {
+        items = data;
+      }
+    }
+  } catch {
+    // Gracefully fall back to bundled JSON catalog
+  }
+
   const categories = [...new Set(items.map(p => p.category).filter(Boolean))];
 
   const staticPages = [
@@ -48,4 +61,3 @@ ${allUrls
     }
   });
 }
-

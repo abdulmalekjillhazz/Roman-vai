@@ -12,7 +12,6 @@ import leadRoutes from './routes/leadRoutes.js';
 import authRoutes from './routes/authRoutes.js';
 import heroSlideRoutes from './routes/heroSlideRoutes.js';
 import faqRoutes from './routes/faqRoutes.js';
-import sitemapRoutes from './routes/sitemapRoutes.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -67,7 +66,6 @@ app.use('/api/leads', leadRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/hero-slides', heroSlideRoutes);
 app.use('/api/faqs', faqRoutes);
-app.use('/', sitemapRoutes);
 
 app.get('/api/health', (req, res) => {
   res.json({
