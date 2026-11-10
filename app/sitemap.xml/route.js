@@ -7,6 +7,7 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://classicaldecorid.c
 export async function GET() {
   let items = cloudCatalog.length ? cloudCatalog : localCatalog;
   let services = [];
+  let projects = [];
 
   try {
     const res = await fetch(`${SITE_URL}/api/products?limit=200`, { next: { revalidate: 300 } });
@@ -32,12 +33,25 @@ export async function GET() {
     // Silently continue if services API is temporarily unreachable
   }
 
+  try {
+    const pRes = await fetch(`${SITE_URL}/api/projects?published=true`, { next: { revalidate: 300 } });
+    if (pRes.ok) {
+      const pData = await pRes.json();
+      if (Array.isArray(pData)) {
+        projects = pData;
+      }
+    }
+  } catch {
+    // Silently continue if projects API is temporarily unreachable
+  }
+
   const categories = [...new Set(items.map(p => p.category).filter(Boolean))];
 
   const staticPages = [
     { url: '', priority: '1.0', changefreq: 'daily' },
     { url: 'gallery', priority: '0.9', changefreq: 'daily' },
-    { url: 'services', priority: '0.8', changefreq: 'weekly' }
+    { url: 'services', priority: '0.8', changefreq: 'weekly' },
+    { url: 'projects', priority: '0.8', changefreq: 'weekly' }
   ];
 
   const categoryPages = categories.map(cat => ({
@@ -58,7 +72,13 @@ export async function GET() {
     changefreq: 'weekly'
   }));
 
-  const allUrls = [...staticPages, ...categoryPages, ...productPages, ...servicePages];
+  const projectPages = projects.map(proj => ({
+    url: `projects/${proj.slug}`,
+    priority: '0.7',
+    changefreq: 'weekly'
+  }));
+
+  const allUrls = [...staticPages, ...categoryPages, ...productPages, ...servicePages, ...projectPages];
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
