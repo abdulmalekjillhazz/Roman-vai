@@ -159,10 +159,10 @@ export default function FAQSection({ onOpenQuote, onFaqsLoaded }) {
             </div>
             <div>
               <h4 className="font-display text-xs sm:text-sm font-bold text-stone-900">
-                Have a customized project inquiry or specific BOQ?
+                Have a customized project inquiry or material requirement?
               </h4>
               <p className="text-[11px] text-stone-500 mt-0.5">
-                Our Dubai technical desk assists interior architects and contractors with tailored schedules.
+                Our Dubai technical desk assists interior architects, designers and contractors with tailored pricing.
               </p>
             </div>
           </div>
@@ -171,10 +171,10 @@ export default function FAQSection({ onOpenQuote, onFaqsLoaded }) {
             {onOpenQuote && (
               <button
                 type="button"
-                onClick={() => onOpenQuote('FAQ Consultation / Material BOQ')}
+                onClick={() => onOpenQuote('Custom Project Inquiry')}
                 className="w-full sm:w-auto inline-flex min-h-11 items-center justify-center rounded-xl bg-stone-900 px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-white hover:bg-stone-800 transition active:scale-95 text-center"
               >
-                Inquire With BOQ
+                Request Quotation
               </button>
             )}
             <a

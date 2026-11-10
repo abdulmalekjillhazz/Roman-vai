@@ -26,8 +26,16 @@ export default function ProjectsPanel({ projectManager }) {
       <div className="bg-white rounded-2xl border border-brand-sand p-6 shadow-sm">
         <div className="flex items-center justify-between gap-3 mb-5">
           <div>
-            <h2 className="font-display text-xl font-bold text-brand-charcoal">Portfolio & Projects</h2>
-            <p className="text-xs text-brand-muted">Manage verified completed architectural projects and case studies.</p>
+            <div className="flex items-center gap-2 flex-wrap">
+              <h2 className="font-display text-xl font-bold text-brand-charcoal">Portfolio & Projects</h2>
+              <span className="inline-flex items-center gap-1 rounded-full bg-amber-50 text-amber-900 border border-amber-300 px-2.5 py-0.5 text-[10px] font-bold">
+                <Sparkles className="w-3 h-3 text-[#E5A924]" />
+                Live on Homepage Floating Sky & /projects
+              </span>
+            </div>
+            <p className="text-xs text-brand-muted mt-1">
+              Add, edit, or feature architectural projects. All published projects instantly float in the Homepage Sky Gallery and appear on the public projects page.
+            </p>
           </div>
           {selectedProjectId && (
             <button
