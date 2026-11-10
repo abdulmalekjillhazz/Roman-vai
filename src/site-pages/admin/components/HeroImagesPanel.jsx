@@ -110,7 +110,7 @@ export default function HeroImagesPanel({ heroManager = {}, catalogStatus }) {
               {/* Slide Summary & Action Buttons */}
               <div className="p-4">
                 <div className="min-w-0">
-                  <h3 className="text-sm font-bold text-brand-charcoal">{currentTitle}</h3>
+                  <h3 className="font-display text-sm font-bold text-brand-charcoal">{currentTitle}</h3>
                   <p className="mt-0.5 truncate text-[11px] text-brand-muted">{currentEyebrow}</p>
                 </div>
 

@@ -1,0 +1,37 @@
+# Classical Decor ID (DST Deco) — Dubai Architectural Surfaces & Interior Finishes
+
+> Classical Decor ID (DST Deco) is Dubai's premier B2B supplier of luxury interior and exterior architectural surfaces, catering to interior designers, architects, fit-out contractors, and villa developers across the United Arab Emirates.
+
+## Company & Showroom Profile
+- **Brand Name**: Classical Decor ID
+- **Trade Name**: DST Deco
+- **Headquarters & Showroom**: Dubai, United Arab Emirates
+- **Working Hours**: Saturday – Thursday, 9:00 AM – 6:00 PM (GST)
+- **Direct WhatsApp Desk**: +971 543 532 585 (wa.me/971543532585)
+- **Corporate Email**: info@classicaldecorid.com
+- **Trade Operations Email**: dstdeco@gmail.com
+- **Official Website**: https://classicaldecorid.com
+
+## Core Material Collections & Technical Capabilities
+- **SPC Rigid Core Flooring**: 100% waterproof, anti-termite, high-density stone plastic composite flooring with integrated IXPE acoustic underlayment and UV ceramic wear layer. Suitable for coastal villas, hotels, and commercial spaces.
+- **Flexible Stone Veneer**: Ultra-thin natural metamorphic stone veneers reinforced with fiberglass backing. Engineered for curved columns, feature walls, and interior/exterior facades.
+- **Big PU Stone & Rock Wall Panels**: High-density polyurethane architectural wall cladding with realistic stone textures (travertine, feather stone, volcanic rock) weighing only 3–4 kg/m² for rapid, adhesive-based installation.
+- **WPC Fluted Louvers & Exterior Cladding**: Wood-plastic composite fluted panels and exterior facade slats resistant to UV, fading, rot, and moisture. Rated Class B1 fire retardant.
+- **Acoustic Slat Louvers**: Premium polyester acoustic felt backing laminated with natural wood veneer slats for architectural sound dampening and visual warmth.
+- **Architectural Trims & Installation Hardware**: Complete inventory of anodized aluminum edge trims, stair nosing, skirting profiles, structural bonding silicon, and expansion joints.
+
+## Commercial Specifications & Trade Terms
+- **UAE Dispatch Timelines**: 24–48 hours across Dubai, Sharjah, and Ajman for in-stock materials; 2–3 business days for Abu Dhabi, Ras Al Khaimah, Fujairah, and Umm Al Quwain.
+- **Complimentary Architectural Sample Boxes**: Curated VIP sample boxes containing genuine cut finishes and technical datasheets dispatched free of charge to architects and contractors.
+- **Minimum Order Quantity (MOQ)**: Zero rigid MOQ on local warehouse inventory; tiered container-level wholesale pricing available for high-volume commercial projects.
+- **Certifications & Compliance**: Class B1 fire retardant standard, 100% waterproof certification, formaldehyde-free eco-friendly composition compliant with UAE interior architectural requirements.
+
+## Key Navigation URLs
+- Homepage & Live Catalog: https://classicaldecorid.com/
+- Comprehensive Material Gallery: https://classicaldecorid.com/gallery
+- Wall Panels & Cladding: https://classicaldecorid.com/category/wall-products
+- Rigid Core Flooring: https://classicaldecorid.com/category/flooring-products
+- Profiles, Skirtings & Trims: https://classicaldecorid.com/category/details
+- Public Catalog API: https://classicaldecorid.com/api/products
+- Public FAQ Feed: https://classicaldecorid.com/api/faqs
+- XML Sitemap: https://classicaldecorid.com/sitemap.xml

@@ -9,6 +9,7 @@ import ProductCard from '../components/public/ProductCard.jsx';
 import ProductModal from '../components/public/ProductModal.jsx';
 import MaterialHero from '../components/public/MaterialHero.jsx';
 import FallbackImage from '../components/public/FallbackImage.jsx';
+import FAQSection from '../components/public/FAQSection.jsx';
 import cloudCatalog from '../../data/products_cloudinary.json';
 import localCatalog from '../../data/products_data.json';
 import { CLIENT_INFO } from '../config/clientInfo.js';
@@ -48,11 +49,38 @@ const GROUPS = [
   { id: 'details', label: 'Profiles & Fixing' }
 ];
 
+function ProductSkeletonCard({ isFeatured = false }) {
+  return (
+    <div
+      className={`overflow-hidden rounded-2xl sm:rounded-3xl border border-stone-200/80 bg-white p-0 ${
+        isFeatured ? 'sm:col-span-2 md:col-span-2 md:row-span-2' : ''
+      }`}
+    >
+      <div
+        className={`w-full skeleton-shimmer ${
+          isFeatured ? 'aspect-[16/9] md:aspect-[16/11]' : 'aspect-[16/10] sm:aspect-[4/3]'
+        }`}
+      />
+      <div className="p-4 sm:p-5 space-y-3">
+        <div className="h-3 w-24 rounded-md skeleton-shimmer" />
+        <div className="h-5 w-3/4 rounded-md skeleton-shimmer" />
+        {isFeatured && <div className="h-3 w-5/6 rounded-md skeleton-shimmer" />}
+        <div className="pt-3 border-t border-stone-100 flex justify-between items-center">
+          <div className="h-3 w-32 rounded-md skeleton-shimmer" />
+          <div className="h-4 w-4 rounded-full skeleton-shimmer" />
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function HomePage({ onOpenQuote, categorySlug }) {
   const [products, setProducts] = useState(INITIAL_CATALOG);
+  const [isFetching, setIsFetching] = useState(false);
   const [activeGroup, setActiveGroup] = useState(categorySlug || 'all');
   const [search, setSearch] = useState('');
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const [loadedFaqs, setLoadedFaqs] = useState([]);
 
   useEffect(() => {
     setActiveGroup(categorySlug || 'all');
@@ -61,13 +89,17 @@ export default function HomePage({ onOpenQuote, categorySlug }) {
   useEffect(() => {
     const controller = new AbortController();
     const timeout = window.setTimeout(() => controller.abort(), 5000);
+    if (!products.length) setIsFetching(true);
     fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL || '/api'}/products`, { signal: controller.signal })
       .then(response => response.ok ? response.json() : Promise.reject(new Error('Catalog unavailable')))
       .then(data => {
         if (Array.isArray(data) && data.every(item => item?.name && item?.category)) setProducts(data);
       })
       .catch(() => { /* Maintain static catalog during network outage */ })
-      .finally(() => window.clearTimeout(timeout));
+      .finally(() => {
+        setIsFetching(false);
+        window.clearTimeout(timeout);
+      });
     return () => { window.clearTimeout(timeout); controller.abort(); };
   }, []);
 
@@ -107,6 +139,7 @@ export default function HomePage({ onOpenQuote, categorySlug }) {
         title={`${CLIENT_INFO.brandName} | Architectural Materials & Finishes, Dubai`}
         description="Explore 15 official architectural surfaces: flexible stone, PU stone, WPC panels, SPC flooring, and aluminum profiles. Direct B2B supplier in Dubai and UAE."
         canonicalPath={categorySlug ? `/category/${categorySlug}` : '/'}
+        faqs={loadedFaqs}
       />
 
       {/* 1. Full-Bleed Hero Presentation */}
@@ -115,12 +148,12 @@ export default function HomePage({ onOpenQuote, categorySlug }) {
           <MaterialHero onOpenQuote={onOpenQuote} />
           
           {/* Quick Study Highlight Strip */}
-          <section aria-label="Material highlights" className="mx-auto grid max-w-7xl gap-4 px-4 pb-8 pt-6 sm:grid-cols-3 sm:px-6 lg:px-8">
+          <section aria-label="Material highlights" className="mx-auto grid max-w-7xl gap-4 px-4 pb-8 pt-6 sm:grid-cols-2 lg:grid-cols-3 sm:px-6 lg:px-8">
             {MATERIAL_STUDIES.map(study => (
               <Link
                 href={`/product/${study.slug}`}
                 key={study.title}
-                className="group flex min-w-0 items-center gap-4 rounded-2xl border border-stone-200/80 bg-white/80 p-3 shadow-xs transition-all duration-300 hover:border-[#E5A924] hover:bg-white hover:shadow-md"
+                className="group flex min-w-0 items-center gap-4 rounded-2xl border border-stone-200/80 bg-white/80 p-3 shadow-xs transition-all duration-300 hover:border-[#E5A924] hover:bg-white hover:shadow-md sm:last:col-span-2 lg:last:col-span-1"
               >
                 <FallbackImage
                   src={`/assets/decorforall/${study.file}.webp`}
@@ -131,7 +164,7 @@ export default function HomePage({ onOpenQuote, categorySlug }) {
                   className="h-20 w-24 flex-none rounded-xl object-cover"
                 />
                 <div className="min-w-0">
-                  <p className="text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-[#8a6b36]">
+                  <p className="text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-brand-bronzeDark">
                     {study.detail}
                   </p>
                   <h2 className="mt-1 font-display text-sm font-bold text-stone-900 group-hover:text-amber-900">
@@ -146,7 +179,7 @@ export default function HomePage({ onOpenQuote, categorySlug }) {
       )}
 
       {/* 2. Main Architectural Material Catalog (Full-Width Clean Layout) */}
-      <section id="product-catalog" aria-labelledby="catalog-title" className="mx-auto max-w-7xl scroll-mt-24 px-4 pb-16 pt-8 sm:px-6 lg:px-8">
+      <section id="product-catalog" aria-labelledby="catalog-title" className="mx-auto max-w-7xl scroll-mt-24 px-4 pb-20 pt-10 sm:px-6 lg:px-8 sm:pb-28">
         
         {/* Section Header */}
         <div className="mb-8 flex flex-col justify-between gap-4 border-b border-stone-200/80 pb-6 md:flex-row md:items-end">
@@ -155,11 +188,11 @@ export default function HomePage({ onOpenQuote, categorySlug }) {
               <Sparkles className="h-3 w-3 text-[#E5A924]" />
               Official Architectural Specifications · Dubai & UAE
             </div>
-            <h2 id="catalog-title" className="mt-2.5 font-serif text-3xl font-semibold tracking-tight text-stone-900 sm:text-5xl">
+            <h2 id="catalog-title" className="mt-3 font-serif text-3xl font-semibold tracking-tight text-stone-900 sm:text-5xl lg:text-6xl">
               Find your finish.
             </h2>
           </div>
-          <p className="max-w-md text-xs sm:text-sm leading-relaxed text-stone-600">
+          <p className="max-w-md text-xs sm:text-sm leading-relaxed text-stone-600 font-sans">
             Engineered architectural surfaces for luxury residential villas, commercial developments, and hospitality projects. Instant UAE supply and physical sample boxes.
           </p>
         </div>
@@ -177,7 +210,7 @@ export default function HomePage({ onOpenQuote, categorySlug }) {
                   role="tab"
                   aria-selected={isSelected}
                   onClick={() => setActiveGroup(group.id)}
-                  className={`inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-xs font-semibold transition-all active:scale-95 ${
+                  className={`inline-flex min-h-11 items-center gap-2 rounded-xl px-4 py-2 text-xs font-semibold transition-all active:scale-95 ${
                     isSelected
                       ? 'bg-stone-900 text-white shadow-md'
                       : 'border border-stone-200/90 bg-white/80 text-stone-700 hover:border-[#E5A924] hover:bg-white hover:text-stone-950 shadow-xs'
@@ -198,15 +231,16 @@ export default function HomePage({ onOpenQuote, categorySlug }) {
               placeholder="Search finishes (e.g. Travertine, Oak)..."
               value={search}
               onChange={e => setSearch(e.target.value)}
-              className="floating-input min-h-10 w-full rounded-xl border-none bg-white pl-10 pr-8 text-xs sm:text-sm text-stone-900 placeholder:text-stone-400 focus:outline-none"
+              className="floating-input min-h-11 w-full rounded-xl border-none bg-white pl-10 pr-10 text-xs sm:text-sm text-stone-900 placeholder:text-stone-400 focus:outline-none"
             />
             {search && (
               <button
                 type="button"
                 onClick={() => setSearch('')}
-                className="absolute right-3 top-3 text-xs text-stone-400 hover:text-stone-700"
+                aria-label="Clear search input"
+                className="absolute right-2 top-1/2 -translate-y-1/2 flex h-8 w-8 items-center justify-center rounded-lg text-stone-400 hover:bg-stone-100 hover:text-stone-700 transition"
               >
-                <X size={14} />
+                <X size={15} />
               </button>
             )}
           </div>
@@ -215,31 +249,45 @@ export default function HomePage({ onOpenQuote, categorySlug }) {
         {/* Clean Header Bar - Zero Numbers */}
         <div className="mb-6 flex items-center justify-between text-xs font-medium text-stone-500">
           <div className="flex items-center gap-1.5">
-            <SlidersHorizontal size={14} className="text-[#8a6b36]" />
+            <SlidersHorizontal size={14} className="text-brand-bronzeDark" />
             <span className="font-semibold text-stone-700">Official Material Collections</span>
           </div>
           {activeGroup !== 'all' && (
             <button
               type="button"
               onClick={() => setActiveGroup('all')}
-              className="text-xs font-bold text-[#8a6b36] hover:underline"
+              className="text-xs font-bold text-brand-bronzeDark hover:underline"
             >
               Show All Materials
             </button>
           )}
         </div>
 
-        {/* Full-Width Products Grid - 1 Full-Width Video Feed Style Card per Row on Phone */}
-        {filteredProducts.length ? (
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {orderedProducts.map((product, index) => (
-              <ProductCard
-                key={product._id || product.id || product.slug}
-                product={product}
-                priority={Boolean(categorySlug) && index < 2}
-                onSelectProduct={setSelectedProduct}
-              />
-            ))}
+        {/* Full-Width Products Grid with Dynamic Bento Layout & Skeleton Loading State */}
+        {isFetching ? (
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 grid-flow-dense">
+            <ProductSkeletonCard isFeatured={true} />
+            <ProductSkeletonCard />
+            <ProductSkeletonCard />
+            <ProductSkeletonCard />
+            <ProductSkeletonCard />
+            <ProductSkeletonCard />
+          </div>
+        ) : filteredProducts.length ? (
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 grid-flow-dense">
+            {orderedProducts.map((product, index) => {
+              const isBentoEligible = !search.trim() && !categorySlug && activeGroup === 'all';
+              const isFeatured = isBentoEligible && (index === 0 || (index > 0 && index % 7 === 0));
+              return (
+                <ProductCard
+                  key={product._id || product.id || product.slug}
+                  product={product}
+                  isFeatured={isFeatured}
+                  priority={Boolean(categorySlug) ? index < 2 : index === 0}
+                  onSelectProduct={setSelectedProduct}
+                />
+              );
+            })}
           </div>
         ) : (
           <div role="status" className="rounded-2xl border border-stone-200 bg-white/80 py-16 text-center">
@@ -256,15 +304,15 @@ export default function HomePage({ onOpenQuote, categorySlug }) {
         )}
 
         {/* Physical Sample Dispatch Box Banner */}
-        <div className="mt-12 rounded-3xl border border-stone-200/90 bg-gradient-to-r from-stone-900 via-stone-850 to-stone-900 p-6 sm:p-9 text-white flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xl">
+        <div className="mt-16 rounded-3xl border border-stone-800/80 bg-gradient-to-r from-stone-950 via-[#181818] to-stone-950 p-7 sm:p-10 text-white flex flex-col sm:flex-row items-center justify-between gap-8 shadow-2xl">
           <div className="max-w-xl text-center sm:text-left">
-            <span className="text-[10px] font-mono font-bold uppercase tracking-[0.22em] text-[#d4b77a]">
+            <span className="text-[10px] font-mono font-bold uppercase tracking-[0.24em] text-[#E5A924]">
               COMPLIMENTARY TRADE SAMPLE DISPATCH · DUBAI & UAE
             </span>
             <h3 className="mt-2 font-serif text-2xl sm:text-3xl font-semibold text-white">
               Experience the tactile texture on-site.
             </h3>
-            <p className="mt-2 text-xs sm:text-sm leading-relaxed text-stone-300">
+            <p className="mt-2 text-xs sm:text-sm leading-relaxed text-stone-300 font-sans">
               Feel the weight, authentic stone relief, and luxury matte finishes before specifying your project. We deliver tailored architectural sample boxes with specification sheets directly to your design studio, contractor site, or private villa within 24–48 hours across the UAE.
             </p>
           </div>
@@ -288,7 +336,10 @@ export default function HomePage({ onOpenQuote, categorySlug }) {
 
       </section>
 
-      {/* 3. Trade Services Section */}
+      {/* 3. Frequently Asked Questions (Database-driven & GEO Optimized) */}
+      <FAQSection onOpenQuote={onOpenQuote} onFaqsLoaded={setLoadedFaqs} />
+
+      {/* 4. Trade Services Section */}
       <section aria-labelledby="service-title" className="border-t border-stone-200 bg-[#eee9df]">
         <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 lg:grid-cols-[1.1fr_2fr] lg:px-8 lg:py-16">
           <div>
@@ -304,9 +355,9 @@ export default function HomePage({ onOpenQuote, categorySlug }) {
               { Icon: MapPin, title: 'Made for your brief.', text: 'Material supply for designers, contractors and project teams across the UAE.' }
             ].map(({ Icon, title, text }) => (
               <div key={title}>
-                <Icon aria-hidden="true" className="mb-4 h-6 w-6 text-[#8a6b36]" strokeWidth={1.5} />
-                <h3 className="text-sm font-semibold">{title}</h3>
-                <p className="mt-2 text-xs leading-6 text-stone-600">{text}</p>
+                <Icon aria-hidden="true" className="mb-4 h-6 w-6 text-brand-bronzeDark" strokeWidth={1.5} />
+                <h3 className="font-display text-sm font-semibold text-stone-900">{title}</h3>
+                <p className="mt-2 text-xs leading-6 text-stone-600 font-sans">{text}</p>
               </div>
             ))}
           </div>

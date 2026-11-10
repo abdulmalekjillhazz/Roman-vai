@@ -5,6 +5,7 @@ import useCatalogStatus from './hooks/useCatalogStatus.js';
 import useProducts from './hooks/useProducts.js';
 import useCategories from './hooks/useCategories.js';
 import useHeroImages from './hooks/useHeroImages.js';
+import useFAQs from './hooks/useFAQs.js';
 import AdminLogin from './components/AdminLogin.jsx';
 import AdminHeader from './components/AdminHeader.jsx';
 import AdminTabs from './components/AdminTabs.jsx';
@@ -12,10 +13,11 @@ import ProductInventory from './components/ProductInventory.jsx';
 import ProductEditor from './components/ProductEditor.jsx';
 import CategoriesPanel from './components/CategoriesPanel.jsx';
 import HeroImagesPanel from './components/HeroImagesPanel.jsx';
+import FAQPanel from './components/FAQPanel.jsx';
 
 export default function AdminDashboard() {
   const auth = useAdminAuth();
-  const api = useMemo(() => createAdminApi(auth.token), [auth.token]);
+  const api = useMemo(() => createAdminApi(auth.token, auth.handleSessionExpired), [auth.token, auth.handleSessionExpired]);
   const [activeTab, setActiveTab] = useState('products');
   const enabled = Boolean(auth.token);
   const catalogStatus = useCatalogStatus(api, enabled);
@@ -24,11 +26,13 @@ export default function AdminDashboard() {
   const productManager = useProducts(api, enabled, catalogStatus);
   const categoryManager = useCategories(api, enabled);
   const heroManager = useHeroImages(api, enabled);
+  const faqManager = useFAQs(api, enabled);
 
   function handleLogout() {
     auth.handleLogout();
     productManager.resetProductForm();
     categoryManager.resetCategoryForm();
+    faqManager.resetFaqForm();
   }
 
   function editProduct(product) {
@@ -39,6 +43,11 @@ export default function AdminDashboard() {
   function editCategory(category) {
     categoryManager.editCategory(category);
     setActiveTab('categories');
+  }
+
+  function editFaq(faq) {
+    faqManager.editFAQ(faq);
+    setActiveTab('faqs');
   }
 
   if (!auth.token) return <AdminLogin auth={auth} />;
@@ -69,6 +78,10 @@ export default function AdminDashboard() {
 
         {activeTab === 'categories' && (
           <CategoriesPanel categoryManager={categoryManager} onEditCategory={editCategory} />
+        )}
+
+        {activeTab === 'faqs' && (
+          <FAQPanel faqManager={faqManager} onEditFaq={editFaq} />
         )}
       </div>
     </div>

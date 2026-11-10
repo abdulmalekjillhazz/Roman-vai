@@ -427,7 +427,7 @@ export default function SiteImageGalleryPage({ onOpenQuote }) {
                         <span className="text-[10px] font-semibold uppercase tracking-wider text-amber-800">
                           {selectedCategory.title}
                         </span>
-                        <h2 className="mt-1 text-xs sm:text-sm font-semibold leading-snug text-stone-900 group-hover:text-amber-900">
+                        <h2 className="mt-1 font-display text-xs sm:text-sm font-semibold leading-snug text-stone-900 group-hover:text-amber-900">
                           {image.title || image.alt || selectedCategory.title}
                         </h2>
                       </div>
@@ -493,7 +493,7 @@ export default function SiteImageGalleryPage({ onOpenQuote }) {
                             <Icon size={14} className="text-[#E5A924]" />
                             <span>Collection</span>
                           </div>
-                          <h2 className="mt-1 text-base sm:text-lg font-bold text-white group-hover:text-[#f5ede0]">
+                          <h2 className="mt-1 font-display text-base sm:text-lg font-bold text-white group-hover:text-brand-cream">
                             {category.title}
                           </h2>
                         </div>

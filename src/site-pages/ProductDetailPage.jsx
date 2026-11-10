@@ -33,6 +33,10 @@ export default function ProductDetailPage({ onOpenQuote, slug }) {
       })
       .catch(error => {
         if (controller.signal.aborted) return;
+        if (error.response?.status === 404) {
+          setProduct(null);
+          return;
+        }
         const staticProduct = STATIC_CATALOG.find(item => item.slug === slug || item.id === slug);
         if (staticProduct) {
           console.warn(`Using built-in catalog details for "${slug}" because the product API is unavailable.`, error);
@@ -273,7 +277,7 @@ export default function ProductDetailPage({ onOpenQuote, slug }) {
               <Link
                 key={cat.slug}
                 href={`/product/${cat.slug}`}
-                className="inline-flex items-center gap-1.5 rounded-lg border border-brand-sand bg-white px-3 py-1.5 font-sans text-xs font-medium text-stone-700 transition hover:border-[#E5A924] hover:bg-stone-50 hover:text-stone-950 shadow-2xs"
+                className="inline-flex min-h-9 sm:min-h-10 items-center gap-1.5 rounded-xl border border-brand-sand bg-white px-3.5 py-2 font-sans text-xs font-medium text-stone-700 transition hover:border-[#E5A924] hover:bg-stone-50 hover:text-stone-950 shadow-2xs active:scale-95"
               >
                 <span>{cat.name}</span>
                 <span className="text-stone-400">→</span>

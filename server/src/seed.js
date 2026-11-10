@@ -5,6 +5,7 @@ import { fileURLToPath } from 'url';
 import { connectDB } from './config/db.js';
 import { Product } from './models/Product.js';
 import { User } from './models/User.js';
+import { Category } from './models/Category.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -27,6 +28,10 @@ async function seedDatabase() {
 
   await Product.deleteMany({});
   await Product.insertMany(products);
+  const categories = new Map(products.map(product => [product.category, product.categoryName || product.category]));
+  for (const [slug, name] of categories) {
+    await Category.updateOne({ slug }, { $setOnInsert: { slug, name } }, { upsert: true, runValidators: true });
+  }
   console.log(`✅ Inserted ${products.length} products into MongoDB.`);
 
   if (process.env.ADMIN_EMAIL && process.env.ADMIN_PASSWORD) {

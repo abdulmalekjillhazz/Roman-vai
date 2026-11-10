@@ -2,7 +2,7 @@
 
 ## Run the application
 
-The website now runs as a single Next.js app from the repository root. The existing Express API starts with it locally and is deployed in the same Vercel project as a serverless function.
+The website runs as a single Next.js app from the repository root. A Pages API catch-all at `pages/api/[...path].js` mounts the Express API, preserving its middleware, rate limits, and multipart uploads in development, production, and Vercel.
 The `public/` assets are copied from `client/public/` automatically before development and production builds.
 
 ```bash
@@ -10,9 +10,15 @@ npm install
 npm run dev
 ```
 
-Open `http://localhost:3000`. The local Next.js app proxies `/api/*` and `/sitemap.xml` to the Express API, which automatically selects an available port between 5000 and 5099. Configure private database, JWT, Cloudinary, and Google Sheets values in the root `.env`; only `NEXT_PUBLIC_*` values are exposed to the browser.
+Open `http://localhost:3000`. Configure private database, JWT, Cloudinary, and Google Sheets values in the root `.env`; only `NEXT_PUBLIC_*` values are exposed to the browser. After building, `npm start` runs the same API stack. `npm run start:hosting` remains the Passenger/cPanel entry point.
 
-For Vercel, keep the project root at the repository root. The `vercel.json` config selects Next.js and routes API requests to the existing Express function. Set the required production secrets in Vercel Project Settings → Environment Variables, then deploy the latest commit.
+For Vercel, keep the project root at the repository root. The `vercel.json` config selects Next.js; no API rewrite is required. Set the required production secrets in Vercel Project Settings → Environment Variables, then deploy the latest commit.
+
+Admin sessions expire after one hour and are revoked by `POST /api/auth/logout`. With MongoDB configured, sessions persist in its `AdminSession` collection and check the current account role. An unavailable configured database returns 503 rather than switching to environment-password authentication. With no database configured, environment credentials provide a single-process bootstrap mode; its sessions end on restart and are unsuitable for multi-instance hosting. Existing tokens issued before this change require a fresh sign-in.
+
+Bundled catalog files are read-only outage defaults, not a replica of admin edits. MongoDB is authoritative when available, including empty results and deleted products. The seed command also initializes category records, but replaces product data; review it before running it on a live database.
+
+Run `npm test` for isolated API and admin-hook regression checks. These tests use local HTTP and stub external storage/providers. For a trusted reverse proxy, configure `TRUST_PROXY_HOPS` to the verified hop count; leave it unset for direct connections. Multi-instance deployments should use shared rate-limit storage rather than the default process-local counters.
 
 The application source lives in the root `src/` directory; `client/public/` is only the source location for existing catalog images.
 

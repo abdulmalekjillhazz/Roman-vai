@@ -14,13 +14,17 @@ function sanitizeField(val, maxLen = 500) {
 
 export async function submitLead(req, res) {
   try {
-    const { name, phone, email, category, message, source } = req.body;
+    const { name, phone, email, category, message, source } = req.body || {};
 
-    if (!name || !phone) {
+    if (typeof name !== 'string' || !name.trim() || typeof phone !== 'string' || !phone.trim()) {
       return res.status(422).json({
         status: 'error',
         message: 'Name and Phone/WhatsApp number are required.'
       });
+    }
+
+    if ([email, category, message, source].some(value => value !== undefined && typeof value !== 'string')) {
+      return res.status(422).json({ status: 'error', message: 'Inquiry fields must be text.' });
     }
 
     const sanitizedPayload = {
@@ -34,7 +38,7 @@ export async function submitLead(req, res) {
     };
 
     const webhookUrl = process.env.GOOGLE_SHEETS_WEBHOOK_URL;
-    if (!webhookUrl || webhookUrl.includes('YOUR_DEPLOYMENT_ID') || !sanitizedPayload.token || sanitizedPayload.token.includes('CHANGE_THIS')) {
+    if (!webhookUrl || webhookUrl.includes('YOUR_DEPLOYMENT_ID') || !sanitizedPayload.token) {
       return res.status(503).json({
         status: 'error',
         message: 'Sample requests are temporarily unavailable. Please contact our team on WhatsApp.'
@@ -57,9 +61,10 @@ export async function submitLead(req, res) {
       });
     }
 
-    return res.status(400).json({
+    const statusCode = result?.code === 429 ? 429 : result?.code === 503 ? 503 : result?.code === 400 || result?.code === 422 ? 422 : 502;
+    return res.status(statusCode).json({
       status: 'error',
-      message: result?.message || 'Google Sheets webhook rejected the submission.'
+      message: statusCode === 422 ? 'Please check your inquiry details and try again.' : 'The inquiry service is temporarily unavailable. Please contact us on WhatsApp.'
     });
   } catch (error) {
     console.error('❌ Lead Submission Error:', error.message);

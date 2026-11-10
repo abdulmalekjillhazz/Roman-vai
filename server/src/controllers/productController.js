@@ -1,27 +1,17 @@
-import fs from 'fs';
-import path from 'path';
 import mongoose from 'mongoose';
 import { randomUUID } from 'crypto';
-import { fileURLToPath } from 'url';
 import { Product } from '../models/Product.js';
 import { ensureDBConnected } from '../config/db.js';
-import { cloudinary, configureCloudinary, isCloudinaryConfigured, uploadBufferToCloudinary } from '../config/cloudinary.js';
+import { isCloudinaryConfigured, uploadBufferToCloudinary } from '../config/cloudinary.js';
 import { requireCatalogDatabase } from '../middlewares/requireCatalogDatabase.js';
-import { cleanUnusedAssets, productAssets, parseBoolean, parseImageUrls } from '../utils/catalogAssets.js';
+import { productAssets, parseBoolean, parseImageUrls } from '../utils/catalogAssets.js';
+import { loadFallbackCatalog as loadFallbackJson, removeCloudinaryImages } from '../services/catalogAssets.js';
+import { inputError, textField } from '../utils/validation.js';
 
-const dataDirectory = path.join(path.dirname(fileURLToPath(import.meta.url)), '../../../data');
-function loadFallbackJson() {
-  for (const filename of ['products_cloudinary.json', 'products_data.json']) {
-    try {
-      const data = JSON.parse(fs.readFileSync(path.join(dataDirectory, filename), 'utf8'));
-      if (Array.isArray(data) && data.length) return data;
-    } catch { /* Try the local backup. */ }
-  }
-  throw new Error('The catalog is temporarily unavailable. Please contact our team.');
-}
 function parseList(value) {
+  if (value !== undefined && !Array.isArray(value) && typeof value !== 'string') throw inputError('Features must be text or a list of text values.');
   const items = Array.isArray(value) ? value : typeof value === 'string' ? value.split(/[\n,]/) : [];
-  return items.map(item => String(item).trim()).filter(Boolean);
+  return items.map(item => textField(item, 'Feature')).filter(Boolean);
 }
 function normalizeSlug(value = '') {
   return String(value).toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
@@ -44,84 +34,37 @@ function productQuery(id) {
 
   return { $or: conditions };
 }
-function syncProductToJsonBackups(updatedProduct) {
-  for (const filename of ['products_cloudinary.json', 'products_data.json']) {
-    const filePath = path.join(dataDirectory, filename);
-    if (!fs.existsSync(filePath)) continue;
-    try {
-      const list = JSON.parse(fs.readFileSync(filePath, 'utf8'));
-      if (!Array.isArray(list)) continue;
-      const idx = list.findIndex(p =>
-        p.id === updatedProduct.id ||
-        p.slug === updatedProduct.slug ||
-        p.id === `cat-${updatedProduct.slug}` ||
-        (p._id && updatedProduct._id && String(p._id) === String(updatedProduct._id))
-      );
-      if (idx >= 0) {
-        list[idx] = {
-          ...list[idx],
-          thumbnail: updatedProduct.thumbnail,
-          images: updatedProduct.images,
-          name: updatedProduct.name,
-          description: updatedProduct.description,
-          inStock: updatedProduct.inStock,
-          isFeatured: updatedProduct.isFeatured,
-          specifications: updatedProduct.specifications
-        };
-        fs.writeFileSync(filePath, JSON.stringify(list, null, 2), 'utf8');
-      }
-    } catch (err) {
-      console.warn(`Failed writing to ${filename}:`, err.message);
-    }
-  }
-}
 function productPayload(body, existing) {
-  let specs = body.specifications || {};
+  let specs = body.specifications === undefined ? {} : body.specifications;
   if (typeof specs === 'string') {
-    try { specs = JSON.parse(specs); } catch { throw new Error('Product specifications must be valid JSON.'); }
+    try { specs = JSON.parse(specs); } catch { throw inputError('Product specifications must be valid JSON.'); }
   }
+  if (!specs || typeof specs !== 'object' || Array.isArray(specs)) throw inputError('Product specifications must be an object.');
   const payload = {};
   for (const key of ['name', 'category', 'categoryName', 'description', 'seoTitle', 'seoDescription', 'thumbnail']) {
-    if (body[key] !== undefined) payload[key] = String(body[key]).trim();
+    if (body[key] !== undefined) payload[key] = textField(body[key], `Product ${key}`);
   }
   for (const key of ['name', 'category', 'description']) {
-    if (!(payload[key] ?? existing?.[key])) throw new Error(`Product ${key} is required.`);
+    if (!(payload[key] ?? existing?.[key])) throw inputError(`Product ${key} is required.`);
   }
   payload.categoryName = payload.categoryName || existing?.categoryName || payload.category;
   if (body.slug !== undefined || !existing) {
-    payload.slug = normalizeSlug(body.slug || payload.name);
-    if (!payload.slug) throw new Error('Product name must include letters or numbers for its page address.');
+    payload.slug = normalizeSlug(textField(body.slug || payload.name, 'Product slug'));
+    if (!payload.slug) throw inputError('Product name must include letters or numbers for its page address.');
   }
   payload.inStock = parseBoolean(body.inStock, existing?.inStock ?? true);
   payload.isFeatured = parseBoolean(body.isFeatured, existing?.isFeatured ?? false);
   payload.specifications = {};
+  const defaults = { thickness: 'Standard', dimensions: 'Custom', material: 'Composite' };
   for (const key of ['thickness', 'dimensions', 'material']) {
-    payload.specifications[key] = String(specs[key] ?? body[key] ?? existing?.specifications?.[key] ?? '').trim();
+    payload.specifications[key] = textField(specs[key] ?? body[key] ?? existing?.specifications?.[key] ?? defaults[key], key);
   }
   payload.specifications.features = parseList(specs.features ?? body.features ?? existing?.specifications?.features);
   return payload;
 }
-async function removeCloudinaryImages(assets = []) {
-  configureCloudinary();
-  return cleanUnusedAssets(assets, {
-    cloudName: process.env.CLOUDINARY_CLOUD_NAME,
-    configured: isCloudinaryConfigured(),
-    findReferences: async () => {
-      const databaseProducts = await Product.find({}, { images: 1, cloudinaryImages: 1 }).lean();
-      // Public static backups must retain working images during API outages.
-      const backups = [];
-      for (const filename of ['products_cloudinary.json', 'products_data.json']) {
-        const filenamePath = path.join(dataDirectory, filename);
-        if (fs.existsSync(filenamePath)) backups.push(...JSON.parse(fs.readFileSync(filenamePath, 'utf8')));
-      }
-      return [...databaseProducts, ...backups];
-    },
-    destroy: (publicId, options) => cloudinary.uploader.destroy(publicId, options)
-  });
-}
 async function uploadImages(files, collected) {
-  if (files.length > 12) throw new Error('Upload a maximum of 12 images at a time.');
-  if (files.length && !isCloudinaryConfigured()) throw new Error('Image upload is unavailable. Configure Cloudinary before uploading files.');
+  if (files.length > 12) throw inputError('Upload a maximum of 12 images at a time.');
+  if (files.length && !isCloudinaryConfigured()) throw Object.assign(new Error('Image upload is unavailable. Configure Cloudinary before uploading files.'), { status: 503 });
   for (const file of files) {
     const uploaded = await uploadBufferToCloudinary(file, 'dst_deco/products');
     if (!uploaded?.secure_url || !uploaded.public_id) throw new Error('An image could not be uploaded. Please try again.');
@@ -129,11 +72,14 @@ async function uploadImages(files, collected) {
   }
 }
 function sendWriteError(res, error, cloudinaryFailures = []) {
-  const message = error.code === 11000 ? 'A product with this name or page address already exists. Choose a different name.' : error.message;
-  return res.status(error.code === 11000 ? 409 : 400).json({ message, cloudinaryFailures });
+  const status = error.code === 11000 ? 409 : error.status || (error.name === 'ValidationError' ? 400 : 500);
+  const message = error.code === 11000 ? 'A product with this name or page address already exists. Choose a different name.'
+    : status < 500 || process.env.NODE_ENV !== 'production' ? error.message : 'Could not save the product. Please try again.';
+  return res.status(status).json({ message, cloudinaryFailures });
 }
 export async function getCatalogStatus(req, res) {
-  const persistenceAvailable = await ensureDBConnected();
+  let persistenceAvailable = false;
+  try { persistenceAvailable = await ensureDBConnected(); } catch { /* Report read-only capabilities. */ }
   return res.json({
     persistenceAvailable,
     uploadsAvailable: isCloudinaryConfigured(),
@@ -142,36 +88,67 @@ export async function getCatalogStatus(req, res) {
 }
 export async function getProducts(req, res) {
   try {
-    const { category, search, featured } = req.query;
-    if (mongoose.connection.readyState === 1) {
+    const { category, search, featured, limit } = req.query;
+    const safeLimit = Math.min(Math.max(Number(limit) || 100, 1), 200);
+    if ([category, search, featured, limit].some(value => value !== undefined && typeof value !== 'string')) {
+      return res.status(400).json({ message: 'Catalog filters must be text values.' });
+    }
+
+    if (await ensureDBConnected()) {
       const filter = {};
-      if (category && category !== 'all') filter.category = category;
+      if (typeof category === 'string' && category && category !== 'all') {
+        filter.category = String(category).trim().slice(0, 100);
+      }
       if (featured === 'true') filter.isFeatured = true;
-      if (search) {
+      if (search && typeof search === 'string') {
         const literalSearch = String(search).slice(0, 150).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
         filter.$or = [{ name: { $regex: literalSearch, $options: 'i' } }, { description: { $regex: literalSearch, $options: 'i' } }];
       }
-      return res.json(await Product.find(filter).sort({ createdAt: -1 }));
+      try {
+        return res.json(await Product.find(filter).sort({ createdAt: -1 }).limit(Math.floor(safeLimit)));
+      } catch (error) {
+        console.warn('Product query failed; using the bundled catalog:', error.message);
+      }
     }
     let items = loadFallbackJson();
-    if (category && category !== 'all') items = items.filter(p => p.category === category);
+    if (typeof category === 'string' && category && category !== 'all') {
+      const cat = category.trim();
+      items = items.filter(p => p.category === cat);
+    }
     if (featured === 'true') items = items.filter(p => p.isFeatured);
-    if (search) {
-      const query = String(search).toLowerCase();
+    if (search && typeof search === 'string') {
+      const query = String(search).toLowerCase().slice(0, 150);
       items = items.filter(p => p.name.toLowerCase().includes(query) || (p.description || '').toLowerCase().includes(query));
     }
-    return res.json(items);
-  } catch (error) { return res.status(500).json({ message: error.message }); }
+    res.set('X-Data-Source', 'bundled');
+    return res.json(items.slice(0, safeLimit));
+  } catch (error) {
+    console.error('getProducts error:', error.message);
+    const message = process.env.NODE_ENV === 'production' ? 'Failed to fetch products.' : error.message;
+    return res.status(500).json({ message });
+  }
 }
 export async function getProductBySlug(req, res) {
   try {
-    const { slug } = req.params;
-    const item = mongoose.connection.readyState === 1
-      ? await Product.findOne({ $or: [{ slug }, { id: slug }] })
-      : loadFallbackJson().find(p => p.slug === slug || p.id === slug);
+    const rawSlug = String(req.params.slug || '').trim().slice(0, 150);
+    if (await ensureDBConnected()) {
+      try {
+        const item = await Product.findOne(productQuery(rawSlug));
+        return item ? res.json(item) : res.status(404).json({ message: 'Product not found' });
+      } catch (error) {
+        console.warn('Product lookup failed; using the bundled catalog:', error.message);
+      }
+    }
+    const cleanSlug = rawSlug.replace(/^cat-/, '');
+    const item = loadFallbackJson().find(p => p.slug === rawSlug || p.id === rawSlug || p.slug === cleanSlug || p.id === `cat-${rawSlug}`);
     if (!item) return res.status(404).json({ message: 'Product not found' });
+    res.set('X-Data-Source', 'bundled');
     return res.json(item);
-  } catch (error) { return res.status(500).json({ message: error.message }); }
+  } catch (error) {
+    console.error('getProductBySlug error:', error.message);
+    const message = process.env.NODE_ENV === 'production' ? 'Failed to fetch product details.' : error.message;
+    return res.status(500).json({ message });
+  }
 }
 export async function createProduct(req, res) {
   if (!(await requireCatalogDatabase(req, res))) return;
@@ -201,7 +178,7 @@ export async function updateProduct(req, res) {
   const uploaded = [];
   let saved = false;
   try {
-    const rawId = decodeURIComponent(String(req.params.id || '')).trim();
+    const rawId = String(req.params.id || '').trim();
     let existing = await Product.findOne(productQuery(rawId));
 
     if (!existing) {
@@ -219,8 +196,9 @@ export async function updateProduct(req, res) {
         );
 
         if (fallbackItem) {
-          console.log(`[Auto-Seed] Product "${fallbackItem.name}" was missing from MongoDB. Auto-inserting now...`);
-          existing = await Product.create({
+          console.log(`[Catalog] Preparing bundled product "${fallbackItem.name}" for a validated save.`);
+          // Validate and apply the requested update before any persistence.
+          existing = new Product({
             ...fallbackItem,
             id: fallbackItem.id || `prd-${randomUUID()}`,
             slug: fallbackItem.slug || normalizeSlug(fallbackItem.name)
@@ -239,9 +217,9 @@ export async function updateProduct(req, res) {
     await uploadImages(req.files || [], uploaded);
     payload.images = [...urls, ...uploaded.map(asset => asset.secure_url)];
 
-    const chosenThumbnail = body.thumbnail !== undefined && String(body.thumbnail).trim()
-      ? String(body.thumbnail).trim()
-      : (existing.thumbnail || payload.images[0] || '');
+    const chosenThumbnail = body.thumbnail !== undefined
+      ? payload.thumbnail
+      : (hasImages ? payload.images[0] : existing.thumbnail) || payload.images[0] || '';
 
     if (chosenThumbnail) {
       const normalizedChosen = chosenThumbnail.trim();
@@ -251,25 +229,20 @@ export async function updateProduct(req, res) {
         payload.images = [matched, ...payload.images.filter((_, idx) => idx !== foundIndex)];
         payload.thumbnail = matched;
       } else {
-        payload.images = [normalizedChosen, ...payload.images];
-        payload.thumbnail = normalizedChosen;
+        payload.thumbnail = payload.images[0] || '';
       }
     } else {
       payload.thumbnail = payload.images[0] || '';
     }
 
     payload.cloudinaryImages = productAssets({ images: payload.images, cloudinaryImages: [...(existing.cloudinaryImages || []), ...uploaded] });
-    const updated = await Product.findOneAndUpdate({ _id: existing._id }, { $set: payload }, { new: true, runValidators: true });
+    const updated = existing.isNew
+      ? await Object.assign(existing, payload).save()
+      : await Product.findOneAndUpdate({ _id: existing._id }, { $set: payload }, { new: true, runValidators: true });
     if (!updated) throw new Error('This product was removed while you were editing. Refresh the catalog.');
     saved = true;
 
-    // Sync to disk static JSON backups so static catalog and fallback are always up-to-date
-    try {
-      syncProductToJsonBackups(updated.toObject ? updated.toObject() : updated);
-    } catch (syncErr) {
-      console.warn('Could not sync updated product to local JSON files:', syncErr.message);
-    }
-
+    // Bundled files are immutable outage defaults, not a writable database mirror.
     const retainedIds = new Set(payload.cloudinaryImages.map(asset => asset.public_id));
     const removed = productAssets(existing).filter(asset => !retainedIds.has(asset.public_id));
     const cloudinaryFailures = await removeCloudinaryImages(removed);
@@ -281,7 +254,7 @@ export async function updateProduct(req, res) {
 export async function deleteProduct(req, res) {
   if (!(await requireCatalogDatabase(req, res))) return;
   try {
-    const rawId = decodeURIComponent(String(req.params.id || '')).trim();
+    const rawId = String(req.params.id || '').trim();
     const product = await Product.findOne(productQuery(rawId));
     if (!product) return res.status(404).json({ message: 'Product not found' });
     await Product.deleteOne({ _id: product._id });

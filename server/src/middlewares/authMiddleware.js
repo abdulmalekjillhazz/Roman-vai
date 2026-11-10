@@ -1,17 +1,11 @@
-import jwt from 'jsonwebtoken';
+import { authenticateAdmin } from '../services/adminSessions.js';
 
-export function protectAdmin(req, res, next) {
-  const authHeader = req.headers.authorization;
-  if (!authHeader || !authHeader.startsWith('Bearer ')) {
-    return res.status(401).json({ message: 'Unauthorized: Missing token' });
-  }
-
-  const token = authHeader.split(' ')[1];
+export async function protectAdmin(req, res, next) {
   try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = decoded;
+    req.authSession = await authenticateAdmin(req.headers.authorization);
+    req.user = req.authSession.user;
     next();
   } catch (error) {
-    return res.status(401).json({ message: 'Unauthorized: Invalid or expired token' });
+    return res.status(error.status || 503).json({ message: error.status ? error.message : 'Administrator sessions are temporarily unavailable.' });
   }
 }

@@ -60,13 +60,13 @@ export async function cleanUnusedAssets(assets, { configured, findReferences, de
 
 export function parseImageUrls(value) {
   if (typeof value === 'string' && value.trim().startsWith('[')) {
-    try { value = JSON.parse(value); } catch { throw new Error('Image URLs must be a valid JSON list.'); }
+    try { value = JSON.parse(value); } catch { throw Object.assign(new Error('Image URLs must be a valid JSON list.'), { status: 400 }); }
   }
   // Cloudinary transformations contain commas: only newlines separate URLs.
   const items = Array.isArray(value) ? value : typeof value === 'string' ? value.split(/\r?\n/) : [];
   return [...new Set(items.map(item => String(item).trim()).filter(Boolean))].map(url => {
     if (!/^https:\/\//i.test(url) && !/^\/assets\/[a-z0-9_./-]+$/i.test(url)) {
-      throw new Error('Use an HTTPS image URL or an existing /assets/ image path.');
+      throw Object.assign(new Error('Use an HTTPS image URL or an existing /assets/ image path.'), { status: 400 });
     }
     return url;
   });
@@ -76,5 +76,5 @@ export function parseBoolean(value, fallback) {
   if (value === undefined) return fallback;
   if (value === true || value === 'true') return true;
   if (value === false || value === 'false') return false;
-  throw new Error('Stock and featured status must be true or false.');
+  throw Object.assign(new Error('Stock and featured status must be true or false.'), { status: 400 });
 }

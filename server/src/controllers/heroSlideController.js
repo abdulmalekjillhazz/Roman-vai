@@ -1,8 +1,11 @@
 import mongoose from 'mongoose';
 import { ensureDBConnected } from '../config/db.js';
 import { MATERIAL_HERO_SLIDES } from '../../../src/config/materialHeroSlides.js';
-import { cloudinary, isCloudinaryConfigured, uploadBufferToCloudinary } from '../config/cloudinary.js';
+import { isCloudinaryConfigured, uploadBufferToCloudinary } from '../config/cloudinary.js';
 import { HeroSlide } from '../models/HeroSlide.js';
+import { removeCloudinaryImages } from '../services/catalogAssets.js';
+import { cloudinaryAssetFromUrl } from '../utils/catalogAssets.js';
+import { booleanField, textField } from '../utils/validation.js';
 
 const validSlideKeys = new Set(MATERIAL_HERO_SLIDES.map(slide => slide.file));
 
@@ -11,9 +14,7 @@ export async function getHeroSlides(req, res) {
 
   try {
     if (!(await ensureDBConnected())) {
-      return res.status(503).json({
-        message: 'MongoDB is not connected. Hero image replacements cannot be loaded; the homepage will use its original images.'
-      });
+      return res.json({ slides: {}, content: {} });
     }
 
     const savedSlides = await HeroSlide.find(
@@ -45,9 +46,7 @@ export async function getHeroSlides(req, res) {
     return res.json({ slides, content });
   } catch (error) {
     console.error('Could not load hero slide images:', error.message);
-    return res.status(500).json({
-      message: 'Saved hero images could not be loaded. The homepage will use its original images.'
-    });
+    return res.json({ slides: {}, content: {} });
   }
 }
 
@@ -72,18 +71,16 @@ export async function updateHeroSlide(req, res) {
   let saved = false;
   const updateFields = { key };
 
-  // Collect text updates
-  for (const field of textKeys) {
-    if (body[field] !== undefined) {
-      updateFields[field] = String(body[field]).trim();
-    }
-  }
-
-  if (body.hideTextBox !== undefined) {
-    updateFields.hideTextBox = body.hideTextBox === true || body.hideTextBox === 'true';
-  }
-
   try {
+    for (const field of textKeys) {
+      if (body[field] !== undefined) {
+        updateFields[field] = textField(body[field], field);
+      }
+    }
+
+    if (body.hideTextBox !== undefined) {
+      updateFields.hideTextBox = booleanField(body.hideTextBox);
+    }
     const previous = await HeroSlide.findOne({ key }).lean();
 
     // Handle image upload if a file was attached
@@ -113,8 +110,9 @@ export async function updateHeroSlide(req, res) {
     let cleanupWarning = '';
     if (hasFile && previous?.cloudinaryPublicId && previous.cloudinaryPublicId !== uploaded.public_id) {
       try {
-        const result = await cloudinary.uploader.destroy(previous.cloudinaryPublicId, { resource_type: 'image' });
-        if (result.result !== 'ok' && result.result !== 'not found') {
+        const asset = cloudinaryAssetFromUrl(previous.imageUrl);
+        const failures = asset ? await removeCloudinaryImages([asset]) : [];
+        if (failures.length) {
           cleanupWarning = 'The new image is live, but the previous image could not be removed from storage.';
         }
       } catch (error) {
@@ -138,15 +136,16 @@ export async function updateHeroSlide(req, res) {
     let cleanupWarning = '';
     if (!saved && uploaded?.public_id) {
       try {
-        await cloudinary.uploader.destroy(uploaded.public_id, { resource_type: 'image' });
+        const failures = await removeCloudinaryImages([uploaded]);
+        if (failures.length) cleanupWarning = ' The uploaded image may need manual cleanup.';
       } catch (cleanupError) {
         cleanupWarning = ' The uploaded image may need manual cleanup.';
         console.warn('Could not clean up an unsaved hero image:', cleanupError.message);
       }
     }
     console.error('Could not update hero slide:', error.message);
-    return res.status(500).json({
-      message: `The hero slide could not be saved.${cleanupWarning}`,
+    return res.status(error.status || 500).json({
+      message: error.status ? error.message : `The hero slide could not be saved.${cleanupWarning}`,
       ...(process.env.NODE_ENV === 'development' ? { detail: error.message } : {})
     });
   }

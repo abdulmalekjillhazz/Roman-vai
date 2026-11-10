@@ -94,14 +94,15 @@ export default function ProductImageManager({ productManager }) {
                       </div>
                     )}
 
-                    <div className="flex items-center justify-between gap-1 pt-1 border-t border-stone-100">
-                      <div className="flex gap-1">
+                    <div className="flex items-center justify-between gap-1.5 pt-1.5 border-t border-stone-100">
+                      <div className="flex gap-1.5">
                         <button
                           type="button"
                           disabled={index === 0}
                           onClick={() => moveExistingImage(index, -1)}
                           title="Move earlier in sequence"
-                          className="rounded border border-stone-200 bg-stone-50 px-2 py-1 text-[10px] font-bold text-stone-700 hover:bg-stone-200 disabled:opacity-30 disabled:hover:bg-stone-50"
+                          aria-label={`Move photo ${index + 1} earlier`}
+                          className="flex h-8 w-8 items-center justify-center rounded-lg border border-stone-200 bg-stone-50 text-xs font-bold text-stone-700 hover:bg-stone-200 disabled:opacity-30 disabled:hover:bg-stone-50 transition active:scale-95"
                         >
                           ◀
                         </button>
@@ -110,7 +111,8 @@ export default function ProductImageManager({ productManager }) {
                           disabled={index === existingImageUrls.length - 1}
                           onClick={() => moveExistingImage(index, 1)}
                           title="Move later in sequence"
-                          className="rounded border border-stone-200 bg-stone-50 px-2 py-1 text-[10px] font-bold text-stone-700 hover:bg-stone-200 disabled:opacity-30 disabled:hover:bg-stone-50"
+                          aria-label={`Move photo ${index + 1} later`}
+                          className="flex h-8 w-8 items-center justify-center rounded-lg border border-stone-200 bg-stone-50 text-xs font-bold text-stone-700 hover:bg-stone-200 disabled:opacity-30 disabled:hover:bg-stone-50 transition active:scale-95"
                         >
                           ▶
                         </button>
@@ -118,7 +120,7 @@ export default function ProductImageManager({ productManager }) {
                       <button
                         type="button"
                         onClick={() => removeExistingImage(src)}
-                        className="rounded px-2 py-1 text-[10px] font-bold text-red-600 hover:bg-red-50 hover:underline"
+                        className="rounded-lg px-2.5 py-1.5 text-xs font-bold text-red-600 hover:bg-red-50 transition"
                       >
                         Remove
                       </button>

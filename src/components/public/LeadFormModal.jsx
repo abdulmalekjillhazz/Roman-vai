@@ -56,13 +56,13 @@ export default function LeadFormModal({ isOpen, onClose, initialCategory = '' })
     >
       {/* Luxury Silk Cream Modal Stage to Make Pure Snow-White Inputs Float Crystal Clear */}
       <div
-        className="relative w-full max-w-lg rounded-3xl bg-[#FAF8F5] p-6 shadow-[0_30px_90px_rgba(0,0,0,0.55)] sm:p-9"
+        className="relative w-full max-w-lg max-h-[calc(100dvh-2rem)] overflow-y-auto rounded-3xl bg-brand-cream p-6 shadow-[0_30px_90px_rgba(0,0,0,0.55)] sm:p-9 overscroll-contain"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Minimalist Round Close Button */}
+        {/* Minimalist Round Close Button with 44px touch target */}
         <button
           onClick={onClose}
-          className="absolute right-5 top-5 flex h-9 w-9 items-center justify-center rounded-full bg-white text-stone-500 shadow-sm transition hover:bg-stone-200 hover:text-stone-950"
+          className="absolute right-4 top-4 sm:right-5 sm:top-5 flex h-11 w-11 items-center justify-center rounded-full bg-white text-stone-600 shadow-sm transition hover:bg-stone-200 hover:text-stone-950 active:scale-95"
           aria-label="Close quote form"
         >
           ✕

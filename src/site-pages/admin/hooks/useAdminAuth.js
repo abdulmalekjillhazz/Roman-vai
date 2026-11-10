@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { createAdminApi } from '../api.js';
 
 const api = createAdminApi();
@@ -59,8 +59,9 @@ export default function useAdminAuth() {
         sessionStorage.setItem('dst_admin_email', res.data.email);
         setToken(res.data.token);
         setAdminUser(res.data.email);
+        setLoginPassword('');
       } else {
-        setLoginError('Authentication failed. Please verify .env credentials.');
+        setLoginError('Authentication failed. Please try signing in again.');
       }
     } catch (err) {
       if (err.response?.status === 401) {
@@ -75,18 +76,36 @@ export default function useAdminAuth() {
     }
   }
 
-  function handleLogout() {
+  const clearSession = useCallback(() => {
     sessionStorage.removeItem('dst_admin_token');
     sessionStorage.removeItem('dst_admin_email');
     setToken('');
     setAdminUser('');
     setLoginPassword('');
+  }, []);
+
+  const handleSessionExpired = useCallback(() => {
+    clearSession();
+    setLoginError('Your session expired. Please sign in again.');
+  }, [clearSession]);
+
+  async function handleLogout() {
+    try {
+      if (token) await createAdminApi(token).post('/auth/logout');
+      setLoginError('');
+    } catch (error) {
+      if (error.response?.status !== 401) {
+        setLoginError('Signed out on this device. Server sign-out could not be confirmed; the session will expire within one hour.');
+      }
+    } finally {
+      clearSession();
+    }
   }
 
   return {
     token, adminUser, adminAvatar, avatarInputRef,
     loginEmail, setLoginEmail, loginPassword, setLoginPassword,
     showPassword, setShowPassword, loginError, loginLoading,
-    handleLogin, handleLogout, handleAvatarChange, removeAvatar
+    handleLogin, handleLogout, handleSessionExpired, handleAvatarChange, removeAvatar
   };
 }

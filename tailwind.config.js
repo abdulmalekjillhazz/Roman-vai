@@ -12,6 +12,7 @@ export default {
           gold: '#E5A924',
           goldHover: '#C48B12',
           bronze: '#B38E46',
+          bronzeDark: '#8A6B36',
           whatsapp: '#25D366'
         }
       },

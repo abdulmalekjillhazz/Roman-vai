@@ -1,15 +1,17 @@
 {
   "name": "dst-deco-nextjs",
   "version": "2.1.0",
-  "description": "Classical Decor ID (DST Deco) - Production MERN Stack Catalog with Cloudinary, Google Sheets Lead Proxy, and Full Build Pipeline",
+  "description": "Classical Decor ID (classicaldecorid) - Production Next.js & MERN Architectural Catalog with Cloudinary and Google Sheets Lead Proxy",
   "type": "module",
   "scripts": {
     "predev": "node scripts/prepare-next-public.js",
-    "dev": "node scripts/dev.js",
+    "dev": "node node_modules/next/dist/bin/next dev",
     "prebuild": "node scripts/prepare-next-public.js",
     "build": "node node_modules/next/dist/bin/next build",
     "start": "node node_modules/next/dist/bin/next start",
-    "seed": "node server/src/seed.js"
+    "start:hosting": "node app.cjs",
+    "seed": "node server/src/seed.js",
+    "test": "node --test scripts/test_admin_refactor.mjs server/test/dataflow_auth.test.mjs"
   },
   "dependencies": {
     "axios": "^1.7.2",

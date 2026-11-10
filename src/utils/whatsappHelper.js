@@ -1,5 +1,5 @@
 /**
- * Dynamic WhatsApp Link Generator for Classical Decor ID (DST Deco)
+ * Dynamic WhatsApp Link Generator for Classical Decor ID (classicaldecorid)
  */
 export function getWhatsAppInquiryLink({
   phone = '971543532585',

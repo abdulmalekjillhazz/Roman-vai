@@ -1,5 +1,7 @@
 import React from 'react';
-import { Camera } from 'lucide-react';
+import Link from 'next/link';
+import { Camera, ExternalLink } from 'lucide-react';
+import { HouseMonogram } from '../../../components/public/BrandLogo.jsx';
 
 export default function AdminHeader({ auth, productCount, onLogout }) {
   const {
@@ -32,8 +34,8 @@ export default function AdminHeader({ auth, productCount, onLogout }) {
             {adminAvatar ? (
               <img src={adminAvatar} alt="Admin Profile" className="h-full w-full object-cover" />
             ) : (
-              <div className="h-full w-full bg-gradient-to-br from-[#292524] to-[#1c1917] flex items-center justify-center text-[#E5A924] font-bold font-serif text-lg sm:text-xl border border-white/10">
-                {adminUser ? adminUser[0].toUpperCase() : 'A'}
+              <div className="h-full w-full bg-stone-900 flex items-center justify-center p-2.5 border border-white/10">
+                <HouseMonogram className="w-full h-full" color="#E5A924" />
               </div>
             )}
             {/* Hover overlay hint */}
@@ -62,14 +64,23 @@ export default function AdminHeader({ auth, productCount, onLogout }) {
               </button>
             )}
           </div>
-          <h1 className="font-display text-lg sm:text-2xl font-bold text-brand-charcoal mt-0.5 truncate">DST Deco Control Center</h1>
+          <h1 className="font-display text-lg sm:text-2xl font-bold text-brand-charcoal mt-0.5 truncate">Classical Decor ID Control Center</h1>
           <p className="font-sans text-[11px] sm:text-xs text-brand-muted mt-0.5 truncate">
             Logged in as: <strong className="font-mono text-brand-charcoal">{adminUser || 'master_admin'}</strong>
           </p>
         </div>
       </div>
 
-      <div className="w-full sm:w-auto flex items-center justify-between sm:justify-end gap-2.5 sm:gap-3 pt-3 sm:pt-0 border-t sm:border-t-0 border-stone-100">
+      <div className="w-full sm:w-auto flex flex-wrap items-center justify-between sm:justify-end gap-2 sm:gap-3 pt-3 sm:pt-0 border-t sm:border-t-0 border-stone-100">
+        <Link
+          href="/"
+          target="_blank"
+          className="inline-flex items-center gap-1.5 px-3 py-1.5 sm:py-2 rounded-xl bg-stone-100 hover:bg-stone-200 text-stone-700 text-xs font-bold font-sans border border-stone-200 transition active:scale-95"
+          title="Open live public catalog in new tab"
+        >
+          <span>Live Site</span>
+          <ExternalLink size={12} />
+        </Link>
         <span className="text-[11px] sm:text-xs font-mono bg-brand-cream border border-brand-sand px-2.5 sm:px-3 py-1.5 rounded-xl">
           Items: <strong>{productCount}</strong>
         </span>

@@ -398,6 +398,8 @@ test('authentication restores sessions, handles failed/successful login, and cle
   assert.equal(hook.value.loginPassword, '');
   assert.equal(stored.size, 0);
 
+  assert.equal(calls[0].args[0], '/auth/logout');
+  calls.length = 0;
   let loginFailure = { response: { status: 401 } };
   api.post = async (...args) => {
     calls.push({ method: 'post', args });

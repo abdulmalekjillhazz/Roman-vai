@@ -12,6 +12,7 @@ export default function FallbackImage({
   fallbackSrc = '/assets/decorforall/flexible-stone-desert-gold-accent-wall-10.webp',
   cloudinaryWidth,
   decoding = 'async',
+  loading = 'lazy',
   ...props
 }) {
   const optimizedSrc = optimizedCloudinaryUrl(src, cloudinaryWidth);
@@ -24,7 +25,7 @@ export default function FallbackImage({
 
   return (
     <img
-      {...props}
+      loading={loading}
       decoding={decoding}
       src={currentSrc}
       alt={alt}

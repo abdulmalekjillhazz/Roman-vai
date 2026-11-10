@@ -99,10 +99,10 @@ export default function ProductModal({ product, isOpen, onClose, onOpenQuote }) 
         <button type="button" onClick={onClose} aria-label="Close product details" className="absolute right-3 top-3 z-40 flex h-11 w-11 items-center justify-center rounded-full bg-black/75 text-white hover:bg-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-amber-400">
           <X size={20} />
         </button>
-        <div className="min-h-0 overflow-y-auto overscroll-contain lg:grid lg:grid-cols-[1.1fr_1fr]">
-          <div className="min-w-0 bg-stone-100 lg:sticky lg:top-0 lg:self-start">
+        <div className="min-h-0 overflow-y-auto overscroll-contain md:grid md:grid-cols-[1.1fr_1fr]">
+          <div className="min-w-0 bg-stone-100 md:sticky md:top-0 md:self-start">
             <div
-              className="relative h-[48dvh] min-h-64 touch-pan-y select-none overflow-hidden bg-stone-100 sm:h-[50dvh] lg:h-[55dvh] lg:max-h-[540px]"
+              className="relative h-[48dvh] min-h-64 touch-pan-y select-none overflow-hidden bg-stone-100 sm:h-[50dvh] md:h-[55dvh] md:max-h-[540px]"
               onPointerDown={handlePointerDown}
               onPointerMove={handlePointerMove}
               onPointerUp={handlePointerEnd}
@@ -121,13 +121,13 @@ export default function ProductModal({ product, isOpen, onClose, onOpenQuote }) 
                 style={{ transform: `translateX(${dragOffset}px)` }}
               />
 
-              {/* Mobile View: Small Button on Top of Image to View Details */}
+              {/* Mobile View: Clean Button on Top of Image to View Details */}
               <button
                 type="button"
                 onClick={() => setShowMobileDetails(true)}
-                className="lg:hidden absolute bottom-3 right-3 z-20 flex items-center gap-1.5 rounded-full border border-white/35 bg-black/70 px-3.5 py-1.5 text-xs font-semibold text-white shadow-lg backdrop-blur-md transition hover:bg-black active:scale-95"
+                className="md:hidden absolute bottom-3 right-3 z-20 flex min-h-11 items-center gap-1.5 rounded-full border border-white/35 bg-black/75 px-4 py-2.5 text-xs font-semibold text-white shadow-lg backdrop-blur-md transition hover:bg-black active:scale-95"
               >
-                <Info size={14} className="text-[#E5A924]" />
+                <Info size={15} className="text-[#E5A924]" />
                 <span>Specs & Details</span>
               </button>
 
@@ -160,7 +160,7 @@ export default function ProductModal({ product, isOpen, onClose, onOpenQuote }) 
             )}
 
             {/* Mobile View Summary Bar: Clean Title & Quick Button */}
-            <div className="lg:hidden flex items-center justify-between border-t border-stone-200/80 bg-white px-4 py-3">
+            <div className="md:hidden flex items-center justify-between border-t border-stone-200/80 bg-white px-4 py-3">
               <div className="min-w-0 pr-3">
                 <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#E5A924] truncate">
                   {product.categoryName || product.categoryGroup || 'Architectural materials'}
@@ -172,7 +172,7 @@ export default function ProductModal({ product, isOpen, onClose, onOpenQuote }) 
               <button
                 type="button"
                 onClick={() => setShowMobileDetails(true)}
-                className="shrink-0 flex items-center gap-1.5 rounded-xl bg-stone-100 hover:bg-stone-200 px-3.5 py-2 text-xs font-bold text-stone-800 transition"
+                className="shrink-0 flex min-h-11 items-center gap-1.5 rounded-xl bg-stone-100 hover:bg-stone-200 px-4 py-2.5 text-xs font-bold text-stone-800 transition active:scale-95"
               >
                 <span>Full Details</span>
                 <ChevronRight size={14} />
@@ -180,14 +180,14 @@ export default function ProductModal({ product, isOpen, onClose, onOpenQuote }) 
             </div>
           </div>
 
-          {/* Desktop View Column: Side-by-Side (Unchanged for PC) */}
-          <div className="hidden lg:block p-8 pt-16">
+          {/* Desktop & Tablet Side-by-Side View Column */}
+          <div className="hidden md:block p-6 lg:p-8 pt-14 lg:pt-16">
             <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-amber-800">{product.categoryName || product.categoryGroup || 'Architectural materials'}</p>
-            <h2 id="product-dialog-title" className="mt-2 font-serif text-3xl leading-tight text-stone-950 sm:text-4xl">{product.name}</h2>
-            {product.description && <p className="mt-4 text-sm leading-relaxed text-stone-600">{product.description}</p>}
-            <h3 className="mb-1 mt-7 text-xs font-semibold uppercase tracking-[0.13em] text-stone-900">Key specifications</h3>
+            <h2 id="product-dialog-title" className="mt-2 font-serif text-2xl lg:text-3xl leading-tight text-stone-950 sm:text-4xl">{product.name}</h2>
+            {product.description && <p className="mt-3 text-xs sm:text-sm leading-relaxed text-stone-600">{product.description}</p>}
+            <h3 className="mb-1 mt-6 font-display text-xs font-semibold uppercase tracking-[0.13em] text-stone-900">Key specifications</h3>
             <dl className="divide-y divide-stone-200">
-              {specifications.map(item => <div key={item.label} className="grid grid-cols-[100px_1fr] gap-4 py-3 text-sm">
+              {specifications.map(item => <div key={item.label} className="grid grid-cols-[85px_1fr] sm:grid-cols-[100px_1fr] gap-3 sm:gap-4 py-2.5 sm:py-3 text-xs sm:text-sm">
                 <dt className="text-stone-500">{item.label}</dt><dd className="break-words text-stone-900">{item.value}</dd>
               </div>)}
             </dl>
@@ -196,15 +196,15 @@ export default function ProductModal({ product, isOpen, onClose, onOpenQuote }) 
             {/* UAE B2B Quality & Compliance Badges */}
             <div className="mt-5 grid grid-cols-1 gap-2 rounded-2xl border border-amber-200/60 bg-amber-50/40 p-3.5 text-[11px] text-stone-800">
               <div className="flex items-center gap-2">
-                <span className="text-[#8a6b36] font-bold">🛡️ Fire Rating:</span>
+                <span className="text-brand-bronzeDark font-bold">🛡️ Fire Rating:</span>
                 <span className="font-medium text-stone-700">Class A / B1 Flame Retardant Options</span>
               </div>
               <div className="flex items-center gap-2">
-                <span className="text-[#8a6b36] font-bold">💧 Endurance:</span>
+                <span className="text-brand-bronzeDark font-bold">💧 Endurance:</span>
                 <span className="font-medium text-stone-700">100% Moisture Proof & Termite Resistant</span>
               </div>
               <div className="flex items-center gap-2">
-                <span className="text-[#8a6b36] font-bold">⚡ Supply:</span>
+                <span className="text-brand-bronzeDark font-bold">⚡ Supply:</span>
                 <span className="font-medium text-stone-700">Immediate UAE Warehouse Stock · Fast Dispatch</span>
               </div>
             </div>
@@ -224,12 +224,12 @@ export default function ProductModal({ product, isOpen, onClose, onOpenQuote }) 
 
         {/* Mobile Slide-Up Full Details Sheet (Opens when user taps button on image or title) */}
         <div
-          className={`lg:hidden absolute inset-0 z-30 flex flex-col bg-white transition-transform duration-300 ease-in-out ${
+          className={`md:hidden absolute inset-0 z-30 flex flex-col bg-white transition-transform duration-300 ease-in-out ${
             showMobileDetails ? 'translate-y-0' : 'translate-y-full pointer-events-none'
           }`}
         >
           {/* Mobile Sheet Top Bar */}
-          <div className="flex shrink-0 items-center justify-between border-b border-stone-200 bg-stone-50 px-4 py-3.5">
+          <div className="flex shrink-0 items-center justify-between border-b border-stone-200 bg-stone-50 px-4 py-3">
             <div className="min-w-0 pr-3">
               <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#E5A924] truncate">
                 {product.categoryName || product.categoryGroup || 'Architectural materials'}
@@ -241,9 +241,9 @@ export default function ProductModal({ product, isOpen, onClose, onOpenQuote }) 
             <button
               type="button"
               onClick={() => setShowMobileDetails(false)}
-              className="flex shrink-0 items-center gap-1.5 rounded-full bg-stone-200/80 px-3.5 py-1.5 text-xs font-bold text-stone-800 hover:bg-stone-300 transition"
+              className="flex shrink-0 min-h-11 items-center gap-1.5 rounded-full bg-stone-200/80 px-4 py-2 text-xs font-bold text-stone-800 hover:bg-stone-300 transition active:scale-95"
             >
-              <X size={14} />
+              <X size={15} />
               <span>Back to Photos</span>
             </button>
           </div>
@@ -263,12 +263,12 @@ export default function ProductModal({ product, isOpen, onClose, onOpenQuote }) 
 
             {specifications.length > 0 && (
               <div className="rounded-2xl border border-stone-200/80 bg-stone-50/60 p-4">
-                <h4 className="mb-2 text-xs font-bold uppercase tracking-wider text-stone-900">
+                <h4 className="mb-2 font-display text-xs font-bold uppercase tracking-wider text-stone-900">
                   Key Specifications
                 </h4>
                 <dl className="divide-y divide-stone-200/70">
                   {specifications.map(item => (
-                    <div key={item.label} className="grid grid-cols-[100px_1fr] gap-2 py-2.5 text-xs sm:text-sm">
+                    <div key={item.label} className="grid grid-cols-[85px_1fr] sm:grid-cols-[100px_1fr] gap-2 py-2.5 text-xs sm:text-sm">
                       <dt className="text-stone-500 font-medium">{item.label}</dt>
                       <dd className="break-words font-semibold text-stone-900">{item.value}</dd>
                     </div>
@@ -279,7 +279,7 @@ export default function ProductModal({ product, isOpen, onClose, onOpenQuote }) 
 
             {features.length > 0 && (
               <div className="rounded-2xl border border-stone-200/80 bg-stone-50/60 p-4">
-                <h4 className="mb-2 text-xs font-bold uppercase tracking-wider text-stone-900">
+                <h4 className="mb-2 font-display text-xs font-bold uppercase tracking-wider text-stone-900">
                   Features & Characteristics
                 </h4>
                 <ul className="list-disc space-y-1.5 pl-4 text-xs sm:text-sm text-stone-600">
@@ -293,15 +293,15 @@ export default function ProductModal({ product, isOpen, onClose, onOpenQuote }) 
             {/* UAE B2B Quality & Compliance Badges */}
             <div className="rounded-2xl border border-amber-200/60 bg-amber-50/40 p-4 space-y-2 text-xs text-stone-800">
               <div className="flex items-center gap-2">
-                <span className="text-[#8a6b36] font-bold">🛡️ Fire Rating:</span>
+                <span className="text-brand-bronzeDark font-bold">🛡️ Fire Rating:</span>
                 <span className="font-medium text-stone-700">Class A / B1 Flame Retardant Options</span>
               </div>
               <div className="flex items-center gap-2">
-                <span className="text-[#8a6b36] font-bold">💧 Endurance:</span>
+                <span className="text-brand-bronzeDark font-bold">💧 Endurance:</span>
                 <span className="font-medium text-stone-700">100% Moisture Proof & Termite Resistant</span>
               </div>
               <div className="flex items-center gap-2">
-                <span className="text-[#8a6b36] font-bold">⚡ Supply:</span>
+                <span className="text-brand-bronzeDark font-bold">⚡ Supply:</span>
                 <span className="font-medium text-stone-700">Immediate UAE Warehouse Stock · Fast Dispatch</span>
               </div>
             </div>
@@ -310,7 +310,7 @@ export default function ProductModal({ product, isOpen, onClose, onOpenQuote }) 
               <Link
                 href={`/product/${product.slug}`}
                 onClick={onClose}
-                className="flex items-center justify-between rounded-xl border border-stone-200 p-3.5 text-xs font-bold text-amber-800 hover:bg-stone-50 transition"
+                className="flex min-h-11 items-center justify-between rounded-xl border border-stone-200 p-3.5 text-xs font-bold text-amber-800 hover:bg-stone-50 transition"
               >
                 <span>View Full Architectural Page & All Finishes</span>
                 <ArrowUpRight size={15} />
@@ -323,7 +323,7 @@ export default function ProductModal({ product, isOpen, onClose, onOpenQuote }) 
             <button
               type="button"
               onClick={() => setShowMobileDetails(false)}
-              className="w-full py-2 text-xs font-bold text-stone-600 hover:text-stone-950 uppercase tracking-wider"
+              className="w-full min-h-11 py-2.5 flex items-center justify-center text-xs font-bold text-stone-600 hover:text-stone-950 uppercase tracking-wider"
             >
               ↑ Tap to Return to Photos ↑
             </button>

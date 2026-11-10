@@ -22,7 +22,7 @@ export default function AdminLogin({ auth }) {
           <div className="flex justify-center">
             <BrandLogo variant="dark" showTagline={false} />
           </div>
-          <h1 className="mt-5 font-display text-[28px] font-bold leading-tight text-stone-950">DST Deco Admin Portal</h1>
+          <h1 className="mt-5 font-display text-[28px] font-bold leading-tight text-stone-950">Classical Decor ID Admin Portal</h1>
           <p className="mt-2 text-sm leading-6 text-slate-600">
             Sign in to manage your product catalog.
           </p>

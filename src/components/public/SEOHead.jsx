@@ -1,7 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 
-export default function SEOHead({ title, description, canonicalPath = '/', product = null }) {
+export default function SEOHead({ title, description, canonicalPath = '/', product = null, faqs = null }) {
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://classicaldecorid.com';
   const fullUrl = `${siteUrl}${canonicalPath}`;
   const pageTitle = title || 'Classical Decor ID | Luxury Interior Decor Materials Supplier in Dubai, UAE';
@@ -19,7 +19,7 @@ export default function SEOHead({ title, description, canonicalPath = '/', produ
         sku: product.id,
         brand: {
           '@type': 'Brand',
-          name: 'DST Deco'
+          name: 'Classical Decor ID'
         },
         offers: {
           '@type': 'Offer',
@@ -29,6 +29,23 @@ export default function SEOHead({ title, description, canonicalPath = '/', produ
             ? 'https://schema.org/InStock'
             : 'https://schema.org/OutOfStock'
         }
+      }
+    : null;
+
+  const faqSchema = Array.isArray(faqs) && faqs.length > 0
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: faqs
+          .filter(item => item && item.question && item.answer && item.isActive !== false)
+          .map(item => ({
+            '@type': 'Question',
+            name: item.question,
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: item.answer
+            }
+          }))
       }
     : null;
 
@@ -42,6 +59,9 @@ export default function SEOHead({ title, description, canonicalPath = '/', produ
       <meta property="og:url" content={fullUrl} />
       {productSchema && (
         <script type="application/ld+json">{JSON.stringify(productSchema)}</script>
+      )}
+      {faqSchema && (
+        <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
       )}
     </Helmet>
   );

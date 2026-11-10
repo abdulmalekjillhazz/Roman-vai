@@ -1,50 +1,41 @@
 import React from 'react';
 import { CLIENT_INFO } from '../../config/clientInfo.js';
 
-export function HouseMonogram({ className = "w-8 h-8", color = "#141414" }) {
+export function HouseMonogram({ className = "w-9 h-9", color = "#E5A924" }) {
   return (
     <svg
       viewBox="0 0 100 100"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={className}
-      aria-label="CLASSICAL DECOR I D Logo"
+      aria-label="Classical Decor ID Architectural House Logo"
     >
-      {/* Outer Architectural Gabled Roof */}
-      <path
-        d="M50 8L92 42V90H8V42L50 8Z"
-        stroke={color}
-        strokeWidth="6"
-        strokeLinejoin="round"
-      />
-      {/* Inner Precision Structural Core */}
-      <path
-        d="M50 24L78 46V80H22V46L50 24Z"
-        stroke={color}
-        strokeWidth="4"
-        strokeLinejoin="round"
-      />
-      {/* Central Pillar Symmetry */}
-      <line
-        x1="50"
-        y1="34"
-        x2="50"
-        y2="80"
-        stroke={color}
-        strokeWidth="4"
-        strokeLinecap="round"
-      />
+      <g stroke={color} strokeWidth="5" strokeLinecap="round" strokeLinejoin="round">
+        {/* Left outer wall and Main Gable to Right outer wall */}
+        <path d="M18 92 V38 L50 6 L82 38 V92" />
+        {/* Baseline from tall pillar to right wall (left wall detached) */}
+        <line x1="33" y1="92" x2="82" y2="92" />
+        {/* Tall architectural vertical pillar */}
+        <line x1="33" y1="10" x2="33" y2="92" />
+        {/* Inner overlapping gable slope and hanging drop */}
+        <path d="M33 10 L65 42 V68" />
+        {/* Central entrance door */}
+        <path d="M43 92 V72 H57 V92" />
+      </g>
     </svg>
   );
 }
 
+// Backward compatibility alias
+export const CDMonogram = HouseMonogram;
+
 export default function BrandLogo({ variant = 'dark', showTagline = true, iconOnly = false, compact = false }) {
-  const strokeColor = variant === 'light' ? '#FFFFFF' : '#141414';
+  const strokeColor = '#E5A924';
   const textColor = variant === 'light' ? 'text-white' : 'text-brand-charcoal';
   const taglineColor = variant === 'light' ? 'text-stone-300' : 'text-stone-600';
 
   if (iconOnly) {
-    return <HouseMonogram className="w-9 h-9" color={strokeColor} />;
+    return <HouseMonogram className="w-9 h-9 shrink-0" color={strokeColor} />;
   }
 
   return (

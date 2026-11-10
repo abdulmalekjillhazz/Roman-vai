@@ -5,7 +5,16 @@ mongoose.connection.on('error', (err) => {
   console.warn(`⚠️ MongoDB Connection Error: ${err.message}. Operating in JSON fallback mode.`);
 });
 
+let connectionAttempt;
+
+export function isDatabaseConfigured() {
+  const uri = process.env.MONGO_URI;
+  return Boolean(uri && !/<db_username>|<db_password>|REPLACE_WITH|YOUR_[A-Z0-9_]+|@cluster0\.mongodb\.net(?:[/:?]|$)/i.test(uri));
+}
+
 export async function connectDB() {
+  if (mongoose.connection.readyState === 1) return true;
+  if (connectionAttempt) return connectionAttempt;
   const uri = process.env.MONGO_URI;
   const hasTemplateValues = /<db_username>|<db_password>|REPLACE_WITH|YOUR_[A-Z0-9_]+/i.test(uri || '');
   const hasExampleAtlasHost = /@cluster0\.mongodb\.net(?:[/:?]|$)/i.test(uri || '');
@@ -14,16 +23,18 @@ export async function connectDB() {
     return false;
   }
 
-  try {
-    const conn = await mongoose.connect(uri, {
-      serverSelectionTimeoutMS: 4000
-    });
-    console.log(`✅ MongoDB Connected: ${conn.connection.host}`);
-    return true;
-  } catch (error) {
-    console.warn(`⚠️ MongoDB Connection could not be established: ${error.message}. Operating in JSON fallback mode.`);
-    return false;
-  }
+  connectionAttempt = (async () => {
+    try {
+      const conn = await mongoose.connect(uri, { serverSelectionTimeoutMS: 4000 });
+      console.log(`✅ MongoDB Connected: ${conn.connection.host}`);
+      return true;
+    } catch (error) {
+      console.warn(`⚠️ MongoDB Connection could not be established: ${error.message}. Operating in JSON fallback mode.`);
+      return false;
+    }
+  })();
+  try { return await connectionAttempt; }
+  finally { connectionAttempt = undefined; }
 }
 
 export async function ensureDBConnected() {

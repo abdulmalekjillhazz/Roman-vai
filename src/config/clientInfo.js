@@ -1,16 +1,16 @@
 /**
  * Official Brand Kit & Profile Metadata
- * CLASSICAL DECOR I D (DST Deco) — Dubai Architectural Materials & Trade Supply Portal
+ * Classical Decor ID (classicaldecorid) — Dubai Architectural Materials & Trade Supply Portal
  */
 export const CLIENT_INFO = {
   brandName: process.env.NEXT_PUBLIC_BRAND_NAME || 'Classical Decor ID',
-  tradeName: process.env.NEXT_PUBLIC_BRAND_SUBTITLE || 'DST Deco',
+  tradeName: process.env.NEXT_PUBLIC_BRAND_SUBTITLE || 'classicaldecorid',
   tagline: process.env.NEXT_PUBLIC_BRAND_TAGLINE || 'DESIGN • DECOR • PERFECT',
   domain: process.env.NEXT_PUBLIC_SITE_URL || 'https://classicaldecorid.com',
   whatsappNumber: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '971543532585',
   phoneDisplay: process.env.NEXT_PUBLIC_PHONE_DISPLAY || '+971 543 532 585',
-  email: process.env.NEXT_PUBLIC_CLIENT_EMAIL || 'dstdeco@gmail.com',
-  secondaryEmail: 'info@classicaldecorid.com',
+  email: process.env.NEXT_PUBLIC_CLIENT_EMAIL || 'info@classicaldecorid.com',
+  secondaryEmail: 'contact@classicaldecorid.com',
   location: 'Dubai, United Arab Emirates',
   workingHours: 'Saturday – Thursday, 9:00 AM – 6:00 PM (GST)',
   socials: {
@@ -29,6 +29,7 @@ export const CLIENT_INFO = {
     gold: '#E5A924',
     goldHover: '#C48B12',
     bronze: '#B38E46',
+    bronzeDark: '#8A6B36',
     whatsapp: '#25D366'
   },
   fonts: {

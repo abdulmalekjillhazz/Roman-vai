@@ -18,3 +18,10 @@ export const emptyCategoryForm = {
   slug: '',
   description: ''
 };
+
+export const emptyFaqForm = {
+  question: '',
+  answer: '',
+  order: 0,
+  isActive: true
+};

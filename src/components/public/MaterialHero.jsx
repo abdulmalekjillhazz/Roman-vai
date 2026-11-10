@@ -204,7 +204,7 @@ export default function MaterialHero({ onOpenQuote }) {
                 </div>
 
                 {/* 2. Dynamic Headline */}
-                <h1 className="smoke-in-2 font-serif text-2xl sm:text-5xl lg:text-5.5xl font-semibold leading-[1.1] sm:leading-[1.06] tracking-tight text-white">
+                <h1 className="smoke-in-2 font-serif text-2xl sm:text-5xl lg:text-6xl font-semibold leading-[1.1] sm:leading-[1.06] tracking-tight text-white">
                   {currentSlide.title}
                 </h1>
 
@@ -226,7 +226,7 @@ export default function MaterialHero({ onOpenQuote }) {
                 {/* Primary Metallic Gold CTA Button */}
                 <a
                   href="#product-catalog"
-                  className="btn-luxury-gold group inline-flex min-h-10 sm:min-h-12 items-center gap-2 rounded-xl px-4 sm:px-6 text-[11px] sm:text-xs font-bold uppercase tracking-wider text-stone-950 active:scale-95 shadow-md transition-all"
+                  className="btn-luxury-gold group inline-flex min-h-11 sm:min-h-12 items-center gap-2 rounded-xl px-4 sm:px-6 text-[11px] sm:text-xs font-bold uppercase tracking-wider text-stone-950 active:scale-95 shadow-md transition-all"
                 >
                   <span>{currentSlide.actionText}</span>
                   <ArrowUpRight aria-hidden="true" className="h-3.5 w-3.5 sm:h-4 sm:w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -239,7 +239,7 @@ export default function MaterialHero({ onOpenQuote }) {
                   )}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex min-h-10 sm:min-h-12 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#25D366] to-[#128C7E] px-4 sm:px-6 text-[11px] sm:text-xs font-bold uppercase tracking-wider text-white shadow-[0_10px_25px_-4px_rgba(37,211,102,0.4)] hover:shadow-[0_14px_30px_-4px_rgba(37,211,102,0.65)] hover:from-[#20ba59] hover:to-[#0e7467] transition-all duration-300 active:scale-95"
+                  className="inline-flex min-h-11 sm:min-h-12 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#25D366] to-[#128C7E] px-4 sm:px-6 text-[11px] sm:text-xs font-bold uppercase tracking-wider text-white shadow-[0_10px_25px_-4px_rgba(37,211,102,0.4)] hover:shadow-[0_14px_30px_-4px_rgba(37,211,102,0.65)] hover:from-[#20ba59] hover:to-[#0e7467] transition-all duration-300 active:scale-95"
                 >
                   <svg
                     className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-current shrink-0"
@@ -277,7 +277,7 @@ export default function MaterialHero({ onOpenQuote }) {
                   aria-label={`View slide ${index + 1}: ${item.title}`}
                   aria-pressed={isSelected}
                   onClick={() => handleNavigate(index)}
-                  className="group relative flex h-7 items-center justify-center px-1 focus-visible:outline-none"
+                  className="group relative flex h-11 items-center justify-center px-1.5 focus-visible:outline-none"
                 >
                   <div className="relative h-1.5 rounded-full overflow-hidden bg-white/25 transition-all duration-300">
                     {isSelected ? (
