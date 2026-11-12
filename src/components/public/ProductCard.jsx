@@ -46,7 +46,7 @@ export default function ProductCard({
   return (
     <article
       ref={cardRef}
-      className={`group min-w-0 overflow-hidden rounded-2xl sm:rounded-3xl border border-stone-200/90 bg-white transition-all duration-700 ease-out hover:shadow-2xl hover:border-[#E5A924]/60 ${
+      className={`material-card group min-w-0 overflow-hidden rounded-2xl sm:rounded-3xl border border-stone-200/90 bg-white transition-all duration-700 ease-out hover:shadow-2xl hover:border-[#E5A924]/60 ${
         isFeatured ? 'sm:col-span-2 md:col-span-2 md:row-span-2' : ''
       } ${
         isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
@@ -126,6 +126,11 @@ export default function ProductCard({
                 Made to order
               </span>
             )}
+          </div>
+
+          <div className="mt-2 flex items-center gap-2 text-[9px] font-mono uppercase tracking-[0.12em] text-stone-400">
+            <span className="h-1.5 w-1.5 rounded-full bg-[#E5A924]" />
+            <span>{isFeatured ? 'Selected specification' : 'Trade specification'}</span>
           </div>
 
           <h3

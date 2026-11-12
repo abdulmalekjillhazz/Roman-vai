@@ -5,9 +5,9 @@ import Link from 'next/link';
 import AppShell from '../../src/App.jsx';
 import SkyFloatingGallerySection from '../../src/components/public/SkyFloatingGallerySection.jsx';
 import { getWhatsAppInquiryLink } from '../../src/utils/whatsappHelper.js';
-import { ArrowLeft, ArrowRight, ChevronRight, MapPin, MessageCircle, Sparkles } from 'lucide-react';
+import { ArrowLeft, ArrowRight, ChevronRight, MapPin, MessageCircle, RefreshCw, Sparkles } from 'lucide-react';
 
-export default function ProjectsClient({ projects = [] }) {
+export default function ProjectsClient({ projects = [], hasFetchError = false }) {
   const waLinkGeneral = getWhatsAppInquiryLink({ category: 'Architectural Portfolio & Project Case Studies' });
 
   return (
@@ -56,6 +56,19 @@ export default function ProjectsClient({ projects = [] }) {
                 </button>
               </div>
             </div>
+
+            {hasFetchError && (
+              <div role="status" className="mb-8 flex flex-col gap-3 rounded-2xl border border-amber-300/70 bg-amber-50 px-4 py-4 text-sm text-amber-950 sm:flex-row sm:items-center sm:justify-between sm:px-5">
+                <div>
+                  <p className="font-display font-bold">Live project index is temporarily unavailable.</p>
+                  <p className="mt-1 text-xs leading-relaxed text-amber-900/75">The curated portfolio remains available below. You can refresh when the trade desk connection is restored.</p>
+                </div>
+                <button type="button" onClick={() => window.location.reload()} className="inline-flex min-h-10 shrink-0 items-center justify-center gap-2 rounded-xl bg-amber-900 px-4 py-2 text-xs font-bold text-white transition hover:bg-amber-800 active:scale-95">
+                  <RefreshCw className="h-3.5 w-3.5" />
+                  Refresh index
+                </button>
+              </div>
+            )}
 
             {/* Unified Portfolio Showcase */}
             <div className="mb-12">

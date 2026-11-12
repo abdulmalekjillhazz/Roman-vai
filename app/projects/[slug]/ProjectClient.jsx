@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import AppShell from '../../../src/App.jsx';
 import { getWhatsAppInquiryLink } from '../../../src/utils/whatsappHelper.js';
 import { MapPin, Calendar, CheckCircle2, MessageCircle } from 'lucide-react';
@@ -56,10 +57,13 @@ export default function ProjectClient({ project }) {
             <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-10 items-start">
               {/* Media Gallery */}
               <div className="space-y-4">
-                <div className="relative aspect-4/3 rounded-3xl overflow-hidden bg-stone-100 border border-brand-sand/80 shadow-xs">
-                  <img
+                <div className="relative aspect-[4/3] rounded-3xl overflow-hidden bg-stone-100 border border-brand-sand/80 shadow-xs">
+                  <Image
                     src={images[selectedImg] || images[0]}
                     alt={project.title}
+                    fill
+                    priority
+                    sizes="(max-width: 1024px) 100vw, 62vw"
                     className="w-full h-full object-cover"
                   />
                 </div>
@@ -75,7 +79,7 @@ export default function ProjectClient({ project }) {
                           selectedImg === idx ? 'border-brand-gold scale-105' : 'border-transparent opacity-70 hover:opacity-100'
                         }`}
                       >
-                        <img src={img} alt="" className="w-full h-full object-cover" />
+                        <Image src={img} alt="" fill sizes="80px" className="object-cover" />
                       </button>
                     ))}
                   </div>

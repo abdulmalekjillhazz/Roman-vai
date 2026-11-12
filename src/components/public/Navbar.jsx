@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Phone, Sparkles } from 'lucide-react';
+import { Menu, Phone, Sparkles, X } from 'lucide-react';
 import { CLIENT_INFO } from '../../config/clientInfo.js';
 import { HouseMonogram } from './BrandLogo.jsx';
 
 export default function Navbar({ onOpenQuote }) {
   const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   // Check if we are on the homepage over the full-screen hero
   const isHome = pathname === '/';
@@ -23,6 +24,17 @@ export default function Navbar({ onOpenQuote }) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    setIsMenuOpen(false);
+  }, [pathname]);
+
+  const jumpToContact = () => {
+    const el = document.getElementById('contact');
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+    else window.location.href = '/#contact';
+    setIsMenuOpen(false);
+  };
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out ${
@@ -31,7 +43,7 @@ export default function Navbar({ onOpenQuote }) {
           : 'border-b border-stone-200/80 bg-brand-cream/95 backdrop-blur-xl shadow-[0_10px_30px_-5px_rgba(15,23,42,0.08)] py-0'
       }`}
     >
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-2 px-4 sm:h-20 sm:gap-4 sm:px-6 lg:px-8">
+      <div className="relative z-30 mx-auto flex h-16 max-w-7xl items-center justify-between gap-2 px-4 sm:h-20 sm:gap-4 sm:px-6 lg:px-8">
         
         {/* Brand Identity / Logo */}
         <Link href="/" className="flex shrink-0 items-center gap-2.5 transition-transform hover:scale-[1.02] sm:gap-3">
@@ -64,7 +76,7 @@ export default function Navbar({ onOpenQuote }) {
         </Link>
 
         {/* Action Controls & Navigation Pills */}
-        <div className="flex items-center gap-2 sm:gap-3">
+        <div className="hidden items-center gap-2 sm:flex sm:gap-3">
           
           {/* Portfolio Page Shortcut */}
           <Link
@@ -82,9 +94,7 @@ export default function Navbar({ onOpenQuote }) {
           <button
             type="button"
             onClick={() => {
-              const el = document.getElementById('contact');
-              if (el) el.scrollIntoView({ behavior: 'smooth' });
-              else window.location.href = '/#contact';
+              jumpToContact();
             }}
             className={`inline-flex min-h-10 sm:min-h-11 items-center justify-center rounded-xl px-2.5 py-2 text-[11px] font-semibold backdrop-blur-md transition-all active:scale-95 sm:px-4 sm:text-xs ${
               isTransparent
@@ -124,7 +134,51 @@ export default function Navbar({ onOpenQuote }) {
           </a>
         </div>
 
+        {/* Compact mobile actions: keep the header calm while preserving every key action. */}
+        <div className="flex items-center gap-1.5 sm:hidden">
+          <a
+            href={`tel:+${CLIENT_INFO.whatsappNumber.replace(/\D/g, '')}`}
+            aria-label="Call Classical Decor ID"
+            className={`inline-flex h-10 w-10 items-center justify-center rounded-xl border transition active:scale-95 ${
+              isTransparent ? 'border-white/25 bg-white/10 text-white' : 'border-stone-200/90 bg-white/90 text-stone-800'
+            }`}
+          >
+            <Phone className={isTransparent ? 'text-[#E5A924]' : 'text-stone-500'} size={16} />
+          </a>
+          <button
+            type="button"
+            aria-label={isMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+            aria-expanded={isMenuOpen}
+            onClick={() => setIsMenuOpen(value => !value)}
+            className={`inline-flex h-10 w-10 items-center justify-center rounded-xl border transition active:scale-95 ${
+              isTransparent ? 'border-white/25 bg-white/10 text-white' : 'border-stone-200/90 bg-white/90 text-stone-800'
+            }`}
+          >
+            {isMenuOpen ? <X size={18} /> : <Menu size={18} />}
+          </button>
+        </div>
+
       </div>
+
+      {isMenuOpen && (
+        <>
+          <button
+            type="button"
+            aria-label="Close navigation menu"
+            onClick={() => setIsMenuOpen(false)}
+            className="fixed inset-0 z-0 bg-stone-950/20 sm:hidden"
+          />
+          <div className="mobile-nav-panel absolute inset-x-3 top-[4.5rem] z-20 rounded-2xl border border-stone-300 bg-[#FAF6EE] p-2 text-stone-900 shadow-[0_24px_60px_-18px_rgba(15,23,42,0.55)] sm:hidden">
+            <div className="border-b border-stone-200 px-3 pb-2 pt-1">
+              <span className="font-mono text-[9px] font-bold uppercase tracking-[0.2em] text-amber-800">Classical Decor ID</span>
+              <p className="mt-1 text-xs text-stone-500">Architectural surfaces · Dubai & UAE</p>
+            </div>
+            <Link href="/projects" className="mobile-nav-item mt-2 flex min-h-12 items-center rounded-xl px-3 text-sm font-semibold">Portfolio</Link>
+            <button type="button" onClick={() => { onOpenQuote?.('VIP Material Sample Box Request'); setIsMenuOpen(false); }} className="mobile-nav-item flex min-h-12 w-full items-center rounded-xl px-3 text-left text-sm font-semibold">Request sample box</button>
+            <button type="button" onClick={jumpToContact} className="mobile-nav-item flex min-h-12 w-full items-center rounded-xl px-3 text-left text-sm font-semibold">Contact trade desk</button>
+          </div>
+        </>
+      )}
     </header>
   );
 }

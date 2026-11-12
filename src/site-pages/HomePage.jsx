@@ -43,6 +43,13 @@ const MATERIAL_STUDIES = [
   { file: 'project-completed-commercial-office-feature-wall-03', title: 'Acoustic Slat Louvers', detail: 'Acoustic Millwork', slug: 'acoustic-panel' }
 ];
 
+const MATERIAL_SIGNALS = [
+  { value: '15', label: 'material families', detail: 'Architectural surfaces' },
+  { value: 'UAE', label: 'trade coverage', detail: 'Dubai dispatch desk' },
+  { value: '24–48h', label: 'sample dispatch', detail: 'For active projects' },
+  { value: 'B2B', label: 'specification support', detail: 'Designers & contractors' }
+];
+
 function ProductSkeletonCard({ isFeatured = false }) {
   return (
     <div
@@ -128,7 +135,7 @@ export default function HomePage({ onOpenQuote, categorySlug }) {
           <MaterialHero onOpenQuote={onOpenQuote} />
           
           {/* Quick Study Highlight Strip */}
-          <section aria-label="Material highlights" className="mx-auto grid max-w-7xl gap-4 px-4 pb-8 pt-6 sm:grid-cols-2 lg:grid-cols-3 sm:px-6 lg:px-8">
+          <section aria-label="Material highlights" className="mx-auto grid max-w-7xl gap-3 px-4 pb-8 pt-5 sm:grid-cols-2 sm:gap-4 sm:px-6 sm:pt-6 lg:grid-cols-3 lg:px-8">
             {MATERIAL_STUDIES.map(study => (
               <Link
                 href={`/product/${study.slug}`}
@@ -155,20 +162,34 @@ export default function HomePage({ onOpenQuote, categorySlug }) {
               </Link>
             ))}
           </section>
+
+          {/* Editorial signal rail: a quiet information beat between imagery and the catalog. */}
+          <section aria-label="Trade desk highlights" className="editorial-signal-rail mx-auto max-w-7xl px-4 pb-10 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-2 divide-x divide-stone-300/80 border-y border-stone-300/80 py-4 sm:grid-cols-4 sm:py-5">
+              {MATERIAL_SIGNALS.map(signal => (
+                <div key={signal.label} className="px-3 first:pl-0 sm:px-5 lg:px-7">
+                  <span className="block font-serif text-2xl font-semibold tracking-tight text-stone-950 sm:text-3xl">{signal.value}</span>
+                  <span className="mt-1 block font-mono text-[9px] font-bold uppercase tracking-[0.16em] text-amber-800">{signal.label}</span>
+                  <span className="mt-1 block text-[10px] text-stone-500 sm:text-xs">{signal.detail}</span>
+                </div>
+              ))}
+            </div>
+          </section>
         </>
       )}
 
       {/* 2. Main Architectural Material Catalog (Full-Width Clean Layout) */}
-      <section id="product-catalog" aria-labelledby="catalog-title" className="mx-auto max-w-7xl scroll-mt-24 px-4 pb-20 pt-10 sm:px-6 lg:px-8 sm:pb-28">
+      <section id="product-catalog" aria-labelledby="catalog-title" className="home-catalog-stage relative mx-auto max-w-7xl scroll-mt-24 overflow-hidden px-4 pb-20 pt-10 sm:px-6 sm:pb-28 lg:px-8">
+        <div aria-hidden="true" className="pointer-events-none absolute -right-24 top-0 h-72 w-72 rounded-full bg-[#E5A924]/[0.08] blur-3xl" />
         
         {/* Section Header */}
-        <div className="mb-8 flex flex-col justify-between gap-4 border-b border-stone-200/80 pb-6 md:flex-row md:items-end">
+        <div className="mb-7 flex flex-col justify-between gap-5 border-b border-stone-200/80 pb-6 sm:mb-8 md:flex-row md:items-end">
           <div>
             <div className="inline-flex items-center gap-2 rounded-full border border-amber-800/20 bg-amber-800/5 px-3 py-1 text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-amber-900">
               <Sparkles className="h-3 w-3 text-[#E5A924]" />
               Official Architectural Specifications · Dubai & UAE
             </div>
-            <h2 id="catalog-title" className="mt-3 font-serif text-3xl font-semibold tracking-tight text-stone-900 sm:text-5xl lg:text-6xl">
+            <h2 id="catalog-title" className="mt-3 max-w-[12ch] font-serif text-4xl font-semibold leading-[0.95] tracking-tight text-stone-900 sm:max-w-none sm:text-5xl lg:text-6xl">
               Find your finish.
             </h2>
           </div>
@@ -178,16 +199,17 @@ export default function HomePage({ onOpenQuote, categorySlug }) {
         </div>
 
         {/* Clean Header Bar - Zero Numbers */}
-        <div className="mb-6 flex items-center justify-between text-xs font-medium text-stone-500">
+        <div className="mb-5 flex items-center justify-between border-y border-stone-200/70 py-3 text-xs font-medium text-stone-500 sm:mb-6">
           <div className="flex items-center gap-1.5">
             <SlidersHorizontal size={14} className="text-brand-bronzeDark" />
             <span className="font-semibold text-stone-700">Official Material Collections</span>
           </div>
+          <span className="hidden font-mono text-[9px] uppercase tracking-[0.18em] text-stone-400 sm:inline">Specify with confidence</span>
         </div>
 
         {/* Full-Width Products Grid with Dynamic Bento Layout & Skeleton Loading State */}
         {isFetching ? (
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 grid-flow-dense">
+          <div className="grid grid-cols-1 gap-4 sm:gap-5 md:grid-cols-3 md:gap-6 xl:grid-cols-4 grid-flow-dense">
             <ProductSkeletonCard isFeatured={true} />
             <ProductSkeletonCard />
             <ProductSkeletonCard />
@@ -196,7 +218,7 @@ export default function HomePage({ onOpenQuote, categorySlug }) {
             <ProductSkeletonCard />
           </div>
         ) : filteredProducts.length ? (
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 grid-flow-dense">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 md:grid-cols-3 md:gap-6 xl:grid-cols-4 grid-flow-dense">
             {orderedProducts.map((product, index) => {
               const isBentoEligible = !categorySlug;
               const isFeatured = isBentoEligible && (index === 0 || (index > 0 && index % 7 === 0));
@@ -225,15 +247,15 @@ export default function HomePage({ onOpenQuote, categorySlug }) {
         )}
 
         {/* Physical Sample Dispatch Box Banner */}
-        <div className="mt-16 rounded-3xl border border-stone-800/80 bg-gradient-to-r from-stone-950 via-[#181818] to-stone-950 p-7 sm:p-10 text-white flex flex-col sm:flex-row items-center justify-between gap-8 shadow-2xl">
+        <div className="mt-12 flex flex-col items-center justify-between gap-7 rounded-3xl border border-stone-800/80 bg-gradient-to-r from-stone-950 via-[#181818] to-stone-950 p-5 text-white shadow-2xl sm:mt-16 sm:flex-row sm:gap-8 sm:p-10">
           <div className="max-w-xl text-center sm:text-left">
             <span className="text-[10px] font-mono font-bold uppercase tracking-[0.24em] text-[#E5A924]">
               COMPLIMENTARY TRADE SAMPLE DISPATCH · DUBAI & UAE
             </span>
-            <h3 className="mt-2 font-serif text-2xl sm:text-3xl font-semibold text-white">
+            <h3 className="mt-2 font-serif text-2xl font-semibold text-white sm:text-3xl">
               Experience the tactile texture on-site.
             </h3>
-            <p className="mt-2 text-xs sm:text-sm leading-relaxed text-stone-300 font-sans">
+            <p className="mt-2 text-xs leading-relaxed text-stone-300 font-sans sm:text-sm">
               Feel the weight, authentic stone relief, and luxury matte finishes before specifying your project. We deliver tailored architectural sample boxes with specification sheets directly to your design studio, contractor site, or private villa within 24–48 hours across the UAE.
             </p>
           </div>

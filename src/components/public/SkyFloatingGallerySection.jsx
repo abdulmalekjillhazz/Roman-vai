@@ -206,30 +206,41 @@ export default function SkyFloatingGallerySection({ onOpenQuote, initialProjects
     <section
       id="sky-portfolio"
       ref={containerRef}
-      className={`relative w-full transition-all duration-300 ${
+      className={`relative w-full overflow-hidden transition-all duration-300 ${
         isFullscreen
           ? 'h-screen w-screen overflow-y-auto bg-[#FAF6EE] py-6'
           : embedded
           ? 'py-2'
-          : 'pt-5 pb-8 sm:pt-12 sm:pb-16 border-t border-brand-sand/60 bg-gradient-to-b from-[#FAF6EE] via-[#F1F6FA] to-[#FAF6EE]'
+          : 'pt-6 pb-10 sm:pt-16 sm:pb-20 border-t border-brand-sand/60 bg-[radial-gradient(circle_at_8%_10%,rgba(229,169,36,0.16),transparent_28%),linear-gradient(135deg,#fbf8f1_0%,#eef4f5_52%,#fbf8f1_100%)]'
       }`}
       aria-label="Architectural Portfolio Showcase"
     >
       {/* 2. SECTION HEADER & FILTER BAR */}
       <div className={`relative z-10 ${embedded ? '' : 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'} mb-4 sm:mb-6`}>
         {!embedded && (
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-3 sm:gap-6 mb-4 sm:mb-6">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-8 mb-5 sm:mb-8">
             <div>
-              <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full bg-white/90 border border-amber-300/60 shadow-2xs text-[9px] sm:text-[10px] font-mono uppercase tracking-[0.16em] text-amber-900 font-bold">
+              <div className="inline-flex items-center gap-1.5 px-2.5 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-stone-950 text-[9px] sm:text-[10px] font-mono uppercase tracking-[0.16em] text-[#F4C45A] font-bold shadow-lg shadow-stone-900/10">
                 <Sparkles className="w-3 h-3 text-[#E5A924]" />
                 <span>Architectural Showcase · Dubai &amp; UAE</span>
               </div>
-              <h2 className="font-serif text-2xl sm:text-4xl lg:text-5xl font-semibold text-stone-900 mt-1.5 sm:mt-2.5 tracking-tight">
-                Completed Masterpieces.
+              <h2 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-semibold text-stone-950 mt-2.5 sm:mt-4 tracking-[-0.04em] leading-[0.96]">
+                Spaces with a point of view.
               </h2>
-              <p className="font-sans text-stone-600 text-[11px] sm:text-xs mt-1 sm:mt-1.5 max-w-xl leading-relaxed">
-                Explore completed luxury residential villas, penthouses, and commercial surface executions across Dubai and the UAE.
+              <p className="font-sans text-stone-600 text-xs sm:text-sm mt-3 sm:mt-4 max-w-xl leading-relaxed">
+                A visual record of material, light, and craft across completed villas, penthouses, and commercial interiors in the UAE.
               </p>
+            </div>
+            <div className="hidden md:flex items-center gap-5 rounded-2xl border border-stone-200/80 bg-white/70 px-5 py-4 shadow-sm backdrop-blur-sm">
+              <div>
+                <span className="block font-serif text-2xl font-semibold text-stone-950">IMAGE-FIRST</span>
+                <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-stone-500">Editorial stories</span>
+              </div>
+              <div className="h-10 w-px bg-stone-200" />
+              <div>
+                <span className="block font-serif text-3xl font-semibold text-stone-950">UAE</span>
+                <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-stone-500">Material stories</span>
+              </div>
             </div>
           </div>
         )}
@@ -245,7 +256,7 @@ export default function SkyFloatingGallerySection({ onOpenQuote, initialProjects
                   role="tab"
                   aria-selected={isActive}
                   onClick={() => setActiveCategory(cat)}
-                  className={`px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all shrink-0 ${
+                  className={`inline-flex min-h-11 items-center justify-center px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all shrink-0 ${
                     isActive
                       ? 'bg-stone-900 text-white shadow-sm'
                       : 'bg-white border border-stone-200/90 text-stone-700 hover:border-[#E5A924] hover:text-stone-950'
@@ -260,7 +271,8 @@ export default function SkyFloatingGallerySection({ onOpenQuote, initialProjects
           <button
             type="button"
             onClick={toggleFullScreen}
-            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-stone-900 hover:bg-stone-800 text-white font-semibold text-xs shadow-sm transition active:scale-95 shrink-0"
+            aria-label={isFullscreen ? 'Exit fullscreen portfolio' : 'Open fullscreen portfolio'}
+            className="inline-flex min-h-11 items-center gap-1.5 px-3.5 py-2 rounded-xl bg-stone-900 hover:bg-stone-800 text-white font-semibold text-xs shadow-sm transition active:scale-95 shrink-0"
           >
             {isFullscreen ? (
               <>
@@ -277,9 +289,68 @@ export default function SkyFloatingGallerySection({ onOpenQuote, initialProjects
         </div>
       </div>
 
-      {/* 3. REAL-WORLD ARCHITECTURAL BENTO-EDITORIAL PORTFOLIO GRID */}
+      {/* 3. IMAGE-FIRST EDITORIAL FEATURE + PROJECT INDEX */}
       <div className={`relative z-10 ${embedded ? '' : 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'} pt-2 pb-4`}>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 lg:gap-8">
+        {filteredItems[0] && (
+          <>
+            <button
+              type="button"
+              onClick={() => setActiveLightbox(filteredItems[0])}
+              aria-label={`Open featured project ${filteredItems[0].title}`}
+              className="group relative block min-h-[25rem] w-full overflow-hidden rounded-[1.75rem] bg-stone-900 text-left shadow-[0_30px_80px_-24px_rgba(15,23,42,0.48)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E5A924] focus-visible:ring-offset-4 sm:min-h-[36rem] lg:min-h-[44rem]"
+            >
+              <Image
+                src={filteredItems[0].image}
+                alt={filteredItems[0].title}
+                fill
+                priority
+                sizes="(max-width: 1024px) 100vw, 1200px"
+                className="object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-105 motion-reduce:transition-none"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/20 to-stone-950/5" />
+              <div className="absolute inset-x-5 bottom-5 text-white sm:inset-x-9 sm:bottom-9">
+                <div className="mb-4 flex flex-wrap items-center gap-2">
+                  <span className="rounded-full border border-[#F4C45A]/50 bg-stone-950/50 px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-[#F4C45A] backdrop-blur-md">
+                    01 Â· {filteredItems[0].category}
+                  </span>
+                  {filteredItems[0].isFeatured && <span className="rounded-full bg-[#E5A924] px-3 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-stone-950">Featured</span>}
+                </div>
+                <div className="flex items-end justify-between gap-5">
+                  <div>
+                    <p className="mb-2 inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.18em] text-stone-200"><MapPin className="h-3.5 w-3.5 text-[#F4C45A]" /> {filteredItems[0].location}</p>
+                    <h3 className="max-w-3xl font-serif text-4xl font-semibold leading-[0.96] tracking-[-0.04em] sm:text-6xl">{filteredItems[0].title}</h3>
+                  </div>
+                  <span className="hidden h-14 w-14 shrink-0 items-center justify-center rounded-full bg-white text-stone-950 shadow-xl transition-transform duration-500 group-hover:rotate-45 sm:flex"><ArrowUpRight className="h-5 w-5" /></span>
+                </div>
+              </div>
+            </button>
+
+            <div className="mt-12 border-y border-stone-300/80 py-5 sm:mt-20 sm:py-7">
+              <div className="mb-4 flex items-center justify-between gap-4">
+                <span className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-amber-800">Project index</span>
+                <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-stone-400">{filteredItems.length} visual stories</span>
+              </div>
+              <div className="divide-y divide-stone-200/90">
+                {filteredItems.map((item, index) => (
+                  <button
+                    key={`index-${item.id}`}
+                    type="button"
+                    onClick={() => setActiveLightbox(item)}
+                    aria-label={`Open project ${item.title}`}
+                    className="group flex w-full items-center gap-3 py-3 text-left transition-colors hover:text-amber-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E5A924] sm:gap-5 sm:py-4"
+                  >
+                    <span className="w-8 font-mono text-[10px] text-stone-400 sm:w-10">{String(index + 1).padStart(2, '0')}</span>
+                    <span className="min-w-0 flex-1 font-serif text-xl font-semibold tracking-[-0.02em] sm:text-2xl">{item.title}</span>
+                    <span className="hidden max-w-[15rem] truncate font-mono text-[10px] uppercase tracking-[0.14em] text-stone-500 sm:block">{item.category} · {item.location}</span>
+                    <ArrowUpRight className="h-4 w-4 shrink-0 text-[#E5A924] transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+                  </button>
+                ))}
+              </div>
+            </div>
+          </>
+        )}
+
+        <div className="hidden grid grid-cols-1 gap-4 sm:gap-6 lg:grid-cols-12 lg:gap-7">
           {filteredItems.map((item, index) => {
             // Bento-asymmetric rhythm: Lead project spans 7 cols, second spans 5 cols, then spacious 6-col editorial spreads
             const colSpanClass =
@@ -300,18 +371,29 @@ export default function SkyFloatingGallerySection({ onOpenQuote, initialProjects
               <article
                 key={`${item.id}-${index}`}
                 onClick={() => setActiveLightbox(item)}
-                className={`group cursor-pointer flex flex-col bg-white rounded-3xl p-3.5 sm:p-4 border border-stone-200/90 shadow-[0_12px_30px_-8px_rgba(15,23,42,0.08)] hover:shadow-[0_24px_48px_-12px_rgba(229,169,36,0.28)] hover:border-[#E5A924] hover:-translate-y-1 transition-all duration-300 ${colSpanClass}`}
+                tabIndex="0"
+                role="button"
+                aria-label={`Open ${item.title} portfolio story`}
+                onKeyDown={(event) => {
+                  if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    setActiveLightbox(item);
+                  }
+                }}
+                className={`group cursor-pointer flex flex-col bg-white/90 rounded-[1.65rem] p-2.5 sm:p-3 border border-stone-200/90 shadow-[0_18px_45px_-14px_rgba(15,23,42,0.18)] hover:shadow-[0_30px_70px_-18px_rgba(15,23,42,0.28)] hover:border-[#E5A924] hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E5A924] focus-visible:ring-offset-4 transition-all duration-500 motion-reduce:transition-none ${colSpanClass}`}
               >
                 {/* Large Editorial Image Stage */}
-                <div className={`relative overflow-hidden rounded-2xl bg-stone-100 w-full ${aspectClass}`}>
+                <div className={`relative overflow-hidden rounded-[1.25rem] bg-stone-100 w-full ${aspectClass}`}>
                   <Image
                     src={item.image}
                     alt={item.title}
                     fill
                     sizes={index === 0 ? '(max-width: 1024px) 100vw, 60vw' : '(max-width: 1024px) 100vw, 48vw'}
                     loading={index < 2 ? 'eager' : 'lazy'}
-                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                    className="object-cover transition-transform duration-1000 ease-out group-hover:scale-110 motion-reduce:transition-none"
                   />
+
+                  <div className="absolute inset-0 bg-gradient-to-t from-stone-950/55 via-transparent to-stone-950/10 opacity-75 transition-opacity duration-500 group-hover:opacity-95" />
 
                   {/* Top Architectural Drafting Tags */}
                   <div className="absolute top-3.5 left-3.5 right-3.5 flex items-center justify-between gap-2 pointer-events-none">
@@ -326,7 +408,7 @@ export default function SkyFloatingGallerySection({ onOpenQuote, initialProjects
                       )}
                     </div>
 
-                    <span className="w-9 h-9 rounded-full bg-white/95 text-stone-900 flex items-center justify-center opacity-90 sm:opacity-0 group-hover:opacity-100 transition-opacity shadow-sm">
+                    <span className="w-10 h-10 rounded-full bg-white/95 text-stone-900 flex items-center justify-center opacity-90 sm:opacity-0 group-hover:opacity-100 transition-opacity shadow-lg">
                       <Eye className="w-4 h-4 text-stone-900" />
                     </span>
                   </div>
@@ -345,7 +427,7 @@ export default function SkyFloatingGallerySection({ onOpenQuote, initialProjects
                       </span>
                     </div>
 
-                    <h3 className="mt-2 font-serif text-2xl sm:text-[26px] font-semibold text-stone-900 group-hover:text-amber-900 transition-colors leading-snug">
+                    <h3 className="mt-2 font-serif text-2xl sm:text-[26px] font-semibold text-stone-900 group-hover:text-amber-900 transition-colors leading-snug tracking-[-0.02em]">
                       {item.title}
                     </h3>
 

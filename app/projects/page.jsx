@@ -21,16 +21,17 @@ async function fetchProjects() {
       next: { revalidate: 300 },
       signal: controller.signal
     });
-    if (!res.ok) return [];
-    return res.json();
+    if (!res.ok) return { projects: [], hasError: true };
+    const data = await res.json();
+    return { projects: Array.isArray(data) ? data : [], hasError: false };
   } catch {
-    return [];
+    return { projects: [], hasError: true };
   } finally {
     clearTimeout(timeout);
   }
 }
 
 export default async function ProjectsPage() {
-  const projects = await fetchProjects();
-  return <ProjectsClient projects={Array.isArray(projects) ? projects : []} />;
+  const { projects, hasError } = await fetchProjects();
+  return <ProjectsClient projects={projects} hasFetchError={hasError} />;
 }
