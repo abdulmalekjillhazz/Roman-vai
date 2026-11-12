@@ -1,4 +1,5 @@
 import React from 'react';
+import { CheckCircle2, PackagePlus, Save, X } from 'lucide-react';
 import ProductImageManager from './ProductImageManager.jsx';
 
 export default function ProductEditor({ productManager, categories }) {
@@ -13,10 +14,13 @@ export default function ProductEditor({ productManager, categories }) {
   } = productManager;
 
   return (
-    <div className="bg-white rounded-2xl border border-brand-sand p-4 sm:p-6 shadow-sm">
+    <section className="rounded-3xl border border-stone-200/80 bg-white p-4 shadow-[0_18px_45px_-24px_rgba(28,25,23,0.5)] sm:p-6">
       <div className="flex items-center justify-between gap-3 mb-5">
         <div>
-          <h2 className="font-display text-lg sm:text-xl font-bold text-brand-charcoal">{selectedProductId ? 'Edit Product' : 'Add New Product'}</h2>
+          <div className="flex items-center gap-2.5">
+            <span className="flex h-10 w-10 items-center justify-center rounded-2xl border border-amber-200 bg-amber-50 text-amber-800 shadow-[inset_0_1px_0_rgba(255,255,255,0.8),0_6px_14px_-8px_rgba(146,64,14,0.6)]"><PackagePlus size={19} aria-hidden="true" /></span>
+            <h2 className="font-display text-lg sm:text-xl font-bold text-brand-charcoal">{selectedProductId ? 'Edit Product' : 'Add New Product'}</h2>
+          </div>
           <p className="text-xs text-brand-muted">Create or update product entries, stock status, and product images.</p>
         </div>
         {selectedProductId && (
@@ -25,7 +29,7 @@ export default function ProductEditor({ productManager, categories }) {
       </div>
 
       {productError && <div className="mb-4 rounded-xl border border-red-200 bg-red-50 p-3 text-xs text-red-700">{productError}</div>}
-      {productMsg && <div className="mb-4 rounded-xl border border-emerald-200 bg-emerald-50 p-3 text-xs text-emerald-800">{productMsg}</div>}
+      {productMsg && <div className="mb-4 flex items-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 p-3 text-xs text-emerald-800"><CheckCircle2 size={15} aria-hidden="true" />{productMsg}</div>}
 
       <form onSubmit={submitProduct} className="grid gap-4 md:grid-cols-2">
         <div className="md:col-span-2">
@@ -97,9 +101,9 @@ export default function ProductEditor({ productManager, categories }) {
 
         <div className="md:col-span-2 flex flex-col-reverse sm:flex-row justify-end gap-2.5 sm:gap-3 pt-2">
           <button type="button" onClick={resetProductForm} className="w-full sm:w-auto rounded-xl border border-brand-sand bg-white px-4 py-2.5 text-xs font-bold text-brand-charcoal hover:bg-stone-50 transition active:scale-98">Clear</button>
-          <button type="submit" className="w-full sm:w-auto rounded-xl bg-brand-charcoal px-5 py-2.5 text-xs font-bold text-white hover:bg-black transition active:scale-98">{selectedProductId ? 'Update Product' : 'Save Product'}</button>
+          <button type="submit" className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-xl bg-brand-charcoal px-5 py-2.5 text-xs font-bold text-white shadow-[0_8px_18px_-10px_rgba(28,25,23,0.8)] transition hover:-translate-y-0.5 hover:bg-black sm:w-auto"><Save size={14} aria-hidden="true" />{selectedProductId ? 'Update Product' : 'Save Product'}</button>
         </div>
       </form>
-    </div>
+    </section>
   );
 }

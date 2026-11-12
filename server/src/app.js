@@ -24,10 +24,11 @@ dotenv.config({ path: path.join(__dirname, '../../.env') });
 
 const app = express();
 app.disable('x-powered-by');
-// Only trust proxy hops explicitly configured by the deployment operator.
-if (/^\d+$/.test(process.env.TRUST_PROXY_HOPS || '')) {
-  app.set('trust proxy', Number(process.env.TRUST_PROXY_HOPS));
-}
+// When running behind Next.js API route handlers or reverse proxies, trust the immediate proxy hop by default.
+const configuredHops = /^\d+$/.test(process.env.TRUST_PROXY_HOPS || '')
+  ? Number(process.env.TRUST_PROXY_HOPS)
+  : 1;
+app.set('trust proxy', configuredHops);
 app.use(
   helmet({
     crossOriginResourcePolicy: false,

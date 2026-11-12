@@ -1,8 +1,8 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
 import {
-  ArrowUpRight, Search, Layers, MapPin, MessageCircle, Sparkles,
-  SlidersHorizontal, X
+  ArrowUpRight, Layers, MapPin, MessageCircle, Sparkles,
+  SlidersHorizontal
 } from 'lucide-react';
 import SEOHead from '../components/public/SEOHead.jsx';
 import ProductCard from '../components/public/ProductCard.jsx';
@@ -11,7 +11,6 @@ import MaterialHero from '../components/public/MaterialHero.jsx';
 import FallbackImage from '../components/public/FallbackImage.jsx';
 import FAQSection from '../components/public/FAQSection.jsx';
 import CustomerReviewsSection from '../components/public/CustomerReviewsSection.jsx';
-import SkyFloatingGallerySection from '../components/public/SkyFloatingGallerySection.jsx';
 import cloudCatalog from '../../data/products_cloudinary.json';
 import localCatalog from '../../data/products_data.json';
 import { CLIENT_INFO } from '../config/clientInfo.js';
@@ -44,13 +43,6 @@ const MATERIAL_STUDIES = [
   { file: 'project-completed-commercial-office-feature-wall-03', title: 'Acoustic Slat Louvers', detail: 'Acoustic Millwork', slug: 'acoustic-panel' }
 ];
 
-const GROUPS = [
-  { id: 'all', label: 'All Materials' },
-  { id: 'wall-products', label: 'Walls & Surfaces' },
-  { id: 'flooring-products', label: 'Flooring' },
-  { id: 'details', label: 'Profiles & Fixing' }
-];
-
 function ProductSkeletonCard({ isFeatured = false }) {
   return (
     <div
@@ -79,14 +71,8 @@ function ProductSkeletonCard({ isFeatured = false }) {
 export default function HomePage({ onOpenQuote, categorySlug }) {
   const [products, setProducts] = useState(INITIAL_CATALOG);
   const [isFetching, setIsFetching] = useState(false);
-  const [activeGroup, setActiveGroup] = useState(categorySlug || 'all');
-  const [search, setSearch] = useState('');
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [loadedFaqs, setLoadedFaqs] = useState([]);
-
-  useEffect(() => {
-    setActiveGroup(categorySlug || 'all');
-  }, [categorySlug]);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -103,26 +89,18 @@ export default function HomePage({ onOpenQuote, categorySlug }) {
         window.clearTimeout(timeout);
       });
     return () => { window.clearTimeout(timeout); controller.abort(); };
-  }, []);
+  }, [categorySlug]);
 
-  // Instant sub-millisecond filtering with zero freezing
+  // Filter only when rendered on a /category/[categorySlug] route; homepage shows all products.
   const filteredProducts = useMemo(() => {
-    return products.filter(product => {
-      const groupMatches =
-        activeGroup === 'all' ||
-        product.category === activeGroup ||
-        product.categoryGroup === activeGroup ||
-        product.slug === activeGroup ||
-        (activeGroup === 'details' && ['aluminum-profiles', 'fixing-materials', 'woodworking-details'].includes(product.category));
-
-      if (!groupMatches) return false;
-
-      if (!search.trim()) return true;
-      const query = search.toLowerCase().trim();
-      const textToSearch = `${product.name} ${product.description || ''} ${product.categoryName || ''} ${product.material || ''}`.toLowerCase();
-      return textToSearch.includes(query);
-    });
-  }, [products, activeGroup, search]);
+    if (!categorySlug) return products;
+    return products.filter(product =>
+      product.category === categorySlug ||
+      product.categoryGroup === categorySlug ||
+      product.slug === categorySlug ||
+      (categorySlug === 'details' && ['aluminum-profiles', 'fixing-materials', 'woodworking-details'].includes(product.category))
+    );
+  }, [products, categorySlug]);
 
   // Sort only the visible copy; keep API and catalog data unchanged.
   const orderedProducts = useMemo(() => {
@@ -199,70 +177,12 @@ export default function HomePage({ onOpenQuote, categorySlug }) {
           </p>
         </div>
 
-        {/* Top Category Filter Pills & Search */}
-        <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-          {/* Category Tabs */}
-          <div className="flex flex-wrap items-center gap-2" role="tablist" aria-label="Filter materials by category">
-            {GROUPS.map(group => {
-              const isSelected = activeGroup === group.id;
-              return (
-                <button
-                  key={group.id}
-                  type="button"
-                  role="tab"
-                  aria-selected={isSelected}
-                  onClick={() => setActiveGroup(group.id)}
-                  className={`inline-flex min-h-11 items-center gap-2 rounded-xl px-4 py-2 text-xs font-semibold transition-all active:scale-95 ${
-                    isSelected
-                      ? 'bg-stone-900 text-white shadow-md'
-                      : 'border border-stone-200/90 bg-white/80 text-stone-700 hover:border-[#E5A924] hover:bg-white hover:text-stone-950 shadow-xs'
-                  }`}
-                >
-                  <span>{group.label}</span>
-                </button>
-              );
-            })}
-          </div>
-
-          {/* Search Box */}
-          <div className="relative w-full sm:w-72">
-            <Search className="pointer-events-none absolute left-3.5 top-3.5 h-4 w-4 text-stone-400" />
-            <input
-              type="search"
-              aria-label="Search materials and finishes"
-              placeholder="Search finishes (e.g. Travertine, Oak)..."
-              value={search}
-              onChange={e => setSearch(e.target.value)}
-              className="floating-input min-h-11 w-full rounded-xl border-none bg-white pl-10 pr-10 text-xs sm:text-sm text-stone-900 placeholder:text-stone-400 focus:outline-none"
-            />
-            {search && (
-              <button
-                type="button"
-                onClick={() => setSearch('')}
-                aria-label="Clear search input"
-                className="absolute right-2 top-1/2 -translate-y-1/2 flex h-8 w-8 items-center justify-center rounded-lg text-stone-400 hover:bg-stone-100 hover:text-stone-700 transition"
-              >
-                <X size={15} />
-              </button>
-            )}
-          </div>
-        </div>
-
         {/* Clean Header Bar - Zero Numbers */}
         <div className="mb-6 flex items-center justify-between text-xs font-medium text-stone-500">
           <div className="flex items-center gap-1.5">
             <SlidersHorizontal size={14} className="text-brand-bronzeDark" />
             <span className="font-semibold text-stone-700">Official Material Collections</span>
           </div>
-          {activeGroup !== 'all' && (
-            <button
-              type="button"
-              onClick={() => setActiveGroup('all')}
-              className="text-xs font-bold text-brand-bronzeDark hover:underline"
-            >
-              Show All Materials
-            </button>
-          )}
         </div>
 
         {/* Full-Width Products Grid with Dynamic Bento Layout & Skeleton Loading State */}
@@ -278,7 +198,7 @@ export default function HomePage({ onOpenQuote, categorySlug }) {
         ) : filteredProducts.length ? (
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 grid-flow-dense">
             {orderedProducts.map((product, index) => {
-              const isBentoEligible = !search.trim() && !categorySlug && activeGroup === 'all';
+              const isBentoEligible = !categorySlug;
               const isFeatured = isBentoEligible && (index === 0 || (index > 0 && index % 7 === 0));
               return (
                 <ProductCard
@@ -294,14 +214,13 @@ export default function HomePage({ onOpenQuote, categorySlug }) {
         ) : (
           <div role="status" className="rounded-2xl border border-stone-200 bg-white/80 py-16 text-center">
             <h3 className="font-display text-lg font-bold text-stone-900">No matching materials found</h3>
-            <p className="mt-2 text-xs sm:text-sm text-stone-500">Try searching with another name or explore the full collection.</p>
-            <button
-              type="button"
-              onClick={() => { setSearch(''); setActiveGroup('all'); }}
-              className="mt-4 rounded-xl bg-stone-900 px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-white hover:bg-stone-800"
+            <p className="mt-2 text-xs sm:text-sm text-stone-500">Explore the full official architectural collection.</p>
+            <Link
+              href="/"
+              className="mt-4 inline-block rounded-xl bg-stone-900 px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-white hover:bg-stone-800"
             >
               Show All Materials
-            </button>
+            </Link>
           </div>
         )}
 
@@ -343,9 +262,6 @@ export default function HomePage({ onOpenQuote, categorySlug }) {
 
       {/* Customer Reviews & Testimonials (Database-driven, verified only) */}
       <CustomerReviewsSection />
-
-      {/* Celestial Sky Floating Architectural Gallery & Portfolio (আকাশে ভাসমান শৈল্পিক নিদর্শন) */}
-      <SkyFloatingGallerySection onOpenQuote={onOpenQuote} />
 
       {/* 4. Trade Services Section */}
       <section aria-labelledby="service-title" className="border-t border-stone-200 bg-[#eee9df]">

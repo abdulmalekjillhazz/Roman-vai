@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { Camera, ExternalLink } from 'lucide-react';
+import { Camera, ExternalLink, PackageCheck } from 'lucide-react';
 import { HouseMonogram } from '../../../components/public/BrandLogo.jsx';
 
 export default function AdminHeader({ auth, productCount, onLogout }) {
@@ -13,7 +13,7 @@ export default function AdminHeader({ auth, productCount, onLogout }) {
   } = auth;
 
   return (
-    <div className="bg-white rounded-2xl border border-brand-sand p-4 sm:p-6 shadow-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-5 sm:mb-8">
+    <header className="mb-5 flex flex-col items-start justify-between gap-5 rounded-3xl border border-stone-200/80 bg-white/95 p-4 shadow-[0_18px_45px_-24px_rgba(28,25,23,0.5)] sm:mb-6 sm:flex-row sm:items-center sm:p-6">
       <div className="flex items-center gap-3 sm:gap-4">
         {/* Corner Admin Avatar Photo with Live Upload */}
         <div className="relative group shrink-0">
@@ -75,22 +75,23 @@ export default function AdminHeader({ auth, productCount, onLogout }) {
         <Link
           href="/"
           target="_blank"
-          className="inline-flex items-center gap-1.5 px-3 py-1.5 sm:py-2 rounded-xl bg-stone-100 hover:bg-stone-200 text-stone-700 text-xs font-bold font-sans border border-stone-200 transition active:scale-95"
+            className="inline-flex min-h-11 items-center gap-1.5 rounded-xl border border-stone-200 bg-stone-100 px-3 text-xs font-bold font-sans text-stone-700 transition hover:bg-stone-200 active:scale-95"
           title="Open live public catalog in new tab"
         >
           <span>Live Site</span>
           <ExternalLink size={12} />
         </Link>
-        <span className="text-[11px] sm:text-xs font-mono bg-brand-cream border border-brand-sand px-2.5 sm:px-3 py-1.5 rounded-xl">
+        <span className="inline-flex min-h-11 items-center gap-1.5 rounded-xl border border-brand-sand bg-brand-cream px-2.5 font-mono text-[11px] shadow-[inset_0_1px_0_rgba(255,255,255,0.7)] sm:px-3 sm:text-xs">
+          <PackageCheck size={14} className="text-brand-gold" aria-hidden="true" />
           Items: <strong>{productCount}</strong>
         </span>
         <button
           onClick={onLogout}
-          className="px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-xl bg-red-50 hover:bg-red-100 text-red-700 text-xs font-bold font-sans border border-red-200 transition active:scale-95"
+          className="inline-flex min-h-11 items-center rounded-xl border border-red-200 bg-red-50 px-3.5 text-xs font-bold font-sans text-red-700 transition hover:bg-red-100 active:scale-95 sm:px-4"
         >
           🔒 Sign Out
         </button>
       </div>
-    </div>
+    </header>
   );
 }

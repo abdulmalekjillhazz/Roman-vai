@@ -66,21 +66,9 @@ export default function Navbar({ onOpenQuote }) {
         {/* Action Controls & Navigation Pills */}
         <div className="flex items-center gap-2 sm:gap-3">
           
-          {/* Materials Catalog Shortcut */}
+          {/* Portfolio Page Shortcut */}
           <Link
-            href="/#product-catalog"
-            className={`inline-flex min-h-10 sm:min-h-11 items-center justify-center rounded-xl px-2.5 py-2 text-[11px] font-semibold backdrop-blur-md transition-all active:scale-95 sm:px-4 sm:text-xs ${
-              isTransparent
-                ? 'border border-white/25 bg-white/10 text-white shadow-sm hover:border-[#E5A924] hover:bg-white/20'
-                : 'border border-stone-200/90 bg-white/90 text-stone-800 shadow-xs hover:border-[#E5A924] hover:bg-stone-50'
-            }`}
-          >
-            Materials
-          </Link>
-
-          {/* Portfolio Sky Gallery Shortcut */}
-          <Link
-            href="/#sky-portfolio"
+            href="/projects"
             className={`inline-flex min-h-10 sm:min-h-11 items-center justify-center rounded-xl px-2.5 py-2 text-[11px] font-semibold backdrop-blur-md transition-all active:scale-95 sm:px-4 sm:text-xs ${
               isTransparent
                 ? 'border border-white/25 bg-white/10 text-white shadow-sm hover:border-[#E5A924] hover:bg-white/20'

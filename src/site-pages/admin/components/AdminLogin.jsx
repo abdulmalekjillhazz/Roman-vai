@@ -16,8 +16,8 @@ export default function AdminLogin({ auth }) {
   } = auth;
 
   return (
-    <div className="flex min-h-[85vh] items-center justify-center bg-white p-4 font-sans">
-      <div className="relative w-full max-w-md overflow-hidden rounded-[20px] border border-stone-100 bg-white p-7 shadow-[0_20px_55px_rgba(15,23,42,0.2)] sm:p-9">
+    <main className="flex min-h-[85vh] items-center justify-center bg-[radial-gradient(circle_at_top,_rgba(229,169,36,0.14),_transparent_38%),#fbf8f2] p-4 font-sans">
+      <div className="relative w-full max-w-md overflow-hidden rounded-3xl border border-stone-200/80 bg-white p-6 shadow-[0_24px_70px_-24px_rgba(15,23,42,0.3)] sm:p-9">
         <div className="text-center">
           <div className="flex justify-center">
             <BrandLogo variant="dark" showTagline={false} />
@@ -88,6 +88,6 @@ export default function AdminLogin({ auth }) {
           Authorized administrators only
         </div>
       </div>
-    </div>
+    </main>
   );
 }

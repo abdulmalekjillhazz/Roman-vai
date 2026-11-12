@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef, useMemo } from 'react';
 import Image from 'next/image';
 import {
   Sparkles, Maximize2, Minimize2, ChevronLeft, ChevronRight,
-  X, MapPin, ArrowUpRight, Play, Pause, MessageCircle, Eye
+  X, MapPin, ArrowUpRight, MessageCircle, Eye
 } from 'lucide-react';
 import { getWhatsAppInquiryLink } from '../../utils/whatsappHelper.js';
 
@@ -100,44 +100,54 @@ const ARCHITECTURAL_SKY_ITEMS = [
   }
 ];
 
-export default function SkyFloatingGallerySection({ onOpenQuote }) {
+function mapProjectsToItems(data) {
+  const mapped = data.map((proj, idx) => ({
+    id: proj._id || proj.slug || `db-${idx}`,
+    title: proj.title,
+    category: proj.category || 'Portfolio',
+    location: proj.locationArea || 'Dubai, UAE',
+    material: Array.isArray(proj.materialsSupplied)
+      ? proj.materialsSupplied.join(', ')
+      : (proj.materialsSupplied || 'Architectural Surface'),
+    description: proj.description || 'Verified Classical Decor ID project execution in the UAE.',
+    image: proj.coverImage || proj.gallery?.[0] || ARCHITECTURAL_SKY_ITEMS[idx % ARCHITECTURAL_SKY_ITEMS.length].image,
+    cloudinary: proj.cloudinaryImages?.[0]?.secure_url || null,
+    isFeatured: Boolean(proj.isFeatured),
+    isFromAdmin: true
+  }));
+  return [...mapped, ...ARCHITECTURAL_SKY_ITEMS.filter(item => !mapped.some(m => m.title === item.title))];
+}
+
+export default function SkyFloatingGallerySection({ onOpenQuote, initialProjects = null, embedded = false }) {
   const containerRef = useRef(null);
-  const scrollContainerRef = useRef(null);
-  const [items, setItems] = useState(ARCHITECTURAL_SKY_ITEMS);
+  const [items, setItems] = useState(() =>
+    Array.isArray(initialProjects) && initialProjects.length > 0
+      ? mapProjectsToItems(initialProjects)
+      : ARCHITECTURAL_SKY_ITEMS
+  );
   const [activeCategory, setActiveCategory] = useState('All Projects');
   const [activeLightbox, setActiveLightbox] = useState(null);
   const [isFullscreen, setIsFullscreen] = useState(false);
-  const [isDrifting, setIsDrifting] = useState(false); // Mobile friendly: static snap swipe by default, toggleable drift
 
-  // Load dynamic projects from database (Admin Panel Full Control)
+  // Load dynamic projects only if not already provided by SSR
   useEffect(() => {
-    fetch('/api/projects')
+    if (Array.isArray(initialProjects) && initialProjects.length > 0) return;
+    const controller = new AbortController();
+    const timeout = window.setTimeout(() => controller.abort(), 3500);
+    fetch('/api/projects', { cache: 'no-store', signal: controller.signal })
       .then(res => (res.ok ? res.json() : []))
       .then(data => {
         if (Array.isArray(data) && data.length > 0) {
-          const mapped = data.map((proj, idx) => ({
-            id: proj._id || proj.slug || `db-${idx}`,
-            title: proj.title,
-            category: proj.category || 'Portfolio',
-            location: proj.locationArea || 'Dubai, UAE',
-            material: Array.isArray(proj.materialsSupplied)
-              ? proj.materialsSupplied.join(', ')
-              : (proj.materialsSupplied || 'Architectural Surface'),
-            description: proj.description || 'Verified Classical Decor ID project execution in the UAE.',
-            image: proj.coverImage || proj.gallery?.[0] || ARCHITECTURAL_SKY_ITEMS[idx % ARCHITECTURAL_SKY_ITEMS.length].image,
-            cloudinary: proj.cloudinaryImages?.[0]?.secure_url || null,
-            floatClass: `sky-float-airy-${(idx % 3) + 1}`,
-            isFeatured: Boolean(proj.isFeatured),
-            isFromAdmin: true
-          }));
-
-          // Sort featured projects to the front, then all admin projects, supplemented by seed items
-          const combined = [...mapped, ...ARCHITECTURAL_SKY_ITEMS.filter(item => !mapped.some(m => m.title === item.title))];
-          setItems(combined);
+          setItems(mapProjectsToItems(data));
         }
       })
-      .catch(() => {});
-  }, []);
+      .catch(() => {})
+      .finally(() => window.clearTimeout(timeout));
+    return () => {
+      window.clearTimeout(timeout);
+      controller.abort();
+    };
+  }, [initialProjects]);
 
   // Dynamically extract categories from all live items so Admin categories auto-populate!
   const categories = useMemo(() => {
@@ -152,11 +162,6 @@ export default function SkyFloatingGallerySection({ onOpenQuote }) {
     if (activeCategory === 'All Projects') return items;
     return items.filter(item => item.category === activeCategory);
   }, [items, activeCategory]);
-
-  // Duplicate items for continuous drifting marquee on desktop
-  const displayItems = useMemo(() => {
-    return isDrifting ? [...filteredItems, ...filteredItems] : filteredItems;
-  }, [filteredItems, isDrifting]);
 
   const toggleFullScreen = () => {
     if (!containerRef.current) return;
@@ -197,102 +202,41 @@ export default function SkyFloatingGallerySection({ onOpenQuote }) {
     setActiveLightbox(filteredItems[nextIndex]);
   };
 
-  const handleManualScroll = (delta) => {
-    if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollBy({ left: delta, behavior: 'smooth' });
-    }
-  };
-
   return (
     <section
       id="sky-portfolio"
       ref={containerRef}
-      className={`relative w-full overflow-hidden transition-all duration-500 border-t border-brand-sand/60 ${
-        isFullscreen ? 'h-screen w-screen py-6' : 'pt-5 pb-8 sm:pt-12 sm:pb-16'
+      className={`relative w-full transition-all duration-300 ${
+        isFullscreen
+          ? 'h-screen w-screen overflow-y-auto bg-[#FAF6EE] py-6'
+          : embedded
+          ? 'py-2'
+          : 'pt-5 pb-8 sm:pt-12 sm:pb-16 border-t border-brand-sand/60 bg-gradient-to-b from-[#FAF6EE] via-[#F1F6FA] to-[#FAF6EE]'
       }`}
-      style={{
-        background: 'linear-gradient(180deg, #FAF6EE 0%, #F1F6FA 20%, #E7F0F7 50%, #EDF4F9 80%, #FAF6EE 100%)'
-      }}
-      aria-label="Floating Architectural Sky Portfolio"
+      aria-label="Architectural Portfolio Showcase"
     >
-      {/* 1. SOFT SUNNY DUBAI SKY & ETHEREAL CLOUDS */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden select-none">
-        {/* Warm Golden Sun Aura at the top */}
-        <div
-          className="absolute -top-24 left-1/2 -translate-x-1/2 w-[600px] sm:w-[900px] h-[300px] rounded-full opacity-60 pointer-events-none"
-          style={{
-            background: 'radial-gradient(ellipse at 50% 20%, rgba(229, 169, 36, 0.22) 0%, rgba(250, 246, 238, 0.05) 60%, transparent 80%)'
-          }}
-        />
-
-        {/* Soft daylight sky cloud drift */}
-        <div className="absolute top-4 left-0 right-0 h-40 opacity-45 sky-cloud-gentle-1 pointer-events-none">
-          <svg viewBox="0 0 1440 220" className="w-[125%] h-full fill-white/80 filter blur-xl">
-            <path d="M0,64L60,85.3C120,107,240,149,360,149.3C480,149,600,107,720,106.7C840,107,960,149,1080,144C1200,139,1320,85,1380,58.7L1440,32L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z" />
-          </svg>
-        </div>
-      </div>
-
-      {/* 2. SECTION HEADER (Tight, Punchy, Beautifully Spaced on Mobile) */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-3 sm:mb-6">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-3 sm:gap-6">
-          <div>
-            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full bg-white/90 border border-amber-300/60 shadow-2xs text-[9px] sm:text-[10px] font-mono uppercase tracking-[0.16em] text-amber-900 font-bold backdrop-blur-md">
-              <Sparkles className="w-3 h-3 text-[#E5A924]" />
-              <span>Architectural Sky Showcase · Dubai & UAE</span>
+      {/* 2. SECTION HEADER & FILTER BAR */}
+      <div className={`relative z-10 ${embedded ? '' : 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'} mb-4 sm:mb-6`}>
+        {!embedded && (
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-3 sm:gap-6 mb-4 sm:mb-6">
+            <div>
+              <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full bg-white/90 border border-amber-300/60 shadow-2xs text-[9px] sm:text-[10px] font-mono uppercase tracking-[0.16em] text-amber-900 font-bold">
+                <Sparkles className="w-3 h-3 text-[#E5A924]" />
+                <span>Architectural Showcase · Dubai &amp; UAE</span>
+              </div>
+              <h2 className="font-serif text-2xl sm:text-4xl lg:text-5xl font-semibold text-stone-900 mt-1.5 sm:mt-2.5 tracking-tight">
+                Completed Masterpieces.
+              </h2>
+              <p className="font-sans text-stone-600 text-[11px] sm:text-xs mt-1 sm:mt-1.5 max-w-xl leading-relaxed">
+                Explore completed luxury residential villas, penthouses, and commercial surface executions across Dubai and the UAE.
+              </p>
             </div>
-            <h2 className="font-serif text-2xl sm:text-4xl lg:text-5xl font-semibold text-stone-900 mt-1.5 sm:mt-2.5 tracking-tight">
-              Floating Masterpieces.
-            </h2>
-            <p className="font-sans text-stone-600 text-[11px] sm:text-xs mt-1 sm:mt-1.5 max-w-xl leading-relaxed">
-              Explore completed luxury residential villas, penthouses, and commercial surface executions floating under the Dubai sky.
-            </p>
           </div>
+        )}
 
-          {/* Compact Control Row: Drift Toggle + Fullscreen */}
-          <div className="flex items-center gap-2 self-start md:self-auto shrink-0">
-            <button
-              type="button"
-              onClick={() => setIsDrifting(!isDrifting)}
-              className="inline-flex items-center gap-1 px-2.5 py-1.5 sm:px-3 sm:py-2 rounded-xl bg-white/90 hover:bg-white border border-stone-200/90 text-[10px] sm:text-[11px] font-semibold text-stone-700 shadow-xs backdrop-blur-md transition active:scale-95"
-            >
-              {isDrifting ? (
-                <>
-                  <Pause className="w-3 h-3 text-[#E5A924]" />
-                  <span>Drift: On</span>
-                </>
-              ) : (
-                <>
-                  <Play className="w-3 h-3 text-stone-500" />
-                  <span>Auto Drift</span>
-                </>
-              )}
-            </button>
-
-            <button
-              type="button"
-              onClick={toggleFullScreen}
-              className="inline-flex items-center gap-1 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl bg-stone-900 hover:bg-stone-800 text-white font-semibold text-[10px] sm:text-[11px] shadow-sm transition active:scale-95"
-            >
-              {isFullscreen ? (
-                <>
-                  <Minimize2 className="w-3 h-3 text-[#E5A924]" />
-                  <span>Exit</span>
-                </>
-              ) : (
-                <>
-                  <Maximize2 className="w-3 h-3 text-[#E5A924]" />
-                  <span>Fullscreen</span>
-                </>
-              )}
-            </button>
-          </div>
-        </div>
-
-        {/* Dynamic Category Scroll Row + Mobile Swipe Hint */}
-        <div className="mt-2.5 sm:mt-4 flex items-center justify-between gap-2 border-b border-stone-200/60 pb-2">
-          {/* Horizontally scrollable category pills on mobile without wrapping */}
-          <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-0.5 flex-1 pr-2" role="tablist">
+        {/* Portfolio Category Filter Tabs + Fullscreen Toggle */}
+        <div className="flex items-center justify-between gap-3 border-b border-stone-200/70 pb-3">
+          <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-0.5 flex-1 pr-2" role="tablist">
             {categories.map(cat => {
               const isActive = activeCategory === cat;
               return (
@@ -301,10 +245,10 @@ export default function SkyFloatingGallerySection({ onOpenQuote }) {
                   role="tab"
                   aria-selected={isActive}
                   onClick={() => setActiveCategory(cat)}
-                  className={`px-3 py-1 rounded-xl text-[11px] font-semibold whitespace-nowrap transition-all shrink-0 ${
+                  className={`px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all shrink-0 ${
                     isActive
-                      ? 'bg-stone-900 text-white shadow-xs'
-                      : 'bg-white/80 border border-stone-200/80 text-stone-600 hover:bg-white hover:text-stone-900'
+                      ? 'bg-stone-900 text-white shadow-sm'
+                      : 'bg-white border border-stone-200/90 text-stone-700 hover:border-[#E5A924] hover:text-stone-950'
                   }`}
                 >
                   {cat}
@@ -313,113 +257,119 @@ export default function SkyFloatingGallerySection({ onOpenQuote }) {
             })}
           </div>
 
-          {/* Desktop/Mobile Navigation Arrows */}
-          <div className="flex items-center gap-1 shrink-0">
-            <span className="hidden sm:inline text-[10px] font-mono text-stone-400 mr-1.5">
-              Swipe to explore
-            </span>
-            <button
-              type="button"
-              onClick={() => handleManualScroll(-300)}
-              className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-white/90 hover:bg-white border border-stone-200 text-stone-700 flex items-center justify-center shadow-2xs transition active:scale-95"
-              aria-label="Scroll left"
-            >
-              <ChevronLeft className="w-3.5 h-3.5" />
-            </button>
-            <button
-              type="button"
-              onClick={() => handleManualScroll(300)}
-              className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-white/90 hover:bg-white border border-stone-200 text-stone-700 flex items-center justify-center shadow-2xs transition active:scale-95"
-              aria-label="Scroll right"
-            >
-              <ChevronRight className="w-3.5 h-3.5" />
-            </button>
-          </div>
+          <button
+            type="button"
+            onClick={toggleFullScreen}
+            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-stone-900 hover:bg-stone-800 text-white font-semibold text-xs shadow-sm transition active:scale-95 shrink-0"
+          >
+            {isFullscreen ? (
+              <>
+                <Minimize2 className="w-3.5 h-3.5 text-[#E5A924]" />
+                <span className="hidden sm:inline">Exit Fullscreen</span>
+              </>
+            ) : (
+              <>
+                <Maximize2 className="w-3.5 h-3.5 text-[#E5A924]" />
+                <span className="hidden sm:inline">Fullscreen</span>
+              </>
+            )}
+          </button>
         </div>
       </div>
 
-      {/* 3. MOBILE-OPTIMIZED SNAP CAROUSEL & FLOATING SKY STREAM */}
-      <div
-        ref={scrollContainerRef}
-        className="relative z-10 w-full overflow-x-auto snap-x snap-mandatory scroll-smooth no-scrollbar py-2 sm:py-6 select-none"
-      >
-        <div
-          className={`flex items-center gap-4 sm:gap-6 px-4 sm:px-8 ${
-            isDrifting ? 'sky-drift-track' : 'w-max'
-          }`}
-        >
-          {displayItems.map((item, index) => (
-            <div
-              key={`${item.id}-${index}`}
-              className={`shrink-0 snap-center group cursor-pointer transition-all duration-300 ${item.floatClass} w-[78vw] sm:w-[310px] max-w-[320px]`}
-              onClick={() => setActiveLightbox(item)}
-            >
-              {/* Clean, Elegant Floating Glass Card */}
-              <div className="bg-white/95 backdrop-blur-md rounded-2xl p-2 sm:p-2.5 border border-stone-200/90 shadow-[0_10px_25px_-5px_rgba(15,23,42,0.08)] group-hover:shadow-[0_20px_40px_-8px_rgba(229,169,36,0.28)] group-hover:border-[#E5A924] group-hover:-translate-y-1.5 transition-all duration-300">
-                {/* Image Stage */}
-                <div className="relative overflow-hidden rounded-xl bg-stone-100 h-[280px] sm:h-[330px]">
+      {/* 3. REAL-WORLD ARCHITECTURAL BENTO-EDITORIAL PORTFOLIO GRID */}
+      <div className={`relative z-10 ${embedded ? '' : 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'} pt-2 pb-4`}>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 lg:gap-8">
+          {filteredItems.map((item, index) => {
+            // Bento-asymmetric rhythm: Lead project spans 7 cols, second spans 5 cols, then spacious 6-col editorial spreads
+            const colSpanClass =
+              index === 0
+                ? 'md:col-span-2 lg:col-span-7'
+                : index === 1
+                ? 'md:col-span-2 lg:col-span-5'
+                : 'lg:col-span-6';
+            const aspectClass =
+              index === 0
+                ? 'aspect-[16/10]'
+                : index === 1
+                ? 'aspect-[16/10] lg:aspect-[5/4]'
+                : 'aspect-[16/10]';
+            const projectNumber = String(index + 1).padStart(2, '0');
+
+            return (
+              <article
+                key={`${item.id}-${index}`}
+                onClick={() => setActiveLightbox(item)}
+                className={`group cursor-pointer flex flex-col bg-white rounded-3xl p-3.5 sm:p-4 border border-stone-200/90 shadow-[0_12px_30px_-8px_rgba(15,23,42,0.08)] hover:shadow-[0_24px_48px_-12px_rgba(229,169,36,0.28)] hover:border-[#E5A924] hover:-translate-y-1 transition-all duration-300 ${colSpanClass}`}
+              >
+                {/* Large Editorial Image Stage */}
+                <div className={`relative overflow-hidden rounded-2xl bg-stone-100 w-full ${aspectClass}`}>
                   <Image
                     src={item.image}
                     alt={item.title}
                     fill
-                    sizes="(max-width: 640px) 78vw, 320px"
-                    loading="lazy"
-                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-106"
+                    sizes={index === 0 ? '(max-width: 1024px) 100vw, 60vw' : '(max-width: 1024px) 100vw, 48vw'}
+                    loading={index < 2 ? 'eager' : 'lazy'}
+                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                   />
 
-                  {/* Top Badges */}
-                  <div className="absolute top-2.5 left-2.5 right-2.5 flex items-center justify-between gap-2 pointer-events-none">
-                    <span className="px-2.5 py-0.5 rounded-full text-[9px] sm:text-[10px] font-mono font-bold uppercase tracking-wider bg-stone-950/85 backdrop-blur-md text-[#E5A924] border border-amber-400/30 shadow-xs">
-                      {item.category}
-                    </span>
-
-                    {item.isFeatured && (
-                      <span className="px-2 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider bg-amber-500 text-stone-950 shadow-xs flex items-center gap-1">
-                        <Sparkles className="w-2.5 h-2.5" /> Featured
+                  {/* Top Architectural Drafting Tags */}
+                  <div className="absolute top-3.5 left-3.5 right-3.5 flex items-center justify-between gap-2 pointer-events-none">
+                    <div className="flex items-center gap-2">
+                      <span className="px-3 py-1 rounded-full text-[10px] font-mono font-bold uppercase tracking-wider bg-stone-950/85 backdrop-blur-md text-[#E5A924] border border-amber-400/30 shadow-xs">
+                        {projectNumber} · {item.category}
                       </span>
-                    )}
+                      {item.isFeatured && (
+                        <span className="px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-amber-500 text-stone-950 shadow-xs flex items-center gap-1">
+                          <Sparkles className="w-3 h-3" /> Featured
+                        </span>
+                      )}
+                    </div>
 
-                    <span className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-white/90 text-stone-900 flex items-center justify-center opacity-90 sm:opacity-0 group-hover:opacity-100 transition-opacity shadow-sm">
-                      <Eye className="w-3 h-3 text-stone-900" />
+                    <span className="w-9 h-9 rounded-full bg-white/95 text-stone-900 flex items-center justify-center opacity-90 sm:opacity-0 group-hover:opacity-100 transition-opacity shadow-sm">
+                      <Eye className="w-4 h-4 text-stone-900" />
                     </span>
                   </div>
+                </div>
 
-                  {/* Gradient Scrim for text clarity */}
-                  <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-stone-950/95 via-stone-950/50 to-transparent pointer-events-none" />
-
-                  {/* Bottom info on the photo */}
-                  <div className="absolute bottom-0 inset-x-0 p-3 sm:p-3.5 text-white pointer-events-none">
-                    <div className="flex items-center gap-1 text-[10px] font-mono text-amber-300/95 mb-0.5">
-                      <MapPin className="w-3 h-3 text-[#E5A924] shrink-0" />
-                      <span className="truncate">{item.location}</span>
+                {/* Editorial Case Study Body */}
+                <div className="flex flex-1 flex-col justify-between pt-5 pb-1 px-2">
+                  <div>
+                    <div className="flex flex-wrap items-center justify-between gap-2 text-xs font-mono">
+                      <span className="inline-flex items-center gap-1.5 text-amber-800 font-semibold">
+                        <MapPin className="w-3.5 h-3.5 text-[#E5A924] shrink-0" />
+                        <span>{item.location}</span>
+                      </span>
+                      <span className="text-[11px] uppercase tracking-wider text-stone-500 font-medium">
+                        {item.material}
+                      </span>
                     </div>
-                    <h3 className="font-serif text-sm sm:text-base font-semibold text-white group-hover:text-amber-200 transition-colors truncate">
+
+                    <h3 className="mt-2 font-serif text-2xl sm:text-[26px] font-semibold text-stone-900 group-hover:text-amber-900 transition-colors leading-snug">
                       {item.title}
                     </h3>
+
+                    {item.description && (
+                      <p className="mt-2.5 text-xs sm:text-sm text-stone-600 leading-relaxed line-clamp-2">
+                        {item.description}
+                      </p>
+                    )}
+                  </div>
+
+                  <div className="mt-5 pt-3.5 border-t border-stone-100 flex items-center justify-between text-xs font-bold">
+                    <span className="font-mono text-[11px] uppercase tracking-wider text-stone-400">
+                      Case Study & Material Specs
+                    </span>
+                    <span className="inline-flex items-center gap-1 text-amber-900 group-hover:translate-x-0.5 transition-transform">
+                      <span>View Case Study</span>
+                      <ArrowUpRight className="w-4 h-4 text-[#E5A924]" />
+                    </span>
                   </div>
                 </div>
-
-                {/* Clean Bottom Card Footer */}
-                <div className="pt-2 pb-0.5 px-1 flex items-center justify-between text-xs">
-                  <span className="text-[10px] font-mono text-stone-500 uppercase tracking-wide truncate max-w-[170px] sm:max-w-[200px]">
-                    {item.material}
-                  </span>
-                  <span className="inline-flex items-center gap-0.5 text-[10px] sm:text-[11px] font-bold text-amber-900 group-hover:translate-x-0.5 transition-transform shrink-0">
-                    <span>Inspect</span>
-                    <ArrowUpRight className="w-3 h-3 text-[#E5A924]" />
-                  </span>
-                </div>
-              </div>
-            </div>
-          ))}
+              </article>
+            );
+          })}
         </div>
-      </div>
-
-      {/* 4. MOBILE SWIPE HINT BAR */}
-      <div className="sm:hidden mt-2 text-center">
-        <span className="inline-flex items-center gap-1.5 text-[10px] font-mono text-stone-500 bg-white/70 px-3 py-1 rounded-full border border-stone-200/60 shadow-2xs">
-          <span>👈 Swipe horizontally to browse all projects 👉</span>
-        </span>
       </div>
 
       {/* 5. LIGHTBOX THEATER MODAL */}

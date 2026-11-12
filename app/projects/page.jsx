@@ -14,12 +14,19 @@ export const metadata = {
 };
 
 async function fetchProjects() {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 2000);
   try {
-    const res = await fetch(`${SITE_URL}/api/projects?published=true`, { next: { revalidate: 300 } });
+    const res = await fetch(`${SITE_URL}/api/projects?published=true`, {
+      next: { revalidate: 300 },
+      signal: controller.signal
+    });
     if (!res.ok) return [];
     return res.json();
   } catch {
     return [];
+  } finally {
+    clearTimeout(timeout);
   }
 }
 
